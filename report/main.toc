@@ -1,0 +1,22 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}%
+\contentsline {chapter}{\numberline {2}Background}{2}%
+\contentsline {section}{\numberline {2.1}Brief history of artificial intelligence}{2}%
+\contentsline {section}{\numberline {2.2}Emergence of artificial general intelligence}{2}%
+\contentsline {section}{\numberline {2.3}Potential risks and side effects}{3}%
+\contentsline {section}{\numberline {2.4}Potential solutions}{3}%
+\contentsline {subsection}{\numberline {2.4.1}AI alignment}{3}%
+\contentsline {subsection}{\numberline {2.4.2}Impact measurements}{3}%
+\contentsline {section}{\numberline {2.5}Related work}{3}%
+\contentsline {chapter}{\numberline {3}Theoretical background}{4}%
+\contentsline {section}{\numberline {3.1}Markov decision process}{4}%
+\contentsline {subsection}{\numberline {3.1.1}Grid worlds}{5}%
+\contentsline {subsection}{\numberline {3.1.2}Solutions to Markov decision processes}{5}%
+\contentsline {section}{\numberline {3.2}Reinforcement learning}{5}%
+\contentsline {subsection}{\numberline {3.2.1}Q-learning}{5}%
+\contentsline {subsection}{\numberline {3.2.2}Deep Q-Learning}{5}%
+\contentsline {subsection}{\numberline {3.2.3}Inverse reinforcement learning}{5}%
+\contentsline {chapter}{\numberline {4}Methods}{6}%
+\contentsline {section}{\numberline {4.1}Simulations}{6}%
+\contentsline {chapter}{\numberline {5}Results}{7}%
+\contentsline {chapter}{\numberline {6}Discussion}{8}%
+\contentsline {chapter}{\numberline {7}Conclusion}{9}%

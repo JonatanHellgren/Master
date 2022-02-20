@@ -1,0 +1,16 @@
+https://vkrakovna.wordpress.com/ai-safety-resources/ 
+
+Inte så mycket diskuterat, vi pratade mest om vilken literatur jag kan fördjupa
+mig i, det finns i länken ovan. Sen pratade jag lite om hur jag hade tänk lägga
+upp projektet.
+
+Jag tänker att jag kommer sitta och läsa mycket nu i början och skriva
+sammanfattningar parallellt. Senare kommer jag börja med simuleringar som
+bekräftar olika rapporters resultat. Detta kommer vara vad jag sysselsätter mig
+med till jag känner mig redo att starta egna simuleringar där med syfte att
+hitta egna resultat som jag kan skriva en rapport om. 
+
+Idag ska jag fortsätta läsa 'optimal powers tend to seek power' och om jag inte
+läser klart den idag gör jag nog det imorgon, varpå jag borde skriva en
+sammanfattning av den och sedan även börja men någon form utav simulering, så
+jag borde eventuellt behöva sätta mig in i reinforcement learning. 

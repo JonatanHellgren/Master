@@ -1,0 +1,18 @@
+In this paper they present a reinforcement method that does not only learn a
+forward policy but also a reset policy. This is eventually to make it applicable
+for real world testing where a manual reset can be costly, but the paper also
+shows that performance was gained when using their method in simulations. 
+
+The main idea is to have the agent reset the enviorment after each attempt, thus
+each forward step the agent takes it takes into account the reset policy, if
+this does not seem to be resetable the agent might not do the forward move.
+There is a hyper-parameter here that tells the agent when not to try, Q_min, it
+is basically a threshold for when the agent will see the state as unresetable.
+It also takes into account the number of steps necessary to rest the enviroment. 
+
+The gain in performence they say is likely due to the reason that the agent will
+always be able to try from the same spot. If I would try to kick a fotball in to
+a goal, then it would be easier for me if I would return the ball to the same
+spot after each attempt, rather then if I tried to kick it from where it
+stopped. The task becomes simpler since the initial state distribution is less
+varied. 

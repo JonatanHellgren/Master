@@ -1,0 +1,6 @@
+Read half of the paper, doesn't feel relevant, although interesting. It presents
+a aglorithm for reinforcement learning to ask for permission from a person
+before it does task which it is unceartain about wheter or not it will have un
+desired consequences. Basically it keeps track of all objects and if it gets a
+task and the policies involve moving a object or opening a door the agent has to
+ask for permission to do so. 
