@@ -112,21 +112,67 @@ ABSTRACT
 
 \chapter{Introduction}
 
+\section{Artificial intelligence}
 % argue that the subject is relevant
-In recent human history we have seen a massive technological development, our lives today are severally different today compared to a century ago. Most of this development can be seen as the development of tools that we humans can make use of to carry on with increasing future development. In recent years artificial intelligence (AI) have been applied more commonly in the industry. This is currently due to it's outstanding ability to process massive amounts of data, which we are generating more then ever with the recent trend towards digitalization in our society. A key point here is that these systems still require humans to create and function them.
+In recent human history we have seen a massive technological development, our lives today are severally different today compared to a century ago. Most of this development can be seen as the development of tools that we humans can make use of to carry on with increasing future development. In recent years artificial intelligence which we will in this report define as;
+\begin{definition}[AI]
+   Artificial intelligence (AI), is a computer program that is designed to solve a specific set of tasks. Usually these task require human level of intelligence.
+   \label{AI}
+\end{definition}
+AI have in the recent years been applied in the industry more broadly, this is mostly due to the recent and impressive progress in neural networks, a model inspired by biological neurons which can learn useful correlations in massive dataset. The recent progress have in the recent years become a possibility due to more data being available, faster computer hardware and the massive amount of funding that is spent on research. Although these systems is often quite automated, a key point here is that these systems still require humans to create and function them.
 
-Many experts in the field of mathematics, computer science and even philosophy, believe that the future versions of AI will not require humans to function, they will be able to automate the human intelligence part as well. This is often referred to as artificial general intelligence (AGI). A significant difference with this shift is that it will increase the possible tasks that a single system can perform, in fact the amount of tasks possible would become arbitrary and they would be performed at human level of performance or higher. The effects of such a breakthrough could be on the same scale as the industrial revolution, but instead of automating physical labour we would instead have automated mental labour. 
+Many experts in the field of mathematics, computer science and even philosophy, believe that the future versions of AI will not require humans to function, they will be able to automate the human intelligence part as well. This is often referred to as artificial general intelligence, which brings us to our second definition;
+\begin{definition}[AGI]
+Artificial general intelligence (AGI), is an AI that can solve an arbitrary task with as good or better performance then a human is capable of, the main difference from AI being that the set of task is not bounded.
+  \label{AGI}
+\end{definition}
+A significant difference with this shift is that it will increase the possible tasks that a single system can perform, in fact the amount of tasks possible would become arbitrary and they would be performed at human level of performance or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, but instead of automating physical labour we would instead have automated mental labour. 
 
+Take for example DeepMinds AplhaGo that won against the world champion Lee Sedol in the game of Go, if we where to apply the same system on the task of sorting mail, it would fail spectacularly. The reason is that a team of brilliant researchers at DeepMind designed the model specifically to be good at Go\footnote{In more recent years DeepMind have released a new AI called AlphaZero which has a more general approach and is thus able to play Go, Chess and Shogi. Never the less, the set of task is still limited.}. If an AGI would have been created we it should for example be able to play a game of Go, then drive it's car to it job where it sorts mail and much more. 
+
+As for predictions of when we are going to see the emergence of AGI there is a lot of uncertainty involved. WHEN EXPERTS GUESS. However with all the research and funding being focused on it, we are undoubtedly getting ever closer. Since AGI is defined to be able to solve an arbitrary amount of task, this would also include the creation of newer versions of it self. If it is better then the humans that created it at doing so and it keeps doing so recursively, an intelligence explosion would arise, often referred to as the \textit{singularity}.
+
+\section{Issues with AI}
 % explain that there is a existential risk
-Several AI researchers have raised warnings for future development of AI, Stuart Russel and Max Tegmark, Eliezer Yudkowsky to name but a few. The reason for this concern is that with such massive amounts of power they can have, it would be catastrophic if it where to be used in the wrong way. This would of course be a higher risk after a AGI breakthrough, since it could then also happen due to a slight misspecification of the system during it's creation, which would lead to them ending up unaligned with ours. The consequences could possibly be existential. 
+All tools can be applied in multiple ways, some might be beneficial and some might be ill intentioned. Take for example a hammer, you could either use it to build a house where you can live or you could use it to beat another person to death. The same is the case for AI because it still is but a tool, although the consequences might be more prominent since we do not understand the tool as well, and we thus can't guarantee that a well intentioned use of them won't cause negative consequences. 
 
-In the upcoming century Toby Ord loosely estimates that the probability of an existential catastrophe is 17\%, out of which 10 percentage points are due to unaligned artificial intelligence \autocite{[precipice]}. Thus AI alignment is something worth spending resources on for the sake of humanity. 
+In the recent years we have seen some examples of how AI can have negative consequences from a certain viewpoint. For example the algorithmic bias we can see in models used by lawyers to determine how long of a sentence a felon would receive after committing a crime, it was shown that the models gave afro americans a significantly longer imprisonment. Another one being that social medias exploits our psychology with the help of AI to get our attention and keep us focused on them. These problems are alarming since if we have problem with the AI of today how is the future going to be when the potential power of them will likely be greater. 
+
+Several AI researchers have raised warnings for future development of AI, Stuart Russel and Max Tegmark, Eliezer Yudkowsky to name but a few. The reason for this concern is that with such massive amounts of power they can have, it would be catastrophic if it where to be used in the wrong way. The main concern is that if the goals of the AI is unaligned with our goals This would of course be a higher risk after a potential AGI breakthrough, since it could then also happen due to a slight misspecification of the system during it's creation, which would lead to them ending up with goals that are unaligned with ours. The consequences could possibly be existential. 
+
+%In the upcoming century Toby Ord loosely estimates that the probability of an existential catastrophe is 17\%, out of which 10 percentage points are due to unaligned artificial intelligence \autocite{[precipice]}. Thus AI alignment is something worth spending resources on for the sake of humanity. 
 
 % example of existential risk, conflicting goals
-As for how such scenarios could play out a common example is the \textit{paperclip armageddon}. In which an paperclip maximizer is made super intelligent and starts accumulating resources such as hardware and money. Eventually the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even having a negative effect on producing paperclips, and thus they become extinct.
+% factory, accidentally improves their AI to super intelligent levels. 
+%As for how such scenarios could play out a common example is the \textit{paperclip armageddon}. In which an paperclip maximizer is made super intelligent and starts accumulating resources such as hardware and money. Eventually the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even having a negative effect on producing paperclips, and thus they become extinct.
 
+% concrete problems in AI safety Amodei et al
+% some more immediate issues: unenployment, missuse of machine learning,
+% long term issues, how will we see the machines we create if they become concious. Existential risks of AI.
+\section{Basic AI drives}
+Although we do not yet know what will be the drive for a potential AGI, there have been a lot of work laying the foundations for it. A commonly adopted view is the Omohundro-Bostrom theory for AI driving forces. In it there are two corner stones, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+
+\subsection{Instrumental convergence}
+Given a suffiently intelligent agent with a terminal or which can be seen as it's final goal. When the agent pursuis these goals it would naturally arise other instrumental goals, examples of such would be self-preservation, self-improvemnt and resource accumilation. The resoning behind this is that these things basically helps the agent in it's pursuit of it's final goal, the agent wouldn't be able to perfor it's goal if it where destroyed for example. These instrumental goals would likely be shared between a wide range of different agents, and thus there is a set of instrumental goals which agents would converge towards and hence the name. 
+
+To this day there doesn't yet exist any rigorous mathematical proof for this, it is still a well grounded speculation. Some work has however been done in trying to lay the necessary foundations for it. \autocite{TURNER et al}.
+
+\subsection{Orthogonality thesis}
+
+
+\subsection{The implications of the Omohundro-Bostrom theory}
+
+
+
+\section{Potential solutions}
 % What we are doing today is not going to solve this issue
 
+\subsection{Considering future task}
+% Baseline, deviance from baseline
+
+% offsetting may arise
+
+% preserve reachability of initial state: problem when irreversible actions is required to reach the goal
 
 % say that the paper will be about dealing with how to solve this
 The research field of creating safe AI has in the recent years literally exploded. We are a long way from solving the problem, most of what is being done today is mainly speculations and laying necessary foundations for future research. There are a lot of different subfields in this task and this report will specifically focus on the task of minimizing potential side effects on techniques we are applying today. Also with a purpose of spreading the ideas further, Nick Bostrom mentions in his book, \textit{Superintelligence} , that this problem is "\textit{... worthy of some of the next generation's best mathematical talent.}", and to attract those they need to at least know that they are needed. 
@@ -136,65 +182,12 @@ The research field of creating safe AI has in the recent years literally explode
 
 
 
-%########################################################################%
-% BACKGROUND
-%########################################################################%
+% reward specification is difficult
+%Instrumental convergence, instumental goals, terminal goals\\
+% self-preservation, self-improvement, resource acquisition, discretion, goal intregity
+% Turner proving it basically, but unifor distribution is still a model assumption Olle
+% hiding incentives, Danaher suggests AGI then may have already been created
 
-\chapter{Background}
-
-\section{Brief history of artificial intelligence}
-% why intelligence is better  with machines, tranistors vs neurons
-\begin{definition}[AI]
-   Artificial intelligence (AI), is a computer program that is designed to solve a specific set of tasks. Usually these task require human level of intelligence. Since the set of task usually is limited it is also referred to as \textit{weak AI} or \textit{narrow AI}.
-   \label{AI}
-\end{definition}
-
-The idea of creating AI, has been around since the dawn age of computer, where one of the founders of of modern computer science Alan Turing being the first one to define the concept. The field of AI research can be dated back to the 1956 Dartmouth summer research project on artificial intelligence, JOHN McCARTHY.... \\
-
-The field has been studied ever since with some periods of breakthroughs and other with less innovation. 
-
-Sybolic AI\\
-
-Expert systems\\
-
-Neural nets\\
-
-\section{Emergence of artificial general intelligence}
-
-As previously mentioned in Definition \ref{AI}, AI can be referred to as \textit{narrow AI}, this is due to the fact that if we would apply an AI on a task which it have not specifically been trained on the performance would most likely be horrible. Take for example DeepMinds AplhaGo that won against the worl champion Lee Sedol in the game of Go, if we where to apply the same system on the task of sorting mail, it would fail spectacularly. The reason is that a team of brilliant researchers at DeepMind designed the model specifically to be good at Go\footnote{In more recent years DeepMind have released a new AI called AlphaZero which has a more general approach and is thus able to play Go, Chess and Shogi. The set of task it however still limited.}. 
-
-This takes us to our next definition.
-\begin{definition}[AGI]
-    Artificial generall intelligence (AGI), is an AI that can solve an arbitrary task with as good or better performance then a human is capable of, the main difference from AI being that the set of task is not bounded. AGI is also referred to as \textit{strong AI}.
-\end{definition}
-If an AGI would have been created we it should for example be able to play a game of Go, then drive it's car to it job where it sorts mail and much more. The implications of this would likely be something similar to the industrial revolution, but instead of automating physical labour, we would instead automate mental labour. 
-
-As for predictions of when we are going to see the emergence of AGI there is a lot of uncertainty involved. WHEN EXPERTS GUESS. However with all the research and funding being focused on it, we are undoubtedly getting ever closer.
-
-Since we have defined AGI to be able to solve an arbitrary amount of task, this would also include the creation of newer versions of it self. If it is better then the humans that created it at doing so and it keeps doing so recursively, an intelligence explosion would arise, also referred to as the \textit{singularity}.
-
-\section{Potential risks and side effects}
-
-Instrumental convergence, instumental goals, terminal goals\\
-
-Orthogonality thesis\\
-
-\section{Potential solutions}
-
-\subsection{AI alignment}
-content\\ 
-
-Reward functions are easy to misspecify\\
-
-example of unaligned; toxic GPT-3\\
-
-define inner and outer alignment\\
-
-potential consequences of unaligned AGI\\
-
-\subsection{Impact measurements}
-
-\section{Related work}
 
 
 
@@ -218,10 +211,6 @@ The process it kept going until either a terminal state is reached or until a ce
 
 The discount factor $\gamma$ has the important of describing how the agent values future rewards, with low values the agent favours more immediate rewards compared to future rewards, whereas for higher values the agent considers future rewards with more valuable. In environments with high uncertainty lower values of gamma might be more reasonable, since it might not be worth considering future rewards if they are not certain. The opposite holds for more deterministic environments where future rewards are of higher certainty, it might be a good idea to decrease the discount.
 
-
-\subsection{Grid worlds}
-
-\subsection{Solutions to Markov decision processes}
 
 \section{Reinforcement learning}
 
@@ -256,7 +245,9 @@ The discount factor $\gamma$ has the important of describing how the agent value
 %########################################################################%
 
 \chapter{Discussion}
+% Life is about a journey, not mazimizing goals, thus we should be happy with AI doing that for us. 
 
+% consciousness, panpsychism and the philosophy of Mind - Lex Fridman #261, maybe better placen in an apendix
 
 
 %########################################################################%
