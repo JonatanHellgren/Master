@@ -1,23 +1,37 @@
 \documentclass[12pt,A4]{report}
-\usepackage[dvipsnames,rgb,dvips]{xcolor}
-\usepackage{graphicx}
-\usepackage{psfrag}
-\usepackage{dcolumn}
-\usepackage{bm}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{float}
-\usepackage[rflt]{floatflt}
-\usepackage{latexsym}
-\usepackage{algpseudocode}
-\usepackage[Algoritm]{algorithm}
+
+%########################################################################%
+% REPORT STRUCTURE
+%########################################################################%
+\renewcommand{\chaptername}{}
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{1em}{} 
+
+% Margins
 \addtolength{\topmargin}{-1.9cm}
 \addtolength{\textheight}{2cm}
 \addtolength{\evensidemargin}{-1.2cm}
 \addtolength{\oddsidemargin}{-1.2cm}
 \addtolength{\textwidth}{2cm}
 \pagestyle{myheadings}
+%########################################################################%
+% PACKAGES
+%########################################################################%
+\usepackage[dvipsnames,rgb,dvips]{xcolor}
+\usepackage{graphicx}
+\usepackage{psfrag}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{float}
+\usepackage[rflt]{floatflt}
+\usepackage{latexsym}
+\usepackage{algpseudocode}
+\usepackage[Algoritm]{algorithm}
+
 
 \theoremstyle{definition}
 \newtheorem*{definition*}{Definition}
@@ -38,6 +52,12 @@ under supervison of: Olle Häggström}
 \thispagestyle{empty}
 
 \newpage
+\pagenumbering{roman}
+
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
 
 %########################################################################%
 % INTRODUCTION
@@ -50,16 +70,16 @@ Something about existential risks and defining intelligence.
 
 In recent human history we have seen a massive technological development, our lives today are severally different today compared to a century ago. Most of this development can be seen as the development of tools that we humans can make use of to carry on with increasing future development. In the beginning of our evolutionary history these tools where fire to cook our food and spears and knifes to hunt with. In recent years a new tool has emerged, namely artificial intelligence (AI) which we will in this report define as, a computer program that is designed to solve a specific set of tasks. Usually these task require human level of intelligence.
 
+The idea of AI has been around since the dawn age of computer where TURING 1950 being the first to define the concept. And there are off course some reasons to believe that such machines could become very intelligent if designed correctly. Namely the speed of electrical currents in transistors compared to the biological brain is about 1000 times faster, leading them able to 'think' much faster. Also a computer could be turned on for as long as it has a power supply while a human has a lot of biological requirements that need to be taken care of to be able to think hard, such as eating and eating. Another reason is that it is much easier to increase the size of a computer then a humans brain, one can simply purchase more components and connect them together to get a increase in performance. Now, the speed and size doesn't mean that the intelligence will increase, but if a human like intelligence where to be applied on a computer we would see extreme results. Say for example if you left a computer on during one night with the task to read, then while you where a sleep it could possibly read more books then you have ever read in your life. 
+% https://www.nature.com/articles/d41586-018-01290-0 
+
 AI have in the recent years been applied in the industry more broadly, this is mostly due to the recent and impressive progress in machine learning, a subfield of AI that aims at constructing algorithms that finds solutions to problems by searching for patterns and correlations in data. The recent progress have in the recent years become a possibility due to more data being available, faster computer hardware and the massive amount of funding that is spent on research. Although these systems is often quite automated, a key point here is that these systems still require humans to create and function them.
 
 
 \section{Future progress in artificial intelligence}
 %Many experts in the field of mathematics, computer science and even philosophy, believe that the future versions of AI will not require humans to function, they will be able to automate the human intelligence part as well.
-When the pioneers in the field of AI started the development, the ideas where not to apply systems that automates a narrow set of task such as all the AI systems have done so far. The ideal was instead to recreate the intellect of a human in a machine. This is often referred to as artificial general intelligence, which brings us to our second definition;
-\begin{definition}[AGI]
-Artificial general intelligence (AGI), is an AI that can solve an arbitrary task with as good or better performance then a human is capable of, the main difference from AI being that the set of task is not bounded.
-  \label{AGI}
-\end{definition}
+When the pioneers in the field of AI started the development, the ideas where not to apply systems that automates a narrow set of task such as all the AI systems of today have done so far. The ideal was instead to recreate the intellect of a human in a machine. This is often referred to as artificial general intelligence (AGI), which is an AI that can solve an arbitrary task with as good or better performance then a human is capable of, the main difference from AI being that the set of task is not bounded.
+
 Take for example DeepMinds AplhaGo that won against the world champion Lee Sedol in the game of Go, if we where to apply the same system on the task of sorting mail, it would fail spectacularly. The reason is that a team of brilliant researchers at DeepMind designed the model specifically to be good at Go\footnote{In more recent years DeepMind have released a new AI called AlphaZero which has a more general approach and is thus able to play Go, Chess and Shogi. Never the less, the set of task is still limited. A finite two-player zero-sum board game.}. An AGI would would on the other hand been able to play a game of Go, then drive it's car to it job where it sorts mail and much more. 
 % transformative AI Ajeya 
 % prepotent AI
@@ -67,9 +87,10 @@ Take for example DeepMinds AplhaGo that won against the world champion Lee Sedol
 A significant difference with this shift is that it will increase the possible tasks that a single system can perform, in fact the amount of tasks possible would become arbitrary and they would be performed at human level of performance or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, but instead of automating physical labour we would instead have automated mental labour. 
 % Altough is has been argued that an AGI breaktrough isn't necessary to see such a switch TRANSFORMITE AI
 
-Although it has been argued that an AGI breakthrough is not required in order to have such a large impact on our world. 
+Although it has been argued that an AGI breakthrough isn't required in order to have such a large impact on our world, since a bunch of things we humans deem as intelligent is not required to do so. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called \textit{transformative AI}. On the other hand if this \textit{transformative AI} also would be unstoppable once deployed it is called an \textit{prepotent AI}. 
+% CRITCH KRUGER
 
-As for predictions of when we are going to see the emergence of AGI there is a lot of uncertainty involved. WHEN EXPERTS GUESS. However with all the research and funding being focused on it, we are undoubtedly getting ever closer. 
+As for when we will see these breakthroughs in AI that enables the creations of AI systems with high impact, is certainly a hard but important question, so that we can prepare for it. In a survey presented in CRITCH KRUGER 2016 they asked researchers in the field of AI to estimate the probability of a human-level machine intelligence arriving in the future years. The survey showed that there is a 50\% chance of it emergin within 45 years. The mean estimate for Asian researchers where 30 years and for North American researchers the mean estimate where 74 years. %CRITCH KRUGER 
 % Andrew Ng: Not so worried
 % Stuart Russel: Is worried, so very controversial
 % Ray Kurzweil 2045
@@ -79,20 +100,22 @@ As for predictions of when we are going to see the emergence of AGI there is a l
 % When will AI exceed human performance? Evidence from AI experts Katja grace, framing issue and they seem confused
 % Good reason to be spectical since it's only speculations by 'experts'
 
-
 When the first AGI system has been created we will likely see an intelligence explosion. Since AGI is defined to be able to solve an arbitrary amount of task, this would also include the creation of newer versions of it self. If it is better then the humans that created it at doing so and it keeps doing so recursively, an intelligence explosion would arise, often referred to as the \textit{singularity}.
 
 \section{Issues with AI}
 % explain that there is a existential risk
-All tools can be applied in multiple ways, some might be beneficial and some might be ill intentioned. Take for example a hammer, you could either use it to build a house where you can live or you could use it to beat another person to death. The same is the case for AI because it still is but a tool, although the consequences might be more prominent since we do not understand the tool as well, and we thus can't guarantee that a well intentioned use of them won't cause negative consequences. 
+All tools can be applied in multiple ways, some might be beneficial and some might be ill intentioned. Take for example a hammer, you could either use it to build a house where you can live with your family or you could use it to beat another person to death. The same is the case for AI because it still is but a tool, although the consequences might be more prominent since we do not understand the tool completely, and we thus can't guarantee that even a well intentioned use of it won't cause any unintended negative consequences. The reason for this is that it has been shown that we are generally not so good a specifying what behavior we want out of the system.
 
-In the recent years we have seen some examples of how AI can have negative consequences from a certain viewpoint. For example the algorithmic bias we can see in models used by lawyers to determine how long of a sentence a felon would receive after committing a crime, it was shown that the models gave afro americans a significantly longer imprisonment. Another one being that social medias exploits our psychology with the help of AI to get our attention and keep us focused on them. These problems are alarming since if we have problem with the AI of today, how is the future going to be when the potential power of them will most likely be greater. These issues has created the field of AI alignment, where alignment is refering to that the AIs goals are not conflicting our goals. 
+In the recent years we have seen some examples of how AI can have negative consequences from a certain viewpoint. For example the algorithmic bias we can see in models used by lawyers to determine how long of a sentence a felon would receive after committing a crime, it was shown that the models gave people with darker skin a significantly longer imprisonment. Another one being that social medias exploits our psychology with the help of AI to get our attention and keep us engaged. These problems are alarming since if we have problem with the AI of today, how is the future going to be when the potential power of them will most likely be greater. This issues is often called AI alignment, where alignment is referring to that the AIs goals are not conflicting our goals. 
 
 Several AI researchers have raised warnings for future development of AI, Stuart Russel and Max Tegmark, Eliezer Yudkowsky to name but a few. The reason for this concern is that with such massive amounts of power they can have, it would be catastrophic if it where to be used in the wrong way. The main concern is that if the goals of the AI is unaligned with our goals, this would of course be a higher risk after a potential AGI breakthrough, since the consequences will most likely be more severe, possibly even be existential. 
 
-In the upcoming century Toby Ord loosely estimates that the probability of an existential catastrophe is 17\%, out of which 10 percentage points are due to unaligned artificial intelligence \autocite{[precipice]}. Thus AI alignment is something worth spending resources on for the sake of humanity. 
+Stuart Russel quote 
+
+In the upcoming century Toby Ord, a philosopher that focuses on existential risk, loosely estimates that the probability of humanity facing a existential catastrophe is 17\%, out of which 10 percentage points are due to unaligned artificial intelligence \autocite{precipice}. He arrived at this conclusion by estimating a 50\% chance for an prepotent AI breakthrough and a 20\% chance of failure with alignment of that system \autocite{rationally speaking}. It is however necessary to point our that this is only a estimate that is meant to express the importance of the problem and should not be taken as a fact. The key takeaway here is that there is a quite large chance of facing an existential threat due to future unaligned AI, also that he believes that it it has the highest risk, where other causes where things such as an asteroid impact, nuclear war and pandemics. 
 % 50% chance of AGI in next century and 20% of failure with alignment
 
+A common example for how it can go wrong is the paperclip armageddon described in 
 % example of existential risk, conflicting goals
 % factory, accidentally improves their AI to super intelligent levels. 
 %As for how such scenarios could play out a common example is the \textit{paperclip armageddon}. In which an paperclip maximizer is made super intelligent and starts accumulating resources such as hardware and money. Eventually the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even having a negative effect on producing paperclips, and thus they become extinct.
@@ -101,27 +124,33 @@ In the upcoming century Toby Ord loosely estimates that the probability of an ex
 % some more immediate issues: unenployment, missuse of machine learning,
 % long term issues, how will we see the machines we create if they become concious. Existential risks of AI.
 \section{Basic AI drives}
-Although we do not yet know what will be the drive for a potential AGI, there have been a lot of work laying the foundations for it. A commonly adopted view is the Omohundro-Bostrom theory for AI driving forces. In it there are two corner stones, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+One might think argue that if an AI described in the previous section where intelligent it wouldn't have acted in the way described, because it would have been 'stupid' and not intelligent at all. But that argument assumes that the system would have common sense, as most of us do, but for an AI it isn't sure that common sense will be common. 
 
-\subsection{Instrumental convergence thesis}
+Although we do not yet know what will be the drive for a potential AGI, there have been a lot of work laying the foundations for it. A commonly adopted view (but still controversial) is the Omohundro-Bostrom theory for AI driving forces. There are two corner stones that together implies it, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+
 Given a sufficiently intelligent agent with a terminal, which can be seen as it's final goal. When the agent pursuits this goal it would naturally arise other instrumental goals, examples of such would be self-preservation, self-improvement, discretization, goal preserverence and resource accumulation. The reasoning behind this is that these instrumental goals helps the agent in it's pursuit of it's terminal goal. The agent wouldn't be able to perform it's goal if it where destroyed for example and thus self-preservation would arise. These instrumental goals will likely be shared between a wide range of different agents, and thus there is a set of instrumental goals which agents would naturally converge towards and hence the name. 
 
-To this day there doesn't yet exist any rigorous mathematical proof for this, it is still a well grounded speculation. Some work has however been done in trying to lay the necessary foundations for it. \autocite{TURNER et al}.  
+To this day there doesn't yet exist any rigorous mathematical proof for this. Some work has however been done in trying to lay the necessary foundations for it. \autocite{TURNER et al}.  
 
-\subsection{Orthogonality thesis}
 The orthogonality thesis was first described by Nick Bostrom in his book \textit{superintelligence} \cite{Bostrom}, it states that the intelligence of an AI has no correlation with what goal it might have. Thus an very intelligent AI could in theory have from our point of view a stupid task, such as counting the all the blades of grass on our planet. Or it can have a goal that we may deem as a important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI both of this tasks would be as important, given that we assiged the goal to it during it's creation. The same would be the case for a not so intelligent AI.
 
-
-\subsection{The implications of the Omohundro-Bostrom theory}
-If we accept the Omohundro-Bostrom theory and thus assume that the \textit{instrumental convergence} and the \textit{orthogonality thesis} is true, we can draw several behavioral consequences.
+If we accept the Omohundro-Bostrom theory and thus assume that the \textit{instrumental convergence} and the \textit{orthogonality thesis} is true, we can explain why a goal such as gem maximization can have existential consequences. 
 % reward specification is difficult
 
 \section{Potential solutions}
 % What we are doing today is not going to solve this issue
-The research field of creating safe AI has in the recent years have literally exploded. We however are a long way from solving the problem, most of what is being done today is mainly speculations and laying necessary foundations for future research. There are a lot of different subfields in this task and this report will specifically focus on the task of minimizing potential side effects of the techniques we are applying today. A brief explanation will be given here in the introduction, but for a more concrete explanation will be given in the following theory chapter.  
+The research field of creating safe AI has in the recent years have literally exploded. We however are a long way from solving the problem, most of what is being done today is mainly speculations and laying necessary foundations for future research. There are a lot of different subfields in this task and we will now in this section explain some possible solutions a bit further.
+
+\subsection{Boxing in the AI}
+
+\subsection{Make AI unsure about human preference}
+
+\subsection{Teaching AI the impact of it's actions}
 %Also with a purpose of spreading the ideas further, Nick Bostrom mentions in his book, \textit{Superintelligence} , that this problem is "\textit{... worthy of some of the next generation's best mathematical talent.}", and to attract those they need to at least know that they are needed. 
 
 % AI in a box vs AI Alignment
+\section{Aim of thesis}
+The aim of this thesis is to investigate where the current field of creating aligned AI is. With a focus on solutions that minimizes side effects by teaching it the impact of it's actions.
 
 
 
