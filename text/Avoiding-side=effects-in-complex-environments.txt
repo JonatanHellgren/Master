@@ -1,0 +1,3 @@
+Goal is to avoid side effects without specifically defining them. Doing this while still being able to complete the task.
+
+

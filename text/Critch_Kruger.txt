@@ -1,0 +1,63 @@
+David Kruger - MILA
+Andrew Critch - Center for Human-Compatible AI
+
+prepotence - Hypothetical AI technologies
+
+Have mostly been science fiction before
+
+"AI technology has the potential to alleviate poverty, aitomate defiacl research, accelerate clean energy development, and enhance human cognitive abilities.  "
+
+"AI does not need to meet the coditionds of "human-level AI" or "Artificial general intelligence" to become a source of existential risk ti humanity."
+
+The AI development timeline is unknown. Currently lots of funding and research, but we have in the past seen two 'winters' and we can see another one, ahlting the research.
+
+Definition:
+'Human-level machine intelligence' (HLMI) is acheived when unaided machines can accomplish every task better and more cheaply then human workers'
+
+'Surevey showed that 50% change of HLMI withing 45 years and 10% chance of it occuring withing 9 years'. [...] Asians means where 30 years while North Americans expected 74 years. Meadian 25% good, 20% extemely good, 10% bad, 5% extemely bad.
+So it is likely to arrive soon and most people in the survey expects positive outcomes.
+
+Present day AI does not pose existential risks, but by working with solving the ethical issues with todays AI we can extrapolate the solutions to future systems.
+
+AI ethics problems of today are fairness, accountability and transparency.
+
+The more we know about AI today the better off we will be with understanding the AIs of the future. 
+
+ACM Future of Computing Academy:
+Basically says that the current status quo in the computing community is to present the positive impacts of new technologies and not the potential negative impacts. It is like the medical community would consider treatments without presenting potential side effects. And a change in the peer-review process can help mintigate this isue.
+the Negative Impacts of Computing Through a Change to the Peer Review process (2018)
+acm-fca.org/2018/03/29/negativeimpacts
+
+Pre-potent AI, an AI technology that would (hypothetically) bring about unstoppable globally significant changes to the Earth. A systems that would effect our habitat - currently the Earth - in a manner that is at least as impactful as humanity (agrocultural and industrial revolution) and unstoppable to humanity (meaning that when we have set it free we will not be able to change the initial direction we sent it).
+
+Catastrophes could also arise from the aggregate behavior of many AI systems interacting with eac pther and/or humans.
+
+Causes for risk might be coordination failures between AI development teams, failure to recognize the prepotence of an AI technology bfore its deployment, unrecognized misalignment of an AI systems's specifications with the long-temr preservation of hman existence, or the involuntary or voluntary deployment of a technology known to be dngerous. 
+
+Argument why prepotent AI will be developed: Since we humans where developed by natural evolution, we can expect the same being possible with a guided evolution of machine intelligence. Also the speed in transistors are much faster then neurons and the replication of computer programs are much quicker then the biological counterpart. 
+
+Alan Turing "Intelligent Machinery, A Heretical Theory"
+
+Transformative AI (Karnovsky 2016), which rougly corresponds to clause 1 of the definition of prepotent AI. EXPLAIN TRANSFORMATIVE AI FIRST, THEN PRE-POTENT
+
+Definition Superintelligence:
+An intellect that is much smarter then the best human brains in pratically every field, including scientific creativity, general wisdom and sicial sills. (Bostrom 1998)
+
+AI alignemnt refers to the problem of ensuring that an AI sysyem will behave well in accordance with the values of another entity, such a s a human, an institution, or humanity as a whole. 
+
+Misaligned prepotent AI (MPAI) is unsurvivable by definition. 
+
+Pre-potent AI are likely to be unsurvivable for humanity. Many possible transformations of the Earth would render it unsurvivable to humans, and prepotent AI technology by defeition would globally and unstoppably transform the Earth.
+
+The Guman Fragility Argument:
+Most potential fututre states of the Earth are unsurvivable to humanity. Therefore, doploying a prepotent AI system absent any effort to render it safe to humanity is likely to realize a future state which is unsurvivable. Increasing the amount and quality of coordinated effort to render such a system safe would decrease the risk of unsurvivability. However, absent a rigourous theory of global human safety, it is difficult to ascertain the level of risk presented by any particular system, or how much risk could be eliminated with additional safety efforts. 
+
+
+
+
+
+
+
+
+
+

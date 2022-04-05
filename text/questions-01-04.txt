@@ -1,0 +1,47 @@
+EA
+
+AI Conferance
+
+Jag ser två möjliga vägar med egna undersökningar.
+Den första är att skapa egen simulering, som vi tidiagare har pratat om. 
+Den andra är att använda sig utav safelife och implementera nya metoder och jämföra dem med tidigare resultat.
+
+
+_Simulering_
+Visa sumuleringar, två olika varianter
+  - statisk
+  - dynamisk
+  - använda sig av game of life?
+
+Sideffekter kommer att bli när agentents handlingar påverkar mat celler som den inte ska påverka.
+Ifall agenten cirkulerar runt att vilja ha alla de olika typerna av mat så kan sideffekts minimering bildas med simlare metoder, tror jag.
+Därför kan det vara intressant att inkludera mat celler som agenten aldrig kommer få en belöning för att konsumera, för att se ifall den undviker sideffekter som inte är inkluderade i koden direkt.
+
+De metoder som kommer testas är de som används i Avoiding Side Effects In Complex Enironments. 
+Det vill säga:
+  - En naiv 
+  - PPO
+  - DQN
+  - AUP
+
+Kanske borde man testa några andra varianter ifall tiden räcker till. Men jag kommer att fokusera på att implementera dessa först.
+
+
+_Ny Metod_
+Det kanske hade varit ett intressantare projekt om jag fokuserade mer på metoderna som löser simuleringen än simuleringen i sig. Eftersom skapa ny simulering med safelife som bas verkar mer som ett mjukvaruprojekt än AI risk projekt, samt att göra en mer komplex simulering än safelife kan bli svårt. 
+
+Börja med att implementera AUP, sen testa att inkludera andra liknande metoder som minimerar sideffekter.  Testa lite olika varianter. För att hitta vilken som är bra på vad.
+
+Detta kan leda till en intressantare rapport tror jag, eftersom det kan inkluderas flera olika metoder samt simuleringar.
+
+_Rapporten_
+Vad innebär Biological Anchors egentligen?
+Kansoky, cold takes
+
+Lägga mer fokus på minimering av sideffekter, kanske ha det som ett separat delkapitell i intro. Första delen blir en bred intro till fältet och andra blir mer nichat på minimering av sidoeffekter, som resten av projektet kommer handla om.
+
+Föreslå titeln:
+Side effect minimization in modern reinforcement learning 
+An overview of current methods on side effect minimization in modern reinforcement learning
+
+Eller tycker du att det behövs att man kommer med något nytt för att det ska bli en okej uppsats? Så som en ny metod eller ny simulering. 

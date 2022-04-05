@@ -1,6 +1,12 @@
 \documentclass[12pt,A4]{report}
 
 %########################################################################%
+% TODO
+%########################################################################%
+% Fixa sista stycken i 1.1
+
+
+%########################################################################%
 % PACKAGES
 %########################################################################%
 
@@ -52,10 +58,10 @@
 % TITLE
 %########################################################################%
 
-\title{Ethical AI - First draft}
+\title{Side effect minimization in modern reinforcement learning} 
 \author{Jonatan Hellgren\\
 under supervison of: Olle Häggström}
-\date{March 2022}
+\date{April 2022}
 
 \begin{document}
 
@@ -72,64 +78,89 @@ under supervison of: Olle Häggström}
 \newpage
 \pagenumbering{arabic}
 
+% \input{1.1.txt}
 %########################################################################%
 % INTRODUCTION
 %########################################################################%
 
 \chapter{Introduction}
-In this introduction we will go through some necessary background on artificial intelligence, also some arguments why concern may be raised about its future progress. Then we will take a look at some paths the research is taking in order to avoid the potential issues that could arise with future progress. 
+In this introduction, we will go through some necessary background on artificial intelligence, also some arguments why concerns may be raised about its future progress. Then we will look at some paths the research is taking to avoid the potential issues that could arise with future progress. 
 
 \section{Artificial intelligence}
 
-In recent human history we have seen a massive technological development, our lives today are severally different today compared to a century ago. Most of this development can be seen as the development of tools, that we make use of to carry on with continuing future development. In the beginning of our evolutionary history these tools where thing such as, fire to cook our food or spears and knifes to hunt with. During our history we can see that these tool tend towards more complexity. In recent years a new tool has emerged, namely artificial intelligence (AI), which we will in this report define as, a computer program that is designed to solve a specific set of tasks. Usually these task require a human level of intelligence.
+In recent human history, we have seen massive technological development. Today our lives are in several ways different compared to a century ago. Most of this development can be seen as the development of tools, that we make use of to carry on with future development. In early prehistory, these tools were things such as fire to cook our food or spears and knives to hunt with. Later in our history, we can see that these tools tend towards more complexity. In recent years a new tool has emerged, namely artificial intelligence (AI). The idea of AI has been around since the dawning age of electronic computers. The term was first mentioned in \autocite{John McCarthy et al} (1955).
+% http://raysolomonoff.com/dartmouth/boxa/dart564props.pdf
 
-The idea of AI has been around since the dawn age of computer where Alan Turing back in early 1950s being the first to define the concept. There are some reasons to believe that such machines could become very intelligent if designed correctly. Namely the speed of electrical currents in transistors compared to the biological brain is about 1000 times faster, leading them able to 'think' much faster. Also a computer could be turned on for as long as it has a power supply, while a human has a lot of biological requirements that needs to be taken care of to be able to think hard, such as eating and resting. Another reason is that it is much faster and easier to duplicate an AI compared to a human, since one can simply transfer the necessary files and make a copy in minutes, thus a collective intelligence could grow with rapid speed.
-%is that it is much easier to increase the size of a computer then a humans brain, one can simply purchase more components and connect them together to get a increase in performance.% Now, the speed and size doesn't mean that the intelligence will increase, but if a human like intelligence where to be applied on a computer we would see extreme results. Say for example if you left a computer on during one night with the task to read, then while you where a sleep it could possibly read more books then you have ever read in your life. 
+The definitions of AI varies, likely due to the largeness of the field. On Wikipedia we find the definition\autocite{Wikipedia}:
+\begin{displayquote}
+Artificial intelligence (AI) is intelligence demonstrated by machines, as opposed to the natural intelligence displayed by animals including humans.
+\end{displayquote}
+However to understand this definition properly it is necessary to also define what intelligence is. In \autocite{Tänkande Maskiner} the author brings up the following two definitions to clarify this: \say{the quality that enables an entity to function effectively and with foresight in its environment} and \say{the ability to correctly perceive one's surrounding environment and act in away that maximizes one's chances of achieving given goals}. 
+% https://en.wikipedia.org/wiki/Artificial_intelligence
+
+In the standard textbook on the subject \autocite{Russel Norving} they define AI with suiting wide definition. They state that the field of AI is, \say{concerned with not just understanding but also building intelligent entities - machines that can compute how to act effectively and safely in a wide range of novel situations}. They later goes on describing four different approaches the field can be categorized in to. The approaches involve making an AI that can either act or think in a way that is humanly or rational. Where rationally is considered as a more abstract and formal definition of intelligence, that basically means doing the right thing. 
+
+Later they state that the standard model to create AI systems is currently acting rationally. They call this \say{The rational agent approach}. And define an agent as something that acts, more specifically by being able to: operate autonomously, perceive the environment, persist over a prolonged time period, adapt to change, and create and pursue goals. A rational agent is however a agent that does this in the best way under uncertainty\autocite{Russel Norving}. 
+
+% Here the approach of acting rationally has been the most successful one so far. This is due to the possibility to model rational behaviour with computer logic with mathematical foundations, instead of using a loose definition such as humanly. Also, getting an AI to act in a certain way is simpler to verify then the thoughts behind it \autocite{Russel Norvig}.
+
+% There are some reasons to believe that such machines could become very intelligent if designed correctly. Namely, the speed of electrical currents in transistors compared to the biological brain is about 1000 times faster, leading them able to 'think' much faster. Also, a computer could be turned on for as long as it has a power supply, while a human has a lot of biological requirements that need to be taken care of to be able to think hard, such as eating and resting. Another reason is that it is much faster and easier to duplicate an AI compared to a human since one can simply transfer the necessary files and make a copy in minutes, thus a collective intelligence could grow with rapid speed. 
+
+%is that it is much easier to increase the size of a computer than a human brain, one can simply purchase more components and connect them to get an increase in performance.% Now, the speed and size do not mean that the intelligence will increase, but if a human-like intelligence were to be applied on a computer we would see extreme results. Say for example if you left a computer on during one night with the task to read, then while you were asleep it could read more books than you have ever read in your life. 
 % https://www.nature.com/articles/d41586-018-01290-0 
 
-AI have in the recent years been applied in the industry more broadly, this is mostly due to the recent and impressive progress in machine learning, a subfield of AI that aims at constructing algorithms that finds solutions to problems by searching for patterns and correlations in data. This progress have in the recent years become a possibility due to more data being available, faster computer hardware and the massive amount of funding that is spent on research. Although these systems is often quite automated, a key point here is that these systems still require humans to create and function them.
+Ordinary computer programs is written in a code containing step-by-step instructions the computer are to execute in order to perform a certain task. This was also the case for the first two paradigms of AI: rule-based AI and expert systems\autocite{K'lla}. In these paradigms expert knowledge where explicitly given to the computer in order to create automation. The types of models created in such a way is typically good for less complex goals where everything can be explicitly modelled. However, in the current paradigm of machine learning the task is to create a model that is able to learn from the information given by training on it, in an attempt at constructing a general solution\autocite{K'lla}. In this paradigm currently the best systems are based on neural networks, a method that took inspiration from the biological brain by including digital neurons. 
+
+AI has in recent years been applied in the industry more broadly and it is already generating trillions of dollars in revenue yearly\autocite{Russel Norving}. This is mostly due to the recent and impressive progress in the current paradigm. This progress has in recent years become a possibility due to more data being available, faster computer hardware, and the massive amount of funding that is spent on research. This has Although these systems are often quite automated, a key point here is that these systems still require humans to create them and decide the direction it will take.
 
 
 \subsection{Future progress}
 % Explain what we are aiming at in the future
-When the pioneers in the field of AI started the development, the ideas where not to apply systems that automates a narrow set of task, like we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine, to extend our thoughts from merely thoughts, to a new life form with a base of silicon based hardware instead of carbon based wetware. This is often referred to as artificial general intelligence (AGI), which is an AI that can solve an arbitrary set of tasks with as good or better performance then a human is capable of, the main difference from AI being that the set of task is not bounded. Another similar term is  superintelligence, popularized by Nick Bostroms book the same name, it is a machine intelligence that is smarter then a human in all possible domains.
-
-This shift would would turn our current tool that is AI system to an automated tool, since we have automated the human intervention part away. This would develop an agency in the system, where the system would act as an agent or entity in the world instead of an extension of a human or corporation. Developing intelligent agents is attractive, since the human intervention would likely become a bottleneck.  
+When the pioneers in the field of AI started the development, the ideas were not to apply systems that automate a narrow set of tasks, as we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine, to extend our thoughts from mere thoughts to a new life form with a base of silicon-based hardware instead of carbon-based wetware. This is often referred to as artificial general intelligence (AGI), which is an AI that can solve an arbitrary set of tasks with as good or better performance than a human is capable of, the main difference from AI is that the set of tasks is not bounded. Another similar term is superintelligence, popularized by Nick Bostrom's book with the same name, it is an AI that is much smarter than a human in all possible domains. This shift would turn our current tool that is the AI system into an automated tool since we have automated the human intervention part away, this is attractive since human intervention would likely become a bottleneck in future development\autocite{Tänkande maskiner}.  
 
 % Example of an AGI
-Take for example DeepMinds AI system AplhaGo that won against the world champion Lee Sedol in the game of Go, if we where to apply the same system on the task of sorting mail, it would fail spectacularly. The reason is the team of brilliant researchers at DeepMind designed the model specifically to be good at Go\footnote{In more recent years DeepMind have released a new AI called AlphaZero which has a more general approach and is thus able to play Go, Chess and Shogi. Never the less, the set of task is still limited. A finite two-player zero-sum board game.}. An superintelligent machine would on the other hand been able to play a game of Go, then drive its car to its job where it sorts mail and much more. 
-
-There are reasons to believe that such machines are possible to build, namely that we know that human intelligence where able to evolve naturally with evolution. That is as long as we do not believe that intelligence is bound to carbon based life form and thus silicon based ones are unable to develop intelligence.
+Take for example DeepMinds AI system AplhaGo that won against the world champion Lee Sedol in the game of Go \autocite{DeepMind}, if we were to apply the same system on the task of sorting mail, it would fail spectacularly. The reason is the team of brilliant researchers at DeepMind designed the model specifically to be good at Go\footnote{In more recent years DeepMind has released a new AI called AlphaZero which has a more general approach and is thus able to play Go, Chess, and Shogi\autocite{Deepmind2}. Nevertheless, the set of tasks is still limited. A finite two-player zero-sum board game.}. An AGI would on the other hand be able to play a game of Go, then drive its car, to do its job where it sorts mail and much more. 
+% https://www.deepmind.com/research/highlighted-research/alphago/the-challenge-match
+% https://www.deepmind.com/blog/alphazero-shedding-new-light-on-chess-shogi-and-go
 
 % consequences of AGI
-A significant difference with this shift is that it will increase the possible tasks that a single system can perform, in fact the amount of tasks possible would become arbitrary and they would be performed at human level of performance or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, but instead of automating physical labour we would instead have automated mental labour. Nick Bostrom summarizes this quite well with the following quote, \say{Machine intelligence is the last invention that humanity need ever to make}\autocite{Superintelligence Bostrom}. This could be understood by realizing that every possible invention we could come up with and every possible labour, the machine would be able to either invent or to automate by itself.
+The significant difference with this shift is that it will increase the possible tasks that a single system can perform. The number of tasks possible would become arbitrary and be performed at a human level or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, but instead of automating physical labor we would instead have automated mental labor. IJ GOOD summarizes this quite well with the following quote, \say{Machine intelligence is the last invention that humanity need ever to make}\autocite{I.J Good}. This could be understood by realizing that for every possible invention we could come up with and every possible labor, the machine would be able to either invent or automate by itself.
 % superintelligence quote
+% https://en.wikipedia.org/wiki/I._J._Good
 
-% AGI is not actually required to see this shift, here are other definitions
-Although it has been argued that an AGI breakthrough is not necessary in order to have such a large impact on our world, since a lot of things we humans deem as intelligent will not help the AI in doing so. Take for example speech, if an AI could create convincing and motivating ones, it could have a large effect on things such as politics and thus have a large impact. Another one is finance, where a potential AI could steer the worlds funding towards its specific goals. For this reason many researchers have stopped talking about AGI, and have instead refined the concepts. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called an \textit{transformative AI} (TAI). On the other hand if this \textit{transformative AI} also would be unstoppable once deployed it is called an \textit{prepotent AI}. 
-%Another definition made is the one of a \textit{human-level machine intelligence}, which is achieved when unaided machines can achieve all task better and more cheaply then human workers.
+There are reasons to believe that such systems are possible to build, namely that we know that human intelligence was able to evolve naturally with evolution. That is as long as we do not believe that intelligence is bound to carbon-based life forms and thus silicon-based ones are unable to develop intelligence. Also, there are reasons to belive that these systems can become smarter then us. Namely, evolution is a seemingly slow process, while the rate of technological development has so far been much faster.
+
+% AGI is not required to see this shift, here are other definitions
+Although it has been argued that an AGI breakthrough is not necessary to have such a large impact on our world, because a lot of things we humans deem as intelligent will not help the AI in doing so. Take for example speech, if an AI could create convincing and motivating ones, it could have a large effect on things such as politics and thus have a large impact. Another one is finance, where a potential AI could steer the world's funding towards its specific goals. For this reason, many researchers have stopped talking about AGI, and have instead refined the concepts in the following manner. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called an \textit{transformative AI} (TAI). On the other hand, if this \textit{transformative AI} also would be unstoppable once deployed it is called an \textit{prepotent AI}\autocite{Critch Kruger}. 
+%Another definition made is the one of a \textit{human-level machine intelligence}, which is achieved when unaided machines can achieve all tasks better and more cheaply than human workers.
 % CRITCH KRUGER, KATJA CRACE SURVEY
 
-%To avoid confusion about all the different types of AI previously described, we will in this report mostly be focusing on transformative AI (TAI). Since it can be argued that it is the first thing that could arise, due to less requirements compared with the other ones. But still being able to cause severe consequences. 
+Developing a TAI is not an easy task, however it might not be necessary to create one directly in order for it to be created. A different approach is to create a AI system that can develop an TAI system. A key property for this AI system is self improvement. Theoretically if an AI system has reached threshold where it can imporve it self better then the creators, then it can create the next version of it self that would be even better self improvement. If this iterative process keeps going it would create a intelligence explosion often referred to as the singularity. \autocite{Superintelligence} 
+
+%To avoid confusion about all the different types of AI previously described, we will in this report mostly be focusing on transformative AI (TAI). Since it can be argued that it is the first thing that could arise, due to fewer requirements compared with the other ones. But still being able to cause severe consequences. 
 
 \subsection{Timeline for breakthrough}
 % Timeline for when we can see this, first how to estimate it
-As for when we will see these breakthroughs in the field that enables the creations of TAI systems, we do not yet know. But with all the focus in the form of funding and research that is applied on it we are undoubtedly getting ever closer. There have been some research on the matter and the results of a survey and a more quantitative forecasting model will in this subsection be presented. % Mayeb John McCarthy quote
+As for when we will see these breakthroughs in the field that enables the creations of TAI systems, we do not yet know. But with all the focus in the form of funding and research that is applied to it, we are undoubtedly getting ever closer. There have been some research on the matter and the results of a survey and a more quantitative forecasting model will in this subsection be presented. % Maybe John McCarthy quote
 
 % survey result
-In the survey presented by \autocite{Grace et al} (2017) they asked researchers in the field of AI to estimate the probability of a human-level machine intelligence (unaided machines that can achieve all task better and more cheaply then human workers) arriving in the future years. The conclusion of the survey where:
+In a well cited survey \autocite{Grace et al} (2017) they asked researchers in the field of AI to estimate the probability of human-level machine intelligence (unaided machines that can achieve all tasks better and more cheaply than human workers) arriving in the future years. The conclusion of the survey where:
 \begin{displayquote}
 Researchers believe there is a 50\% chance of AI outperforming humans in all tasks in 45 years and of automating all human jobs in 120 years, with Asian respondents expecting these dates much sooner than North Americans.
 \end{displayquote}
-Although this result should be taken with a grain of salt since they later showed that the respondents of the survey might have been confused about the question, asking the same question with a slight variation gave different answers from the same person. There is still something we can take away from this survey about the timeline, but perhaps it says more about how unsure the research field is. 
+Although this result should be taken with a grain of salt since the distribution of answers had a large variation. Also, seemingly there should not be such a big difference between solving all task and all jobs, since a jobs consists of a set of task and thus if one can perform every task one should be able to perform every job. There is still something we can take away from this survey about the timeline, namely that researches mostly thinks all tasks will be automated within this century. But, perhaps it says more about how unsure the research field is. 
 
-In the quantitative forecasting model by \autocite{Ajeya Cotra}, they present a model that predict when TAI will be possible based on a set of estimated parameters. The key idea is to estimate how much computing power the human brain performs and then use the set of parameters to estimate how long it would take for computers to reach this amount of compute. When computers have reached same amount of compute as humans it is assumed that the creation of a TAI system will be possible to create. The set of parameters are things such as, how fast our hardware is developing, improvement in algorithms and how much a potential actor is willing to spend. The results where summarized by \autocite{Robin Shah AN\#121} as the following:
+In the quantitative forecasting model by \autocite{Ajeya Cotra}, they present a model that predicts when we will be able to train an TAI system. This study uses biological anchors in order to estimate how much compute is necessary for the training. These anchors are based on factors that played a role for the development of human intelligence, such as the size of the genome and computational power in the brain. Each anchor is weighed according to how likely the author believes them to be. A strength in this study is that it is not limited to only one biological anchor. 
+
+Then using parameters such as rate of development in hardware, algorithmic progress, and willingness to spend money, they are able to estimate how likely it is that an TAI system will be developed for any given year in the future. 
+
+The results were summarized by \autocite{Robin Shah AN\#121} as the following:
 \begin{displayquote}
 For the median of 2052, the author guesses that these considerations roughly cancel out, and so rounds the median for development of TAI to 2050. A sensitivity analysis concludes that 2040 is the “most aggressive plausible median”, while the “most conservative plausible median” is 2080.
 \end{displayquote}
-This forecast presents a shorter timeline compared to the previously presented survey, but it also answers a different question so they cannot be compared directly. Although together they agree on that we will likely see the development of TAI systems this century.  
+This forecast presents a shorter timeline compared to the previously presented survey, but it also answers a different question so they cannot be compared directly. Although together they agree that we will likely see the development of TAI systems this century.  
 
-There are one thing worth mentioning when talking about the timelines for future TAI. It is not necessarily true that the amount of progress will continue to develop with the current rate, it could either decrease or increase. The field of AI has previously been through two winters where the funding and excitement decreased. This was mainly due to high expectations that where not met. So if a third winter where to emerge we could expect the rate of development to decrease. On the other hand, the rate of progress could significantly increase due to a breakthrough in a relevant field, and thus shorten the timeline. 
+There is one thing worth mentioning when talking about the timelines for future TAI. It is not necessarily true that the amount of progress will continue to develop at the current rate, it could either decrease or increase. The field of AI has previously been through two winters where the funding and excitement decreased. This was mainly due to high expectations that were not met. So if a third winter were to emerge we could expect the rate of development to decrease. On the other hand, the rate of progress could significantly increase due to a breakthrough in a relevant field and thus shorten the timeline. 
 
 % Andrew Ng: Not so worried
 % Stuart Russel: Is worried, so very controversial
@@ -138,155 +169,109 @@ There are one thing worth mentioning when talking about the timelines for future
 % Future Progress in Artificial intelligence A survey of expert opinion
 % No the agents don't think superintelligent ai is a threat to humanity, Oren Etzioni
 % When will AI exceed human performance? Evidence from AI experts Katja grace, framing issue and they seem confused
-% Good reason to be spectical since it it only speculations by 'experts'
+% Good reason to be skeptical since it is only speculations by 'experts'
 
-% When the first AGI system has been created we will likely see an intelligence explosion. Since AGI is defined to be able to solve an arbitrary amount of task, this would also include the creation of newer versions of it self. If it is better then the humans that created it at doing so and it keeps doing so recursively, an intelligence explosion would arise, often referred to as the \textit{singularity}.
+% When the first AGI system has been created we will likely see an intelligence explosion. Since AGI is defined to be able to solve an arbitrary amount of tasks, this would also include the creation of newer versions of itself. If it is better than the humans that created it at doing so and it keeps doing so recursively, an intelligence explosion would arise, often referred to as the \textit{singularity}.
 
 \subsection{Potential issues}
 % explain that there is a existential risk
-All tools can be applied in multiple ways, some might be beneficial and some might be ill intentioned. Take for example a hammer, you could either use it to build a house where you can live with your family or you could use it to beat another person to death. The same is the case for AI because it still is but a tool, although the consequences might be more prominent since we do not understand the tool completely, and we thus cannot guarantee that even a well intentioned use of it won't cause any unintended side effects. 
+All tools can be applied in multiple ways, some might be beneficial and some might be ill-intentioned. Take for example a hammer, you could either use it to build a house where you can live with your family or you could use it to beat another person to death. The same is the case for AI because it still is but a tool, although the consequences might be more prominent since we do not understand the tool completely. We thus cannot guarantee that even a well-intentioned use of it won't cause any unintended side effects. 
 
-When we design behavior for a AI agent we specify a reward function that rewards the agent when doing the thing we want it to do and discourages unwanted behavior by giving a negative reward. Reward function are very hard to specify, such that it can not be exploited by an agent once employed. When an agent that exploits its reward function is called \textit{reward hacking}, some examples of this include, a robotic vacuum cleaner that was specified to not bump into things hard, started to drive backwards since there where no bumpers on the back\autocite{Custard Smingleigh} and a Tetris playing agent that paused indefinitely instead of loosing \autocite{Dr. Tom Murphy}. 
+The standard approach when designing behavior for an AI agent is to specify a reward function that rewards the agent when doing the thing we want it to do and discourages unwanted behavior by giving a negative reward. This is called reinforement learning and is similar to technique used when raising pets such as dogs. 
+
+Reward functions are very hard to specify, such that they can not be exploited by an agent once employed. Exploiting here refers to when a behavior is developed by the agent that optimizes the reward without performing the task it was meant to learn as intended. This is called \textit{reward hacking}.
+
+A real life example of reward hacking include is; When training a robotic vacuum cleaner to drive more carefully and not bump into things hard, by yielding a negative reward based on how hard it bumped in to obstacles. It developed a behaviour that instead of driving slowly when approaching obstacles, to drive backwards since there were no bumpers on the back and thus no negative reward\autocite{Custard Smingleigh}.
 % https://twitter.com/smingleigh/status/1060325665671692288
 % http://www.cs.cmu.edu/~tom7/mario/mario.pdf
 
-% In the recent years we have seen some examples of how AI can have negative side effects. For example the algorithmic bias we can see in models used by lawyers to determine how long of a sentence a felon would receive after committing a crime, it was shown that the models gave people with darker skin a significantly longer imprisonment\autocite{Karen Hao}. Another one being that social medias exploits our psychology with the help of AI to get our attention and keep us engaged. 
+If we want to measure if the robot is cleaning cautiously, then measuring the force that the bumper senses is a good measure. But, when letting it create a behavior that minimizes this unwanted side effects may arise. This can be seen as a consequence of Goodhart's law, which states that: \say{When a measure becomes a target, it ceases to be a good measure}\autocite{Goodhars-wiki}. 
+% https://en.wikipedia.org/wiki/Goodhart%27s_law
+
+In addition to the difficulty of specifying a proper reward function, negative side effects may also arise as a unintended consequence of a proper optimal behaviour. In \autocite{Saisubramanian et al} they state that negative side effect \say{occur because the agent's model and objective function focus on some aspects of the environment but its operation could impact additional aspects of the environment}. 
+% https://ojs.aaai.org/index.php/aimagazine/article/download/7390/18881
+
+
+% In recent years we have seen some examples of how AI can have negative side effects. For example the algorithmic bias we can see in models used by lawyers to determine how long of a sentence a felon would receive after committing a crime, it was shown that the models gave people with darker skin a significantly longer imprisonment\autocite{Karen Hao}. Another one is that social media exploits our psychology with the help of AI to get our attention and keep us engaged. 
 % https://www.technologyreview.com/2019/01/21/137783/algorithms-criminal-justice-ai/
 
-These problems are alarming since if we have problem with the AI of today, how is the future going to be when the potential power of them will most likely be greater. Several AI researchers have raised warnings for future development of AI, Stuart Russel and Max Tegmark, Eliezer Yudkowsky to name but a few.
+These problems are alarming since if we have a problem with the AI of today, how severe might future problems be with more powerful AIs that also might be applied more broadly. Several AI researchers have raised warnings for future development of AI, Stuart Russel, Max Tegmark, Eliezer Yudkowsky to name but a few. \autocite{K"LLOR}
 
-The problem of creating AI that does not cause unintended side effects is often referred to as the alignment problem or AI alignment. Where alignment is referring to that the AIs goals are inline and not conflicting with the goals of a human, corporation or humanity as a whole. When an AI instead does something we didn't intend it to do, it is instead referred to as unaligned.
+The problem of creating AI that does not cause unintended negative side effects refers to as the alignment problem or AI alignment. Where alignment is referring to the Ai's goals are in line and not conflicting with the goals of a human, corporation, or humanity as a whole. When an AI does something at cross-purposes to the intended goal, it is instead referred to as unaligned.
 
-% The reason for this concern is that with such massive amounts of power they can have, it would be catastrophic if it where to be used in the wrong way. The main concern is unaligned AI. 
+% The reason for this concern is that with such massive amounts of power they can have, it would be catastrophic if it were to be used in the wrong way. The main concern is unaligned AI. 
 %This would of course be a higher risk after a potential AGI breakthrough, since the consequences will most likely be more severe, possibly even be existential. 
 
 In \autocite{Critch Kruger} they present the human fragility argument, which states: 
 \begin{displayquote}
-  Most potential future states of the Earth are unsurvivable to humanity. Therefore, deploying a prepotent AI system absent any effort to render it safe to humanity is likely to realize a future state which is unsurvivable. %Increasing the amount and quality of coordinated effort to render such a system safe would decrease the risk of unsurvivability. However, absent a rigorous theory of global human safety, it is difficult to ascertain the level of risk presented by any particular system, or how much risk could be eliminated with additional safety efforts.
+  Most potential future states of the Earth are unsurvivable to humanity. Therefore, deploying a prepotent AI system absent any effort to render it safe to humanity is likely to realize a future state which is unsurvivable. 
 \end{displayquote}
-This argument clearly explains why unaligned TAI or prepotent AI can pose a existential risk to humanity. Here an unstoppable prepotent AI will be of greater risk then a TAI, given that we are able to stop the TAI in time before its effects become to severe.
+This argument clearly explains why unaligned TAI or prepotent AI can pose an existential risk to humanity. Here an unstoppable prepotent AI will be of greater risk than a TAI, given that we can stop the TAI in time before its effects become too severe.
 
-In the upcoming century Toby Ord, a philosopher that focuses on existential risk, loosely estimates that the probability of humanity facing a existential catastrophe is 17\%, out of which 10 percentage points are due to unaligned artificial intelligence \autocite{precipice}. He arrived at this conclusion by estimating a 50\% chance for an prepotent AI breakthrough and a 20\% chance of failure with alignment of that system \autocite{rationally speaking}. It is however necessary to point our that this is only a estimate that is meant to express the importance of the problem and should not be taken as a fact. The key takeaway here is that there is a quite large chance of facing an existential threat due to future unaligned AI. Also that he believes that unaligned AI poses the highest chance for existential risk in the upcoming century, where other causes where things such as an asteroid impact, nuclear war and pandemics. 
+In the upcoming century Toby Ord, a philosopher that focuses on existential risk, loosely estimates that the chance of humanity facing an existential catastrophe is 1 in 6, out of which a chance of 1 in 10 are due to unaligned artificial intelligence \autocite{precipice}. He arrived at this conclusion by estimating a 50\% chance for a prepotent AI breakthrough and a 20\% chance of failure with the alignment of that system \autocite{rationally speaking}. It is however necessary to point out that this is only an estimate that is meant to express the importance of the problem and should not be taken as a fact. The key takeaway here is that there is a quite large chance of facing an existential threat due to future unaligned AI. Also that he believes that unaligned AI poses the highest probability for existential risk in the upcoming century, where other causes were things such as an asteroid impact, nuclear war, and pandemics. 
 % 50% chance of AGI in next century and 20% of failure with alignment
 
-A common example for how it can go wrong is the paperclip armageddon described in \textit{Superintelligence}. In it there is a gem factory that has an AI which maximizes the amounts of gems being created in the factory. In a update the system is accidentally transitioned to the level of an AGI. Eventually the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even having a negative effect on producing paperclips, and thus they become extinct. 
+A common and rather cartoonish example of how it can go wrong is the paperclip armageddon described in \textit{Superintelligence}. In it, there is a paperclip factory that has an AI which maximizes the amounts of paperclips created in the factory. In an update, the system is accidentally transitioned to the level of an AGI. Eventually, the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even negatively affects producing paperclips, and thus they become extinct. 
+
+This examples illustrates that a seemingly stupid task can be seen as more important to an AI than the existence of the human race on the planet, if we where to program it as its goal. Another is that a goal given to an AI does not need to sound harmful in order to pose an existential risk. 
 % example of existential risk, conflicting goals
-% factory, accidentally improves their AI to super intelligent levels. 
-%As for how such scenarios could play out a common example is the \textit{paperclip armageddon}. In which an paperclip maximizer is made super intelligent and starts accumulating resources such as hardware and money. Eventually the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even having a negative effect on producing paperclips, and thus they become extinct.
+% factory accidentally improves their AI to super-intelligent levels. 
+%As for how such scenarios could play out a common example is the \textit{paperclip armageddon}. In which a paperclip maximizer is made super-intelligent and starts accumulating resources such as hardware and money. Eventually, the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even has a negative effect on producing paperclips, and thus they become extinct.
 
 % concrete problems in AI safety Amodei et al
-% some more immediate issues: unenployment, missuse of machine learning,
-% long term issues, how will we see the machines we create if they become concious. Existential risks of AI.
+% some more immediate issues: unemployment, misuse of machine learning,
+% long term issues, how will we see the machines we create if they become conscious. Existential risks of AI.
 \subsection{Basic drives}
-One might argue that if an AI described in the previous section where intelligent it wouldn't have acted in the way described, because it would have been stupid and not intelligent at all. But that argument assumes that the system would have common sense, as most of us do, but for an AI it is not sure that common sense will be common. That leads us to the question, what does an AI actually want?
+One might argue that if an AI described in the previous section were intelligent it wouldn't have acted in the way described, because it would have been stupid and not intelligent at all. But that argument assumes that the system would have common sense, as most of us do, but for an AI it is not sure that common sense will be common. That leads us to the question, what does an AI want?
 
-Although we do not yet know what will be the drive for a potential AGI, there have been a lot of work laying the foundations for understanding it. A commonly adopted view (but still controversial) is the Omohundro-Bostrom theory for AI driving forces. There are two corner stones that together implies it, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+Although we do not yet know what will be the drive for a potential AGI, there has been a lot of work laying the foundations for understanding it. A commonly adopted view (but still controversial) is the Omohundro-Bostrom theory for AI driving forces. Two cornerstones together imply it, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
 
-Today the AI systems typically is applied at a task by giving it a goal, this goal could be anything, for example maximizing the amount of paperclips produced by a factory, solving the Riemann hypothesis or counting all the blades of grass on our planet. When the system does the task it is set out to do, it is rewarded.
+The AI systems of today typically are applied to a task by giving it a goal, this goal could be anything, for example maximizing the number of paper clips produced by a factory, solving the Riemann hypothesis, or counting all the blades of grass on our planet. When the system does the task it is set out to do, it is rewarded.
 
-When the agent pursuits this goal it would naturally arise other instrumental goals, examples of such would be self-preservation, self-improvement, discretization, goal preserverence and resource accumulation. The reasoning behind this is that these instrumental goals helps the agent in its pursuit of its terminal goal. The agent wouldn't be able to perform its goal if it where destroyed for example and thus self-preservation would arise. These instrumental goals will likely be shared between a wide range of different agents, since improving itself and accumulating resources will likely help the agent regardless of its terminal goal. Thus there is a set of instrumental goals which agents would naturally converge towards and hence the name.There are some examples where the terminal goal does not induce a power seeking tendencies, for example if the goal is to kill itself, or to not do anything. 
+When the agent pursuits this goal, there would naturally arise other instrumental goals, examples of such would be self-preservation, self-improvement, discretization, goal perseverance, and resource accumulation. The reasoning behind this is that these instrumental goals help the agent in the pursuit of its terminal goal. The agent wouldn't be able to perform its goal if it were destroyed for example and thus self-preservation would arise. These instrumental goals will likely be shared between a wide range of different agents, since improving itself and accumulating resources will likely help the agent regardless of its terminal goal. Thus there is a set of instrumental goals which agents would naturally converge towards and hence the name. There are some examples where the terminal goal does not induce a power-seeking tendency, for example, if the goal is to kill itself or to not do anything. 
 
-To this day there doesn't yet exist any rigorous mathematical proof for this. Some work has however been done in trying to lay the necessary foundations for it. \autocite{TURNER et al}. In the paper they prove in a simplified environment that there are certain actions that gives the agent more power over the its future actions and on average it is optimal to choose those actions. 
+To this day there doesn't yet exist any rigorous mathematical proof for this. Some work has however been done in trying to lay the necessary foundations for it. \autocite{TURNER et al}. In the paper, they prove in a simplified environment that certain actions give the agent more power over its future actions and on average it is optimal to choose those actions. 
 
-The orthogonality thesis was first described by Nick Bostrom in his book \textit{superintelligence} \cite{Bostrom}, it states that the intelligence of an AI has no correlation with what goal it might have. Thus an very intelligent AI could in theory have from our point of view a stupid task, such as counting the all the blades of grass on our planet. Or it can have a goal that we may deem as a important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI both of this tasks would be as important, given that we assigned the goal to it during its creation. The same would be the case for a not so intelligent AI.
+The orthogonality thesis was first described by Nick Bostrom\cite{Bostrom2}, it states that the intelligence of an AI is logically independent of the goals it might have. Thus a very intelligent AI could in theory have from our point of view a stupid task, such as counting all the blades of grass on our planet. Or it can have a goal that we may deem as an important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI both of these tasks would be as important, given that we assigned the goal to it during its creation. The same would be the case for a not-so-intelligent AI.
+% https://www.nickbostrom.com/superintelligentwill.pdf
 
-If we accept the Omohundro-Bostrom theory and thus assume that the \textit{instrumental convergence} and the \textit{orthogonality thesis} is true, we can explain why a goal such as gem maximization can have existential consequences. 
+If we accept the Omohundro-Bostrom theory and thus assume that the \textit{instrumental convergence} and the \textit{orthogonality thesis} are true, we can explain why a goal such as a paperclip maximization can have existential consequences. 
 % reward specification is difficult
 
-% explain why this imples a hard alignment poblem, we do not have final goal but AI does
+% explain why this implies a hard alignment problem, we do not have a final goal but AI does
 
 \section{Paths for solving the alignment problem}
 % What we are doing today is not going to solve this issue
-The research field of creating safe and aligned AI has in the recent years have literally exploded. We however are a long way from solving the problem, most of what is being done today is mainly speculations and laying necessary foundations for future research. Solving this issue in time is extremely important, since if we see the emergence of a transformative AI or possibly even an unstoppable prepotent AI, humanity might suffer the consequences previously described. 
+The research field of creating safe and aligned AI has in recent years seen a substantial increase. We are however a long way from solving the problem, most of what is being done today are mainly speculations and laying necessary foundations for future research. Solving this issue in time is extremely important since if we see the emergence of a transformative AI or possibly even an unstoppable prepotent AI, humanity might suffer the consequences previously described. 
 
 The problem can be seen as arising from the fact that we humans are evolved to understand other humans, not computers. Thus it is very hard to specify a reward function for an intelligent agent, without it leading to several unintended consequences. 
 
-Attempts has been made to limit these side effects by specifically specifying what the agent should not do\autocite{Zhang et al}. However with this approach the creation of the reward function basically becomes an iterative trial and error process. This requires a lot of human intervention, which makes the agent less autonomous and takes requires more time. 
+There are several proposed paths for solving this issue and perhaps the sheer amount might signify the difficulty of the problem. We will now take a closer look at a few of these paths in this section.
 
-To solve this, attempts has been made to define a set of constrains that makes the agent avoid side effects without the need to specify what a side effect is. It is also important that the constraints defined should be able to extrapolate in to new unseen situations.
-
-An example of was presented in \autocite{Armstrong and Levinstein}, where they measured the impact as the difference in the world if the agent where turned on compared to if it was turned on, where the world is simplified as a set of parameters. However the choice of parameters will either be quite large or chosen quite arbitrary. But this idea laid the philosophical groundwork for future solutions.
-
-A more general approach to define side effects is presented in \autocite{Eysenbach et al}, where the agent are penalized if they are not able to preserve reachability to the initial or any other defined safe state. This method incentives a safe exploration that avoids irreversible states. This works well when no such irreversible action is required any the agent to reach its goal, to make an omelette one has to break some eggs. Another problem arise when the agent is in a dynamic environment, since then it would act to prevent other irreversible actions from happening, like a human eating a omelette. 
-
-In \autocite{Krakovn et al 2019} and \autocite{Turner et al 2020} the method for defining side effects is done by defining a baseline and a deviation measure from that baseline. This allows for a even more general approach and this type of method is what this report will focus on. The details of this method will be further explained in the theory chapter, once some necessary preliminaries has been covered.
- 
-
-% There are some known issues to this approach. For example if a low impact agent where to cure a cancer patient, it could theoretically kill the patient after curing it to reduce its impact on the world, since the patient where going to die if it had not intervened. Also there are issue that may arise depending how much impact the agent should be allowed to cause. 
-% The problem is basically to teach the AI systems human morals, the problem is that we do not know how to do this or what our moral is. So it seems like we need to solve our moral philosophy and learn how to implement this in a AI system in order to create an AI that is aligned with us. A seemingly hard problem, but it is even harder since the AI needs to be much more moral then us since it will have more power and thus will be is positions we have never even though of. The tricky part is to make these learnt values extrapolate in to these unseen situations. 
-
-% There are a lot of different paths how to go about solving this task, the amount of paths presented can be taken as a sign of the difficulty of the problem. We will now in this section take a closer look at how we can reduce the amount and scale of side effects caused by AI systems. 
+\subsection{Learning human intent as a priority}
+If we say that the cause for negative side effects emerge due to improperly specified reward functions. Then the solution might not be to create a better reward function, but to instead make the agents goal to understand what the human intent behind the reward function was. Instead of seeing the reward function as final the AI agent will instead view it as an observation of what the true goal might be. This approach is called inverse reward design \autocite{Hadfield-Mennell et. al}.
+% https://arxiv.org/pdf/1711.02827.pdf
 
 
-%\subsection{Putting it in a box}
-%The idea here is that the AI cannot have severe consequences if its not able to influence the world directly. An example of such a system is a Oracle AI. This would be something similar to a search engine, but instead the answers given will be generated by an AI that has read and understood a lot of knowledge, perhaps the entire web. When the AI is deployed it will be limited to only answering questions. Thus all the possible use cases for such a machine will be limited to just that, hence the box.
-
-% \subsection{Make learning human intent a priority} 
-
-%A big issue when applying AI systems today is that we do not know the consequences of a certain defined goal that we give to agent by specifying a reward function. There are a lot of examples where the system exploits its reward function, reward hacking as previously described. 
-
-%This can be seen as a consequence of the fact that our brains are built to understand humans, not computers. 
-
-%An idea to solve this is to not treat the reward function as something final and thus in  way allow for imperfect ones by letting the agent correct it by asking questions. 
-
-% One way to do this is to make the agents goal to understand the human intent behind the specified goal. By treating the specified reward functions as a observation of what the human actually wants. This is called inverse reward design and was presented in \autocite{Hadfeild-Menell et al}. 
-%https://arxiv.org/pdf/1711.02827.pdf
-
-% This idea has been presented by \autocite{Zhang et al} where the agent has three sets of objects, one it can interact with, one it is not allowed to interact with and one it is unsure about. If a certain action would involve interacting with an object that is not allowed it will not choose that action. On the other hand if a certain action would interact with a object from the unknown list it would ask for permission first before choosing if should act or not. Thus it is not required to specify all objects in advance.
-% https://web.eecs.umich.edu/~baveja/Papers/ijcai-2018.pdf
-
-% These methods presents a solutions that allows for more control over the agents, by allowing the agent to ask for corrections with poorly designed reward functions. However there is a lot of human intervention required. It can also take a while to figure out the environment in this manner since it is largely based on trail and error, thus the amount of human intervention scales poorly with the size of the environment. 
-
-% \subsection{Lower impact agent}
-% A approach that aims at letting the system automatically avoid side effects and incentivize low impact actions has been presented by \autocite{Critch and Kruger}. In the report they define impact as the difference between the world if the agent was turned on compared to the world if the agent was not turned on. 
-
-% The world is measured as a set of parameters describing it, however including a parameter for every feature in the world is unreasonable, thus they suggest coarse-graining, a method where a limited set of parameter is chosen. The example they use for these parameters is, \say{the air pressure in Dhaka, the average night-time luminosity at the South Pole, the rotational speed of Io, and the closing numbers of the Shanghai stock exchange}. 
-% https://arxiv.org/pdf/1705.10720.pdf
-% Killing all life on the planet would indeed cure cancer
+\subsection{Implementing interruptibility and corrigibility}
 
 
-% \subsection{Only considering reversible actions}
-% Another way to deal with the issue of potential side effects is to learn agents to not make irreversible actions. For example if you had placed a vase in the middle of a room and a agents task is to move across of that room, then the fastest path might be to walk straight through the room and knock over the vase. This would however be a irreversible action, unless the agent where very good at fixing the vase. Never the less, a better option would be to walk around the vase instead. Thus the agent should learn to avoid side effects automatically.
+\subsection{Side effect minimization}
+Attempts have been made to limit these side effects by specifically specifying what the agent should not do\autocite{Zhang et al}. However, with this approach, the creation of the reward function becomes an iterative trial and error process. This requires a lot of human intervention, which makes the agent less autonomous and requires more time. 
 
-% In \autocite{Eysenbach et al} they present the idea to include a reset policy when training agents. This policy would when acted out reset the environment to its original state. The idea is to not let the agent perform an action which it can not reset using its reset policy. This would then lead to less consequences, since if the agent performed something unwanted we could always make it reverse its actions.
-% https://arxiv.org/pdf/1711.06782.pdf
+To solve this, attempts have been made to define a set of constraints that makes the agent avoid side effects without the need to specify what a side effect is. It is also important that the constraints defined should be able to extrapolate into new unseen situations.
 
-% The main issues with this approach is the following. If an irreversible action is required to reach the goal, then preserving the reachability of the initial state would cause problems. You can not make an omelette without breaking some eggs. Also each each irreversible action is valued with the same magnitude, regardless how large the effect is. 
+An example of was presented in \autocite{Armstrong and Levinstein}, where they measured the impact as the difference in the world if the agent were turned on compared to if it was not turned on, where the world is simplified as a set of parameters. However, the choice of parameters will either be quite large or chosen quite arbitrary. But this idea laid the philosophical groundwork for future solutions.
 
-% Other problems arise when the agent is not the only source of change, for example if a clock was moving, then the reset policy would have to revert the clock to its original time and move the agent back to its original position.
+A more general approach to defining side effects is presented in \autocite{Eysenbach et al}, where the agent is penalized if they are not able to preserve reachability to the initial or any other defined safe state. This method incentives a safe exploration that avoids irreversible states. This works well when no such irreversible action is required and the agent to reach its goal, to make an omelet one has to break some eggs. Another problem arises when the agent is in a dynamic environment, since then it would act to prevent other irreversible actions from happening, like a human eating an omelet. 
 
-% \subsection{Value difference measurements}
-% Another approach to automatically learn to avoid side effect but still considering the magnitude of the side effect, is to include a value difference measurement. Where the value is defined as the consequences of its actions. The Value is measured as either the difference between a baseline, usually being the case of inaction \autocite{Krakovna et al 2019}, or the difference between the reward function and other arbitrary reward functions \autocite{Turner et al 2019}. If the action would result in large consequences then it will be penalized.
+In \autocite{Krakovn et al 2019} and \autocite{Turner et al 2020}, the method for defining side effects is done by defining a baseline and a deviation measure from that baseline. This allows for an even more general approach. This type of method is what this report will focus on. The details of this method will be further explained in the theory chapter, once some necessary preliminaries have been covered.
 
-% With this approach the idea is basically to harness the power seeking tendencies that instrumental convergence implies. By including a more general reward function the agent might naturally avoid side effects, since it could consider side effects as potentially decreasing its ability to reach future goals. 
-% https://arxiv.org/pdf/1806.01186.pdf, Krakanova
-% Baseline, deviance from baseline
-
-% offsetting may arise
-
-% preserve reachability of initial state: problem when irreversible actions is required to reach the goal
-
-
-
-%Also with a purpose of spreading the ideas further, Nick Bostrom mentions in his book, \textit{Superintelligence} , that this problem is "\textit{... worthy of some of the next generation's best mathematical talent.}", and to attract those they need to at least know that they are needed. 
-
-% AI in a box vs AI Alignment
 \section{Aim of thesis}
-The aim of this thesis is to investigate how current methods that reduces side effects by including a value difference measurement compare to standard methods, in a novel set of environments. (Maybe implementing new variations of the method on the same environment to see how they compare.) 
+This thesis aims to investigate how variations of current methods that reduce side effects by including a value difference measurement compare to standard methods. 
 
 
-
-
-
-% say that the paper will be about dealing with how to solve this
-
-%Instrumental convergence, instumental goals, terminal goals\\
-% self-preservation, self-improvement, resource acquisition, discretion, goal intregity
-% Turner proving it basically, but unifor distribution is still a model assumption Olle
-% hiding incentives, Danaher suggests AGI then may have already been created
-
-
-
+ 
 
 %########################################################################%
 % THEORY
@@ -327,7 +312,11 @@ Then using the utilities of the states on can define an optimal policy $\pi^*$ b
 
 % Deep Q-learning
 
-\subsection{Penalizing side effects}
+\subsection{Policy gradient}
+
+% PPO
+
+\section{Side effect minimization}
 
 % baseline and deviance measurements
 

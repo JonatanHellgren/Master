@@ -1,0 +1,10 @@
+Only focusing on one objective can lead to major disruptions of the broader environment.
+As agents are increasingly employed for real-world task, misspecification will become more difficult to avoid and will have more serious consequences.
+
+side effect avoidance (Amodei et al) (Zhang et al)
+minimizing change to the environment (Armstrong and Levinstein)
+reachability preservation (Moldovan and Abbeel 2012, Eysenbach et al 2018)
+Unified as _conservative agency_: optimizing the primary reward function while preserving the ability to optimize others.
+
+Minimize side effects of misspecification.
+

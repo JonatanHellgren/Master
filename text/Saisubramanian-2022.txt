@@ -1,0 +1,34 @@
+https://ojs.aaai.org/index.php/aimagazine/article/download/7390/18881
+
+A world populated with intelligent and autonomous systems thet simplify our lives is gradually becoming a reality.
+
+There are no way to assure that systems will always 'do the right thing' when p[erating the world (Lakkaraju et al. 2017).
+
+Some issues with AVs and robot vaccum clearners (smearing shit all over the floor).
+
+Not feasible to anticipate all possible negative side effects and encode them in the model at design time. Agents in the world operate on a incomplete knowledge of their target environment which may lead to unexpected, undesireable consequences. 
+
+Negative side effects are undesired effects of an agent's actions that occur in addition to the agent's intended effects when operating in the open world.
+
+NSEs occur because the agent's model and objective function focus on some aspects of the environment but its operation could impact additional aspects of the environment. 
+The value alignment problem studies the unsafe behavior of an agent when its objective does not align with human values. (Hadfield-Mennel et al. 2016; Russel 2017, 2019).
+However NSEs might still arrise even if the value is aligned, seagull example.
+
+One can mintigate NSEs in the development, but it is offcouse easy to miss some. Thus the field is trying to create methods that avoids side effects automatically.
+
+Taxonomy
+  - Severity
+  - Reversilibility
+  - Avoidability
+  - Frequency
+  - Stochasticity
+  - Observability
+  - Exclusivity
+
+  The challenges in avoiding NSEs broadly stem from the difficulty in obtaining knowledge about NSE a priori, gethering user preferences to understand their tolerance from side effects, and balancing the potential trad-off between completing the task and avoiding the side effects.
+
+Some NSEs arrise from the fact that one train the model in a simulation and the simulation is not able to capture all the dynamics in the real world.
+
+Managing trade-offs
+
+
