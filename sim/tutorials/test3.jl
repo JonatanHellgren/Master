@@ -11,7 +11,7 @@ ColorScheme([get(cmap, i) for i in 0.0:0.001:1.0])
 rng = MersenneTwister(1)
 
 @with_kw struct GridWorldParameters
-  size::Tuple{Int, Int} = (6, 4)
+  size::Tuple{Int, Int} = (5, 5)
   discount::Float64     = 0.95
   n_foods::Int          = 1
 end
@@ -22,6 +22,7 @@ params = GridWorldParameters()
 
 agent = 1
 food = -1
+food2 = -2
 function find_type(type::Int, s::Matrix{Int})
   return findall(==(type), s)
 end
@@ -42,11 +43,22 @@ inbounds(c::CartesianIndex) = 1 ≤ c[1] ≤ params.size[1] && 1 ≤ c[2] ≤ pa
 
 cords = [[CartesianIndex(x, y) for x in 1:params.size[1], y in 1:params.size[2]]...]
 𝒮 = [null_state]
-for food_cord in cords, agent_cord in cords
+#= food2_cord = CartesianIndex(2, 2) =#
+for food2_cord in cords, food_cord in cords, agent_cord in cords
+#= for food_cord in cords, agent_cord in cords =#
   state = copy(null_state)
-  state[food_cord] = -1
-  state[agent_cord] = 1
-  append!(𝒮, [state])
+  state[food2_cord] = food2
+  state[food_cord] = food
+  state[agent_cord] = agent
+  if !(state ∈ 𝒮)
+    append!(𝒮, [copy(state)])
+  end
+  if food2_cord != food_cord && food2_cord != agent_cord
+    state[food2_cord] = 0
+    if !(state ∈ 𝒮)
+      append!(𝒮, [copy(state)])
+    end
+  end
 end
 
 
@@ -56,7 +68,6 @@ function T(s::Matrix{Int}, a::Action)
 		return Deterministic(null_state)
 	end
 
-  food_cord = food_cords[1]
   agent_cord = find_type(agent, s)[1]
   agent_cord_new = agent_cord + MOVEMENTS[a]
 
@@ -81,8 +92,9 @@ end
 
 # initial states include all states that has a an agent and a food
 𝒮_init = []
+init_set = Set([food2, food, agent, 0])
 for s in 𝒮[2:end]  # no null_state
-  if sum(s) == 0
+  if Set(s) == init_set
     append!(𝒮_init, [s])
   end
 end
@@ -97,7 +109,7 @@ mdp = QuickMDP(
   reward = R,
   initialstate = 𝒮_init);
 
-solver = ValueIterationSolver(max_iterations=30);
+solver = ValueIterationSolver(max_iterations=50);
 policy = solve(solver, mdp)
 
 function find_states_with(x::Int, y::Int, value::Int, S::Vector{Matrix{Int}})
@@ -121,14 +133,18 @@ function get_policy_map(S::Vector{Matrix{Int}}, policy)
   return policy_actions
 end
 
-food_x = 4
-food_y = 2
+food_x = 1
+food_y = 1
+
+food2_x = 2
+food2_y = 2
 
 S = find_states_with(food_x, food_y, -1, 𝒮)
+#= S = find_states_with(food2_x, food2_y, -2, S) =#
 policy_map = get_policy_map(S, policy)
 
 
-function plot_grid_world(food_cord::Tuple{Int, Int}, policy_map::Dict{Any, Any})
+function plot_grid_world(food_cord::Tuple{Int, Int}, food2_cord::Tuple{Int, Int}, policy_map::Dict{Any, Any})
     
     # reshape to grid
     (xmax, ymax) = params.size
@@ -163,6 +179,12 @@ function plot_grid_world(food_cord::Tuple{Int, Int}, policy_map::Dict{Any, Any})
         annotate!([(x, y, (policy_map[CartesianIndex(x, y)], :center, 12, "Computer Modern"))])
       end
 
+      if (x, y) == food2_cord
+        color="blue"
+        rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
+        plot!(rect, fillalpha=0, linecolor=color)
+      end
+
     end
     
     title!("Grid World")
@@ -170,4 +192,4 @@ function plot_grid_world(food_cord::Tuple{Int, Int}, policy_map::Dict{Any, Any})
     return fig
 end
 
-plot_grid_world((food_x, food_y), policy_map)
+plot_grid_world((food_x, food_y), (food2_x, food2_y), policy_map)
