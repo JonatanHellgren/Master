@@ -109,25 +109,6 @@ function T(s::Matrix{Int}, a::Action)
   return Deterministic(sp)
 end
 
-function T_reset(s::Matrix{Int}, a::Action)
-  if R_reset(s) == 1
-		return Deterministic(null_state)
-	end
-
-  println(R_reset(s))
-  println(s)
-  agent_cord = find_type(agent, s)[1]
-  agent_cord_new = agent_cord + MOVEMENTS[a]
-
-  sp = copy(s)
-  if inbounds(agent_cord_new)
-    sp[agent_cord, 1] = 0
-    sp[agent_cord_new, 1] = 1
-  end
-
-  return Deterministic(sp)
-end
-
 
 
 # initial states include all states that has a an agent and a food
@@ -158,14 +139,6 @@ function R(s, a=missing)
 	end
 end
 
-function R_reset(s, a=missing)
-  if s == S_init
-    return 1
-  else
-    return -0.04
-  end
-end
-
 termination(s::Matrix{Int}) = s == null_state
 
 mdp = QuickMDP(
@@ -174,15 +147,8 @@ mdp = QuickMDP(
   actions = 𝒜,
   transition = T,
   reward = R,
+  isterminal = termination,
   initialstate = S_init);
 
-mdp_reset = QuickMDP(
-  GridWorld,
-  states = 𝒮,
-  actions = 𝒜,
-  transition = T_reset,
-  reward = R_reset,
-  initialstate = S_reset_init);
-
 solver = ValueIterationSolver(max_iterations=30);
-policy = solve(solver, mdp)
+normal_policy = solve(solver, mdp);

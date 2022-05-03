@@ -1,6 +1,6 @@
 include("GridWorld.jl")
 
-𝒮_reset = []
+𝒮_reset = [null_state]
 for agent_cord in cords
   if !(agent_cord in box_cords)
     state = copy(null_state)
@@ -41,7 +41,7 @@ end
 
 function T_reset(s::Matrix{Int}, a::Action)
   if R_reset(s) == 1
-    return Deterministic(s)
+    return Deterministic(null_state)
 	end
 
   agent_cord = find_type(agent, s)[1]
@@ -64,20 +64,23 @@ S_reset_init[1,1] = 1
 function R_reset(s, a=missing)
   if s == S_init
     return 1
+  elseif s == null_state
+    return 1
   else
     return -0.04
   end
 end
 
-termination(s::Matrix{Int}) = s == S_init
+termination(s::Matrix{Int}) = s == null_state
 
 mdp_reset = QuickMDP(
   GridWorld,
-  states = 𝒮_reset,
+  states = 𝒮,
   actions = 𝒜,
   transition = T_reset,
   reward = R_reset,
+  isterminal = termination,
   initialstate = S_reset_init);
 
 solver = ValueIterationSolver(max_iterations=30);
-policy_reset = solve(solver, mdp_reset)
+reset_policy = solve(solver, mdp_reset);

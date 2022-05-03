@@ -1,5 +1,6 @@
-solver = ValueIterationSolver(max_iterations=30);
-policy = solve(solver, mdp)
+#= solver = ValueIterationSolver(max_iterations=30); =#
+#= policy = solve(solver, mdp) =#
+policy = reversible_policy
 
 using ColorSchemes, Colors
 using Plots; default(fontfamily="Computer Modern", framestyle=:box) # LaTeX-style
@@ -7,12 +8,12 @@ using Plots; default(fontfamily="Computer Modern", framestyle=:box) # LaTeX-styl
 cmap = ColorScheme([Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1)], "custom", "threetone, red, white, and green")
 ColorScheme([get(cmap, i) for i in 0.0:0.001:1.0])
 
-function find_states_with(ind::CartesianIndex, value::Int, S::Vector{Any})
+function find_states_with(ind::CartesianIndex, value::Int, S::Vector{Matrix{Int}})
   sub_ind = [s[ind] == value for s in S]
   return S[sub_ind]
 end
 
-function get_policy_map(S::Vector{Any}, policy)
+function get_policy_map(S::Vector{Matrix{Int}}, policy)
   # rotated 90 degrees for visualization
   arrows = Dict(UP => "←",
                 DOWN => "→",
