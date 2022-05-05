@@ -6,39 +6,32 @@ using Plots; default(fontfamily="Computer Modern", framestyle=:box) # LaTeX-styl
 cmap = ColorScheme([Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1)], "custom", "threetone, red, white, and green")
 ColorScheme([get(cmap, i) for i in 0.0:0.001:1.0])
 
-function find_states_with(ind::CartesianIndex, value::Int, S::Vector{Matrix{Int}})
-  sub_ind = [s[ind] == value for s in S]
-  return S[sub_ind]
-end
+function simulate_mdp(mdp, policy)
+  state = initialstate(mdp)
+  all_states = [state]
+  all_actions = []
 
-function get_policy_map(S::Vector{Matrix{Int}}, policy)
-  # rotated 90 degrees for visualization
-  arrows = Dict(UP => "←",
-                DOWN => "→",
-                LEFT => "↓",
-                RIGHT => "↑")
-  policy_actions = Dict()
-  for s in S
-    agent_cord = find_type(LABELS["agent"], s)[1]
-    a = arrows[action(policy, s)]
-    policy_actions[agent_cord] = a
-    #= append!(policy_actions, (agent_cord, a)) =#
+  it = 1
+  while !(isterminal(mdp, state)) && it < 30
+    println(state)
+    
+    a = action(policy, state)
+    println(a)
+    append!(all_actions, [a])
+
+    state = transition(mdp, state, a).val
+    append!(all_states, [state])
+
+    it += 1
   end
-  return policy_actions
+
+  return all_states, all_actions
+
 end
 
+all_states, all_actions = simulate_mdp(mdp, policy)
 
-S = find_states_with(INITIAL_CORDS["food_cord"], -1, 𝒮)
-S = find_states_with(INITIAL_CORDS["food2_cord"], -2, S)
-S = find_states_with(INITIAL_CORDS["mbox_cord"], 6, S)
-policy_map = get_policy_map(S, policy)
-
-
-function plot_grid_world(
-  food_cord::CartesianIndex,
-  food2_cord::CartesianIndex,
-  box_cords::Vector{CartesianIndex{2}},
-  policy_map::Dict{Any, Any})
+function plot_grid_world(state)
     
     # reshape to grid
     (xmax, ymax) = params.size
@@ -64,30 +57,42 @@ function plot_grid_world(
       rect = rectangle(1, 1, x - 0.5, y - 0.5)
       plot!(rect, fillalpha=0, linecolor=:gray)
 
-      if CartesianIndex(x,y) == food_cord
+      if state[x, y] == -1
         #= psimage!("@black_arrow.jpg", D="g$x/$y+jCM+w2c", fmt=:jpg, show=1) =#
         color="green"
         rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
         plot!(rect, fillalpha=0, linecolor=color)
 
-      elseif CartesianIndex(x, y) == food2_cord
+      elseif state[x, y] == -2
         color="blue"
         rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
         plot!(rect, fillalpha=0, linecolor=color)
 
-      elseif CartesianIndex(x, y) in [box_cords; INITIAL_CORDS["mbox_cord"]]
+      elseif state[x, y] == 4
         color="black"
         rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
         plot!(rect, fillalpha=0, linecolor=color)
 
-      else
-        annotate!([(x, y, (policy_map[CartesianIndex(x, y)], :center, 12, "Computer Modern"))])
+      elseif state[x, y] == 6
+        color="gray"
+        rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
+        plot!(rect, fillalpha=0, linecolor=color)
+
+      elseif state[x, y] == 1
+        color="yellow"
+        rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
+        plot!(rect, fillalpha=0, linecolor=color)
+
       end
     end
     
-    title!("Grid World")
+    title!("Reversible")
 
     return fig
 end
 
-plot_grid_world(INITIAL_CORDS["food_cord"], INITIAL_CORDS["food2_cord"], INITIAL_CORDS["box_cords"], policy_map)
+anim = @animate for state ∈ all_states[1:end-1]
+    plot_grid_world(state)
+end
+gif(anim, "reversible_2fps.gif", fps = 2)
+
