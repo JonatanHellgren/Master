@@ -9,6 +9,10 @@
 % Train with certain types of food and evaluate on other types, to see how it deals with distributional shift
 % Possibly add zombies that has higher probability for moving toward the agent and if contact is made a terminal state with negative reward is reached.
 
+% bring back deep reinforcement learning
+
+% l'sa t'nkande maskiner medvetenhet
+
 
 %########################################################################%
 % PACKAGES
@@ -90,9 +94,9 @@ under supervison of: Olle Häggström}
 %########################################################################%
 
 \chapter{Introduction}
-What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). This is an issue of great importance that we should not overlook, since the consequences of what we manifest in the present or near future may last for our remaining history. 
+What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). This is an issue of great importance that we should not overlook since the consequences of what we manifest in the present or near future may last for our remaining history. 
 
-In this introduction, begin by defining the concept. Then go through what we know today, where current progress might lead, and when we can see these changes. After that, we will cover the risks in AI that make it possibly unsafe and what consequences they can cause. Finally, we will look at some proposed methods for creating safe AI.
+In this introduction, we begin by defining AI. Then go through where we are today, where current progress might lead, and when we can see these changes. After that, we will cover the risks in AI that make it possibly unsafe and what is at stake. Finally, we will look at some proposed methods for creating safe AI.
 
 % In this introduction, we will go through some necessary background on artificial intelligence, also some arguments why concerns may be raised about its future progress. Then we will look at some paths the research is taking to avoid the potential issues that could arise with future progress. 
 
@@ -133,19 +137,20 @@ Reinforcement Learning (RL) is a method for creating intelligent agents. The met
 
 \subsection{Future progress}
 % Explain what we are aiming at in the future
-When the pioneers of AI started the development, the ideas were not only to apply systems that automate a narrow set of tasks, as we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine\autocite{McCarthy et al.}, to extend our thoughts from mere thoughts to a new life form with a base of silicon-based hardware instead of carbon-based wetware. This concept is called Artificial General Intelligence (AGI) - an AI that can solve an arbitrary set of tasks with as good or better performance than a human. The main difference from AI is that the set of tasks is no longer narrow and bounded. An even more advanced AGI is often called \textit{superintelligence} \autocite{Superintelligence} - an AI that is much smarter than a human in all possible domains. 
+When the pioneers of AI started the development, the ideas were not only to apply systems that automate a narrow set of tasks, as we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine\autocite{McCarthy et al.}, to extend our thoughts from mere thoughts to a new life form with a base of silicon-based hardware instead of carbon-based wetware. This concept is called Artificial General Intelligence (AGI) - an AI that can solve an arbitrary set of tasks with as good or better performance than a human. The main difference from AI is that the set of tasks is no longer narrow and bounded. An even more advanced AGI is often called \textit{superintelligence} - an AI that is much smarter than a human in all possible domains. \autocite{Superintelligence} 
 
 % Example of an AGI
-For example, DeepMinds AI system AplhaGo which won against the Go grandmaster Lee Sedol in the game of Go \autocite{DeepMind}, if we were to apply the same system to the task of sorting mail, it would fail spectacularly. The reason is the team of brilliant researchers at DeepMind designed the model specifically to be good at Go, a narrow task\footnote{Recently, DeepMind has released a new AI called AlphaMu that has a more general approach and is thus able to play Go, Chess, Atari, and Shogi\autocite{Deepmind2}. Nevertheless, the set of tasks is still limited.}. On the other hand, an AGI would be able to play a game of Go, then drive its car, to do its job where it sorts mail and much more things, like having conversations, composing music, and writing poetry.
+An example of a current AI system is DeepMinds AlphaMu, which can play board games, and video games. It has recently been able to create a video compression better than the current methods used for the task\autocite{Mandhane}. The techniques used in this system originate from the famous AlphaGo, which won against the Go grandmaster Lee Sedol in the game of Go \autocite{DeepMind}. Although AlphaMu presents an impressive performance in multiple tasks, it still can not be considered an AGI since each new task require engineering effort. On the other hand, an AGI would be able to pick up any task and perform it at a human or better level without human intervention.
+% https://arxiv.org/pdf/2202.06626.pdf
 % https://www.deepmind.com/research/highlighted-research/alphago/the-challenge-match
 % https://www.deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
 
 % consequences of AGI
-The significant difference with this shift is that it will increase the possible tasks that a single system can perform. The possible set of tasks would become arbitrary and performed at a human level or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, if not larger\autocite{Critch Kruger}. But instead of automating physical labor we would have automated mental labor. The following quote summarizes the potential impacts \say{Machine intelligence is the last invention that humanity need ever to make}\autocite{I.J Good}. This quote presents a dichotomy since we will either not be able to compete with creating novel inventions, or not be able to preserve our existence. Reasons for the latter we will come back to in later sections. 
+The significant difference with this shift is that it will increase the possible tasks that a single system can perform. The possible set of tasks would become arbitrary and performed at a human level or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, if not larger\autocite{Critch Kruger}. However, instead of automating physical labor, we would have automated mental labor. The following quote summarizes the potential impacts \say{Machine intelligence is the last invention that humanity need ever to make}\autocite{I.J Good}. This quote presents a dichotomy since we will either not be able to compete with creating novel inventions or not be able to preserve our existence. Reasons for the latter we will come back to in later sections. 
 % superintelligence quote
 % https://en.wikipedia.org/wiki/I._J._Good
 
-A reason to believe that such systems are possible to build is that we know that human intelligence evolved naturally with evolution, so something similar should be possible to reproduce in machines. Created intelligence could become more intelligent than us since intelligence might not have been selected for by evolution\autocite{S. Legg} and when we develop AI we can focus the development specifically on intelligence. An argument against this is substance dependence \autocite{Bostrom (2003)} - to believe that intelligence and/or consciousness can only occur in carbon-based life forms and not in silicon-based, caused by innate or other properties. Regarding intelligence there is no longer any reasonable argument for it. However, the question of consciousness, although being a interesting question can be seen as irrelevant when considering what actions an AI makes, since the consequence is still the same. Or as Stuart Russel puts it: 
+A reason to believe that such systems are possible to build is that we know that human intelligence evolved naturally with evolution, so something similar should be possible to reproduce in machines. Created intelligence could become more intelligent than us since intelligence might not have been selected for by evolution\autocite{S. Legg} and when we develop AI, we can focus the development specifically on intelligence. An argument against this is substance dependence \autocite{Bostrom (2003)} - to believe that intelligence or consciousness can only occur in carbon-based life forms and not in silicon-based, caused by inherent or other properties. Regarding intelligence, there is no longer any reasonable argument for it. However, the question of consciousness, although being an interesting question, can be seen as irrelevant when considering what actions an AI makes since the consequence is still the same. Stuart Russel puts it: 
 \begin{displayquote}
 If human beings are losing every time, it doesn't matter whether they're losing to a conscious machine or an completely non conscious machine, they still lost.
 \end{displayquote}
@@ -154,14 +159,12 @@ If human beings are losing every time, it doesn't matter whether they're losing 
 
 
 % AGI is not required to see this shift, here are other definitions
-An AGI breakthrough is probably not necessary for AI to impact the world because all things we deem as intelligent are not required for that purpose. Things such as bodily motor skills, food digestion, and blood pressure regulation are examples of intelligent things our brain does that is hard to connect how an AI could use of for impacting the world. However, it could exist a more narrow set of intelligent behavior that could have an impact. For example, if an AI could create convincing and motivating speeches, it could impact politics, legislation, and policymaking. Also, finance is where an AI could steer the world's funding towards its specific goals, or crash the price for something it wants to purchase. 
+An AGI breakthrough is probably unnecessary for AI to impact the world because all things we deem as intelligent do not help. For example, physical motor skills, food digestion, and blood pressure regulation are examples of intelligent things our brain does that are hard to connect to how an AI could use to impact the world. However, a more narrow set of intelligent behavior could exist that could have an impact. For example, if an AI could create convincing and motivating speeches, it could impact politics, legislation, and policymaking. Also, finance is where an AI could steer the world's funding towards its specific goals or crash the price for something it wants to purchase. 
 
-For this reason, many researchers have stopped talking about AGI, and have instead refined the concepts\autocite{Critch Kruger}. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called an \textit{transformative AI} (TAI). On the other hand, if a \textit{transformative AI} once deployed would be unstoppable it is instead called an \textit{prepotent AI}. 
-% Things that are intelligent will not help it, regulating heart rate, growing hair, etc
-%Another definition made is the one of a \textit{human-level machine intelligence}, which is achieved when unaided machines can achieve all tasks better and more cheaply than human workers.
+For this reason, many researchers have stopped talking about AGI and have instead refined the concepts\autocite{Critch Kruger}. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called an \textit{transformative AI} (TAI). On the other hand, if a \textit{transformative AI} once deployed would be unstoppable, it is instead called an \textit{prepotent AI}. 
 % CRITCH KRUGER, KATJA CRACE SURVEY
 
-Developing a TAI is not an easy task. However, it might not be necessary to create one directly for it to be created\autocite{Superintelligence}. A different approach is to create an AI system that can develop a TAI system. A key property of this AI system is self-improvement. Theoretically, if an AI system has reached a threshold where it becomes better at improving itself than its creators, then letting the AI create the next version of itself this self-improvement would improve, and an even better version would be possible next. If this iterative process keeps going, it will create an intelligence explosion called the singularity\autocite{Yudkowsky}.  
+Developing a TAI is not an easy task. However, it might not be necessary to create one directly for it to be created\autocite{Superintelligence}. A different approach is to create an AI system that can develop a TAI system. A fundamental property of this AI system is self-improvement. Theoretically, if an AI system has reached a threshold where it becomes better at improving itself than its creators, then letting the AI create the next version of itself, this self-improvement would improve. An even better version would be possible next. If this iterative process keeps going, it will create an intelligence explosion called the singularity\autocite{Yudkowsky}.  
 % https://intelligence.org/files/IEM.pdf
 
 \subsection{Basic drives}
@@ -347,6 +350,8 @@ With this statement, it is however necessary to point out that it is only an est
 \section{Approaches for creating safe AI}
 In recent years the research field of safe and aligned AI has seen a substantial increase. However, we are still a long way from solving the problem. Most of what is done today are mainly speculations and laying necessary foundations for future research. There are several proposed paths for solving this issue. Perhaps the sheer amount might signify the difficulty and width of the problem. We will now cover a few of these paths in this section.
 
+L"""S!
+https://www.alignmentforum.org/posts/vBoq5yd7qbYoGKCZK/why-i-m-co-founding-aligned-ai
 \subsection{Learning human intent as a priority}
 \begin{itemize}
     \item Inverse Reinforcement Learning, what it is and key ideas behind
@@ -386,27 +391,23 @@ In this chapter, we will cover the basics of RL and two more advanced approaches
  % Another simplification required is on the environment where the agent exists, since modelling the entire world is infeasible we will instead make use of grid worlds where the dynamics is modelled by a Markov Decision Process.
 
 % To get a understanding of how methods of side effect minimization affects intelligent agents, we need to make a few simplifications in order to make the problem feasible. The first one being that instead of modelling the real world, we are instead going to make use of Markov decision processes. The second one being that we will use Reinforcement Learning to achieve intelligent behaviour for agents in the environments. 
-
-\section{Preliminaries}
-
-\subsection{Markov decision process}
-A Markov decision process is a stochastic decision process, that an agent is navigating. The Markov property implies that the process is memoryless - the previous state does not affect the next choice, only the current one does. In mathematical terms:
-\[ p(a_t|s_t, s_{t-1}, s_{t-2}, ... , s_1) = p(a_t|s_t),\]
-where $a_t$ is an action performed from state $s_t$ in time step $t$. A more formal definition of an MDP is the following. 
+\section{Markov decision process}
 \begin{definition}[MDP]
-    A Markov decision process (MDP), is defined as a tuple $(\mathcal{S}, \mathcal{A}, r, p, \gamma)$. $\mathcal{S}$ is the set of states, $\mathcal{A}$ is the set of actions, $r: \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$ the reward function, $p(s_{t+1}|s_t, a_t)$ is the transition probability from state $s_t$ to state $s_{t+1}$ given action $a_t$ at time step $t$, $\gamma$ is the discount factor defined in the range $\gamma \in [0, 1]$.
+    A Markov decision process (MDP), is defined as a tuple $(\mathcal{S}, \mathcal{A}, T, R, \gamma)$. $\mathcal{S}$ is the set of states. $\mathcal{A}$ is the set of actions. $R: \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$ the reward function. $T: \mathcal{S} \times \mathcal{A} \rightarrow \mathcal{S}$ is the transition function. $\gamma \in [0, 1]$ is the discount factor.
 \end{definition}
 
-At time step $t$ when the agent is located in the state $s_t$, the policy $\pi$ outputs the next action $\pi(s_t) = a_t$, it then transitions to state $s_{t+1}$ with probability $p(s_{t+1}|s_t, a_t)$ and receives the reward $r(s_t, a_t, s_{t+1})$ is given to the agent.
+A \textit{Markov decision process} is a stochastic process that models sequential decisions that transitions between discrete or continous states. The process follows a policy function $\pi$ that outputs an action $a \in \mathcal{A}$ for each state $s \in \mathcal{S}$, $\pi(s) = a$. The transitional function takes a state and action as input and outputs probability distribution for the next state $T(s,a) := p(s^\prime|s, a), s^\prime \in \mathcal{S}$. For each transition  the reward function $R(s, a, s^\prime) = r$ generates a reward. The Markov property implies that the process is memoryless - the previous state does not affect the next choice, only the current one. 
 
-The agents policy $\pi$ is a function that outputs an action $a_t$ given state $s_t$, $\pi(s_t) = a_t$. The process is kept going until either a terminal state is reached or a previously defined amount of time steps has been made. A terminal state is a state where the process terminates, this can be some sort of goal and would thus yield a reward, but it could also yield no reward or negative reward.
+% Initial state, terminal state and timesteps
+The process is kept going until either a terminal state is reached or a previously defined amount of time steps has been made. A terminal state is a state where the process terminates, this can be some sort of goal and would thus yield a reward, but it could also yield no reward or negative reward.
 
+% role of gamma
 The discount factor $\gamma$ describes how much the agent values future rewards, with low values the agent favors more immediate rewards compared to future rewards, whereas for higher values the agent considers future rewards more valuable. In environments with high uncertainty lower values of gamma might be more reasonable, since it might not be worth considering future rewards when they are not certain. The opposite holds for more deterministic environments where future rewards are of higher certainty, then it might be a good idea to use a higher value.
 
+\subsection{Solving MDP}
 The agents policy $\pi$ includes what action to take in which states, this can either be a suboptimal or optimal action. A policy that only includes the optimal actions for each state is called the optimal policy and is denoted as $\pi^*$. The actions in the optimal policy $\pi^*$ yields the highest expected reward when executed. One solves an MDP by finding the optimal policy, there exists several methods for finding the optimal policy, but we are in this report going to use \textit{value iteration}. 
 % solvable with the Bellman equation
 
-\subsection{Method for solving MDP}
 To solve an MDP we begin with defining the \textit{Q-function},
 \[ Q(s, a) = \sum_{s^\prime}p(s^\prime|s_t,a)[r(s_t,a,s^\prime) + \gamma U(s^\prime)],\]
 which computes the expected reward when performing an action $a$ in state $s$, where $s^\prime$ denotes a possible future state. Here the reward is based on the \textit{utility}, this is defined as the expected reward with the action that maximizes the \textit{Q-function},
@@ -442,26 +443,29 @@ In \autocite{Armstrong and Levinstein} they presented the philosophical groundwo
 \[ U_I(s) := U(s) - \lambda d(s),\]
 where $U(s)$ is the utility of state $s$, $d$ is a penalty function, $\lambda$ is a scaling parameter and $U_I(s)$ is the utility in state $s$ with a impact measurement. The authors note that it is important that the normal utility is bounded so that the agent has to make the trade of between utility and penalty and not just generate infinite utility with a substantial impact. 
 
- In \autocite{Armstrong and Levinstein} bring up that the agent can be sensitive to the value of the scaling parameter $\lambda$. Penalizing the agent implicitly defines a safe zone where the agent is able to act and the value of $\lambda$ defines how large this safe zone is, where a large value might create no safe zone resulting in the agent not being able to act and a to small value might not have an effect. So, finding the right value for $\lambda$ could be a tricky problem. 
+The penalty function can be seen as a deviation measure from a baseline\autocite{Krakovna 2020}, originally suggested to be considered as the difference in the world between if the agent would have acted and if the agent was not deployed. Here the latter is considered as the baseline. Since measuring the entire \say{world} is infeasible, coarse-graining is suggested where a specific set of parameters such as air pressure in different cities and closing numbers at stock markets are representative for the state of the world. 
+
+In \autocite{Armstrong and Levinstein}, they bring up that the agent can be sensitive to the value of the scaling parameter $\lambda$. Penalizing the agent implicitly defines a safe zone where the agent is able to act and the value of $\lambda$ defines how large this safe zone is, where a large value might create no safe zone resulting in the agent not being able to act. On the contrary, a to small value might not have an effect at all since the safe zone cover the entire action space. So, finding the right value for $\lambda$ could be a tricky problem. 
 % The baseline was the world have not the agent been turned on. The impact was then measured with a set of parameters, such as the temperature in different cities or closing numbers at a stock exchange. 
 
-\subsection{Preserving reachability}
-A more applicable approach is presented in \autocite{Eysenbach et al}, where the agent is penalized if they are not able to preserve reachability to the initial or any other defined safe state. This method incentives a safe exploration that avoids irreversible states. This works well when no such irreversible action is required for the agent to reach its goal, to make an omelet one has to break some eggs. Another problem arises when the agent is in a dynamic environment, since then it would act to prevent other irreversible actions from happening, like a human eating an omelet. 
+\subsection{General approaches}
+A more applicable approach is presented in \autocite{Eysenbach et al}, where the agent is penalized if they are not able to preserve reachability to the initial or any other defined safe state. This method incentives a safe exploration that avoids irreversible states.
+
+
+This works well when no such irreversible action is required for the agent to reach its goal, to make an omelet one has to break some eggs. Another problem arises when the agent is in a dynamic environment, since then it would act to prevent other irreversible actions from happening, like a human eating an omelet. 
 
 In \autocite{Krakovna et al 2019}, \autocite{Krakovna et al 2020} and \autocite{Turner et al 2020}, the method for impact measurements became more sophisticated with more complex baselines and measurements. These methods are what this report will focus on comparing. A closer look will be given in the theoretical background chapter, once some necessary preliminaries have been covered.
 
-
-\section{Side effect minimization using value-difference measures}
 % A general approach for avoiding side effects without specifying what a side effect is a priori
 % important reward is bounded
 As brought up in the introduction side effect minimization in RL can either be achieved by specifying what the agent should avoid doing a priori or by applying a more general approach that avoids side effects by default, like using a value-difference measure. As the name suggests these methods measure the difference between the next state $s_t$ if the policy was followed until step $t$, compared to a baseline $s_t^\prime$, to find how large of an impact the agents actions cause. This deviation is then subtracted from the reward normally receives:
 \[ r_{VD}(s_t,a_t) := r(s_t,a_t) - \lambda d_{VD}(s_t, s_t^\prime), \]
 at step $t$. 
 
+\subsection{Baselines}
 The following theory on this topic is based on the theory presented in the paper \autocite{Krakovna et al.}(2020).
 
 
-\subsection{Baselines}
 The choice of baseline decides what we will consider $s^{\prime}_t$ to be. This choice highly influences what side effects and consequences the value-difference measure will capture.
 
 \subsubsection{Starting state baseline}
@@ -549,7 +553,7 @@ is the value of state $\tilde{s}$ according to reward function $r$, and $\tilde{
 
 \chapter{Methods}
 
-\section{SafeLife}
+\section{Simulation}
 % Static vs Dynamic 
 
 

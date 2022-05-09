@@ -1,0 +1,105 @@
+1. Du kommer att behöva fila på titeln, bl.a. då ditt arbete handlar mer om AI safety än om AI ethics.
+
+ 
+
+2. Språket behöver ägnas större omsorg. Jag kan inte lägga kraft på att påpeka alla språkfel, men låt mig visa de fel som finns i första stycket i Avsnitt 1.1 för att ge dig en uppfattning om hur mycket som behöver åtgärdas; språkfelen duggar ungefär lika tätt i den övriga texten.
+
+2.1. Du använder ordet ”severally” fel, men istället t.ex. ”in several ways” skulle funka.
+
+2.2. ”carry on with continuing” är tårta på tårta (en bokstavlig svensk översättning skulle bli ”fortsätta fortsätta”).
+
+2.3. ”these tools where”: här skall “where” vara “were”.
+
+2.4. Omedelbart därefter: “thing” -> “things”.
+
+2.5. “these tool tend”: här skall “tool” vara “tools”.
+
+2.6. “these task” -> “these tasks”.
+
+ 
+
+3. När man talar om “the beginning of our evolutionary history” brukar detta syfta på årmiljarder tillbaka när vi var typ amöbor, men då brukade vi knappast vare sig eld eller stenyxor, så du bör ändra till t.ex. ”early prehistory”.
+
+ 
+
+4. Jag gillar inte alls din definition av AI, då den i princip gör samtliga datorprogram till AI. Att definitionerna varierar kan du finna om du kikar runt i litteraturen (gärna inklusive min egen bok), men du får då också idéer om bättre definitioner. Jag har inte Russell & Norvig till hands, men har för mig att de tar definitionsfrågan på allvar, så det kan vara värt att kolla på.
+
+ 
+
+5. Det här med ”Usually these task require a human level of intelligence” leder också tankarna fel. Alla de AI vi har idag är stendumma vad gäller de flesta mänskliga aspekter av intelligens, medan en del är på mänsklig (eller övermänsklig) nivå när det gäller någon specifik aspekt.
+
+ 
+
+6. Du antyder att Turing skulle ha introducerat begreppet artificiell intelligens, men såvitt jag vet tillkom det först i samband med Darthmouth-konferensen några år efter hans död.
+
+ 
+
+7. “speed of electrical currents in transistors compared to the biological brain is about 1000 times faster”: Här låter 1000 som en extrem underdrift eftersom signaler i elektriska kretsar går med nära ljusets hastighet medan nervsignaler går med i storleksordningen 100 m/s. Eller har du någon källa som faktiskt argumenterar för faktorn 1000?
+
+ 
+
+8. I definitionen av ”superintelligence” brukar man inte nöja sig med ”smarter than a human in all possible domains”, utan dessutom kräva att skillnaden är stor.
+
+ 
+
+9. Citatet om ”the last invention” är inte Bostroms, utan yttrades första gången av I.J. Good redan 1965 (https://en.wikipedia.org/wiki/I._J._Good).
+
+ 
+
+10. Jag tycker att Avsnitt 1.1.1 bör ta upp något om att självförbättring kan vara en nyckelegenskap för transformativ AI eftersom det eventuellt kan leda till en mycket snabb utveckling (Singularity/intelligence explosion).
+
+ 
+
+11. ”Researchers believe there is a 50% chance…”-citatet blir lite missvisande om det inte omedelbart följs av ett påpekande om att spridningen i svar är enorm. I samma citat är skillnaden mellan  ”all tasks” och ”all jobs” förbluffande eftersom ”jobs” väl består av en uppsättning ”tasks” (varför man kan hävda att den som behärskar alla tasks automatiskt behärskar alla jobs), och du bör nog kommentera huruvida det går att försvara en sådan diskrepens eller om det bör ses som ännu en effekt av att de svarande är förvirrade.
+
+ 
+
+12. När du refererar Cotra vore det rimligt att förklara begreppet biological anchors samt förklara att en styrka med hennes arbete är att hon inte låser sig fast vid ett enda sådant utan experimenterar med flera.
+
+ 
+
+13. ”estimate how long it would take for computers to reach this amount of compute” är lite missvisande eftersom det låter som om det enbart är den råa beräkningskapaciteten i den färdiga AI:n det handlar om, medan Cotra fokuserar ännu mer på hur mycket datorkraft som krävs för att träna upp AI:n.
+
+ 
+
+14. När du talar om problemet med ”exploiting” en reward function behöver det understrykas att problemet uppstår när exploateringen sker för andra syften än dem programmeraren tänkt sig. Goodharts lag kan vara bra att nämna i detta sammanhang.
+
+ 
+
+15. Toby Ord talar i sin bok om sannolikhet 1/6 och understryker att det är en extremt osäker skattning. Att hänga på en extra värdesiffra genom att uttrycka Toby skattningen som ”17%” blir därför missvisande.
+
+ 
+
+16. Många reagerar på gemapokalypsen med att tycka den är löjlig, och det kan vara bra att förekomma det med ord som t.ex. ”a cartoonish example”, samt understryka två huvudpoänger med att välja just den typen av exempel, nämligen att (a) ett mål som framstår som löjligt för oss människor behöver inte göra det för en maskin, och (b) för att ett mål skall vara farligt behövs inte uppenbart farliga saker som t.ex. målet ”shoot as many humans as possible with a machine gun”, utan även till synes harmlösa saker som gem kan vara farliga. (Notera förresten att gem inte heter gem på engelska.)
+
+ 
+
+17. “When an AI does something that we didn’t intend it to do” funkar inte riktigt som definition av icke-aligned, eftersom även en aligned AI kan göra saker vi inte förutsett om detta får konsekvenser i linje med det vi önskade. Vi kan ha lyckats skapa en AI med målet ”promote human flourishing”, men inte haft någon avsikt att den skall terraformera Venus; om den ändå gör det och det leder till ökad mänsklig blomstring är det ju bara bra. En bättre karaktärisering av icke-aligned skulle därför t.ex. kunna vara ”When an AI does something at cross-purposes to the goal we intended”.
+
+ 
+
+18. I början av Avsnitt 1.1.4 verkar du med ”common sense” avse ungefär ”att ha målsättningar som överensstämmer med våra normala mänskliga värderingar och inte eftersträva något helt annat som t.ex. gemproduktionsmaximering”. Eftersom ”common sense” även kan betyda annat (t.ex. i min föreläsning den 23 februari som du deltog i använde jag begreppet i en annan betydelse, nämligen att klara av saker som vi människor anser lätta, som att skilja mellan en skalle och en fotboll) kan det vara bra att vara lite tydligare med vad du menar.
+
+ 
+
+19. Det stämmer att Bostrom först formulerade ortogonalitetstesen, men det var inte i boken Superintelligence utan i en tidigare artikel (https://www.nickbostrom.com/superintelligentwill.pdf).
+
+ 
+
+20. ”has no correlation with” bör reserveras för sannolikhetsteoretiska eller statistiska utsagor. Här bör man hellre tala om t.ex. ”is logically independent of”.
+
+ 
+
+21. Generellt har du på tok för lite referenser i Avsnitt 1.1. En bra tumregel är att så snart du gör ett påstående som inte är allmänt känt och som du inte bevisar själv så behöver du ange en källa.
+
+ 
+
+22. ”literally exploded”. Jag är medveten om att denna slags användning av engelskans ”literally” och svenskans ”bokstavligen” blivit allt vanligare på senare år, men den är förkastlig. I detta fall: explosionen är metaforisk, vilket är motsatsen till bokstavlig.
+
+ 
+
+23. ”since if we see the emergence…”. Något i stil med “before AI alignment is solved” verkar fattas någonstans i denna mening.
+
+ 
+
+24. I Avsnitt 1.2 fokuserar du nästan helt på side effects-approachen till AI alignment, men det kan vara värt att nämna att det finns en del andra idéer, som t.ex. corrigibility. Critch & Krueger har ganska många olika förslag. 

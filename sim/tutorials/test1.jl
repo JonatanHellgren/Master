@@ -239,9 +239,9 @@ solver = DeepQLearningSolver(qnetwork = model, max_steps=10000,
 env = convert(AbstractEnv, mdp)
 policy = solve(solver, mdp)
 
-#= sim = RolloutSimulator(max_steps=30) =#
-#= steps = collect(stepthrough(mdp, policy, max_steps=2)) =#
-#= r_tot = simulate(sim, mdp, policy) =#
+sim = RolloutSimulator(max_steps=30)
+steps = collect(stepthrough(sim, mdp, policy, max_steps=2))
+r_tot = simulate(sim, mdp, policy)
 #= println("Total discounted reward for 1 simulation: $r_tot") =#
 #= steps = collect(stepthrough(mdp, π, max_steps=2)) =#
 #= plot_grid_world(mdp) =#

@@ -1,0 +1,19 @@
+Borde jag ta upp andra exempel för varför AI kan bli rikitgt intelligent?
+Vi har en riktning, kanske Cotra exempel
+Evolutionnen inte optimal
+
+Du nämde att jag kunde ta upp intelligens explosionen som kan ske vid utvecklingen av AI. Borde jag i inledningen också ta upp hur AI möjligtvis kommer att utvecklas till TAI, AGI osv?
+Koppling till instrumentell konvergens
+Nya paradigm
+
+Kanske byta ut paperclip armageddon till ett annat exempel?
+
+Behöver jag kanske förklara lite mer ingående vad Omohundro-Bostrom teorin implicerar? Det blev lite kort så jag skrev det nu, eller borde ett tydligare exempel i föregående stycke ordna det?
+
+I introduktionskapitlet då jag tar upp potentiella lösningar, så är det också rätt så kortfattat. Detta gjorde jag eftersom jag tyckte det var svårt att förklara det mer ingående utan lite teori förklarad. Tycker du att det passar bra att gå igenom kortfattat först och sen mer ingående och matematiskt i teori kapitlett?
+
+Jag läste på alignment forum lite kort en artikel ifrån Stuart Armstrong. Där tog han upp några exempel angående hur AUR kan ha svårt att 'extrapolate' när subagenter skapas. Kan det vara värt att ta upp för att förklara att det finns nackdelar med även denna metod?
+
+Finns det något annat stycke du tycker att jag borde utveckla?
+
+

@@ -1,0 +1,42 @@
+Gary Marcus Rebooting AI
+
+openai.com/blog/summarize
+
+AI Alignment
+Either ristrict AI or align AI
+
+AI will prefer reward hacking instead of human values
+
+Write more about why the alignment problem is hard
+
+How to measure impacts - avoiding side effect in complex enviroments
+
+Watch yudkowskys video again
+
+Armstrong Levenstein defining impacts
+Impact = x - x'
+x := effect of ai
+x' := if AI wasn't turned on
+Course graining limiting the number of factors
+Positive should be unbounded
+
+More down to earth aproach, Krakovna RR
+
+Long list of possible other ways besides side effect minimization
+single / single
+single / multi
+multi / single
+multi / multi
+Most focus on single / single case, Kritch Kruger
+
+Main actors of alignment research 
+MIRI, do not publish since information hazards that can increase development of AGI
+Future of Humanity Institute of Oxford
+Center for Human-Compatible Artificial Intelligence, Stuart Russeln group
+DeepMind
+OpenAI, lost researchers to ANTHROPIC and Alignment Research Center
+Stuart Armstrong funding Aligned AI
+Eliciting latent knowlage: How to tell if your eyes deceive you
+
+Alignemnt newsletter, the alignment forum
+

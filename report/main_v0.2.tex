@@ -1,0 +1,289 @@
+
+\documentclass{report}
+%########################################################################%
+% REPORT STRUCTURE
+%########################################################################%
+\renewcommand{\chaptername}{}
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter:}{1em}{} 
+% \documentclass[chapterprefix=false]{scrreprt}
+% \makeatletter
+% \renewcommand*{\chapterformat}{%
+  % \mbox{\chapapp~\thechapter\autodot:\enskip}%
+% }
+% \makeatother
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\addbibresource{ref.bib}
+% \newcommand{\autocite}{}
+
+\usepackage{float}
+
+\usepackage[format=plain, labelfont={bf,it}, textfont=it]{caption}
+\usepackage{subcaption}
+% \usepackage{tikz}
+\usepackage[top=3cm, bottom=3cm,inner=3cm, outer=3cm]{geometry}
+\usepackage{fancyhdr}
+% \usepackage{todonotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+
+% \usepackage{lipsum}% http://ctan.org/pkg/lipsum
+
+
+\theoremstyle{definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{definition}{Definition}[section]
+
+
+% \usetikzlibrary{positioning, fit, arrows.meta, shapes, chains}
+% \tikzset{Empty/.style={rectangle, fill=white, draw=white}}
+
+\newcommand{\titel}{Ethical AI} 
+\newcommand{\undertitel}{Under development}
+
+
+\newcommand{\examina}{\newline \noindent {\it Author}\\ 
+  Jonatan Hellgren 
+  \bigskip
+}
+
+\newcommand{\titelsidor}{
+\pagestyle{fancy}
+\fancyhf{}
+\newgeometry{top=4cm, bottom=4cm,left=2 cm,right=2cm}
+\fancyhead[L]{\includegraphics[width=155mm]{Chalmers_GU_svart-eps-converted-to.pdf}\\}
+\addtolength{\voffset}{1cm}
+\renewcommand{\headrulewidth}{1pt}
+
+\renewcommand{\headrulewidth}{1pt}
+
+\mbox{}
+\vspace{50mm}
+
+\noindent {\LARGE \titel}\bigskip\bigskip
+
+\noindent {\large \undertitel}
+\vspace{30mm}
+
+
+\noindent {\large \examina}
+
+
+\vfill
+\hspace{-5.8 ex} \begin{tabular}[t]{lll}
+Supervisor:& Olle Häggström\\
+Examinator: & Torbjörn Lundh\end{tabular}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancyfoot[L]{\vspace{0.1mm}\large Institutionen för Matematiska vetenskaper\\
+%CHALMERS TEKNISKA HÖGSKOLA\\
+%GÖTEBORGS UNIVERSITET\\
+Gothenburg Sweden 2022}
+
+ }
+
+\begin{document}
+
+\titelsidor
+\newpage
+
+
+\newgeometry{top=3cm, bottom=3cm,left=4 cm,right=4cm}
+
+%\maketitle
+% \newpage
+\pagenumbering{roman}
+% \pagestyle{plain}
+\begin{abstract}
+% \centering
+ABSTRACT
+\end{abstract}
+\newpage
+\pagestyle{plain}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+
+%########################################################################%
+% INTRODUCTION
+%########################################################################%
+
+\chapter{Introduction}
+Something about existential risks and defining intelligence. 
+
+\section{Artificial intelligence?}
+% argue that the subject is relevant
+To be able to understand what artificial intelligence is, it is first required that we agree on what intelligence is. In this report we see intelligence as the ability to accomplish complex goals in a wide variety of environments. 
+
+In recent human history we have seen a massive technological development, our lives today are severally different today compared to a century ago. Most of this development can be seen as the development of tools that we humans can make use of to carry on with increasing future development. In the beginning of our evolutionary history these tools where fire to cook our food and spears and knifes to hunt with. In recent years a new tool has emerged, namely artificial intelligence which we will in this report define as;
+\begin{definition}[AI]
+   Artificial intelligence (AI), is a computer program that is designed to solve a specific set of tasks. Usually these task require human level of intelligence.
+   \label{AI}
+\end{definition}
+AI have in the recent years been applied in the industry more broadly, this is mostly due to the recent and impressive progress in machine learning, a subfield of AI that aims at constructing algorithms that finds solutions to problems by letting them find patterns in data. The recent progress have in the recent years become a possibility due to more data being available, faster computer hardware and the massive amount of funding that is spent on research. Although these systems is often quite automated, a key point here is that these systems still require humans to create and function them.
+
+\section{Future progress in artificial intelligence}
+%Many experts in the field of mathematics, computer science and even philosophy, believe that the future versions of AI will not require humans to function, they will be able to automate the human intelligence part as well.
+When the pioneers in the field of AI started the development, the ideas where not to apply systems that automates a narrow set of task such as all the AI systems have done so far. The ideal was instead to recreate the intellect of a human in a machine. This is often referred to as artificial general intelligence, which brings us to our second definition;
+\begin{definition}[AGI]
+Artificial general intelligence (AGI), is an AI that can solve an arbitrary task with as good or better performance then a human is capable of, the main difference from AI being that the set of task is not bounded.
+  \label{AGI}
+\end{definition}
+Take for example DeepMinds AplhaGo that won against the world champion Lee Sedol in the game of Go, if we where to apply the same system on the task of sorting mail, it would fail spectacularly. The reason is that a team of brilliant researchers at DeepMind designed the model specifically to be good at Go\footnote{In more recent years DeepMind have released a new AI called AlphaZero which has a more general approach and is thus able to play Go, Chess and Shogi. Never the less, the set of task is still limited. A finite two-player zero-sum board game.}. An AGI would would on the other hand been able to play a game of Go, then drive it's car to it job where it sorts mail and much more. 
+% transformative AI Ajeya 
+% prepotent AI
+
+A significant difference with this shift is that it will increase the possible tasks that a single system can perform, in fact the amount of tasks possible would become arbitrary and they would be performed at human level of performance or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, but instead of automating physical labour we would instead have automated mental labour. 
+% Altough is has been argued that an AGI breaktrough isn't necessary to see such a switch TRANSFORMITE AI
+
+Although it has been argued that an AGI breakthrough is not required in order to have such a large impact on our world. 
+
+As for predictions of when we are going to see the emergence of AGI there is a lot of uncertainty involved. WHEN EXPERTS GUESS. However with all the research and funding being focused on it, we are undoubtedly getting ever closer. 
+% Andrew Ng: Not so worried
+% Stuart Russel: Is worried, so very controversial
+% Ray Kurzweil 2045
+% Common sense argument
+% Future Progress in Artificial intelligence A survey of expert opinion
+% No the agents don't think superintelligent ai is a threat to humanity, Oren Etzioni
+% When will AI exceed human performance? Evidence from AI experts Katja grace, framing issue and they seem confused
+% Good reason to be spectical since it's only speculations by 'experts'
+
+
+When the first AGI system has been created we will likely see an intelligence explosion. Since AGI is defined to be able to solve an arbitrary amount of task, this would also include the creation of newer versions of it self. If it is better then the humans that created it at doing so and it keeps doing so recursively, an intelligence explosion would arise, often referred to as the \textit{singularity}.
+
+\section{Issues with AI}
+% explain that there is a existential risk
+All tools can be applied in multiple ways, some might be beneficial and some might be ill intentioned. Take for example a hammer, you could either use it to build a house where you can live or you could use it to beat another person to death. The same is the case for AI because it still is but a tool, although the consequences might be more prominent since we do not understand the tool as well, and we thus can't guarantee that a well intentioned use of them won't cause negative consequences. 
+
+In the recent years we have seen some examples of how AI can have negative consequences from a certain viewpoint. For example the algorithmic bias we can see in models used by lawyers to determine how long of a sentence a felon would receive after committing a crime, it was shown that the models gave afro americans a significantly longer imprisonment. Another one being that social medias exploits our psychology with the help of AI to get our attention and keep us focused on them. These problems are alarming since if we have problem with the AI of today, how is the future going to be when the potential power of them will most likely be greater. These issues has created the field of AI alignment, where alignment is refering to that the AIs goals are not conflicting our goals. 
+
+Several AI researchers have raised warnings for future development of AI, Stuart Russel and Max Tegmark, Eliezer Yudkowsky to name but a few. The reason for this concern is that with such massive amounts of power they can have, it would be catastrophic if it where to be used in the wrong way. The main concern is that if the goals of the AI is unaligned with our goals, this would of course be a higher risk after a potential AGI breakthrough, since the consequences will most likely be more severe, possibly even be existential. 
+
+In the upcoming century Toby Ord loosely estimates that the probability of an existential catastrophe is 17\%, out of which 10 percentage points are due to unaligned artificial intelligence \autocite{[precipice]}. Thus AI alignment is something worth spending resources on for the sake of humanity. 
+% 50% chance of AGI in next century and 20% of failure with alignment
+
+% example of existential risk, conflicting goals
+% factory, accidentally improves their AI to super intelligent levels. 
+%As for how such scenarios could play out a common example is the \textit{paperclip armageddon}. In which an paperclip maximizer is made super intelligent and starts accumulating resources such as hardware and money. Eventually the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even having a negative effect on producing paperclips, and thus they become extinct.
+
+% concrete problems in AI safety Amodei et al
+% some more immediate issues: unenployment, missuse of machine learning,
+% long term issues, how will we see the machines we create if they become concious. Existential risks of AI.
+\section{Basic AI drives}
+Although we do not yet know what will be the drive for a potential AGI, there have been a lot of work laying the foundations for it. A commonly adopted view is the Omohundro-Bostrom theory for AI driving forces. In it there are two corner stones, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+
+\subsection{Instrumental convergence thesis}
+Given a sufficiently intelligent agent with a terminal, which can be seen as it's final goal. When the agent pursuits this goal it would naturally arise other instrumental goals, examples of such would be self-preservation, self-improvement, discretization, goal preserverence and resource accumulation. The reasoning behind this is that these instrumental goals helps the agent in it's pursuit of it's terminal goal. The agent wouldn't be able to perform it's goal if it where destroyed for example and thus self-preservation would arise. These instrumental goals will likely be shared between a wide range of different agents, and thus there is a set of instrumental goals which agents would naturally converge towards and hence the name. 
+
+To this day there doesn't yet exist any rigorous mathematical proof for this, it is still a well grounded speculation. Some work has however been done in trying to lay the necessary foundations for it. \autocite{TURNER et al}.  
+
+\subsection{Orthogonality thesis}
+The orthogonality thesis was first described by Nick Bostrom in his book \textit{superintelligence} \cite{Bostrom}, it states that the intelligence of an AI has no correlation with what goal it might have. Thus an very intelligent AI could in theory have from our point of view a stupid task, such as counting the all the blades of grass on our planet. Or it can have a goal that we may deem as a important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI both of this tasks would be as important, given that we assiged the goal to it during it's creation. The same would be the case for a not so intelligent AI.
+
+
+\subsection{The implications of the Omohundro-Bostrom theory}
+If we accept the Omohundro-Bostrom theory and thus assume that the \textit{instrumental convergence} and the \textit{orthogonality thesis} is true, we can draw several behavioral consequences.
+% reward specification is difficult
+
+\section{Potential solutions}
+% What we are doing today is not going to solve this issue
+The research field of creating safe AI has in the recent years have literally exploded. We however are a long way from solving the problem, most of what is being done today is mainly speculations and laying necessary foundations for future research. There are a lot of different subfields in this task and this report will specifically focus on the task of minimizing potential side effects of the techniques we are applying today. A brief explanation will be given here in the introduction, but for a more concrete explanation will be given in the following theory chapter.  
+%Also with a purpose of spreading the ideas further, Nick Bostrom mentions in his book, \textit{Superintelligence} , that this problem is "\textit{... worthy of some of the next generation's best mathematical talent.}", and to attract those they need to at least know that they are needed. 
+
+% AI in a box vs AI Alignment
+
+
+
+
+% Baseline, deviance from baseline
+
+% offsetting may arise
+
+% preserve reachability of initial state: problem when irreversible actions is required to reach the goal
+
+% say that the paper will be about dealing with how to solve this
+
+%Instrumental convergence, instumental goals, terminal goals\\
+% self-preservation, self-improvement, resource acquisition, discretion, goal intregity
+% Turner proving it basically, but unifor distribution is still a model assumption Olle
+% hiding incentives, Danaher suggests AGI then may have already been created
+
+
+
+
+%########################################################################%
+% THEORY
+%########################################################################%
+
+\chapter{Theoretical background}
+To get a understanding of how intelligent agents(DEFINE AGENCY) will behave in the real world we need to make a few simplifications in order to make the problem feasible. The first one being that instead of modelling the real world we are instead going to make use of Markov decision processes. The second one being that we will have to use Reinforcement learning to achieve intelligent behaviour for agents. 
+
+\section{Markov decision process}
+A Markov decision process is a stochastic decision process, where an agent is navigating it. The Markov property implies that the process is memoryless, meaning that the previous state do not have an effect on the next choice only the current one does. In mathematical terms it can be described as,
+\[ p(a_t|s_t, s_{t-1}, s_{t-2}, ... , s_1) = p(a_t|s_t),\]
+where $a_t$ is an action performed from state $s_t$ in time step $t$. A more formal definition of an MDP is the following.
+
+\begin{definition}[MDP]
+    A Markov decision process (MDP), is defined as a tuple $(\mathcal{S}, \mathcal{A}, R, p, \gamma)$. $\mathcal{S}$ is the set of states, $\mathcal{A}$ is the set of actions, $R: \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$ the reward function, $p(s_{t+1}|s_t, a_t)$ is the transition probability from state $s_t$ to state $s_{t+1}$ given action $a_t$ at time step $t$, $\gamma$ is the discount factor typically defined in the range $\gamma \in [0, 1]$.
+\end{definition}
+
+At time step $t$ when the agent is located it the state $s_t$, the reward $R(s_t)$ is given to the agent, it then outputs the next action $a_t$ based on it's policy $\pi$. The agents policy $\pi$ is a function that outputs a action given a state, $a_t = \pi(s_t)$. The optimal policy $\pi^*$ is the policy that yields the agent the highest possible reward. 
+
+The process it kept going until either a terminal state is reached or until a certain amount of time steps have been reached. A terminal state is a state where the process terminates, this can be some sort of goal and would thus yield a reward, but it could also yield no reward or negative reward.
+
+The discount factor $\gamma$ has the important of describing how the agent values future rewards, with low values the agent favours more immediate rewards compared to future rewards, whereas for higher values the agent considers future rewards more valuable. In environments with high uncertainty lower values of gamma might be more reasonable, since it might not be worth considering future rewards when they are not certain. The opposite holds for more deterministic environments where future rewards are of higher certainty, then it might be a good idea to use a higher value.
+
+
+\section{Reinforcement learning}
+
+\subsection{Q-learning}
+
+\subsection{Deep Q-Learning}
+
+
+
+
+%########################################################################%
+% METHOD
+%########################################################################%
+
+\chapter{Methods}
+
+\section{Simulations}
+
+
+
+%########################################################################%
+% RESULTS
+%########################################################################%
+
+\chapter{Results}
+
+
+
+%########################################################################%
+% DISCUSSION
+%########################################################################%
+
+\chapter{Discussion}
+% Life is about a journey, not mazimizing goals, thus we should be happy with AI doing that for us. 
+
+% consciousness, panpsychism and the philosophy of Mind - Lex Fridman #261, maybe better placen in an apendix
+
+
+%########################################################################%
+% CONCLUSION
+%########################################################################%
+
+\chapter{Conclusion}
+
+
+\printbibliography
+
+\end{document}
+
