@@ -66,7 +66,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>labeldateparts</bcf:key>
-      <bcf:value>0</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="multivalued">
       <bcf:key>labeldatespec</bcf:key>
@@ -163,7 +163,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
-      <bcf:value>none</bcf:value>
+      <bcf:value>nyt</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortsets</bcf:key>
@@ -171,11 +171,11 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquelist</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>true</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>full</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -412,7 +412,8 @@
     <bcf:option datatype="boolean">doi</bcf:option>
     <bcf:option datatype="boolean">eprint</bcf:option>
     <bcf:option datatype="boolean">related</bcf:option>
-    <bcf:option datatype="boolean">subentry</bcf:option>
+    <bcf:option datatype="boolean">dashed</bcf:option>
+    <bcf:option datatype="boolean">mergedate</bcf:option>
     <bcf:option datatype="integer">mincrossrefs</bcf:option>
     <bcf:option datatype="integer">minxrefs</bcf:option>
     <bcf:option datatype="integer">maxnames</bcf:option>
@@ -493,7 +494,7 @@
     <bcf:option datatype="boolean">doi</bcf:option>
     <bcf:option datatype="boolean">eprint</bcf:option>
     <bcf:option datatype="boolean">related</bcf:option>
-    <bcf:option datatype="boolean">subentry</bcf:option>
+    <bcf:option datatype="boolean">mergedate</bcf:option>
     <bcf:option datatype="xml">labelalphatemplate</bcf:option>
     <bcf:option datatype="xml">translit</bcf:option>
     <bcf:option datatype="xml">sortexclusion</bcf:option>
@@ -579,7 +580,7 @@
     <bcf:option datatype="boolean" backendout="1">doi</bcf:option>
     <bcf:option datatype="boolean" backendout="1">eprint</bcf:option>
     <bcf:option datatype="boolean" backendout="1">related</bcf:option>
-    <bcf:option datatype="boolean" backendout="1">subentry</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">mergedate</bcf:option>
     <bcf:option datatype="integer" backendin="maxcitenames,maxbibnames,maxsortnames">maxnames</bcf:option>
     <bcf:option datatype="integer" backendin="mincitenames,minbibnames,minsortnames">minnames</bcf:option>
     <bcf:option datatype="integer" backendout="1">maxbibnames</bcf:option>
@@ -2182,74 +2183,43 @@
     <bcf:datasource type="file" datatype="bibtex">ref.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">Russel Norvig</bcf:citekey>
-    <bcf:citekey order="2">Wikipedia</bcf:citekey>
-    <bcf:citekey order="3">Tänkande Maskiner</bcf:citekey>
-    <bcf:citekey order="4">Superintelligence</bcf:citekey>
-    <bcf:citekey order="5">Russel Norvig</bcf:citekey>
-    <bcf:citekey order="6">Russel Norvig</bcf:citekey>
-    <bcf:citekey order="7">T&apos;nkande Maskiner</bcf:citekey>
-    <bcf:citekey order="8">Silver et al.</bcf:citekey>
-    <bcf:citekey order="9">Levinson et al.</bcf:citekey>
-    <bcf:citekey order="10">Minh et al.</bcf:citekey>
-    <bcf:citekey order="11">McCarthy et al.</bcf:citekey>
-    <bcf:citekey order="12">Superintelligence</bcf:citekey>
-    <bcf:citekey order="13">Mandhane</bcf:citekey>
-    <bcf:citekey order="14">DeepMind</bcf:citekey>
-    <bcf:citekey order="15">Critch Kruger</bcf:citekey>
-    <bcf:citekey order="16">I.J Good</bcf:citekey>
-    <bcf:citekey order="17">S. Legg</bcf:citekey>
-    <bcf:citekey order="18">Bostrom (2003)</bcf:citekey>
-    <bcf:citekey order="19">Critch Kruger</bcf:citekey>
-    <bcf:citekey order="20">Superintelligence</bcf:citekey>
-    <bcf:citekey order="21">Yudkowsky</bcf:citekey>
-    <bcf:citekey order="22">Müller Cannon</bcf:citekey>
-    <bcf:citekey order="23">O Häggstom</bcf:citekey>
-    <bcf:citekey order="24">Omohundro</bcf:citekey>
-    <bcf:citekey order="25">TURNER et al.</bcf:citekey>
-    <bcf:citekey order="26">Bostrom2</bcf:citekey>
-    <bcf:citekey order="27">Deepmind</bcf:citekey>
-    <bcf:citekey order="28">A Cotra</bcf:citekey>
-    <bcf:citekey order="29">A Cotra</bcf:citekey>
-    <bcf:citekey order="30">nature</bcf:citekey>
-    <bcf:citekey order="31">Grace et al</bcf:citekey>
-    <bcf:citekey order="32">Ajeya Cotra</bcf:citekey>
-    <bcf:citekey order="33">Robin Shah AN\#121</bcf:citekey>
-    <bcf:citekey order="34">Russel Norvig</bcf:citekey>
-    <bcf:citekey order="35">Future of Life Institute</bcf:citekey>
-    <bcf:citekey order="36">E Hubringer (alignmentforum)</bcf:citekey>
-    <bcf:citekey order="37">Turner et al. (2020)</bcf:citekey>
-    <bcf:citekey order="38">Custard Smingleigh</bcf:citekey>
-    <bcf:citekey order="39">Goodhars-wiki</bcf:citekey>
-    <bcf:citekey order="40">Saisubramanian et al</bcf:citekey>
-    <bcf:citekey order="41">Yudkowsky&apos;s speech</bcf:citekey>
-    <bcf:citekey order="42">Critch Kruger</bcf:citekey>
-    <bcf:citekey order="43">precipice</bcf:citekey>
-    <bcf:citekey order="44">rationally speaking</bcf:citekey>
-    <bcf:citekey order="45">The Frame Problem in Artificial Intelligence</bcf:citekey>
-    <bcf:citekey order="45">Frank M Brown</bcf:citekey>
-    <bcf:citekey order="46">Zhang et al</bcf:citekey>
-    <bcf:citekey order="47">Armstrong and Levinstein</bcf:citekey>
-    <bcf:citekey order="48">Krakovna 2020</bcf:citekey>
-    <bcf:citekey order="49">Armstrong and Levinstein</bcf:citekey>
-    <bcf:citekey order="50">Eysenbach et al</bcf:citekey>
-    <bcf:citekey order="51">Krakovna et al 2019</bcf:citekey>
-    <bcf:citekey order="52">Krakovna et al 2020</bcf:citekey>
-    <bcf:citekey order="53">Turner et al 2020</bcf:citekey>
-    <bcf:citekey order="54">Krakovna et al.</bcf:citekey>
-    <bcf:citekey order="55">Armstong Levinstein</bcf:citekey>
+    <bcf:citekey order="1">Bostrom</bcf:citekey>
+    <bcf:citekey order="2">RusselNorvig</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
-  <bcf:sortingtemplate name="none">
+  <bcf:sortingtemplate name="nyt">
     <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
+      <bcf:sortitem order="1">presort</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2" final="1">
+      <bcf:sortitem order="1">sortkey</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="3">
+      <bcf:sortitem order="1">sortname</bcf:sortitem>
+      <bcf:sortitem order="2">author</bcf:sortitem>
+      <bcf:sortitem order="3">editor</bcf:sortitem>
+      <bcf:sortitem order="4">translator</bcf:sortitem>
+      <bcf:sortitem order="5">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="6">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="4">
+      <bcf:sortitem order="1">sortyear</bcf:sortitem>
+      <bcf:sortitem order="2">year</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="5">
+      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="2">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="6">
+      <bcf:sortitem order="1">volume</bcf:sortitem>
+      <bcf:sortitem literal="1" order="2">0</bcf:sortitem>
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
   <bcf:datalist section="0"
-                name="none/global//global/global"
+                name="nyt/global//global/global"
                 type="entry"
-                sortingtemplatename="none"
+                sortingtemplatename="nyt"
                 sortingnamekeytemplatename="global"
                 labelprefix=""
                 uniquenametemplatename="global"

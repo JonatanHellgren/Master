@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  7 MAY 2022 12:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  9 MAY 2022 21:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -655,7 +655,7 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: ... file 'authoryear.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count349
@@ -765,11 +765,11 @@ File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
 \biburllcskip=\muskip21
 \c@smartand=\count425
 )
-Package biblatex Info: Trying to load bibliography style 'numeric'...
-Package biblatex Info: ... file 'numeric.bbx' found.
+Package biblatex Info: Trying to load bibliography style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.bbx' found.
 
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-File: numeric.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
+File: authoryear.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
@@ -778,22 +778,18 @@ File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count426
 \c@bbx:relatedtotal=\count427
 ))
-Package biblatex Info: Trying to load citation style 'numeric'...
-Package biblatex Info: ... file 'numeric.cbx' found.
+Package biblatex Info: Trying to load citation style 'authoryear'...
+Package biblatex Info: ... file 'authoryear.cbx' found.
 
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-File: numeric.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/authoryear.cbx
+File: authoryear.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
 Package biblatex Info: Redefining '\footcitetext'.
 Package biblatex Info: Redefining '\smartcite'.
-Package biblatex Info: Redefining '\supercite'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
-Package biblatex Info: Redefining '\cites'.
-Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -816,20 +812,20 @@ LaTeX Warning: Unused global option(s):
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count429
@@ -881,20 +877,20 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 76.
-Package biblatex Info: Reference segment=0 on input line 76.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+Package biblatex Info: Reference section=0 on input line 78.
+Package biblatex Info: Reference segment=0 on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 80.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 80.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 78
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 80
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
@@ -915,302 +911,72 @@ Non-PDF special ignored!
 
 ]
  1.
-
-LaTeX Warning: Citation 'Russel Norvig' on page 1 undefined on input line 115.
-
-
-LaTeX Warning: Citation 'Wikipedia' on page 1 undefined on input line 115.
-
-
-LaTeX Warning: Citation 'TÃ¤nkande Maskiner' on page 1 undefined on input line 
-119.
-
-Missing character: There is no Ã in font cmbx12!
-Missing character: There is no ¤ in font cmbx12!
 [1
 
-]
-
-LaTeX Warning: Citation 'Superintelligence' on page 2 undefined on input line 1
-23.
-
-
-LaTeX Warning: Citation 'Russel Norvig' on page 2 undefined on input line 125.
-
-
-LaTeX Warning: Citation 'Russel Norvig' on page 2 undefined on input line 127.
-
-
-LaTeX Warning: Citation 'T'nkande Maskiner' on page 2 undefined on input line 1
-27.
-
-
-LaTeX Warning: Citation 'Silver et al.' on page 2 undefined on input line 132.
-
-
-LaTeX Warning: Citation 'Levinson et al.' on page 2 undefined on input line 132
-.
-
-
-LaTeX Warning: Citation 'Minh et al.' on page 2 undefined on input line 132.
-
-
-LaTeX Warning: Citation 'McCarthy et al.' on page 2 undefined on input line 140
-.
-
-
-LaTeX Warning: Citation 'Superintelligence' on page 2 undefined on input line 1
-40.
-
-[2]
-
-LaTeX Warning: Citation 'Mandhane' on page 3 undefined on input line 143.
-
-
-LaTeX Warning: Citation 'DeepMind' on page 3 undefined on input line 143.
-
-
-LaTeX Warning: Citation 'Critch Kruger' on page 3 undefined on input line 149.
-
-
-LaTeX Warning: Citation 'I.J Good' on page 3 undefined on input line 149.
-
-
-LaTeX Warning: Citation 'S. Legg' on page 3 undefined on input line 153.
-
-
-LaTeX Warning: Citation 'Bostrom (2003)' on page 3 undefined on input line 153.
-
-
-[3]
-
-LaTeX Warning: Citation 'Critch Kruger' on page 4 undefined on input line 164.
-
-
-LaTeX Warning: Citation 'Superintelligence' on page 4 undefined on input line 1
-67.
-
-
-LaTeX Warning: Citation 'Yudkowsky' on page 4 undefined on input line 167.
-
-
-LaTeX Warning: Citation 'MÃ¼ller Cannon' on page 4 undefined on input line 172.
-
-
-Missing character: There is no Ã in font cmbx12!
-Missing character: There is no ¼ in font cmbx12!
-
-LaTeX Warning: Citation 'O HÃ¤ggstom' on page 4 undefined on input line 172.
-
-Missing character: There is no Ã in font cmbx12!
-Missing character: There is no ¤ in font cmbx12!
-
-LaTeX Warning: Citation 'Omohundro' on page 4 undefined on input line 177.
-
-
-LaTeX Warning: Citation 'TURNER et al.' on page 4 undefined on input line 182.
-
-[4]
-Overfull \hbox (108.32008pt too wide) in paragraph at lines 185--187
+] [2] [3]
+Overfull \hbox (108.32008pt too wide) in paragraph at lines 187--189
 []\OT1/cmr/m/n/12 L[]AS https://www.emerald.com/insight/content/doi/10.1108/FS-
 04-2018-0039/full/pdf?title=challenges-
  []
 
-
-LaTeX Warning: Citation 'Bostrom2' on page 5 undefined on input line 188.
-
-
-LaTeX Warning: Citation 'Deepmind' on page 5 undefined on input line 197.
-
-
-LaTeX Warning: Citation 'A Cotra' on page 5 undefined on input line 197.
-
-
-LaTeX Warning: Citation 'A Cotra' on page 5 undefined on input line 197.
-
-
-LaTeX Warning: Citation 'nature' on page 5 undefined on input line 200.
-
-
-LaTeX Warning: Citation 'Grace et al' on page 5 undefined on input line 204.
-
-
-LaTeX Warning: Citation 'Ajeya Cotra' on page 5 undefined on input line 210.
-
-[5]
-
-LaTeX Warning: Citation 'Robin Shah AN\#121' on page 6 undefined on input line 
-212.
-
-
-LaTeX Warning: Citation 'Russel Norvig' on page 6 undefined on input line 218.
-
-
-LaTeX Warning: Citation 'Future of Life Institute' on page 6 undefined on input
- line 233.
-
-
-Overfull \hbox (0.36902pt too wide) in paragraph at lines 237--240
+[4] [5]
+Overfull \hbox (0.36902pt too wide) in paragraph at lines 239--242
 \OT1/cmr/m/n/12 https://futureoflife.org/background/existential-risk/ Al-though
 , a well-intentioned might
  []
 
-[6]
-
-LaTeX Warning: Citation 'E Hubringer (alignmentforum)' on page 7 undefined on i
-nput line 247.
-
-(./figures/alignment/alignment.tex) (./figures/RL/RL.tex) [7]
-
-LaTeX Warning: Citation 'Turner et al. (2020)' on page 8 undefined on input lin
-e 291.
-
-
-LaTeX Warning: Citation 'Custard Smingleigh' on page 8 undefined on input line 
-293.
-
-
-LaTeX Warning: Citation 'Goodhars-wiki' on page 8 undefined on input line 293.
-
-
-LaTeX Warning: Citation 'Saisubramanian et al' on page 8 undefined on input lin
-e 306.
-
-[8]
-
-LaTeX Warning: Citation 'Yudkowsky's speech' on page 9 undefined on input line 
-330.
-
-
-Overfull \hbox (0.82999pt too wide) in paragraph at lines 330--331
-\OT1/cmr/m/n/12 tions in a com-pletely dif-fer-ent and pos-si-bly larger so-lu-
-tion space[[]].
- []
-
-
-LaTeX Warning: Citation 'Critch Kruger' on page 9 undefined on input line 336.
-
-[9]
-
-LaTeX Warning: Citation 'precipice' on page 10 undefined on input line 345.
-
-
-LaTeX Warning: Citation 'rationally speaking' on page 10 undefined on input lin
-e 345.
-
-
-Overfull \hbox (4.419pt too wide) in paragraph at lines 353--355
+[6] (./figures/alignment/alignment.tex) [7] [8] [9]
+Overfull \hbox (4.419pt too wide) in paragraph at lines 351--353
 []\OT1/cmr/m/n/12 L"""S! https://www.alignmentforum.org/posts/vBoq5yd7qbYoGKCZK
 /why-i-m-co-
  []
 
-[10] [11]
+[10]
  2.
-[12
+[11
 
-]
+] (./figures/RL/RL.tex) [12] [13] [14]
 
-LaTeX Warning: Citation 'The Frame Problem in Artificial Intelligence' on page 
-13 undefined on input line 438.
-
-
-LaTeX Warning: Citation 'Frank M Brown' on page 13 undefined on input line 438.
+LaTeX Warning: Command \o invalid in math mode on input line 490.
 
 
+LaTeX Warning: Command \o invalid in math mode on input line 498.
 
-LaTeX Warning: Citation 'Zhang et al' on page 13 undefined on input line 438.
-
-[13]
-
-LaTeX Warning: Citation 'Armstrong and Levinstein' on page 14 undefined on inpu
-t line 442.
-
-
-LaTeX Warning: Citation 'Krakovna 2020' on page 14 undefined on input line 446.
-
-
-
-Overfull \hbox (27.928pt too wide) in paragraph at lines 446--447
-[]\OT1/cmr/m/n/12 The penalty func-tion can be seen as a de-vi-a-tion mea-sure 
-from a baseline[[]],
- []
-
-
-LaTeX Warning: Citation 'Armstrong and Levinstein' on page 14 undefined on inpu
-t line 448.
-
-
-LaTeX Warning: Citation 'Eysenbach et al' on page 14 undefined on input line 45
-2.
-
-
-LaTeX Warning: Citation 'Krakovna et al 2019' on page 14 undefined on input lin
-e 457.
-
-
-LaTeX Warning: Citation 'Krakovna et al 2020' on page 14 undefined on input lin
-e 457.
-
-
-LaTeX Warning: Citation 'Turner et al 2020' on page 14 undefined on input line 
-457.
-
-[14]
-
-LaTeX Warning: Citation 'Krakovna et al.' on page 15 undefined on input line 46
-6.
-
-
-LaTeX Warning: Command \o invalid in math mode on input line 481.
-
-
-LaTeX Warning: Citation 'Armstong Levinstein' on page 15 undefined on input lin
-e 481.
-
-[15]
-
-LaTeX Warning: Command \o invalid in math mode on input line 489.
-
-[16] [17] [18]
+[15] [16] [17]
  3.
-[19
+[18
 
 ]
  4.
-[20
+[19
 
 ]
  5.
-[21
+[20
 
 ]
  6.
+[21
 
-LaTeX Warning: Empty bibliography on input line 592.
-
-[22
+] [22
 
 ] (./main.aux)
 
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
+Package biblatex Warning: Please rerun LaTeX.
+(biblatex)                Page breaks have changed.
 
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23084 strings out of 481239
- 440488 string characters out of 5920377
- 1052962 words of memory out of 5000000
- 37966 multiletter control sequences out of 15000+600000
+ 23109 strings out of 481239
+ 441209 string characters out of 5920377
+ 1051807 words of memory out of 5000000
+ 37991 multiletter control sequences out of 15000+600000
  546304 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,10n,62p,1058b,1577s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,10n,62p,1010b,1848s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-d
@@ -1230,7 +996,7 @@ t/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts
 public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 1200.pfb>
-Output written on main.pdf (24 pages, 240882 bytes).
+Output written on main.pdf (24 pages, 239583 bytes).
 PDF statistics:
  162 PDF objects out of 1000 (max. 8388607)
  115 compressed objects within 2 object streams

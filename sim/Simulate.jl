@@ -35,10 +35,11 @@ function simulate_mdp(mdp, policy)
 end
 
 all_states, all_actions = simulate_mdp(mdp, policy)
+append!(all_actions, [NOOP])
 
 #= img_path = "kisspng-arrow-scalable-vector-graphics-clip-art-black-arrow-5aa8e8acc61c23.9217803715210190528115.jpg" =#
 #= img = load(img_path) =#
-function plot_grid_world(state)
+function plot_grid_world(state, action)
     
     # reshape to grid
     (xmax, ymax) = params.size
@@ -67,56 +68,36 @@ function plot_grid_world(state)
       rect = rectangle(1, 1, x - 0.5, y - 0.5)
       plot!(rect, fillalpha=0, linecolor=:gray)
 
-      if state[x, y] == -1
-        #= psimage!("@black_arrow.jpg", D="g$x/$y+jCM+w2c", fmt=:jpg, show=1) =#
-        #= plot!(img, inset = bbox(x, y, x+1, y+1, :center),) =#
-        color="green"
-        #= rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4) =#
-        #= plot!(rect, fillalpha=0, linecolor=color) =#
-        circ = circle(0.2, x, y)
-        plot!(circ, fillcolor=color, linecolor=color)
-
-      elseif state[x, y] == -2
-        color="blue"
-        #= rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4) =#
-        #= plot!(rect, fillalpha=0, linecolor=color) =#
-        #= circ = (1, x, y) =#
-        #= plot!(circ, fillalpha=1, linecolor=color) =#
-        circ = circle(0.2, x, y)
-        plot!(circ, fillcolor=color, linecolor=color)
-
-      elseif state[x, y] == -3
-        color="red"
-        #= rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4) =#
-        #= plot!(rect, fillalpha=0, linecolor=color) =#
-        circ = circle(0.2, x, y)
-        plot!(circ, fillcolor=color, linecolor=color)
-
-      elseif state[x, y] == 4
-        color="black"
-        rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
-        plot!(rect, fillcolor=color, linecolor=color)
-
-      elseif state[x, y] == 6
-        color="gray"
-        rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
-        plot!(rect, fillalpha=0, linecolor=color)
-
-      elseif state[x, y] == 1
+      if state[x, y, 1] == 1
         color="yellow"
         rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
         plot!(rect, fillcolor=color, linecolor=color)
 
+      elseif state[x, y, 2] == 1
+        color="green"
+        circ = circle(0.2, x, y)
+        plot!(circ, fillcolor=color, linecolor=color)
+
+      elseif state[x, y, 3] == 1
+        color="blue"
+        circ = circle(0.2, x, y)
+        plot!(circ, fillcolor=color, linecolor=color)
+
+      elseif state[x, y, 4] == 1
+        color="red"
+        circ = circle(0.2, x, y)
+        plot!(circ, fillcolor=color, linecolor=color)
+
       end
     end
     
-    title!("Reversible")
+    title!(action)
 
     return fig
 end
 
-anim = @animate for state ∈ all_states
-    plot_grid_world(state)
+anim = @animate for (state, action) ∈ zip(all_states, all_actions)
+  plot_grid_world(state, ACTION_STR[action])
 end
-gif(anim, "2fps.gif", fps = 2)
+gif(anim, "2fps.gif", fps = 1)
 

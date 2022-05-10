@@ -1,0 +1,79 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Bostrom}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=892acb64b0a9f67cbe51c2705c652a49}{%
+           family={Bostrom},
+           familyi={B\bibinitperiod},
+           given={Nick},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Oxford University Press}%
+      }
+      \strng{namehash}{892acb64b0a9f67cbe51c2705c652a49}
+      \strng{fullhash}{892acb64b0a9f67cbe51c2705c652a49}
+      \strng{bibnamehash}{892acb64b0a9f67cbe51c2705c652a49}
+      \strng{authorbibnamehash}{892acb64b0a9f67cbe51c2705c652a49}
+      \strng{authornamehash}{892acb64b0a9f67cbe51c2705c652a49}
+      \strng{authorfullhash}{892acb64b0a9f67cbe51c2705c652a49}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Superintelligence}
+      \field{year}{2016}
+    \endentry
+    \entry{RusselNorvig}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f3e1e692157b8584b507c91293e03636}{%
+           family={Russel},
+           familyi={R\bibinitperiod},
+           given={S\bibnamedelima \& Norvig\bibnamedelima P},
+           giveni={S\bibinitperiod\bibinitdelim \\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson}%
+      }
+      \strng{namehash}{f3e1e692157b8584b507c91293e03636}
+      \strng{fullhash}{f3e1e692157b8584b507c91293e03636}
+      \strng{bibnamehash}{f3e1e692157b8584b507c91293e03636}
+      \strng{authorbibnamehash}{f3e1e692157b8584b507c91293e03636}
+      \strng{authornamehash}{f3e1e692157b8584b507c91293e03636}
+      \strng{authorfullhash}{f3e1e692157b8584b507c91293e03636}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Artificial Intelligence - A Modern Approach, Fourth Edition}
+      \field{year}{1995}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

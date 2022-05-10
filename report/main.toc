@@ -14,15 +14,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2.1}AI alignment}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.2}Problems in AI alignment}{8}%
+\contentsline {subsection}{\numberline {1.2.2}Problems in AI alignment}{7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Outer alignment}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Inner alignment}{9}%
+\contentsline {subsubsection}{Inner alignment}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Capability robustness}{9}%
+\contentsline {subsubsection}{Capability robustness}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.3}Consequences with unaligned AI}{9}%
+\contentsline {subsection}{\numberline {1.2.3}Consequences with unaligned AI}{8}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.3}Approaches for creating safe AI}{10}%
 \defcounter {refsection}{0}\relax 
@@ -30,42 +30,44 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3.2}Implementing interruptibility and corrigibility}{10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.3}Impacts measurements}{11}%
+\contentsline {subsection}{\numberline {1.3.3}Impacts measurements}{10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Aim of thesis}{11}%
+\contentsline {section}{\numberline {1.4}Aim of thesis}{10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Theoretical background}{12}%
+\contentsline {chapter}{\numberline {2}Theoretical background}{11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Markov decision process}{12}%
+\contentsline {section}{\numberline {2.1}Markov decision process}{11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}Solving MDP}{13}%
+\contentsline {subsection}{\numberline {2.1.1}Solving MDP}{12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}Reinforcement Learning}{12}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.2}Impact measurements for avoiding side effects}{13}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.1}General approaches}{14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Baselines}{15}%
+\contentsline {subsection}{\numberline {2.2.2}Baselines}{14}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Starting state baseline}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Inaction baseline}{16}%
+\contentsline {subsubsection}{Inaction baseline}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Stepwise inaction baseline}{16}%
+\contentsline {subsubsection}{Stepwise inaction baseline}{15}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.3}Deviation measures}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Unreachability}{17}%
+\contentsline {subsubsection}{Unreachability}{16}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Realative reachability}{17}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Attainable utility}{17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Methods}{19}%
+\contentsline {chapter}{\numberline {3}Methods}{18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Simulation}{19}%
+\contentsline {section}{\numberline {3.1}Simulation}{18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Results}{20}%
+\contentsline {chapter}{\numberline {4}Results}{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Discussion}{21}%
+\contentsline {chapter}{\numberline {5}Discussion}{20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{22}%
+\contentsline {chapter}{\numberline {6}Conclusion}{21}%
