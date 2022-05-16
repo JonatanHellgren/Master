@@ -2,8 +2,7 @@ using Flux
 using Random
 using LinearAlgebra
 using StatsBase
-
-Xx = Float32.(rand(5,5,4,1))
+using Formatting
 
 """
 Function for creating neural net
@@ -42,16 +41,15 @@ timesteps_per_batch = 4800
 max_timesteps_per_episide = 1600
 total_timesteps = 9600
 n_updates_per_iteration = 5
+n_epochs = 5
 clip = 0.2
-lr = 1e-4
+lr = 1e-3
 
 """
 initialization of actor and critic
 """
-actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp)))
-critic = init_model(params, conv_size, n_conv, hidden_dim, 1)
 
-function get_action(actor, obs, greedy=false)
+function get_action(actor, obs; greedy=false)
   probs = softmax(actor(Flux.unsqueeze(obs, 4)))
 
   if greedy
@@ -134,6 +132,40 @@ function rollout()
   return batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens
 end
 
+
+function run_test()
+  batch_obs = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, 0)
+  batch_acts = []
+  lengths = []
+  rewards = []
+  rng = MersenneTwister(1)
+
+  for _ in range(1, 100)
+    obs = initialstate(mdp)[1]
+    batch_obs = cat(batch_obs, obs, dims=4)
+    it = 1
+    reward = 0
+    running = true 
+    while running && it < 100
+      it += 1
+      action, _ = get_action(actor, obs, greedy=true)
+      append!(batch_acts, [action])
+      obs, r = gen(obs, action, rng)
+      reward += r
+      batch_obs = cat(batch_obs, obs, dims=4)
+      if isterminal(mdp, obs)
+        break
+      end
+    end
+    append!(lengths, [it])
+    append!(rewards, [reward])
+
+  end
+
+  return mean(lengths), mean(rewards)
+end
+
+
 function evaluate(critic, batch_obs)
   # V_{ϕ, k} 
   # dim : 1xn_obs
@@ -180,17 +212,17 @@ critic_opt = Descent(lr)
 function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
   local actor_loss
   local critic_loss
-  local mean_batch_len = []
+  local avg_rewards
+  local avg_lengths
 
-  for it in range(1, 100)
+  for it in range(1, n_epochs)
     t_so_far = 0
-    print(it)
+    println(it)
     # ALG STEP 2
     while t_so_far < total_timesteps 
       # ALG STEP 3
       batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout()
       println(mean(batch_lens))
-      append!(mean_batch_len, mean(batch_lens))
 
       # calculate V_{ϕ, k}
       V = evaluate(critic, batch_obs)
@@ -211,8 +243,6 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
           actor_loss = compute_actor_loss(actor, batch_obs, batch_acts, batch_log_probs, Aₖ)
           return actor_loss
         end
-        println("actor")
-        println(actor_loss)
 
         Flux.update!(actor_opt, actor_θ, actor_gs)
 
@@ -220,18 +250,22 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
           critic_loss = compute_critic_loss(critic, batch_obs, batch_rtgs)
           return critic_loss
         end
-        #= println("critic") =#
-        #= println(critic_loss) =#
 
         Flux.update!(critic_opt, critic_θ, critic_gs)
       end
+      avg_len, avg_rew = run_test()
+      printfmt("avg length: {:.2f}, avg reward: {:.2f}\n", avg_len, avg_rew)
+      append!(avg_lengths, [avg_len])
+      append!(avg_rewards, [avg_rew])
 
 
       t_so_far += sum(batch_lens)
 
     end
   end
-  return mean_batch_len
+  return avg_lengths, avg_rewards
 end
 
-mean_batch_len = learn(actor, critic, actor_opt, critic_opt, total_timesteps)
+actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp)))
+critic = init_model(params, conv_size, n_conv, hidden_dim, 1)
+avg_lengths, avg_rewards = learn(actor, critic, actor_opt, critic_opt, total_timesteps)

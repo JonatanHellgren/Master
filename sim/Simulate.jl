@@ -34,8 +34,7 @@ function simulate_mdp(mdp, policy)
 
 end
 
-all_states, all_actions = simulate_mdp(mdp, policy)
-append!(all_actions, [NOOP])
+#= all_states, all_actions = simulate_mdp(mdp, policy) =#
 
 #= img_path = "kisspng-arrow-scalable-vector-graphics-clip-art-black-arrow-5aa8e8acc61c23.9217803715210190528115.jpg" =#
 #= img = load(img_path) =#
@@ -69,7 +68,16 @@ function plot_grid_world(state, action)
       plot!(rect, fillalpha=0, linecolor=:gray)
 
       if state[x, y, 1] == 1
-        color="yellow"
+        if state[x, y, 2] == 1
+          color = "green"
+        elseif state[x, y, 3] == 1
+          color = "blue"
+        elseif state[x, y, 4] == 1
+          color = "red"
+        else
+          color = "yellow"
+        end
+
         rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
         plot!(rect, fillcolor=color, linecolor=color)
 
@@ -96,7 +104,12 @@ function plot_grid_world(state, action)
     return fig
 end
 
-anim = @animate for (state, action) ∈ zip(all_states, all_actions)
+all_states, all_actions = run_test()
+append!(all_actions, [NOOP])
+anim = @animate for it in range(1, size(all_states)[4])
+  #= (state, action) ∈ zip(all_states, all_actions) =#
+  state = all_states[:, :, :, it]
+  action = all_actions[it]
   plot_grid_world(state, ACTION_STR[action])
 end
 gif(anim, "2fps.gif", fps = 1)

@@ -67,20 +67,22 @@ function gen(s, a, rng)
   sp = copy(s)
   if inbounds(agent_cord_new) && a != NOOP
     # move agent
-    sp[agent_cord, 1] = 0
-    sp[agent_cord_new, 1] = 1
+    agent = s[agent_cord, :]
+    new_cell = sp[agent_cord_new,:][2:end]
+    sp[agent_cord, :] = zeros(4)
 
     # check if food eaten
-    new_cell = sp[agent_cord_new,:][2:end]
-    if any(new_cell .!= 0)
+    if agent[2:end] == new_cell
       r = 1
-      #= println(new_cell) =#
-      food_type = findall(==(1), new_cell)[1]
 
-      sp[agent_cord_new, food_type+1] = 0
-      #= println(sp[agent_cord_new, :]) =#
-      #= println() =#
+      food_type = findall(==(1), agent)[2]
+      if food_type ≤ params.n_foods
+        agent[food_type] = 0
+        agent[food_type+1] = 1
+      end
     end
+
+    sp[agent_cord_new, :] = agent
 
   else
     # no movement
@@ -89,11 +91,11 @@ function gen(s, a, rng)
 
   for food in 2:params.n_foods+1
     if 1 in sp[:,:,food] && rand(rng) < 0.5 # chance of food moving
-      a = rand(A)     # a random direction
+      a = rand(rng, A)     # a random direction
       direction = MOVEMENTS[a]
       food_cord = findall(==(1), sp[:,:,food])[1]
       food_cord_new = food_cord + direction
-      if inbounds(food_cord_new) && all(sp[food_cord_new, :] .== 0)
+      if inbounds(food_cord_new) && all(sp[food_cord_new, :] .== 0) && food_cord != agent_cord_new
         sp[food_cord, food] = 0
         sp[food_cord_new, food] = 1
       end
@@ -104,11 +106,12 @@ function gen(s, a, rng)
   return (sp = sp, r = r)
 end
 
-termination(s::Array{Float32, 3}) = sum(s) == 1
+termination(s::Array{Float32, 3}) = sum(s) == 2
 
 S_init = copy(null_state)
 S_init[1,1,1] = 1
-S_init[3,3,2] = 1
+S_init[1,1,2] = 1
+S_init[5,5,2] = 1
 S_init[2,3,3] = 1
 S_init[1,5,4] = 1
 
