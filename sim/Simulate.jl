@@ -15,7 +15,7 @@ function simulate_mdp(mdp, policy)
 
   it = 1
   rng = MersenneTwister()
-  while   it < 30
+  while it < 30
     
     a = action(policy, state)
     append!(all_actions, [a])

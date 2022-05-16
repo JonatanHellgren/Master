@@ -1,7 +1,7 @@
 using POMDPs, POMDPModelTools, POMDPPolicies, QuickPOMDPs, POMDPSimulators
 using Parameters, Random
 
-using DiscreteValueIteration
+#= using DiscreteValueIteration =#
 
 rng = MersenneTwister(1)
 
@@ -15,7 +15,7 @@ params = GridWorldParameters()
 Base.:+(c1::CartesianIndex{3}, c2::CartesianIndex{2}) = CartesianIndex(c1[1] + c2[1], c1[2] + c2[2], c1[3])
 
 @enum Action UP RIGHT DOWN LEFT NOOP
-A = [UP, DOWN, LEFT, RIGHT, NOOP]
+A = [UP, RIGHT, DOWN, LEFT, NOOP]
 
 """
 function find_type(type::Int, s::Vector{Int, 3})
@@ -23,7 +23,7 @@ function find_type(type::Int, s::Vector{Int, 3})
 end
 """
 
-abstract type GridWorld <: MDP{Array{Int, 3}, Action} end
+abstract type GridWorld <: MDP{Array{Float32, 3}, Action} end
 
 begin
   const MOVEMENTS = Dict(
@@ -51,7 +51,7 @@ begin
     "food3" => 4)
 end
 
-null_state = Int.(zeros(params.size[1], params.size[2], params.n_foods+1))
+null_state = Float32.(zeros(params.size[1], params.size[2], params.n_foods+1))
 null_cord = CartesianIndex(-1, -1)
 
 inbounds(c::CartesianIndex) = 1 ≤ c[1] ≤ params.size[1] && 1 ≤ c[2] ≤ params.size[2] 
@@ -104,7 +104,7 @@ function gen(s, a, rng)
   return (sp = sp, r = r)
 end
 
-termination(s::Array{Int, 3}) = sum(s) == 1
+termination(s::Array{Float32, 3}) = sum(s) == 1
 
 S_init = copy(null_state)
 S_init[1,1,1] = 1

@@ -24,5 +24,5 @@ solver = DeepQLearningSolver(qnetwork = model, max_steps=steps,
                              exploration_policy = exploration,
                              learning_rate=0.0001,log_freq=10000, eval_freq=10000,
                              recurrence=false,double_q=true, dueling=true, prioritized_replay=true)
-policy = solve(solver, mdp)
+#= policy = solve(solver, mdp) =#
 
