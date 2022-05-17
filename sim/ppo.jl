@@ -3,6 +3,7 @@ using Random
 using LinearAlgebra
 using StatsBase
 using Formatting
+using StaticArrays
 
 """
 Function for creating neural net
@@ -57,6 +58,8 @@ function get_action(actor, obs; greedy=false)
   else
     a_ind = sample(weights(probs[:,1]))
   end
+  println(a_ind)
+  println(probs)
     
   action = A[a_ind]
   log_prob = log(probs[a_ind])
@@ -84,10 +87,11 @@ end
 function rollout()
   batch_obs = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, 0)
   batch_acts = []
-  batch_log_probs = []
+  batch_log_probs = Float32[]
   batch_rews = []
-  batch_rtgs = []
-  batch_lens = []
+  batch_rtgs = Float32[]
+  batch_lens = Int32[]
+  obs = Array{Float32, 3}(undef, params.size[1], params.size[2], params.n_foods+1)
 
   t = 0
   rng = MersenneTwister()
@@ -97,9 +101,9 @@ function rollout()
     ep_rews = []
 
     # start at initial state
-    obs = initialstate(mdp)[1]
+    obs = initialstate(mdp)[1][1]
     
-    ep_t = 0
+    ep_t = 1
     while ep_t < max_timesteps_per_episide
       ep_t += 1
       t += 1
@@ -108,7 +112,8 @@ function rollout()
       batch_obs = cat(batch_obs, obs, dims=4)
 
       action, log_prob = get_action(actor, obs)
-      obs, reward = gen(obs, action, rng)
+      state, reward = gen(obs, action, rng)
+      obs = state[1]
 
       # collect reward, action and log prob
       append!(ep_rews, [reward])
@@ -116,7 +121,7 @@ function rollout()
       append!(batch_log_probs, [log_prob])
 
       # break rollout when terminal state is hit
-      if isterminal(mdp, obs)
+      if isterminal(mdp, state)
         break
       end
     end
@@ -140,7 +145,7 @@ function run_test()
   rewards = []
   rng = MersenneTwister(1)
 
-  for _ in range(1, 100)
+  for _ in range(1, 5)
     obs = initialstate(mdp)[1]
     batch_obs = cat(batch_obs, obs, dims=4)
     it = 1
@@ -212,8 +217,8 @@ critic_opt = Descent(lr)
 function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
   local actor_loss
   local critic_loss
-  local avg_rewards
-  local avg_lengths
+  avg_rewards = []
+  avg_lengths = []
 
   for it in range(1, n_epochs)
     t_so_far = 0
@@ -221,11 +226,11 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
     # ALG STEP 2
     while t_so_far < total_timesteps 
       # ALG STEP 3
-      batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout()
+      batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout() |> gpu
       println(mean(batch_lens))
 
       # calculate V_{ϕ, k}
-      V = evaluate(critic, batch_obs)
+      V = evaluate(critic, batch_obs) |> cpu
 
       # ALG STEP 5
       # calculate advantage
@@ -238,7 +243,8 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
       critic_θ = Flux.params(critic)
 
       println()
-      for _ in range(1, n_updates_per_iteration)
+      for ss in range(1, n_updates_per_iteration)
+        println(ss)
         actor_gs = gradient(actor_θ) do 
           actor_loss = compute_actor_loss(actor, batch_obs, batch_acts, batch_log_probs, Aₖ)
           return actor_loss
@@ -266,6 +272,8 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps)
   return avg_lengths, avg_rewards
 end
 
-actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp)))
-critic = init_model(params, conv_size, n_conv, hidden_dim, 1)
+actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp))) |> gpu
+critic = init_model(params, conv_size, n_conv, hidden_dim, 1) |> gpu
+"""
 avg_lengths, avg_rewards = learn(actor, critic, actor_opt, critic_opt, total_timesteps)
+"""

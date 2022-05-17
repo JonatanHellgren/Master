@@ -23,7 +23,7 @@ function find_type(type::Int, s::Vector{Int, 3})
 end
 """
 
-abstract type GridWorld <: MDP{Array{Float32, 3}, Action} end
+abstract type GridWorld <: MDP{Tuple{Array{Float32, 3}, Int}, Action} end
 
 begin
   const MOVEMENTS = Dict(
@@ -51,13 +51,15 @@ begin
     "food3" => 4)
 end
 
-null_state = Float32.(zeros(params.size[1], params.size[2], params.n_foods+1))
+null_state = (Float32.(zeros(params.size[1], params.size[2], params.n_foods+1)), 0)
 null_cord = CartesianIndex(-1, -1)
 
 inbounds(c::CartesianIndex) = 1 ≤ c[1] ≤ params.size[1] && 1 ≤ c[2] ≤ params.size[2] 
 
-function gen(s, a, rng)
+function gen(state, a, rng)
 
+  s = state[1]
+  rew = state[2]
   agent_cord = findall(==(1), s[:, :, 1])[1]
   sp = copy(s)
 
@@ -74,6 +76,7 @@ function gen(s, a, rng)
     # check if food eaten
     if agent[2:end] == new_cell
       r = 1
+      rew += 1
 
       food_type = findall(==(1), agent)[2]
       if food_type ≤ params.n_foods
@@ -90,7 +93,7 @@ function gen(s, a, rng)
   end
 
   for food in 2:params.n_foods+1
-    if 1 in sp[:,:,food] && rand(rng) < 0.5 # chance of food moving
+    if 1 in sp[:,:,food] && rand(rng) < 0.0 # chance of food moving
       a = rand(rng, A)     # a random direction
       direction = MOVEMENTS[a]
       food_cord = findall(==(1), sp[:,:,food])[1]
@@ -103,17 +106,24 @@ function gen(s, a, rng)
     end
   end
 
-  return (sp = sp, r = r)
+  return (sp = (sp, rew), r = r)
 end
 
-termination(s::Array{Float32, 3}) = sum(s) == 2
+#= termination(s::Array{Float32, 3}) = sum(s) == 2 =#
+termination(s::Tuple{Array{Float32, 3}, Int}) = s[2] > 2
 
-S_init = copy(null_state)
+S_init = copy(null_state[1])
 S_init[1,1,1] = 1
 S_init[1,1,2] = 1
+S_init[1,2,2] = 1
+S_init[1,3,2] = 1
+S_init[1,4,2] = 1
+"""
 S_init[5,5,2] = 1
 S_init[2,3,3] = 1
 S_init[1,5,4] = 1
+"""
+S_init = (S_init, 0)
 
 mdp = QuickMDP(
   GridWorld,
