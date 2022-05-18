@@ -1,0 +1,16 @@
+
+Pkg.add("POMDPs")
+Pkg.add("POMDPModelTools")
+Pkg.add("POMDPPolicies")
+Pkg.add("QuickPOMDPs")
+Pkg.add("Parameters")
+#= Pkg.add("random") =#
+Pkg.add("DeepQLearning")
+Pkg.add("POMDPs")
+Pkg.add("Flux")
+Pkg.add("POMDPModels")
+Pkg.add("POMDPSimulators")
+Pkg.add("ColorSchemes")
+Pkg.add("Colors")
+Pkg.add("Images")
+Pkg.add("FileIO")

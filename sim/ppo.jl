@@ -83,9 +83,9 @@ end
 
 
 function rollout()
-  batch_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, 0)
-  batch_acts = []
-  batch_log_probs = Float32[]
+  batch_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, timesteps_per_batch)
+  batch_acts = Array{Any}(undef, timesteps_per_batch)
+  batch_log_probs = Array{Float32}(undef, timesteps_per_batch)
   batch_rews = []
   batch_rtgs = Float32[]
   batch_lens = Int32[]
@@ -101,23 +101,28 @@ function rollout()
     state = initialstate(mdp)[1]
     
     ep_t = 0
-    while ep_t < max_timesteps_per_episide
+    while ep_t < max_timesteps_per_episide && t < timesteps_per_batch
       t += 1
       ep_t += 1
       
       # collect observation
-      batch_grids = cat(batch_grids, state.grid, dims=4)
+      #= batch_grids = cat(batch_grids, state.grid, dims=4) =#
+      batch_grids[:,:,:,t] = state.grid
 
       action, log_prob = get_action(rng, actor, state.grid)
       state, reward = gen(state, action, rng)
 
       # collect reward, action and log prob
+      batch_acts[t] = action
+      batch_log_probs[t] = log_prob
       append!(ep_rews, [reward])
+      """
       append!(batch_acts, [action])
       append!(batch_log_probs, [log_prob])
+      """
 
       # break rollout when terminal state is hit
-      if isterminal(mdp, state)
+      if isterminal(mdp, state) 
         break
       end
     end
@@ -264,7 +269,6 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
     while t_so_far < total_timesteps 
       # ALG STEP 3
       batch_states, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout() 
-      println(mean(batch_lens))
 
       # calculate V_{ϕ, k}
       V = evaluate(critic, batch_states)
@@ -284,9 +288,7 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
       actor_θ = Flux.params(actor)
       critic_θ = Flux.params(critic)
 
-      println()
-      for ss in range(1, n_updates_per_iteration)
-        println(ss)
+      for _ in range(1, n_updates_per_iteration)
         actor_gs = gradient(actor_θ) do 
           actor_loss = compute_actor_loss(actor, batch_states, batch_acts, batch_log_probs, Aₖ)
           return actor_loss
@@ -309,6 +311,7 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
 
     avg_len, avg_rew, avg_side_effect = run_test()
     printfmt("avg length: {:.2f}, avg reward: {:.2f}, avg side effect: {:2f}\n", avg_len, avg_rew, avg_side_effect)
+    println()
     append!(avg_lengths, [avg_len])
     append!(avg_rewards, [avg_rew])
     append!(avg_side_effects, [avg_side_effect])
@@ -316,10 +319,11 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
   return avg_lengths, avg_rewards, avg_side_effects
 end
 
-#= λ_stat = [] =#
-for λ in [0.0, 0.1, 0.9]
+λ_stat = []
+for λ in [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
   global actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp))) 
   global critic = init_model(params, conv_size, n_conv, hidden_dim, 1) 
-  append!(λ_stat, [learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
+  @time append!(λ_stat, [learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
+  # 35s cpu
 end
 #= action, states = simulate() =#
