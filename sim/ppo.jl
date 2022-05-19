@@ -41,10 +41,11 @@ hyperparameters for training
 timesteps_per_batch = 4800
 max_timesteps_per_episide = 100
 total_timesteps = 9600
-n_updates_per_iteration = 5
-n_epochs = 200
+n_updates_per_iteration = 10
+n_epochs = 1000
+kick_in = 500
 clip = 0.2
-lr = 5e-4
+lr = 1e-4
 
 """
 initialization of actor and critic
@@ -82,7 +83,7 @@ function compute_rtgs(batch_rews)
 end
 
 
-function rollout()
+function rollout(mdp, actor)
   batch_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, timesteps_per_batch)
   batch_acts = Array{Any}(undef, timesteps_per_batch)
   batch_log_probs = Array{Float32}(undef, timesteps_per_batch)
@@ -138,14 +139,13 @@ function rollout()
   return batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens
 end
 
-function run_test()
+function run_test(mdp, actor)
   lengths = []
   rewards = []
   side_effects = []
   rng = MersenneTwister(1)
 
-  for _ in range(1, 10)
-    state = initialstate(mdp)[1]
+  for _ in range(1, 50)
     state = initialstate(mdp)[1]
     it = 1
     reward = 0
@@ -255,7 +255,7 @@ end
 actor_opt = ADAM(lr)
 critic_opt = Descent(lr)
 
-function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
+function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
   local actor_loss
   local critic_loss
   avg_rewards = []
@@ -268,14 +268,14 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
     # ALG STEP 2
     while t_so_far < total_timesteps 
       # ALG STEP 3
-      batch_states, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout() 
+      batch_states, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout(mdp, actor) 
 
       # calculate V_{ϕ, k}
       V = evaluate(critic, batch_states)
 
       # ALG STEP 5
       # calculate advantage
-      if it > 100 && λ > 0
+      if it > kick_in && λ > 0
         F_v = future_task_advantage(critic, batch_lens, batch_acts, batch_states)
         Aₖ = batch_rtgs .- V .+ λ * F_v
       else
@@ -309,7 +309,7 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
 
     end
 
-    avg_len, avg_rew, avg_side_effect = run_test()
+    avg_len, avg_rew, avg_side_effect = run_test(mdp, actor)
     printfmt("avg length: {:.2f}, avg reward: {:.2f}, avg side effect: {:2f}\n", avg_len, avg_rew, avg_side_effect)
     println()
     append!(avg_lengths, [avg_len])
@@ -320,10 +320,10 @@ function learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)
 end
 
 λ_stat = []
-for λ in [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
-  global actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp))) 
-  global critic = init_model(params, conv_size, n_conv, hidden_dim, 1) 
-  @time append!(λ_stat, [learn(actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
+for λ in [0.0, 0.25, 0.5, 0.75]
+  actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp))) 
+  critic = init_model(params, conv_size, n_conv, hidden_dim, 1) 
+  @time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
   # 35s cpu
 end
 #= action, states = simulate() =#
