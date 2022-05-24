@@ -67,11 +67,11 @@
   % \node [cell, minimum height =1cm, minimum width=3cm] at (4.5,0){\small Agent} ;
 
 
-  \node [ct, minimum width=2cm] (optim1) at (0,0) {\small Environment}; 
-  \node [ct, minimum width=2cm] (optim1) at (4.5,0) {\small Agent}; 
+  \node [ct, minimum width=2cm] (optim1) at (0,0) {\small environment}; 
+  \node [ct, minimum width=2cm] (optim1) at (4.5,0) {\small agent}; 
 
-  \node [empty, label={\small action $a_t$}] (action) at (2.25, -1.35) {};
-  \node [empty, label={\small state $s_t$}] (state) at (2.25, 0.8) {};
+  \node [empty, label={\small $a_t$}] (action) at (2.25, -1.35) {};
+  \node [empty, label={\small $s_t$, $r_t$}] (state) at (2.25, 0.8) {};
 
   \draw [->, thick] (0, 0.55) to[out=45,in=135] (4.5, 0.55);
   \draw [->, thick] (4.5, -0.55) to[out=-135,in=-45] (0, -0.55);

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  9 MAY 2022 21:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  23 MAY 2022 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -357,6 +357,22 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks28
 \@floatcapt=\box57
 )
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2020-01-22 v2.0d non-zero parskip adjustments
+
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count266
+))
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2020/01/03 v3.4h Customizing captions (AR)
 
@@ -372,8 +388,8 @@ Package caption3 Info: TeX engine: e-TeX on input line 61.
 \caption@hangindent=\dimen193
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count266
-\c@continuedfloat=\count267
+\c@caption@flags=\count267
+\c@continuedfloat=\count268
 Package caption Info: float package is loaded.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -396,13 +412,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count268
+\inf@bad=\count269
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count269
-\leftroot@=\count270
+\uproot@=\count270
+\leftroot@=\count271
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count271
-\DOTSCASE@=\count272
+\classnum@=\count272
+\DOTSCASE@=\count273
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
@@ -411,15 +427,15 @@ LaTeX Info: Redefining \cdots on input line 610.
 \big@size=\dimen196
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count273
-\c@MaxMatrixCols=\count274
+\macc@depth=\count274
+\c@MaxMatrixCols=\count275
 \dotsspace@=\muskip16
-\c@parentequation=\count275
-\dspbrk@lvl=\count276
+\c@parentequation=\count276
+\dspbrk@lvl=\count277
 \tag@help=\toks30
-\row@=\count277
-\column@=\count278
-\maxfields@=\count279
+\row@=\count278
+\column@=\count279
+\maxfields@=\count280
 \andhelp@=\toks31
 \eqnshift@=\dimen197
 \alignsep@=\dimen198
@@ -459,16 +475,16 @@ Package: amsthm 2017/10/31 v2.20.4
 )
 (/usr/share/texlive/texmf-dist/tex/latex/floatflt/floatflt.sty
 Package: floatflt 1997/07/16 v. 1.31
-\c@OptionTest=\count280
+\c@OptionTest=\count281
 \figbox=\box60
 \tabbox=\box61
 \pagebox=\box62
-\ffigcount=\count281
-\ftabcount=\count282
-\fftest=\count283
-\hangcount=\count284
-\nosuccesstryfig=\count285
-\nosuccesstrytab=\count286
+\ffigcount=\count282
+\ftabcount=\count283
+\fftest=\count284
+\hangcount=\count285
+\nosuccesstryfig=\count286
+\nosuccesstrytab=\count287
 \figgutter=\dimen259
 \tabgutter=\dimen260
 \htdone=\dimen261
@@ -495,15 +511,15 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count287
-\c@ALG@rem=\count288
-\c@ALG@nested=\count289
+\c@ALG@line=\count288
+\c@ALG@rem=\count289
+\c@ALG@nested=\count290
 \ALG@tlm=\skip55
 \ALG@thistlm=\skip56
-\c@ALG@Lnr=\count290
-\c@ALG@blocknr=\count291
-\c@ALG@storecount=\count292
-\c@ALG@tmpcounter=\count293
+\c@ALG@Lnr=\count291
+\c@ALG@blocknr=\count292
+\c@ALG@storecount=\count293
+\c@ALG@tmpcounter=\count294
 \ALG@tmplength=\skip57
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
@@ -511,29 +527,14 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 \@float@every@algorithm=\toks41
-\c@algorithm=\count294
+\c@algorithm=\count295
 )
 (/usr/share/texlive/texmf-dist/tex/latex/dirtytalk/dirtytalk.sty
 Package: dirtytalk 2010/11/21 A package making "quoting" easier
-
-(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-))
-\c@dirtytalk@qdepth=\count295
+\c@dirtytalk@qdepth=\count296
 )
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count296
-)
 \csq@reset=\count297
 \csq@gtype=\count298
 \csq@glevel=\count299
@@ -812,20 +813,20 @@ LaTeX Warning: Unused global option(s):
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
+LaTeX Font Info:    ... okay on input line 84.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count429
@@ -877,20 +878,20 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (./main.bbl)
-Package biblatex Info: Reference section=0 on input line 78.
-Package biblatex Info: Reference segment=0 on input line 78.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 80.
+Package biblatex Info: Reference section=0 on input line 84.
+Package biblatex Info: Reference segment=0 on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 86.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 80.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 86.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 80
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 86
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
@@ -913,70 +914,92 @@ Non-PDF special ignored!
  1.
 [1
 
-] [2] [3]
-Overfull \hbox (108.32008pt too wide) in paragraph at lines 187--189
+] [2] [3] [4]
+Overfull \hbox (90.69527pt too wide) in paragraph at lines 203--205
 []\OT1/cmr/m/n/12 L[]AS https://www.emerald.com/insight/content/doi/10.1108/FS-
 04-2018-0039/full/pdf?title=challenges-
  []
 
-[4] [5]
-Overfull \hbox (0.36902pt too wide) in paragraph at lines 239--242
+[5] [6]
+Overfull \hbox (0.36902pt too wide) in paragraph at lines 255--258
 \OT1/cmr/m/n/12 https://futureoflife.org/background/existential-risk/ Al-though
 , a well-intentioned might
  []
 
-[6] (./figures/alignment/alignment.tex) [7] [8] [9]
-Overfull \hbox (4.419pt too wide) in paragraph at lines 351--353
+[7] (./figures/alignment/alignment.tex) [8] [9]
+Overfull \hbox (35.42563pt too wide) in paragraph at lines 374--376
 []\OT1/cmr/m/n/12 L"""S! https://www.alignmentforum.org/posts/vBoq5yd7qbYoGKCZK
-/why-i-m-co-
+/why-i-m-co-founding-
  []
 
-[10]
+[10] [11]
  2.
-[11
-
-] (./figures/RL/RL.tex) [12] [13] [14]
-
-LaTeX Warning: Command \o invalid in math mode on input line 490.
-
-
-LaTeX Warning: Command \o invalid in math mode on input line 498.
-
-[15] [16] [17]
- 3.
-[18
+(./figures/RL/RL.tex) [12
 
 ]
+Overfull \hbox (10.22845pt too wide) in paragraph at lines 455--456
+[]\OT1/cmr/bx/n/12 Definition 2.1.2 \OT1/cmr/m/n/12 (POMDP)\OT1/cmr/bx/n/12 . [
+]\OT1/cmr/m/n/12 A Par-tially Ob-serv-able Markov De-ci-sion Pro-cess (POMDP),
+ []
+
+[13] [14] [15] [16] [17] [18]
+Overfull \hbox (15.0538pt too wide) in paragraph at lines 583--584
+[]\OT1/cmr/m/n/12 When we de-fine a new MDP to in-clude a set of aux-il-iary re
+-ward func-tions as: $(\OMS/cmsy/m/n/12 S\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 A\
+OML/cmm/m/it/12 ; T; \OMS/cmsy/m/n/12 R\OML/cmm/m/it/12 ; ^^M\OT1/cmr/m/n/12 )$
+,
+ []
+
+[19]
+ 3.
+<./figures/SimpleGridWorld.png, id=92, 1002.74625pt x 1002.74625pt>
+File: ./figures/SimpleGridWorld.png Graphic file (type png)
+<use ./figures/SimpleGridWorld.png>
+Package pdftex.def Info: ./figures/SimpleGridWorld.png  used on input line 612.
+
+(pdftex.def)             Requested size: 113.81102pt x 113.80627pt.
+<./figures/SimpleGridWorld_up.png, id=93, 1002.74625pt x 1002.74625pt>
+File: ./figures/SimpleGridWorld_up.png Graphic file (type png)
+<use ./figures/SimpleGridWorld_up.png>
+Package pdftex.def Info: ./figures/SimpleGridWorld_up.png  used on input line 6
+13.
+(pdftex.def)             Requested size: 113.81102pt x 113.80627pt.
+<./figures/SimpleGridWorld_terminal.png, id=94, 1002.74625pt x 1002.74625pt>
+File: ./figures/SimpleGridWorld_terminal.png Graphic file (type png)
+<use ./figures/SimpleGridWorld_terminal.png>
+Package pdftex.def Info: ./figures/SimpleGridWorld_terminal.png  used on input 
+line 614.
+(pdftex.def)             Requested size: 113.81102pt x 113.80627pt.
+[20
+
+] [21 <./figures/SimpleGridWorld.png> <./figures/SimpleGridWorld_up.png> <./fig
+ures/SimpleGridWorld_terminal.png>]
  4.
-[19
+[22
 
 ]
  5.
-[20
+[23
 
 ]
  6.
-[21
+[24
 
-] [22
+] [25
 
 ] (./main.aux)
-
-Package biblatex Warning: Please rerun LaTeX.
-(biblatex)                Page breaks have changed.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23109 strings out of 481239
- 441209 string characters out of 5920377
- 1051807 words of memory out of 5000000
- 37991 multiletter control sequences out of 15000+600000
- 546304 words of font info for 80 fonts, out of 8000000 for 9000
+ 23161 strings out of 481239
+ 442478 string characters out of 5920377
+ 1052306 words of memory out of 5000000
+ 38032 multiletter control sequences out of 15000+600000
+ 547055 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,10n,62p,1010b,1848s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,10n,62p,1193b,1848s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-d
@@ -985,21 +1008,22 @@ nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
-1200.pfb>
-Output written on main.pdf (24 pages, 239583 bytes).
+cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
+>
+Output written on main.pdf (27 pages, 343258 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
+ 179 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

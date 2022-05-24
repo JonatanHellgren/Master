@@ -13,6 +13,8 @@
 
 % l'sa t'nkande maskiner medvetenhet
 
+% Why put a focus on RL
+
 
 %########################################################################%
 % PACKAGES
@@ -23,6 +25,7 @@
 \usepackage{psfrag}
 \usepackage{tikz}
 \usepackage{float}
+\usepackage{parskip}
 \usepackage[format=plain, labelfont={bf,it}, textfont=it]{caption}
 
 \usepackage{amsmath}
@@ -62,7 +65,10 @@
 \newtheorem{definition}{Definition}[section]
  
 % \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+% \usepackage{biblatex}
 \usepackage[style=authoryear, autocite=inline]{biblatex}
+% \usepackage{apacite}
+% \bibliographystyle{apa}
 \addbibresource{ref.bib}
 
 
@@ -121,25 +127,34 @@ Artificial Intelligence (AI) is intelligence demonstrated by machines, as oppose
 However, to understand this definition properly it is necessary to define what intelligence is. In \autobaj{Tänkande Maskiner} the author brings up the following to clarify this: \say{the quality that enables an entity to function effectively and with foresight in its environment} and \say{the ability to correctly perceive one's surrounding environment and act in a way that maximizes one's chances of achieving given goals}. 
 % https://en.wikipedia.org/wiki/Artificial_intelligence
 
+Ordinary computer programs contain step-by-step instructions that a computer can execute to perform the desired task. This method was also the case for the first two paradigms of AI: rule-based AI and expert systems where humans explicitly programmed their knowledge into the computer to create automation \autobaj{Superintelligence}. The models made in such a way are typically suited for less complex tasks where it is possible to model the entire behavior explicitly. However, in the current machine learning paradigm, the approach is to train a model on large quantities of data. This approach focuses more on what should be solved instead of how it should be solved, which allows for automation in a more complex task where explicitly defining the behavior in every situation is infeasible. 
 
-Ordinary computer programs are written in code containing step-by-step instructions that a computer can execute to perform the desired task. This was also the case for the first two paradigms of AI: rule-based AI and expert systems where human knowledge was explicitly programmed into the computer to create automation\autobaj{Superintelligence}. The types of models created in such a way are typically suited for less complex tasks where it is possible to explicitly model the entire behavior. However, in the current paradigm of machine learning the approach is to create a model that can process information faster and recall a greater quantity than humans, which allows for automation in a more complex task where explicitly defining the behavior in every situation is infeasible. 
+AI has in recent years been applied in the industry more broadly, and it is already generating yearly revenue of trillions of dollars\autobaj{Russel Norvig}. This progress has in recent years become a possibility due to more data being available, faster computer hardware, and the massive amount of funding spent on research. 
 
-AI has in recent years been applied in the industry more broadly and it is already generating yearly revenue of trillions of dollars\autobaj{Russel Norvig}. This progress has in recent years become a possibility due to more data being available, faster computer hardware, and the massive amount of funding spent on research. Although these systems are highly automated, a key point here is that these systems still require humans to create and function.
+Although these systems are highly automated, a key point here is that these systems still require humans to create and function. However, the development of AI is shifting the tool to a more automated one. With this trend AI systems are developing in to intelligent agents. An agent acts or, more specifically, can:
+\begin{itemize}
+  \item operate autonomously,
+  \item perceive the environment,
+  \item persist over a prolonged period,
+  \item adapt to change,
+  \item and create and pursue goals.
+\end{itemize}
+The reason why this is attractive is that the human intervention part required by an AI system is likely to become a bottleneck\autobaj{T'nkande Maskiner}. 
 
-In \autobaj{Russel Norvig} they call the path of creating AI systems that act rationally \say{The rational agent approach}. An agent is something that acts or more specifically can: operate autonomously, perceive the environment, persist over a prolonged period, adapt to change, and create and pursue goals. The development of AI agents shifts our tool to a more automated one. The reason why this is attractive is that the human intervention part required by an AI tool is likely to become a bottleneck\autobaj{T'nkande Maskiner}. 
-% "Let's just have humans monitor the AIs and have humans make the final decision."
-% "Well, we can't really do that because we don't have enough humans. And even if we stopped AIs from making decisions until humans can check, all economic incentives point in the other direction."
-% "...for all its protestations that it would always keep a human in the decision-making loop, the Pentagon is, unsurprisingly, inevitably, sliding towards fully autonomous drone warfare as the next technological step to maintain military superiority over Russia & China."
+Reinforcement Learning (RL) is a field of machine learning where the objective is to create intelligent agents, this field differentiates from other machine learning techniques by being a more exploratory approach where the agent learns by trial and error. The method is similar to how one goes about training a pet, where desirable behavior receives a positive reward and undesired behavior gets a negative. In such a way, the agent develops a behavior. %It is tricky to specify when we should reward the agent for developing the desired behavior in these tasks
 
-Reinforcement Learning (RL) is a method for creating intelligent agents. The method is similar to how one goes about training a pet, where desirable behavior receives a positive reward and undesired behavior is discouraged with a negative reward. This field has seen substantial development in recent years with advances in board games such as chess and go\autobaj{Silver et al.}, autonomous vehicles\autobaj{Levinson et al.}, and video games\autobaj{Minh et al.}. These advancements display the usefulness of these agents and motivate the possibility of implementation in our daily life.
-
+In recent years, RL has seen substantial development with advances in board games such as chess and go\autobaj{Silver et al.}, autonomous vehicles\autobaj{Levinson et al.}, and video games\autobaj{Minh et al.}. These advancements display the usefulness of these agents and motivate the possibility of implementation in our daily life. RL will be the main focus for this report, however it is inportant to keep it mind that it is not the only method for creating intelligent agents. 
 % Levinson et al. https://ieeexplore.ieee.org/abstract/document/5940562?casa_token=pxjrsi7VJZ8AAAAA:MNQmlmsfHVJ8VdW9jNlZzHPnS4gBTk4q6yCx_AFsF-rRheHnP9C2CrjvaWt0vD9C0oWfgt8o
 % Minh et al: https://arxiv.org/pdf/1312.5602.pdf
 % Silver et al. https://www.nature.com/articles/nature16961%7D
 
+
+
 \subsection{Future progress}
 % Explain what we are aiming at in the future
 When the pioneers of AI started the development, the ideas were not only to apply systems that automate a narrow set of tasks, as we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine\autobaj{McCarthy et al.}, to extend our thoughts from mere thoughts to a new life form with a base of silicon-based hardware instead of carbon-based wetware. This concept is called Artificial General Intelligence (AGI) - an AI that can solve an arbitrary set of tasks with as good or better performance than a human. The main difference from AI is that the set of tasks is no longer narrow and bounded. An even more advanced AGI is often called \textit{superintelligence} - an AI that is much smarter than a human in all possible domains. \autobaj{Superintelligence} 
+
+% RL for acheiving AGI, why not and why it is still worth to study it as if it was going to become AGI
 
 % Example of an AGI
 An example of a current AI system is DeepMinds AlphaMu, which can play board games, and video games. It has recently been able to create a video compression better than the current methods used for the task\autobaj{Mandhane}. The techniques used in this system originate from the famous AlphaGo, which won against the Go grandmaster Lee Sedol in the game of Go \autobaj{DeepMind}. Although AlphaMu presents an impressive performance in multiple tasks, it still can not be considered an AGI since each new task require engineering effort. On the other hand, an AGI would be able to pick up any task and perform it at a human or better level without human intervention.
@@ -152,6 +167,7 @@ The significant difference with this shift is that it will increase the possible
 % superintelligence quote
 % https://en.wikipedia.org/wiki/I._J._Good
 
+% Computers can recall more information and process information faster then humans
 A reason to believe that such systems are possible to build is that we know that human intelligence evolved naturally with evolution, so something similar should be possible to reproduce in machines. Created intelligence could become more intelligent than us since intelligence might not have been selected for by evolution\autobaj{S. Legg} and when we develop AI, we can focus the development specifically on intelligence. An argument against this is substance dependence \autobaj{Bostrom (2003)} - to believe that intelligence or consciousness can only occur in carbon-based life forms and not in silicon-based, caused by inherent or other properties. Regarding intelligence, there is no longer any reasonable argument for it. However, the question of consciousness, although being an interesting question, can be seen as irrelevant when considering what actions an AI makes since the consequence is still the same. Stuart Russel puts it: 
 \begin{displayquote}
 If human beings are losing every time, it doesn't matter whether they're losing to a conscious machine or an completely non conscious machine, they still lost.
@@ -240,12 +256,19 @@ https://futureoflife.org/background/existential-risk/
 Although, a well-intentioned might also cause severe consequences if it develops a destructive method for achieving its goal. We will now cover how we define a safe AI and what problems could arise if we fail to make it.
 % https://futureoflife.org/background/benefits-risks-of-artificial-intelligence/
 
+% "Let's just have humans monitor the AIs and have humans make the final decision."
+% "Well, we can't really do that because we don't have enough humans. And even if we stopped AIs from making decisions until humans can check, all economic incentives point in the other direction."
+% "...for all its protestations that it would always keep a human in the decision-making loop, the Pentagon is, unsurprisingly, inevitably, sliding towards fully autonomous drone warfare as the next technological step to maintain military superiority over Russia & China."
+
 \subsection{AI alignment}
 % \begin{itemize}
   % \item AI alignment as an aproach for safe AI
   % \item Clarifying alignment, inner and outer
   % \item Explain figure
 % \end{itemize}
+
+% RL, tricky to create reward function, since it is hard to predict what behavior it creates
+
 A big part of creating a safe AI is AI alignment. This we can split into two parts: \textit{intent alignment} and \textit{capability robustness} \autobaj{E Hubringer (alignmentforum)}. Intent alignment refers to the goals of the AI being in line and not conflicting with the intended goal. An AI that does something at cross-purposes to the intended goal is called unaligned. Capability robustness is when an AI can perform well even in new environments different from the one it was trained in. 
 % Clarifying alignment
 % https://www.alignmentforum.org/posts/SzecSPYxqRa5GCaSF/clarifying-inner-alignment-terminology
@@ -345,12 +368,12 @@ In the upcoming century Toby Ord, a philosopher that focuses on existential risk
 With this statement, it is however necessary to point out that it is only an estimate meant to express the importance of the problem and should not be taken as a fact. The key takeaway is that there is a large chance of facing an existential threat due to future unaligned AI. Also that he believes that unaligned AI poses the highest probability of existential risk in the upcoming century, where other causes were things such as an asteroid impact, nuclear war, and pandemics. 
 
 
-\section{Approaches for creating safe AI}
+\subsection{Approaches for creating safe AI}
 In recent years the research field of safe and aligned AI has seen a substantial increase. However, we are still a long way from solving the problem. Most of what is done today are mainly speculations and laying necessary foundations for future research. There are several proposed paths for solving this issue. Perhaps the sheer amount might signify the difficulty and width of the problem. We will now cover a few of these paths in this section.
 
 L"""S!
 https://www.alignmentforum.org/posts/vBoq5yd7qbYoGKCZK/why-i-m-co-founding-aligned-ai
-\subsection{Learning human intent as a priority}
+\subsubsection{Learning human intent as a priority}
 \begin{itemize}
     \item Inverse Reinforcement Learning, what it is and key ideas behind
     \item Solving outer alignment by making agent unsure of what human intent is
@@ -360,14 +383,25 @@ https://www.alignmentforum.org/posts/vBoq5yd7qbYoGKCZK/why-i-m-co-founding-align
 % If we say that the cause for negative side effects emerge due to improperly specified reward functions. Then the solution might not be to create a better reward function, but to instead make the agents goal to understand what the human intent behind the reward function was. Instead of seeing the reward function as final the AI agent will instead view it as an observation of what the true goal might be. This approach is called inverse reward design \autobaj{Hadfield-Mennell et. al}.
 % https://arxiv.org/pdf/1711.02827.pdf
 
-\subsection{Implementing interruptibility and corrigibility}
+\subsubsection{Implementing interruptibility and corrigibility}
 \begin{itemize}
     \item Why not turn it of when it goes badly?
     \item Allowing modifications of objective function and hitting off switch
 \end{itemize}
 % https://intelligence.org/files/Corrigibility.pdf
 
-\subsection{Impacts measurements}
+\subsubsection{Impacts measurements}
+% A more applicable approach is presented in \autobaj{Eysenbach et al}, where the agent is penalized if they are not able to preserve reachability to the initial or any other defined safe state. This method incentives a safe exploration that avoids irreversible states.
+
+% This works well when no such irreversible action is required for the agent to reach its goal, to make an omelet one has to break some eggs. Another problem arises when the agent is in a dynamic environment, since then it would act to prevent other irreversible actions from happening, like a human eating an omelet. 
+
+% In \autobaj{Krakovna et al 2019}, \autobaj{Krakovna et al 2020} and \autobaj{Turner et al 2020}, the method for impact measurements became more sophisticated with more complex baselines and measurements. These methods are what this report will focus on comparing. A closer look will be given in the theoretical background chapter, once some necessary preliminaries have been covered.
+
+% A general approach for avoiding side effects without specifying what a side effect is a priori
+% important reward is bounded
+
+% As brought up in the introduction side effect minimization in RL can either be achieved by specifying what the agent should avoid doing a priori or by applying a more general approach that avoids side effects by default, like using a value-difference measure. As the name suggests these methods measure the difference between the next state $s_t$ if the policy was followed until step $t$, compared to a baseline $s_t^\prime$, to find how large of an impact the agents actions cause. This deviation is then subtracted from the reward normally receives:
+
 % When an intelligent agent pursues its goal, it will impact its environment, the goal of low-impact agents is to avoid unnecessary changes with negative aspects. For example, if an agent deployed in a house is tasked with going from point $a$ to point $b$ in a room, it should not knock over and possibly break fragile items, even if it is the shortest path. 
 
 
@@ -383,177 +417,180 @@ This thesis aims to investigate how current methods that reduce side effects tro
 %########################################################################%
 
 \chapter{Theoretical background}
-Since we have not reached a TAI or AGI breakthrough yet, it is not possible to test methods of side effect minimizations on them directly. Instead, we have to use what we currently have available, recent promising results in RL motivate the use of it as a substitute for creating intelligent agents.
+In this chapter, we will cover the necessary theory for understanding the results of this thesis. We will begin with the basics of reinforcement learning - a method for training intelligent agents. Lastly, we will look at the current philosophies on implementing impact measurements for intelligent agents. 
 
-In this chapter, we will cover the basics of RL and two more advanced approaches. But, before that, we will cover some preliminary theory used in RL. After this, we will describe methods for side effect minimization in more detail.
- % Another simplification required is on the environment where the agent exists, since modelling the entire world is infeasible we will instead make use of grid worlds where the dynamics is modelled by a Markov Decision Process.
+\section{Reinforcement Learning}
+The main components of Reinforcement Learning (RL) are the \textbf{environment} and the \textbf{agent} OpenAI (2018). We will use a Markov decision process as the environment. The objective is to train the agent in the environment with trial and error to learn a policy that performs a desired task. The method utilizes a reward function to encourage or discourage behavior with positive or negative rewards respectively. See Figure \ref{fig:RL} for an illustration of the interaction between the environment and the agent. Because the state will change, we will use the notation $s_t$, $a_t$, and $r_t$ to denote the state, action, and reward at time-step $t$.
 
-% To get a understanding of how methods of side effect minimization affects intelligent agents, we need to make a few simplifications in order to make the problem feasible. The first one being that instead of modelling the real world, we are instead going to make use of Markov decision processes. The second one being that we will use Reinforcement Learning to achieve intelligent behaviour for agents in the environments. 
-\section{Markov decision process}
-\begin{definition}[MDP]
-    A Markov decision process (MDP), is defined as a tuple $(\mathcal{S}, \mathcal{A}, T, R, \gamma)$. $\mathcal{S}$ is the set of states. $\mathcal{A}$ is the set of actions. $R: \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$ the reward function. $T: \mathcal{S} \times \mathcal{A} \rightarrow \mathcal{S}$ is the transition function. $\gamma \in [0, 1]$ is the discount factor.
-\end{definition}
-
-A \textit{Markov decision process} is a stochastic process that models sequential transitions between discrete or continous states. The process follows a policy function $\pi$ that outputs an action $a \in \mathcal{A}$ for each state $s \in \mathcal{S}$, $\pi(s) = a$. The transitional function takes a state and action as input and outputs probability distribution for the next state $T(s,a) := p(s^\prime|s, a), s^\prime \in \mathcal{S}$. For each transition  the reward function $R$  generates a reward, $R(s, a, s^\prime) = r$. The Markov property implies that the process is memoryless - all of the previous states does not affect the next choice, only the current one. 
-
-% Initial state, terminal state and timesteps
-The process starts by drawing an initial state from an initial state distribution $\S_{init}$ and runs until either a terminal state is transitioned to or a certain amount of time steps elapsed. A terminal state is where the process terminates, for example, if the terminal goal is completed. But it can also be a state in which the terminal goal is unreachable.
-
-% role of gamma
-The discount factor $\gamma$ describes how much the agent values future rewards, with low values the agent favors more immediate rewards compared to future rewards, whereas for higher values the agent considers future rewards more valuable. In environments with high uncertainty lower values of gamma might be more reasonable, since it might not be worth considering future rewards when they are not certain. The opposite holds for more deterministic environments where future rewards are of higher certainty, then it might be a good idea to use a higher value.
-
-
-\subsection{Solving MDP}
-The policy $\pi$ includes what action to take in which states. A policy that only includes the optimal actions for each state is called the optimal policy and is denoted as $\pi^*$. The actions in the optimal policy $\pi^*$ yields the highest expected reward when executed. One solves an MDP by finding the optimal policy, there exists several methods for finding the optimal policy, but we are in this report going to use \textit{value iteration}. 
-% solvable with the Bellman equation
-
-To solve an MDP we begin with defining the \textit{Q-function},
-\[ Q(s, a) = \sum_{s^\prime}p(s^\prime|s_t,a)[r(s_t,a,s^\prime) + \gamma U(s^\prime)],\]
-which computes the expected reward when performing an action $a$ in state $s$, where $s^\prime$ denotes a possible future state. Here the reward is based on the \textit{utility}, this is defined as the expected reward with the action that maximizes the \textit{Q-function},
-\begin{align*}
-  U(s) =& \text{max}_{a\in \mathcal{A}(s)} \sum_{s_{t+1}}P(s_{t+1}|s_t,a)[r(s_t,a,s_{t+1}) + \gamma U(s_{t+1})]\\
-  = &  \text{max}_{a\in \mathcal{A}(s)} Q(s,a)\\
-\end{align*}
-
-With the with the utility in each state, it is then possible to find the optimal policy from each state by selecting the action that yields the highest utility,
-\[ \pi^*(s) = \text{argmax}_a Q(s,a) \]
-
-Since computing the utility in one state requires the utility in other states, the computation is not straight forward. To solve this we can utilize a dynamic algorithm, in this report we will use \textbf{value iteration}. This algorithm is a iterative computation that is executed until a equilibrium is reached. The updating of the utility is called an \textbf{Bellman update} and looks like this,
-\[U_{i+1}(s) \leftarrow \max_{a\in\mathcal{A}} \sum_{s\prime} p(s^\prime|s,a)[R(s,a,s^\prime) + \gamma U_i(s^\prime)].\]
-
-\subsection{Reinforcement Learning}
-With a dualistic view of an MDP we can say that an agent is navigating between the states in an attempt to reach its terminal goal. The agent thus observes the environment and then follows the action from its policy, an illustration of this can bee seen in Figure \ref{fig:RL}. 
+% https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#advantage-functions:~:text=reward%2Dplus%2Dnext%2Dvalue.-,Advantage%20Functions,The%20advantage%20function%20%20corresponding%20to%20a%20policy%20%20describes%20how%20much%20better%20it%20is%20to%20take%20a%20specific%20action%20%20in%20state%20%2C%20over%20randomly%20selecting%20an%20action%20according%20to%20%2C%20assuming%20you%20act%20according%20to%20%20forever%20after.%20Mathematically%2C%20the%20advantage%20function%20is%20defined%20by
 
 \begin{figure}[H]
   \input{figures/RL/RL.tex}
-  \caption{A visual representation of how to agent observes its environment $s_t$ and responds with an action $a_t$.}
+  \caption{A visual representation of how to agent interacts with an environment. For example, at time step t, the agent observes the environment $s_t$ and receives the reward $r_t$. The agent then responds with an action $a_t$.} 
   \label{fig:RL}
 \end{figure} 
+ 
+Many methods and variations of RL exist to train agents. In this report, we will use Proximal Policy Optimization (PPO), as described in Schulman et al. (2017).%, motivated by the results of the algorithm in the similar simulation setting to what will be used in this thesis, described in Turner et al. (2020). 
+% https://arxiv.org/pdf/1707.06347.pdf
 
-% Then using the utilities of the states one can define an optimal policy $\pi^*$ by selecting the action from each state that gives the highest expected reward,
-% \[ \pi^*(s) = \text{argmax}_{a \in \mathcal{A}(s)} \sum_{s^{\prime}} P(s^{\prime}|s,a)[R(s, a, s^\prime) + \gamma U(s^\prime)]. \]
+\subsection{Defining an environment}
+\begin{definition}[MDP]
+  A Markov Decision Process (MDP), is defined as a tuple $(\mathcal{S}, \mathcal{A}, T, R, \gamma)$. $\mathcal{S}$ is the set of states, $\mathcal{A}$ is the set of actions, $R: \mathcal{S} \times \mathcal{A} \rightarrow \mathbb{R}$ the reward function, $T$ is the transition function $T: \mathcal{S} \times \mathcal{A} \rightarrow \mathcal{S}$, $\gamma \in [0, 1]$ is the discount factor.
+\end{definition}
 
-% There are several ways to find this optimal policy, most commonly they are based on solving the Bellman equation with dynamic programming. 
-% These typically require that the transition probability and reward from each state to each other state is stored in matrices. With larger environments, these matrices scale poorly, since the number of state transitions grows 
-% a recursive formula to find the utility. 
+A \textit{Markov decision process} is a stochastic process that models sequential transitions between discrete or continuous states. The Markov property implies that the process is memoryless - all of the previous states do not affect the next choice, only the current one.  The process starts by drawing an initial state from an initial state distribution $s_1 \in \mathcal{S}_{init}$ and runs until either a terminal state is transitioned to or a certain amount of time steps elapsed. A terminal state is where the process terminates, for example, a state with a completed terminal goal. However, it can also be a state where the terminal goal is unreachable.
 
-%by multiplying the probability of the transition with the sum of the reward given by the trasition and the discounted utility in the 
-% scales poorly
-
-\section{Impact measurements for avoiding side effects}
-When the agent creates an impact on the environment that is unnecessary for achieving its objective, we will consider it to be a side effect. An example of this is if the agent's task is to navigate across a room and the fastest path knocks over a fragile object that would break on impact with the floor. Then breaking the fragile object would be considered a side effect since it does not need to do so to complete its task. 
-
-The problem of side effect avoidance is related to the frame problem - each action can have many side effects, and it is impractical to explicitly penalize all of the bad ones \autobaj{The Frame Problem in Artificial Intelligence, Frank M Brown}. We often know what we want the agent to do, but it can be hard to specify what we do not want it to do. Attempts have been made at this by explicitly specifying what the agent should not do\autobaj{Zhang et al.}. However, with this approach, the reward function becomes an iterative trial and error process that requires a counterproductive human intervention since automation is ideal. 
-
-% To achieve a more general approach constraints have been included in the reward function to penalize negative impact. This is computed by measuring a baseline where a known safe behavior is executed, then measuring the changes from this baseline to what the agents actions would have caused. Important here is that the reward function is bounded so that a massive reward does not outweigh large amounts of negative impact. 
-
-In \autobaj{Armstrong and Levinstein} they presented the philosophical groundwork for impact measurement and presented a conceptual model. Their idea is to penalize the agent's behavior by subtracting a penalty term from the utility in each state:
-\[ U_I(s) := U(s) - \lambda d(s),\]
-where $U(s)$ is the utility of state $s$, $d$ is a penalty function, $\lambda$ is a scaling parameter. The authors note that it is important that the utility function is bounded so that the agent has to make the trade-off between utility and penalty and not just generate infinite utility with a substantial impact. 
-
-The penalty function can is a deviation measure from a baseline\autobaj{Krakovna 2020}, originally suggested to be considered as the difference in the world between if the agent would have acted and an undeployed agent. Here the latter is considered as the baseline. Since measuring the entire \say{world} is infeasible, they suggest coarse-graining, where a specific set of parameters such as air pressure in different cities and closing numbers at stock markets are representative of the state of the world. 
-
-In \autobaj{Armstrong and Levinstein}, they bring up that the agent can be sensitive to the value of the scaling parameter $\lambda$. Penalizing the agent implicitly defines a safe zone where the agent can act, and the value of $\lambda$ defines how large this safe zone is, where a high value might create no safe zone, resulting in the agent not being able to act. On the contrary, a too-small value might not affect at all since the safe zone covers the entire action space. So, finding the correct value for $\lambda$ could be tricky. 
-
-Although this model presented in \autobaj{Armstrong and Levinstein} is not applied in or a following paper, it has influenced further work on the subject. Such as, \autobaj{Krakovna et al.} and \autobaj{Turner et al.}.
-
-\subsection{General approaches}
-A more applicable approach is presented in \autobaj{Eysenbach et al}, where the agent is penalized if they are not able to preserve reachability to the initial or any other defined safe state. This method incentives a safe exploration that avoids irreversible states.
+The process follows a policy function $\pi$ that outputs an action $a_t \in \mathcal{A}$ for each state $s_t \in \mathcal{S}$ at a time step $t$, $a_t = \pi(s_t)$. The transitional function takes a state and action as input and outputs the next state $s_{t+1} \in \mathcal{S}$, this can either be deterministic $s_{t+1} = T(s_t, a_t)$, or stochastic $s_{t+1} \sim T(s_t, a_t)$. For each transition, the reward function $R$  generates a reward, $R(s_t, a_t, s_{t+1}) = r_{t+1}$. 
 
 
-This works well when no such irreversible action is required for the agent to reach its goal, to make an omelet one has to break some eggs. Another problem arises when the agent is in a dynamic environment, since then it would act to prevent other irreversible actions from happening, like a human eating an omelet. 
+% Initial state, terminal state and timesteps
 
-In \autobaj{Krakovna et al 2019}, \autobaj{Krakovna et al 2020} and \autobaj{Turner et al 2020}, the method for impact measurements became more sophisticated with more complex baselines and measurements. These methods are what this report will focus on comparing. A closer look will be given in the theoretical background chapter, once some necessary preliminaries have been covered.
-
-% A general approach for avoiding side effects without specifying what a side effect is a priori
-% important reward is bounded
-As brought up in the introduction side effect minimization in RL can either be achieved by specifying what the agent should avoid doing a priori or by applying a more general approach that avoids side effects by default, like using a value-difference measure. As the name suggests these methods measure the difference between the next state $s_t$ if the policy was followed until step $t$, compared to a baseline $s_t^\prime$, to find how large of an impact the agents actions cause. This deviation is then subtracted from the reward normally receives:
-\[ r_{VD}(s_t,a_t) := r(s_t,a_t) - \lambda d_{VD}(s_t, s_t^\prime), \]
-at step $t$. 
-
-\subsection{Baselines}
-The following theory on this topic is based on the theory presented in the paper \autobaj{Krakovna et al.}(2020).
+% role of gamma
+The discount factor $\gamma$ describes how the process values future rewards. With low values, the process favors more immediate rewards than future rewards, whereas the agent considers future rewards more valuable for higher values. Lower gamma values might be more reasonable in environments with high stochasticity since it might not be worth considering future rewards. The opposite holds for more deterministic environments where future rewards are of higher certainty, and then it might be a good idea to use a higher value.
 
 
-The choice of baseline decides what we will consider $s^{\prime}_t$ to be. This choice highly influences what side effects and consequences the value-difference measure will capture.
+\subsubsection{Partially observable}
 
-\subsubsection{Starting state baseline}
-When using the \textit{starting state baseline} we specify $s^{\prime}_t = s_0$, where $s_0$ is the initial state where the agent where deployed. Using this baseline helps to assure the agents ability to reverse its actions, and thus generates a safe exploration where the agent by definitions should not have a large impact since it can make all actions undone. %In \autobaj{Eysenbach et al.} they bring up the benefits of this approach when applying it to the real world
-% https://arxiv.org/pdf/1711.06782.pdf
+\begin{definition}[POMDP]
+    A Partially Observable Markov Decision Process (POMDP), is defined as a tuple $(\mathcal{S}, \mathcal{A}, T, R, O, Z, \gamma)$. Here $\mathcal{S}, \mathcal{A}, T, R$, and $\gamma$ have the same meaning as in the MDP definition. $Z$ is the agent's observation space, and $O$ defines the probability of receiving each observation at a transition. 
+\end{definition}
 
-This is a rather simple choice that is easy to implement. However, there are some caveats namely in a dynamic environment the agent would be incentivized to also reset other dynamics besides itself, a \textit{interference} behavior. For example, if a household robot were to be implemented in a house with the starting state baseline, then one could imagine that one deployed with a task it takes a look at the state of the house and its position and saves it in memory. Then when it starts doing its task it should avoid irreversible actions such as breaking things that it can not fix. But, problems of \textit{interference} would arise here if other things are going on in the house, say a human is sitting by a table and eating. The agent would thus be incentivized to prevent the human from eating the food since it is an irreversible action. Other issues arise if an irreversible is required to perform the assigned task, to make an omelet one has to break a few eggs. 
-% simple/natural choice preserves reachability to the starting state when the agent was deployed
-% Used in reversibility preserving safe exploration approaches, learns a reset policy
-% In dynamic environments this incentivizes an interference behavior. Sushi example
+The main difference between a POMDP and an MDP is that the agent can observe the entire environment in an MDP, while in a POMDP, the agent observes only a part of the environment. An example is if the agent can only perceive a certain distance. With this change, the agent's policy will depend on the observation of the environment instead of the state, introducing a higher level of difficulty and realism for the agent when navigating the environment. 
 
-\subsubsection{Inaction baseline}
-To tackle the problem of interference the \textit{Inaction baseline} has been proposed, where instead of having the initial state as a baseline the agent instead uses what would naturally happen in the environment if the agent performed no actions. That is setting $s^\prime_t$ equal to the state achieved at timestep $t$ by being inactive. This can be done by following a no-op policy where every action is the no-op action $\o$, in \autobaj{Armstong Levinstein} they define it as the agent was not turned on. Doing this prevents the agent from intervening with aspects of the environment where the agent is not causing it.
+% \subsection{Proximal Policy Optimization}
 
-When using this baseline some other issues arise where the agent could make the consequences of its actions undone so that the results are the same as the baseline, called \textit{offsetting}. For example, if a household robot were tasked with watering plants, that is a reward is given when the soil is wet, then an offsetting behavior would be to dry the soil once the rewards have been collected to minimize deviations from the baseline. 
-% The agent performs no actions, following a no-op policy
-% In Armstrong Levinstein it is defined as the agent never where turned on
-%  Solves interference problem. But instead, incentivizes offsetting. Vase example.
+\subsection{Learning an agent}
 
-\subsubsection{Stepwise inaction baseline}
-Offsetting emerged since the agent is not able to capture the change it makes on the environment with the inaction baseline that originates from the starting state, thus a \textit{stepwise inaction baseline} has been proposed to solve this problem. This baseline is defined by following the agents policy $\pi$ for the first $t-1$ steps to state $s_{t-1}$, and then perform a no-op action $a(s_{t-1}) = \o$ to get to state $s^\prime_t$. This baseline can then also capture delayed effects by performing a rollout where the agent draws actions from the no-op policy or something similar.  
+In RL, when an environment is defined the next step is to teach an agent to navigate it intelligently. For this, there are many different methods, however we will begin focusing on a method called policy gradient, since it is a rather simple method that is possible to extend to a more advanced method. The main component of policy gradient is the agent, this is a function that inputs a state observation from an MDP and outputs a probability vector containing probabilities for each action in the action space. 
 
-This baseline also contains some flaws, mainly if being inactive causes any effects. If we again take a look at the household robot, but now it holds a glass and its task is to carry it to the other side of the room, then being suddenly inactive while holding a glass can lead to a sudden stop where the glass falls over and breaks. Thus they might not worry about breaking the glass with some other action since it happened in its baseline. 
-% branches out from the previous state instead of starting state. 
-% This is the \textit{stepwise inaction baseline} \prime{s}_t = s_t^{t-1}: a counterfactual state of the environment if the agent had done nothing instead of its last action.
-% This solves the offsetting issue
-% Capture delayed effects with rollouts
+In this report, this policy function will be considered a neural network. Thus we will denote it as $\pi_\theta$, where $\theta$ is the network's parameters. The theoretical background of neural networks we will not cover in detail. However, we can see it as a black-box function that can take an arbitrary matrix as input and output another one. The strength of a neural network is that it can learn functions by updating the parameters to minimize a loss function. This optimization can be done with an algorithm such as stochastic gradient descent.  
 
-\subsection{Deviation measures}
-A deviation measure is a function that takes the current and the baseline state as input and outputs a value, we can then compare these values to get a sense of how large of an impact the agent has with the current action.
+The policy can either be deterministic or stochastic:
+\begin{equation*}
+  \left\{ 
+  \begin{aligned}
+    a_t =& \ \pi_\theta(s_t)& \text{ , deterministic} \\
+    a_t \sim& \ \pi_\theta(\cdot | s_t)& \text{ , stochastic}.
+  \end{aligned}
+  \right.
+\end{equation*}
+Here a deterministic policy selects the action with the highest probability from the actor, while the stochastic can be done by randomly sampling using the probabilities from the policy network. Using the stochastic policy creates an exploring behavior when the agent is less confident, the exploration rate is gradually decreasing as the agent becomes more confident.
+
+\subsubsection{Rollouts and Value Functions}
+
+The agent's goal is to optimize the policy to generate a maximal reward. We can do this by letting the agent perform stochastic rollouts where the agent follows the stochastic policy. The policy creates a trajectory $\tau$ containing the sequence of states and actions:
+\[ \tau = (s_0, a_0, s_1, a_1, \dots , s_n, a_n),\]
+of length $n$.
+
+We define the total discounted reward following a trajectory as the following:
+\[ R(\tau) = \sum_{t=0}^\infty \gamma^t r_t.\]
+With this, we can define the value in each state when following a policy as:
+\[ V^\pi(s) = \mathop{\mathbb{E}}_{\tau \sim \pi} [R(\tau) | s_1 = s.]\]
+A closely related function to the value function is the Q-function. It looks at the estimated discounted cumulative reward for a specific action in a state and then continues to follow a policy:
+\[ Q^\pi(s, a) = \mathop{\mathbb{E}}_{\tau \sim \pi} [R(\tau) | s_1 = s, \ a_1 = a].\]
+
+We can then use the outcome of the rollout to reinforce the good behavior and discourage the undesirable. We perform this by calculating the gradient of the agent's policy network and updating the parameters using the loss function:
+\[ L(\theta) = \nabla_\theta \mathop{\mathbb{E}}_{\tau \sim \pi_\theta}[R(\tau)] = \mathop{\mathbb{E}}_{\tau \sim \pi_\theta} [\nabla_\theta \log \pi_\theta (a_t|s_t) R(\tau) ]. \footnote{See OpenAI (2018) for derivation.}\]
+Then updating the weights:
+\[ \theta_{k+1} = \theta_k + \alpha L(\theta).\]
+Here $\alpha$ is a learning rate describing how much the parameters should be updated, typically a value close to zero. With this, we are decreasing the probability for actions that led to low reward and increasing the probability for the actions that led to positive reward.
+
+ To not make the agent over-fit to the early behaviors that generated rewards by chance and let it improve its policy, we train using a batch where we summarize the output of multiple rollouts and optimize them simultaneously. Using a batch would discourage desirable behavior if a desirable rollout happened to end up as a minority with undesirable ones. However, this method is proven to converge in simple settings since the updates will average out, although this makes the method sample inefficient.
+
+\subsubsection{Actor-critic Methods}
+
+We will now cover improving the sample efficiency using an actor-critic method. The actor is a function that inputs an observed state and outputs an action. The critic is another function that inputs the same observed state and outputs an estimate of $V^\pi(s)$ in a state based on what rewards the agent has received previously. The critic will also be a neural network, but we will use the mean squared error loss to optimize it.
+
+We can use the critic's estimate to infer if the reward the agent got is better or worse than what previous results by computing the advantage:
+\[A^\pi(s,a) = Q^\pi(s, a) - V^\pi(s).\]
+Here the critic's estimate will replace the value from the value function.
+\[\hat{A}^\pi(s,a) = Q^\pi(s, a) - \hat{V}^\pi(s).\]
+Using the advantage, we can thus signal if the new behavior is an improvement or not. By using the advantage function instead of the discounted reward, we get the loss function OpenAI (2018):
+\[ L(\theta) = \mathop{\mathbb{E}}_{\tau \sim \pi_\theta} [\hat{A}(s,a) \nabla_\theta \log \pi_\theta (a_t|s_t) ]. \]
+
+Some problems still exist with this approach. Namely, a too-large update can make the agent policy useless. Moreover, since the agent performs its action sequentially, a change of behavior early in a trajectory can ruin the agent's ability to navigate where it ends up. To solve this issue, Schulman et al. (2017) proposed the PPO algorithm which uses the clipped loss function:
+\[L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left [ \min(\delta_t(\theta) \ \hat{A}_t,\ 
+\text{clip}(\delta_t(\theta), 1 - \epsilon, 1 + \epsilon) \ \hat{A}_t) \right ]. \]
+The clip function returns the first value only iff it is in the range $(1-\epsilon, 1+\epsilon)$; otherwise, the closest boundary. The ratio $\delta_t(\theta)$ describes how more likely an action became with the new parameters $\theta_{old}$ compared to the new updated ones:
+\[ \delta_t(\theta) = \frac{\pi_\theta(a_t| s_t)}{\pi_{\theta_{old}}(a_t|s_t)}. \]
+This loss function makes it such that we update the parameters more cautiously when the probability for an action becomes more likely with a new policy. 
+
+
+\section{Impact Measurements for Avoiding Side Effects}
+
+When the agent creates an impact on the environment that is unnecessary for achieving its objective, we will consider it to be a side effect, this is known as the side effects problem Amodei et al. (2016). An example of this is if the agent's task is to navigate across a room and the fastest path knocks over a fragile object that would break on impact with the floor. Then breaking the fragile object would be considered a side effect since it does not need to do so to complete its task. 
+% https://axrp.net/episode/2021/05/14/episode-7-side-effects-victoria-krakovna.html
+
+The problem of side effect avoidance is related to the frame problem McCarthy and Hayes (1969). Each action can have many side effects, and it is impractical to explicitly penalize all of the bad ones. Furthermore, we often know what we want the agent to do, but it can be hard to specify what we do not want it to do. Attempts have been made at this by explicitly specifying what the agent should not do Zhang et al. (2018). However, with this approach, the reward function becomes an iterative trial and error process requiring counterproductive human intervention since automation is ideal. 
+
+% \subsection{Value-difference methods}
+A separate impact measurement to complement the reward function has emerged in recent years. The role of the reward function is to describe what we want the agent to do, and the role of the impact measurement is to make the agent avoid side effects. First, in Armstrong and Levinstein (2017) the authors introduce the philosophical groundwork for impact measurement. Then, in Krakovna (2020), a more general approach is presented, the value-difference method. The main components of which are a \textbf{deviation measure} and a \textbf{baseline}. 
+
+The deviation measure captures the impact of actions in the current state by comparing the following state $s_{t+1}$ with a baseline state $s_{t+1}^\prime$. We subtract the deviation measure from the reward: 
+\[ R^\prime(s_t, a_t, s_{t+1}) := R(s_t, a_t, s_{t+1}) - \lambda d(s_{t+1
+}, s_{t+1}^\prime), \]
+to discourage actions with high impact. Here $R^\prime$ is the reward with the impact measurement included, $d$ is a deviation function that measures the difference between the current state $s_t$ and a baseline state $s_t^\prime$. 
+
+In Armstrong and Levinstein (2017), the authors bring up that the agent can be sensitive to the value of the scaling parameter $\lambda$. Penalizing the agent implicitly defines a safe zone where the agent can act, and the value of $\lambda$ defines how large this safe zone is, where a high value might create no safe zone, resulting in the agent not being able to act. On the contrary, a too-small value might not affect since the safe zone covers the entire action space. So, finding the correct value for $\lambda$ could be tricky. 
+
+\subsubsection{Baselines}
+The choice of baseline decides what we will consider $s^{\prime}_t$ to be. This choice highly influences what side effects and consequences the deviation measure will capture. A simple choice for a baseline is the \textit{starting state baseline}, $s^{\prime}_t = s_1$, as used in Eysenbach et al. (2017). This baseline helps to assure the agent's ability to reverse its actions. Thus, it generates a safe exploration where the agent by definitions should not have a large impact since it can make all actions undone. 
+
+However, when using this baseline, there are some caveats. Namely, in a dynamic environment, the agent would be incentivized to also reset other dynamics besides itself, a \textit{interference} behavior Krakovna et al. (2019). 
+
+For example, suppose we implement a household robot with the starting state baseline in a house. In that case, one could imagine that one deployed with a task of moving a box from one part of the room to the other takes a look at the state of the house and its position and saves it in memory. Then when it starts doing its task, it should avoid irreversible actions such as breaking things that it can not fix. However, problems of \textit{interference} would arise here if other things are going on in the house, say a human is sitting by a table and eating. This baseline incentivizes the agent to prevent the human from eating the food since it is an irreversible action. Other issues arise if an irreversible is required to perform the assigned task. For example, one has to break a few eggs to make an omelet. 
+
+To tackle the problem of interference, Krakovna et al. (2019) proposed the \textit{Inaction baseline}, where instead of having the initial state as a baseline, the agent instead uses what would naturally happen in the environment if the agent performed no actions. That is setting $s^\prime_t$ equal to the state achieved at time step $t$ by being inactive. Being inactive is hard to define, but it can, for example, follow a no-op policy where every action is a no-op action. In \autobaj{Armstong Levinstein} they define it as the agent was not turned on. Doing this prevents the agent from intervening with aspects of the environment where the agent is not causing it.
+
+% When using this baseline some other issues arise where the agent could make the consequences of its actions undone so that the results are the same as the baseline, called \textit{offsetting}. For example, if a household robot were tasked with watering plants, that is a reward is given when the soil is wet, then an offsetting behavior would be to dry the soil once the rewards have been collected to minimize deviations from the baseline. 
+
+\subsubsection{Deviation measures}
+A deviation measure is a function that takes the current and the baseline state as input and outputs a value. We can then compare these values to understand the magnitude of the agent's impact on the environment with an action.
 
 The general form of a deviation measurement using value-difference is:
-  \[d_{VD}(s_t;s^{\prime}_t) := \sum_x w_x f(V_x(s^{\prime}_t) - V_x(s_t))\]
-here $x$ ranges over some sources of value, $V_x(\tilde{s})$ is the value of state $\tilde{s}$ according to $x$, $w_x$ is a weighted or normalizing factor, and $f$ is the function for summarizing the value difference.
+  \[d(s_t;s^{\prime}_t) := \sum_x w_x f(V_x(s^{\prime}_t) - V_x(s_t))\]
+here $x$ ranges over some sources of value, $V_x(s)$ is the value of state $s$ according to $x$, $w_x$ is a weighted or normalizing factor, and $f$ is the function for summarizing the value difference.
 
-We will now continue by extending this general form by going through different choices for baselines and deviation measures.
+A simple choice to compute the value in a state $V_{s_1}(s)$ is by looking at if the initial state is reachable or not:
+\begin{equation*}
+  \left\{ 
+  \begin{aligned}
+    V_{s_1}(s)  =\ & 1 \text{, if } s_1 \text{ is reachable} \\
+    V_{s_1}(s)  =\ & 0 \text{, otherwise}.
+  \end{aligned}
+  \right.
+\end{equation*}
+A more nuanced approach is to use a discounted reachability where the amounts of time steps required for reaching the initial state also is considered:
+\begin{equation*}
+  \left\{ 
+  \begin{aligned}
+    V_{s_1}(s)  =\ & \gamma^ {N(s, s_1)}, &\text{ if } s \neq s_1 \\
+    V_{s_1}(s)  =\ & 1 ,&\text{ if } s = s_1.
+  \end{aligned}
+  \right.
+\end{equation*}
+Here $N(s, s_1)$ is the expected amount of time steps required to reach $s_1$ from $s$, and $\gamma \in (0, 1]$ is a discount factor.
 
-\subsubsection{Unreachability}
-Possibly the easiest to implement and the first to be mentioned in the literature is the use of \textit{unreachability} (UR) as a deviation measure, it measures if the baseline is reachable or not. 
+Using this approach, it is also possible to consider reachability to any other state. Also, multiple states at the same time as in the Relative Reachability (RR) approach, where the goal is to keep options open by using the relative change in reachable states as its impact measurement Krakovna et al. (2019). 
 
-Reachability of state $y$ from state $x$ is defined as:
-\[ R(x, y) := \max_\pi\mathbb{E}\gamma_r^{N_\pi(x;y)},\]
-when following policy $\pi$, and using the reachability discount factor $\gamma_r \in (0, 1]$. Where $N_\pi(x;y)$ is the number of steps taken to reach $y$ from $x$. When computing the entire path recursively this becomes:
-\begin{align*}
-  R(x;y) =& \ \gamma_r \max_a \sum_{z \in \mathcal{S}}p(z|x,a)R(z;y) & \text{for } x \neq y\\
-  R(x;y) =& \ 1 & \text{for } x = y
-\end{align*}
-% special case??
-With this we can write the UR deviation measure as:
-\[ d_{UR}(s_t;s_t^\prime) := 1 - R(s_t;s_t^\prime).\]
+A closely related approach is Attainable Utility Preservation (AUP), described in Turner et al. (2020). With this approach, we instead include the relative change in auxiliary value functions, where we find these by having another or the same agent perform other tasks in the same environment or, as in Turner et al. (2020, 2) use a variational auto-encoder to generate.
 
-The unreachability measure fails to capture the magnitude of the side effect, for the household robot it would consider breaking glass to be equally bad as breaking several glasses since both are irreversible actions that prevent the agent from reaching the baseline.  
-% SImple choice and first mentioned
-% Discounted or undiscounted
-% "Unidiscounted unreachability measure only penalize irreversible transitions, while the discounted measure also penalizes reversible transitions. "
-% Unreachability measures fail to capture the magnitude of the side effect
+Initially, the authors presented RR and AUP with a \textbf{stepwise inaction baseline} that follows the agent's policy for $t-1$ time steps and then starts following the inaction baseline. Here a rollout can be used to capture delayed effects Turner et al. (2020, 2). They introduced this baseline to prevent offsetting behavior. Nevertheless, in a later publication, Krakovna et al. (2020) the authors added that sometimes offsetting is positive and thus should not be avoided by default. Thus a better approach is to use the inaction baseline and let the reward function discourage offsetting. 
+
+\subsection{Future task approach}
+Krakovna et al. (2020) present an approach to avoid side effects by including an auxiliary objective that rewards the ability to complete future tasks. The idea is to reduce the problem from explicitly defining what to avoid to the easier task of listing possible future tasks. 
+
+When we define a new MDP to include a set of auxiliary reward functions as: $(\mathcal{S}, \mathcal{A}, T, \mathcal{R}, \gamma)$, where $\mathcal{R}$ is a set containing all reward functions. We can do this by yielding the sum of the reward function and the auxiliary reward function to the agent, at the time step $t$: $r(s_t) + r_{aux}(s_t)$. We define the auxiliary reward as:
+\[ r_{aux} = \lambda D(s_t) \sum_x \frac{1}{|\mathcal{R}|} V_x^*(s_t),\]
+where $D(s_t) = 1$ is $s_t$ is terminal and $1-\gamma$ otherwise. $V_x^{*}(s_t)$ is the optimal value function for task $x$ with reward function $R_x \in \mathcal{R}$ in state $s_t$. The reward function $R_x$ yields a reward of 1 if the state is terminal and 0 otherwise. 
+
+Now, this approach does not automatically avoid interference behavior. Therefore the authors proposed using a reference agent with a baseline policy $\pi^\prime$; this can, for example, be the inaction policy. 
+
+At time step $t$, the agent is located in state $s_t$, and we run the baseline policy for the same number of steps reaching state $s^\prime_t$ and then compute the auxiliary reward:
+\[r_{aux} (s_t, s_t^\prime) = \lambda D(s_t) \sum_x \frac{1}{\mathcal{R}} \max(V_i^*(s_t), \ V_i^*(s_t^\prime)). \]
+This variation is meant to capture differentiate between side effects the agent is causing and the ones happens by default due to the dynamics of the environment. 
 
 
-\subsubsection{Realative reachability}
-% "To address the magnitude-sensitivity problem, we now introduce a reachability-based measure that is sensitive to the magnitude of the irreversible action."
-To deal with the magnitude insensitivity \textit{realative reachability} (RR) has been proposed, with it one measures the relative change of reachability to several states $s \in \tilde{\mathcal{S}} \subset \mathcal{S}$ from the current state $s_t$ compared to the baseline state $s_t^\prime$. Thus the approach becomes, keeping options open by performing actions that do not decrease the amount of future reachable states too much. We write the (RR) deviation measure as:
-\[d_{RR}(s_t;s^{\prime}_t) := \frac{1}{|\tilde{\mathcal{S}}|}\sum_{s\in\tilde{\mathcal{S}}} \max (R(s^{\prime}_t;s) - R(s_t;s), 0).\]
-
-\subsubsection{Attainable utility}
-The more general approach of keeping options open is \textit{attainable utility} (AU) where instead of reachability to other states, the possibility to keep an arbitrary set of auxiliary rewards $\mathcal{R}$ attainable is promoted. RR can be seen as a special case of AU where the agent receives a reward for reaching that state. This deviation is defined as:
-\begin{align*}
-  d_{AU}(s_t;s_t^\prime) := & \ \frac{1}{\mathcal{R}} \sum_{r\in\mathcal{R}} |V_r(s_t^\prime) - V_r(s_t) \\
-  \text{where } V_r(\tilde{s}) := & \ \max_\pi \sum_{t=0}^\infty \gamma_r^k x(\tilde{s}_t^\pi)
-\end{align*}
-is the value of state $\tilde{s}$ according to reward function $r$, and $\tilde{s}_t^\pi$ denotes the state obtained from $\tilde{s}$ by following $\pi$ for $t$ steps.
-
-% \subsection{General form}
-
-% baseline and deviance measurements
-% \mathcal{R} \subsetneq \mathbb{R}^\mathcal{S} auxilirary set
-% no-op action \o 
-% Defines a new MDP (S,A,R_{AUP},P,\gamma)
-% Uses stepwise inaction baseline
-% Deviation absolute change in the ability to optimize the auxiliary reward functions
 
 
 %########################################################################%
@@ -562,8 +599,33 @@ is the value of state $\tilde{s}$ according to reward function $r$, and $\tilde{
 
 \chapter{Methods}
 
+
+\section{Grid worlds}
+Although the definition of an MDP is general and allows for a wide range of possibilities, we will focus on grid worlds since they provide a more structured environment with discrete states but still allow for a wide variety. Moreover, grid worlds have been the primary approach for evaluating agent behavior in related works \autobaj{related works}.
+
+A grid world is a grid of cells. Each cell can contain either an agent, another object, or be empty, where all possible unique configuration is a state. The action space includes the cardinal directions and a no-op action. Executing an action moves the agent moves in that direction if possible. When the action is the no-op action, the agent remains in its current position. 
+
+In Figure \ref{fig:simple_grid}, we can see an example of a simple grid world containing one agent and one food object. The task is for the agent to transition to the terminal state where it consumes the food, this is performed by in each state by selecting an action. An example of this is a transition from the left state to the middle state in the figure with an \textit{up} action. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=4cm]{"./figures/SimpleGridWorld.png"}
+  \includegraphics[width=4cm]{"./figures/SimpleGridWorld_up.png"}
+  \includegraphics[width=4cm]{"./figures/SimpleGridWorld_terminal.png"}
+  \caption{In this figure we can see three different states in a simple $3\times 3$ grid world. To the left we can see a state of a simple grid world containing an agent (square) at (1,1) and a food (circle) at (3,3)  In the middle we see a similar state but the agent is instead positioned at (2,1). To the right we can see the terminal state when the agent has consumed the food at (3,3).}
+  \label{fig:simple_grid}
+\end{figure}
+
+The previous example was a deterministic environment where the agent is the only change source. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and instead is described by the MDPs transition function $T$. 
+
+\subsection{Stochastic environments}
+
+\subsection{Partially observable environments}
+
 \section{Simulation}
 % Static vs Dynamic 
+
+\section{Including impact measurements in the PPO algorithm}
 
 
 
@@ -603,3 +665,22 @@ is the value of state $\tilde{s}$ according to reward function $r$, and $\tilde{
 
 
 \end{document}
+
+\subsection{Solving MDP}
+The policy $\pi$ includes what action to take in which states. A policy that only includes the optimal actions for each state is called the optimal policy and is denoted as $\pi^*$. The actions in the optimal policy $\pi^*$ yields the highest expected reward when executed. One solves an MDP by finding the optimal policy, there exists several methods for finding the optimal policy, but we are in this report going to use \textit{value iteration}. 
+% solvable with the Bellman equation
+
+To solve an MDP we begin with defining the \textit{Q-function},
+\[ Q(s, a) = \sum_{s^\prime}p(s^\prime|s_t,a)[r(s_t,a,s^\prime) + \gamma U(s^\prime)],\]
+which computes the expected reward when performing an action $a$ in state $s$, where $s^\prime$ denotes a possible future state. Here the reward is based on the \textit{utility}, this is defined as the expected reward with the action that maximizes the \textit{Q-function},
+\begin{align*}
+  U(s) =& \text{max}_{a\in \mathcal{A}(s)} \sum_{s_{t+1}}P(s_{t+1}|s_t,a)[r(s_t,a,s_{t+1}) + \gamma U(s_{t+1})]\\
+  = &  \text{max}_{a\in \mathcal{A}(s)} Q(s,a)\\
+\end{align*}
+
+With the with the utility in each state, it is then possible to find the optimal policy from each state by selecting the action that yields the highest utility,
+\[ \pi^*(s) = \text{argmax}_a Q(s,a) \]
+
+Since computing the utility in one state requires the utility in other states, the computation is not straight forward. To solve this we can utilize a dynamic algorithm, in this report we will use \textbf{value iteration}. This algorithm is a iterative computation that is executed until a equilibrium is reached. The updating of the utility is called an \textbf{Bellman update} and looks like this,
+\[U_{i+1}(s) \leftarrow \max_{a\in\mathcal{A}} \sum_{s\prime} p(s^\prime|s,a)[R(s,a,s^\prime) + \gamma U_i(s^\prime)].\]
+

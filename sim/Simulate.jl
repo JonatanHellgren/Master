@@ -5,6 +5,19 @@ using Plots; default(fontfamily="Computer Modern", framestyle=:box) # LaTeX-styl
 using Images
 using FileIO
 
+@with_kw struct CBColors
+  gray::String      = "#999999"
+  orange::String    = "#E69F00"
+  lightblue::String = "#56B4E9"
+  green::String     = "#009E73"
+  yellow::String    = "#F0E44 2"
+  darkblue::String  = "#0072B2"
+  red::String       = "#D55E00"
+  pink::String      = "#CC79A7"
+end
+colors = CBColors()
+
+
 cmap = ColorScheme([Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1)], "custom", "threetone, red, white, and green")
 ColorScheme([get(cmap, i) for i in 0.0:0.001:1.0])
 
@@ -75,9 +88,11 @@ function plot_grid_world(state, action)
     fig = heatmap(Uxy',
                   legend=:none,
                   aspect_ratio=:equal,
-                  framestyle=:box,
+                  size=(1000,1000),
+                  #= framestyle=:box, =#
                   tickdirection=:out,
-                  color=cmap.colors)
+                  color=cmap.colors,
+                  tickfont=font(40,"Computer Modern"))
                   
     xlims!(0.5, xmax+0.5)
     ylims!(0.5, ymax+0.5)
@@ -96,30 +111,30 @@ function plot_grid_world(state, action)
 
       if state.grid[x, y, 1] == 1
         if state.grid[x, y, 2] == 1
-          color = Colors.RGB(0,1,0)
+          color = colors.green
         elseif state.grid[x, y, 3] == 1
-          color = "blue"
+          color = colors.darkblue
         elseif state.grid[x, y, 4] == 1
-          color = Colors.RGB(1,0,0)
+          color = colors.red
         else
-          color = "yellow"
+          color = colors.yellow
         end
 
         rect = rectangle(0.8, 0.8, x - 0.4, y - 0.4)
         plot!(rect, fillcolor=color, linecolor="black")
 
       elseif state.grid[x, y, 2] == 1
-        color="green"
+        color = colors.green
         circ = circle(0.2, x, y)
         plot!(circ, fillcolor=color, linecolor="black")
 
       elseif state.grid[x, y, 3] == 1
-        color="blue"
+        color = colors.blue
         circ = circle(0.2, x, y)
         plot!(circ, fillcolor=color, linecolor="black")
 
       elseif state.grid[x, y, 4] == 1
-        color= Colors.RGB(1,0,0)
+        color = colors.red
         circ = circle(0.2, x, y)
         plot!(circ, fillcolor=color, linecolor="black")
 
@@ -129,10 +144,12 @@ function plot_grid_world(state, action)
     side_effect = state.side_effect
     objective = state.objective
     title!("Action: $action, Objective: $objective, Side effect: $side_effect")
+    title!("Simple grid world",titlefont=font(50,"Computer Modern"))
 
     return fig
 end
 
+"""
 all_actions, all_states = simulate()
 append!(all_actions, [NOOP])
 anim = @animate for (state, action) ∈ zip(all_states, all_actions)
@@ -141,4 +158,4 @@ anim = @animate for (state, action) ∈ zip(all_states, all_actions)
   plot_grid_world(state, ACTION_STR[action])
 end
 gif(anim, "2fps.gif", fps = 1)
-
+"""

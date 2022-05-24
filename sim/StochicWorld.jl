@@ -1,12 +1,10 @@
 using POMDPs, POMDPModelTools, POMDPPolicies, QuickPOMDPs, POMDPSimulators
 using Parameters, Random
 
-#= using DiscreteValueIteration =#
-
 rng = MersenneTwister(1)
 
 @with_kw struct GridWorldParameters
-  size::Tuple{Int, Int} = (5, 5)
+  size::Tuple{Int, Int} = (3, 3)
   discount::Float64     = 0.95
   n_foods::Int          = 3
 end
@@ -17,9 +15,6 @@ params = GridWorldParameters()
   objective::Int
   side_effect::Int
 end
-
-#= function State(grid::Array{Float32, 3}, objective::Int, side_effect::Int) =#
-  
 
 Base.:+(c1::CartesianIndex{3}, c2::CartesianIndex{2}) = CartesianIndex(c1[1] + c2[1], c1[2] + c2[2], c1[3])
 

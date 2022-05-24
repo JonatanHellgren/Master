@@ -4,70 +4,72 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Artificial intelligence}{1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1.1}Future progress}{2}%
+\contentsline {subsection}{\numberline {1.1.1}Future progress}{3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.1.2}Basic drives}{4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.1.3}Timeline for transformative AI breakthrough}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}AI Safety}{6}%
+\contentsline {section}{\numberline {1.2}AI Safety}{7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.2.1}AI alignment}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.2}Problems in AI alignment}{7}%
+\contentsline {subsection}{\numberline {1.2.2}Problems in AI alignment}{8}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Outer alignment}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Inner alignment}{8}%
+\contentsline {subsubsection}{Inner alignment}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Capability robustness}{8}%
+\contentsline {subsubsection}{Capability robustness}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.3}Consequences with unaligned AI}{8}%
+\contentsline {subsection}{\numberline {1.2.3}Consequences with unaligned AI}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Approaches for creating safe AI}{10}%
+\contentsline {subsection}{\numberline {1.2.4}Approaches for creating safe AI}{10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.1}Learning human intent as a priority}{10}%
+\contentsline {subsubsection}{Learning human intent as a priority}{11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.2}Implementing interruptibility and corrigibility}{10}%
+\contentsline {subsubsection}{Implementing interruptibility and corrigibility}{11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.3}Impacts measurements}{10}%
+\contentsline {subsubsection}{Impacts measurements}{11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Aim of thesis}{10}%
+\contentsline {section}{\numberline {1.3}Aim of thesis}{11}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Theoretical background}{11}%
+\contentsline {chapter}{\numberline {2}Theoretical background}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Markov decision process}{11}%
+\contentsline {section}{\numberline {2.1}Reinforcement Learning}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.1}Solving MDP}{12}%
+\contentsline {subsection}{\numberline {2.1.1}Defining an environment}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.2}Reinforcement Learning}{12}%
+\contentsline {subsubsection}{Partially observable}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Impact measurements for avoiding side effects}{13}%
+\contentsline {subsection}{\numberline {2.1.2}Learning an agent}{14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}General approaches}{14}%
+\contentsline {subsubsection}{Rollouts and Value Functions}{14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Baselines}{14}%
+\contentsline {subsubsection}{Actor-critic Methods}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Starting state baseline}{15}%
+\contentsline {section}{\numberline {2.2}Impact Measurements for Avoiding Side Effects}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Inaction baseline}{15}%
+\contentsline {subsubsection}{Baselines}{17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Stepwise inaction baseline}{15}%
+\contentsline {subsubsection}{Deviation measures}{18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.3}Deviation measures}{16}%
+\contentsline {subsection}{\numberline {2.2.1}Future task approach}{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Unreachability}{16}%
+\contentsline {chapter}{\numberline {3}Methods}{20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Realative reachability}{17}%
+\contentsline {section}{\numberline {3.1}Grid worlds}{20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Attainable utility}{17}%
+\contentsline {subsection}{\numberline {3.1.1}Stochastic environments}{21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Methods}{18}%
+\contentsline {subsection}{\numberline {3.1.2}Partially observable environments}{21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Simulation}{18}%
+\contentsline {section}{\numberline {3.2}Simulation}{21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Results}{19}%
+\contentsline {section}{\numberline {3.3}Including impact measurements in the PPO algorithm}{21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Discussion}{20}%
+\contentsline {chapter}{\numberline {4}Results}{22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Conclusion}{21}%
+\contentsline {chapter}{\numberline {5}Discussion}{23}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Conclusion}{24}%
