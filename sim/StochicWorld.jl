@@ -4,7 +4,7 @@ using Parameters, Random
 rng = MersenneTwister(1)
 
 @with_kw struct GridWorldParameters
-  size::Tuple{Int, Int} = (3, 3)
+  size::Tuple{Int, Int} = (5, 5)
   discount::Float64     = 0.95
   n_foods::Int          = 3
 end
@@ -59,28 +59,31 @@ inbounds(c::CartesianIndex) = 1 ≤ c[1] ≤ params.size[1] && 1 ≤ c[2] ≤ pa
 
 function gen(state::State, a, rng)
 
+  # collect state info
   grid = state.grid
   objective = state.objective
   side_effect = state.side_effect
 
+  # find new and old agent cord 
   agent_cord = findall(==(1), grid[:, :, 1])[1]
-  new_grid = copy(grid)
-
   agent_cord_new = agent_cord + MOVEMENTS[a]
+
+  # next grid state
+  new_grid = copy(grid)
   
-  r = -0.04
+  r = -0.04 # base reward
   if inbounds(agent_cord_new) && a != NOOP
-    # move agent
+    # get info of new cell the agent will enter 
     agent = grid[agent_cord, :]
     new_cell = grid[agent_cord_new,:][2:end]
 
-    # old position empty
+    # empty old agent position 
     new_grid[agent_cord, :] = zeros(4)
 
     # check if food eaten
     if any(new_cell .!= 0)
 
-      # correct food?
+      # correct food? Is desire same type as food eaten
       if agent[2:end] == new_cell 
         r = 1
         objective += 1
@@ -94,11 +97,9 @@ function gen(state::State, a, rng)
 
       else
         side_effect += 1
-
       end
-
     end
-
+    # move agent
     new_grid[agent_cord_new, :] = agent
 
   else

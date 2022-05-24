@@ -149,7 +149,6 @@ function plot_grid_world(state, action)
     return fig
 end
 
-"""
 all_actions, all_states = simulate()
 append!(all_actions, [NOOP])
 anim = @animate for (state, action) ∈ zip(all_states, all_actions)
@@ -158,4 +157,3 @@ anim = @animate for (state, action) ∈ zip(all_states, all_actions)
   plot_grid_world(state, ACTION_STR[action])
 end
 gif(anim, "2fps.gif", fps = 1)
-"""

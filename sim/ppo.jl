@@ -42,10 +42,10 @@ timesteps_per_batch = 4800
 max_timesteps_per_episide = 100
 total_timesteps = 9600
 n_updates_per_iteration = 10
-n_epochs = 1000
+n_epochs = 100
 kick_in = 500
 clip = 0.2
-lr = 1e-4
+lr = 1e-3
 
 """
 initialization of actor and critic
@@ -83,7 +83,7 @@ function compute_rtgs(batch_rews)
 end
 
 
-function rollout(mdp, actor)
+function rollout(mdp, actor, critic, it)
   batch_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, timesteps_per_batch)
   batch_acts = Array{Any}(undef, timesteps_per_batch)
   batch_log_probs = Array{Float32}(undef, timesteps_per_batch)
@@ -134,6 +134,10 @@ function rollout(mdp, actor)
   end
 
   # compute batch reward to go(s)
+  if it > 50
+    aux_rews = auxiliary_reward(critic, batch_lens, batch_grids)
+    batch_rews .+= aux_rews
+  end
   batch_rtgs = compute_rtgs(batch_rews)
 
   return batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens
@@ -209,35 +213,33 @@ function compute_critic_loss(critic, x, y)
   return Flux.mse(critic(x)', y)
 end
 
-function future_task_advantage(critic, batch_lens, batch_acts, batch_states)
+function auxiliary_reward(critic, batch_lens, batch_rewards)
+  aux_rewards = []
   it = 1
-  advantages = []
   for batch_len in batch_lens
-
-    other_task = get_other_tasks(params, batch_states[:,:,:,it])
-    for _ in range(1, batch_len-1)
+    ep_aux_rew = []
+    for i in range(1, batch_len)
+      aux_tasks = get_other_tasks(params, batch_grids[:,:,:,it])
+      aux_reward = compute_advantage(critic, aux_tasks)
+      append!(ep_aux_rew, [aux_reward])
       it += 1
-      other_future_task = get_other_tasks(params, batch_states[:,:,:,it])
-      advantage = compute_advantage(critic, other_task, other_future_task)
-      append!(advantages, [advantage])
-
-      other_task = other_future_task
     end
-    append!(advantages, [0])
-    it += 1
+    append!(aux_rewards, [ep_aux_rew])
+
   end
-  return advantages
+
+  return aux_rewards
 
 end
 
-function compute_advantage(critic, task, future_task)
+function compute_advantage(critic, future_task)
   advantage = 0
-  advantage = mean(critic(future_task) .- critic(task))
+  advantage = mean(critic(future_task))
   return advantage
 end
 
 function get_other_tasks(params, grid)
-  other_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, 2)
+  other_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, params.n_foods-1)
   agent_ind = findall(==(1), grid[:,:,1])
   agent_cell = grid[agent_ind, :]
   current_task = findall(==(1), agent_cell)[2]
@@ -247,6 +249,7 @@ function get_other_tasks(params, grid)
     other_grids[:,:,:,ind] = copy(grid)
     agent_cell[task] = 1
     other_grids[agent_ind, :, ind] = agent_cell
+    agent_cell[task] = 0
     #= append!(other_grids, [grid_copy]) =#
   end
   return other_grids
@@ -268,19 +271,13 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
     # ALG STEP 2
     while t_so_far < total_timesteps 
       # ALG STEP 3
-      batch_states, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout(mdp, actor) 
+      batch_states, batch_acts, batch_log_probs, batch_rtgs, batch_lens = rollout(mdp, actor, critic, it) 
 
       # calculate V_{ϕ, k}
       V = evaluate(critic, batch_states)
 
       # ALG STEP 5
-      # calculate advantage
-      if it > kick_in && λ > 0
-        F_v = future_task_advantage(critic, batch_lens, batch_acts, batch_states)
-        Aₖ = batch_rtgs .- V .+ λ * F_v
-      else
-        Aₖ = batch_rtgs .- V
-      end
+      Aₖ = batch_rtgs .- V
 
       # normalize advantages
       Aₖ = (Aₖ .- mean(Aₖ)) / max(std(Aₖ), 1e-10) # using max to avoid zero division
@@ -320,10 +317,11 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
 end
 
 λ_stat = []
-for λ in [0.0, 0.25, 0.5, 0.75]
-  actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp))) 
-  critic = init_model(params, conv_size, n_conv, hidden_dim, 1) 
-  @time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
+λ = 0.3
+#= for λ in [0.5] =#
+actor = init_model(params, conv_size, n_conv, hidden_dim, length(actions(mdp))) 
+critic = init_model(params, conv_size, n_conv, hidden_dim, 1) 
+@time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
   # 35s cpu
-end
+#= end =#
 #= action, states = simulate() =#
