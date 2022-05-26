@@ -32,10 +32,19 @@ abstract type GridWorld <: MDP{Tuple{Array{Float32, 3}, Int}, Action} end
 begin
   const MOVEMENTS = Dict(
     UP    => CartesianIndex(0, 1),
+    RIGHT => CartesianIndex(1, 0),
     DOWN  => CartesianIndex(0, -1),
     LEFT  => CartesianIndex(-1, 0),
-    RIGHT => CartesianIndex(1, 0),
     NOOP => CartesianIndex(0, 0));
+end
+
+begin
+  const ACTION_IND = Dict(
+    UP    => 1,
+    RIGHT => 2,
+    DOWN  => 3, 
+    LEFT  => 4,
+    NOOP => 5)
 end
 
 begin
