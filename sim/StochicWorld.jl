@@ -1,7 +1,10 @@
 using POMDPs, POMDPModelTools, POMDPPolicies, QuickPOMDPs, POMDPSimulators
 using Parameters, Random
+using StatsBase
 
 rng = MersenneTwister(1)
+
+n_init = 10
 
 @with_kw struct GridWorldParameters
   size::Tuple{Int, Int} = (5, 5)
@@ -97,10 +100,23 @@ function gen(state::State, a, rng)
         r = 1
         objective += 1
 
-        # select a new random desire, sampled without replacement
+        foods = []
+        for food in range(2, size(grid)[3])
+          if sum(new_grid[:,:,food]) > 0
+            append!(foods, [food])
+          end
+        end
+
         old_desire = findall(==(1), agent)[2] -1 
+
+        if length(foods) > 0
+          new_desire = rand(foods) - 1
+        end
+        # select a new random desire, sampled without replacement
+        """
         possible_new_desires = setdiff( Set(range(1, params.n_foods)), Set([old_desire])) 
         new_desire = rand(rng, possible_new_desires)
+        """
         agent[old_desire+1] = 0
         agent[new_desire+1] = 1
 
@@ -136,9 +152,27 @@ function gen(state::State, a, rng)
 end
 
 #= termination(s::Array{Float32, 3}) = sum(s) == 2 =#
-termination(s::State) = s.objective > 2
+termination(s::State) =  s.objective > 2
+# sum(s) == 2, does not work
 
+all_cords = [CartesianIndex(x, y) for x in 1:params.size[1], y in 1:params.size[2]]
+
+S_init = Vector{State}(undef, n_init) #State(grid_init, 0, 0)
 null_grid = Float32.(zeros(params.size[1], params.size[2], params.n_foods+1))
+for i in 1:n_init
+  cords = sample(rng, all_cords, 7, replace = false)
+  grid = copy(null_grid)
+  grid[cords[1], 1] = 1
+  for (ind, cord) in enumerate(cords)
+    #= food_type = sample(1:params.n_foods) =#
+    food_ind = ind % 3 + 2
+
+    grid[cord, food_ind] = 1
+  end
+  S_init[i] = State(grid, 0, 0)
+end
+
+"""
 grid_init = copy(null_grid)
 grid_init[1,1,1] = 1
 grid_init[1,1,2] = 1
@@ -148,12 +182,10 @@ grid_init[2,5,3] = 1
 grid_init[4,5,3] = 1
 grid_init[2,4,4] = 1
 grid_init[3,1,4] = 1
-"""
 grid_init[5,5,2] = 1
 grid_init[2,3,3] = 1
 grid_init[1,5,4] = 1
 """
-S_init = State(grid_init, 0, 0)
 
 mdp = QuickMDP(
   GridWorld,

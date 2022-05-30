@@ -12,19 +12,19 @@ Parameters for networks
 """
 conv_size = (3, 3)
 n_conv = 16
-hidden_dim = 128
+hidden_dim = 256
 
 """
 hyperparameters for training
 """
 timesteps_per_batch = 4800
-max_timesteps_per_episide = 100
+max_timesteps_per_episide = 500
 total_timesteps = 9600
 n_updates_per_iteration = 10
-n_epochs = 100
+n_epochs = 3000
 kick_in = 500
 clip = 0.2
-lr = 1e-3
+lr = 3e-4
 
 
 """
@@ -84,6 +84,9 @@ function compute_rtgs(batch_rews, params)
     for rew in ep_rews[end:-1:1]
     #= for ri in length(ep_rews):-1:1 =#
       #= rew = ep_rews[ri] =#
+      if rew == 1
+        discounted_reward = 0
+      end
       discounted_reward = Float32(rew + discounted_reward * params.discount)
       batch_rtgs[ind] = discounted_reward
       ind -= 1
@@ -94,7 +97,7 @@ function compute_rtgs(batch_rews, params)
 end
 
 
-function rollout(mdp, actor, critic, it)
+function rollout(mdp, actor, critic)
   batch_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, timesteps_per_batch) |> gpu
   batch_acts = Array{Int}(undef, timesteps_per_batch)
   batch_log_probs = Array{Float32}(undef, timesteps_per_batch)
@@ -110,7 +113,7 @@ function rollout(mdp, actor, critic, it)
     ep_rews = []
 
     # start at initial state
-    state = initialstate(mdp)[1] 
+    state = sample(initialstate(mdp)[1])
     
     ep_t = 0
     while ep_t < max_timesteps_per_episide && t < timesteps_per_batch
@@ -164,8 +167,8 @@ function run_test(mdp, actor)
   side_effects = []
   rng = MersenneTwister(1)
 
-  for _ in range(1, 50)
-    state = initialstate(mdp)[1] 
+  for _ in range(1, 10)
+    state = initialstate(mdp)[1][1]
     it = 1
     reward = 0
     running = true 
@@ -177,11 +180,16 @@ function run_test(mdp, actor)
       #= println(state) =#
       #= println(r) =#
       #= println() =#
-      reward += r
+      if r > 0
+        reward += r
+      end
+
       if isterminal(mdp, state)
+        #= print(state.grid[:,:,1]) =#
         break
       end
     end
+    #= println(state.objective) =#
     append!(lengths, [it])
     append!(rewards, [reward])
     append!(side_effects, [state.side_effect])
@@ -210,10 +218,6 @@ function get_log_probs(actor, batch_states, batch_acts, action_inds)
   return log_probs'
 end
 
-function action2ind(action)
-  return argmax(actions(mdp) .== action)
-end
-
 function compute_actor_loss(actor, batch_states, batch_acts, batch_log_probs, Aₖ, action_inds)
   curr_log_probs = get_log_probs(actor, batch_states, batch_acts, action_inds)
   ratios = exp.(curr_log_probs .- batch_log_probs) |> gpu
@@ -232,33 +236,29 @@ function compute_critic_loss(critic, x, y)
   return Flux.mse(critic(x)', y)
 end
 
-function auxiliary_reward(critic, batch_lens, batch_rewards)
-  aux_rewards = []
-  it = 1
-  for batch_len in batch_lens
-    ep_aux_rew = []
-    for i in range(1, batch_len)
-      aux_tasks = get_other_tasks(params, batch_grids[:,:,:,it])
-      aux_reward = compute_advantage(critic, aux_tasks)
-      append!(ep_aux_rew, [aux_reward])
-      it += 1
-    end
-    append!(aux_rewards, [ep_aux_rew])
+function get_auxiliary_rewards(critic, batch_lens, batch_grids)
+  #= aux_rews = []  =#
+  m, n, f, _ = size(batch_grids)
+  n_aux = f-2 # number of auxiliary tasks
+  aux_tasks = Array{Float32, 4}(undef, m, n, f, n_aux*timesteps_per_batch)
 
+  for it in 1:timesteps_per_batch
+    aux_tasks[:, :, :, (n_aux*it-1):(n_aux*it)] = get_other_tasks(batch_grids[:,:,:,it], n_aux) 
   end
 
-  return aux_rewards
-
+  aux_tasks = aux_tasks |> gpu
+  aux_rews = reshape(critic(aux_tasks), (n_aux, timesteps_per_batch)) 
+  mean_aux_rews = mean(aux_rews, dims=1)' |> gpu
+  
+  return mean_aux_rews
 end
 
-function compute_advantage(critic, future_task)
-  advantage = 0
-  advantage = mean(critic(future_task))
-  return advantage
-end
 
-function get_other_tasks(params, grid)
-  other_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, params.n_foods-1)
+function get_other_tasks(grid, n_aux)
+  m, n, f = size(grid)
+  other_grids = Array{Float32, 4}(undef, m, n, f, n_aux)
+  grid = grid |> cpu
+
   agent_ind = findall(==(1), grid[:,:,1])
   agent_cell = grid[agent_ind, :]
   current_task = findall(==(1), agent_cell)[2]
@@ -290,13 +290,17 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
     # ALG STEP 2
     while t_so_far < total_timesteps 
       # ALG STEP 3
-      batch_states, batch_acts, batch_log_probs, batch_rtgs, batch_lens, action_inds = rollout(mdp, actor, critic, it) |> gpu
+      batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens, action_inds = rollout(mdp, actor, critic) |> gpu
 
       # calculate V_{ϕ, k}
-      V = evaluate(critic, batch_states)
+      V = evaluate(critic, batch_grids)
 
       # ALG STEP 5
-      Aₖ = batch_rtgs .- V
+      Aₖ = batch_rtgs .- V 
+
+      #= if it > kick_in  =#
+        #= Aₖ+= λ .* get_auxiliary_rewards(critic, batch_lens, batch_grids) =#
+      #= end =#
 
       # normalize advantages
       Aₖ = (Aₖ .- mean(Aₖ)) / Float32.(max(std(Aₖ), 1e-10)) # using max to avoid zero division
@@ -306,7 +310,7 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
 
       for _ in range(1, n_updates_per_iteration)
         actor_gs = gradient(actor_θ) do 
-          actor_loss = compute_actor_loss(actor, batch_states, batch_acts, batch_log_probs, Aₖ, action_inds)
+          actor_loss = compute_actor_loss(actor, batch_grids, batch_acts, batch_log_probs, Aₖ, action_inds)
           #= println(actor_loss) =#
           return actor_loss
         end
@@ -314,7 +318,7 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
         Flux.update!(actor_opt, actor_θ, actor_gs)
 
         critic_gs = gradient(critic_θ) do 
-          critic_loss = compute_critic_loss(critic, batch_states, batch_rtgs)
+          critic_loss = compute_critic_loss(critic, batch_grids, batch_rtgs)
           return critic_loss
         end
 
@@ -332,17 +336,15 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
     append!(avg_lengths, [avg_len])
     append!(avg_rewards, [avg_rew])
     append!(avg_side_effects, [avg_side_effect])
+    #= println(critic(Flux.unsqueeze(grid,4))) =#
+    #= println(critic(aux_tasks)) =#
   end
   return avg_lengths, avg_rewards, avg_side_effects
 end
 
 λ_stat = []
-λ = 0.3
-#= for λ in [0.5] =#
-actor, critic = init_model(params, conv_size, n_conv, hidden_dim, [length(actions(mdp)), 1]) |> gpu
-@time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
-  # 35s gpu
+λ = 0
+#= for λ in [0, 0.25, 0.5, 0.75, 1] =#
+  global actor, critic = init_model(params, conv_size, n_conv, hidden_dim, [length(actions(mdp)), 1]) |> gpu
+  @time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
 #= end =#
-#= action, states = simulate() =#
-#
-# 

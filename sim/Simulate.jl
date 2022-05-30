@@ -22,7 +22,7 @@ cmap = ColorScheme([Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1), Colors.RGB(1, 1, 1
 ColorScheme([get(cmap, i) for i in 0.0:0.001:1.0])
 
 function simulate_mdp(mdp, policy)
-  state = initialstate(mdp)[1]
+  state = initialstate(mdp)[1][1]
   all_states = [state]
   all_actions = []
 
@@ -52,8 +52,8 @@ function simulate()
   #= batch_states = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, 0) =#
   batch_states = []
 
-  rng = MersenneTwister(3)
-  state = initialstate(mdp)[1]
+  rng = MersenneTwister()
+  state = initialstate(mdp)[1][1]
   #= batch_states = cat(batch_states, state.grid, dims=4) =#
   append!(batch_states, [state])
   it = 1
@@ -61,13 +61,15 @@ function simulate()
   running = true 
   while running && it < 100
     it += 1
-    action, _ = get_action(actor, state.grid, greedy=true)
+    grid = state.grid |> gpu
+    action, _ = get_action(rng, actor, grid, greedy=true)
     append!(batch_acts, [action])
     state, r = gen(state, action, rng)
     reward += r
     #= batch_states = cat(batch_states, state.grid, dims=4) =#
     append!(batch_states, [state])
     if isterminal(mdp, state)
+      println(state.grid)
       break
     end
   end
@@ -78,6 +80,56 @@ end
 
 #= img_path = "kisspng-arrow-scalable-vector-graphics-clip-art-black-arrow-5aa8e8acc61c23.9217803715210190528115.jpg" =#
 #= img = load(img_path) =#
+
+function print_grid_world(state, action)
+  xmax, ymax = params.size
+  grid = Matrix{String}(undef, xmax, ymax)
+
+  #= print(state) =#
+  for x in 1:xmax, y in 1:ymax
+    #= println(grid) =#
+     
+    # outline
+
+    if state.grid[x, y, 1] == 1
+      if state.grid[x, y, 2] == 1
+        grid[6 - x, y] = "G"
+      elseif state.grid[x, y, 3] == 1
+        grid[6 - x, y] = "B"
+      elseif state.grid[x, y, 4] == 1
+        grid[6 - x, y] = "R"
+      else
+        grid[6 - x, y] = "Y"
+      end
+
+    elseif state.grid[x, y, 2] == 1
+      grid[6 - x, y] = "g"
+
+    elseif state.grid[x, y, 3] == 1
+      grid[6 - x, y] = "b"
+
+    elseif state.grid[x, y, 4] == 1
+      grid[6 - x, y] = "r"
+
+    else
+      grid[6 - x, y] = " "
+
+    end
+  end
+  
+  side_effect = state.side_effect
+  objective = state.objective
+  println("Action: $action, Objective: $objective, Side effect: $side_effect")
+  #= println(grid) =#
+  println(grid[1,:])
+  println(grid[2,:])
+  println(grid[3,:])
+  println(grid[4,:])
+  println(grid[5,:])
+
+end
+
+
 function plot_grid_world(state, action)
     
     # reshape to grid
@@ -149,11 +201,20 @@ function plot_grid_world(state, action)
     return fig
 end
 
+#= """ =#
 all_actions, all_states = simulate()
 append!(all_actions, [NOOP])
-anim = @animate for (state, action) ∈ zip(all_states, all_actions)
+for (state, action) ∈ zip(all_states, all_actions)
+  #= println(state) =#
+  println(sum(state.grid))
+
+  println(print_grid_world(state, action))
+end
+
+#= anim = @animate for (state, action) ∈ zip(all_states, all_actions) =#
   #= state = all_states[it] =#
   #= action = all_actions[it] =#
-  plot_grid_world(state, ACTION_STR[action])
-end
-gif(anim, "2fps.gif", fps = 1)
+  #= plot_grid_world(state, ACTION_STR[action]) =#
+#= end =#
+#= gif(anim, "2fps.gif", fps = 1) =#
+#= """ =#
