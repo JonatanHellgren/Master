@@ -53,7 +53,7 @@ function simulate()
   batch_states = []
 
   rng = MersenneTwister()
-  state = initialstate(mdp)[1][1]
+  state = S_test[1] #initialstate(mdp)[1][1]
   #= batch_states = cat(batch_states, state.grid, dims=4) =#
   append!(batch_states, [state])
   it = 1
@@ -206,7 +206,7 @@ all_actions, all_states = simulate()
 append!(all_actions, [NOOP])
 for (state, action) ∈ zip(all_states, all_actions)
   #= println(state) =#
-  println(sum(state.grid))
+  #= println(sum(state.grid)) =#
 
   println(print_grid_world(state, action))
 end

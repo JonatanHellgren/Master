@@ -4,7 +4,8 @@ using StatsBase
 
 rng = MersenneTwister(1)
 
-n_init = 10
+n_init = 100000
+n_test = 100
 
 @with_kw struct GridWorldParameters
   size::Tuple{Int, Int} = (5, 5)
@@ -110,7 +111,7 @@ function gen(state::State, a, rng)
         old_desire = findall(==(1), agent)[2] -1 
 
         if length(foods) > 0
-          new_desire = rand(foods) - 1
+          new_desire = rand(rng, foods) - 1
         end
         # select a new random desire, sampled without replacement
         """
@@ -157,19 +158,38 @@ termination(s::State) =  s.objective > 2
 
 all_cords = [CartesianIndex(x, y) for x in 1:params.size[1], y in 1:params.size[2]]
 
-S_init = Vector{State}(undef, n_init) #State(grid_init, 0, 0)
 null_grid = Float32.(zeros(params.size[1], params.size[2], params.n_foods+1))
+
+S_init = Vector{State}(undef, n_init) #State(grid_init, 0, 0)
 for i in 1:n_init
-  cords = sample(rng, all_cords, 7, replace = false)
+
+  n_cords = sample(rng, range(4,10))
+  cords = sample(rng, all_cords, n_cords, replace = false)
   grid = copy(null_grid)
   grid[cords[1], 1] = 1
+  #= initial_food = sample(rng, 1:params.n_foods) =#
   for (ind, cord) in enumerate(cords)
-    #= food_type = sample(1:params.n_foods) =#
-    food_ind = ind % 3 + 2
+    food_ind = sample(rng, 1:params.n_foods) + 1
+    #= food_ind = (ind + initial_food) % 3 + 2  =#
 
     grid[cord, food_ind] = 1
   end
   S_init[i] = State(grid, 0, 0)
+end
+
+S_test = Vector{State}(undef, n_test) #State(grid_init, 0, 0)
+for i in 1:n_test
+  cords = sample(rng, all_cords, 7, replace = false)
+  grid = copy(null_grid)
+  grid[cords[1], 1] = 1
+  initial_food = sample(rng, 1:params.n_foods)
+  for (ind, cord) in enumerate(cords)
+    #= food_type = sample(1:params.n_foods) =#
+    food_ind = (ind + initial_food) % 3 + 2 
+
+    grid[cord, food_ind] = 1
+  end
+  S_test[i] = State(grid, 0, 0)
 end
 
 """

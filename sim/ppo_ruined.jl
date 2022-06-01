@@ -17,11 +17,11 @@ hidden_dim = 256
 """
 hyperparameters for training
 """
-timesteps_per_batch = 4800
+timesteps_per_batch = 9600
 max_timesteps_per_episide = 500
 total_timesteps = 9600
-n_updates_per_iteration = 10
-n_epochs = 3000
+n_updates_per_iteration = 3
+n_epochs = 5000
 kick_in = 500
 clip = 0.2
 lr = 3e-4
@@ -40,8 +40,8 @@ function init_model(
 
   flat_dim = (params.size[1] - conv_size[1] + 1) * (params.size[2] - conv_size[2] + 1) * n_conv
   c1 = Conv(conv_size, params.n_foods+1 => n_conv, relu)
-  d1 = Dense(flat_dim, hidden_dim)
-  d2 = Dense(hidden_dim, hidden_dim)
+  d1 = Dense(flat_dim, hidden_dim, relu)
+  d2 = Dense(hidden_dim, hidden_dim, relu)
 
   actor = Chain(
     c1, Flux.flatten, d1, d2,
@@ -97,7 +97,7 @@ function compute_rtgs(batch_rews, params)
 end
 
 
-function rollout(mdp, actor, critic)
+function rollout(mdp, actor, critic, critic_ppo)
   batch_grids = Array{Float32, 4}(undef, params.size[1], params.size[2], params.n_foods+1, timesteps_per_batch) |> gpu
   batch_acts = Array{Int}(undef, timesteps_per_batch)
   batch_log_probs = Array{Float32}(undef, timesteps_per_batch)
@@ -155,10 +155,26 @@ function rollout(mdp, actor, critic)
   end
 
   # compute batch reward to go(s)
-  #= add_auxiliary_reward!(batch_rews, critic, batch_lens, batch_grids, λ) =#
-  batch_rtgs = compute_rtgs(batch_rews, params)
+  #= add_auxiliary_reward!(batch_rews, critic_ppo, batch_lens, batch_grids, λ) =#
 
-  return batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens, action_inds
+  batch_rtgs = compute_rtgs(batch_rews, params)
+  add_auxiliary_reward!(batch_rtgs, critic_ppo, batch_lens, batch_grids, λ)
+
+  return batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens, action_inds, batch_rews
+end
+
+function add_auxiliary_reward!(batch_rtgs, critic, batch_lens, batch_grids, λ)
+  aux_rews = get_auxiliary_rewards(critic, batch_grids) |> cpu
+  batch_rtgs += λ .* aux_rews
+
+  """
+  ind = 1
+  for (ep, batch_len) in enumerate(batch_lens)
+    batch_rews[ep] += λ .* aux_rews[ind: batch_len + ind - 1]
+    ind += batch_len
+  end
+  """
+
 end
 
 function run_test(mdp, actor)
@@ -167,8 +183,9 @@ function run_test(mdp, actor)
   side_effects = []
   rng = MersenneTwister(1)
 
-  for _ in range(1, 10)
-    state = initialstate(mdp)[1][1]
+  #= for _ in range(1, 10) =#
+    #= state = initialstate(mdp)[1][1] =#
+  for state in S_test
     it = 1
     reward = 0
     running = true 
@@ -232,11 +249,16 @@ function compute_actor_loss(actor, batch_states, batch_acts, batch_log_probs, A�
   return actor_loss
 end
 
-function compute_critic_loss(critic, x, y) 
-  return Flux.mse(critic(x)', y)
+function penalty(critic)
+  return sum(abs2, critic.weight) + sum(abs2, critic.bias)
 end
 
-function get_auxiliary_rewards(critic, batch_lens, batch_grids)
+function compute_critic_loss(critic, x, y) 
+  return Flux.mse(critic(x)', y)# + 0.001 * penalty(critic)
+end
+
+
+function get_auxiliary_rewards(critic_ppo, batch_grids)
   #= aux_rews = []  =#
   m, n, f, _ = size(batch_grids)
   n_aux = f-2 # number of auxiliary tasks
@@ -247,7 +269,7 @@ function get_auxiliary_rewards(critic, batch_lens, batch_grids)
   end
 
   aux_tasks = aux_tasks |> gpu
-  aux_rews = reshape(critic(aux_tasks), (n_aux, timesteps_per_batch)) 
+  aux_rews = reshape(critic_ppo(aux_tasks), (n_aux, timesteps_per_batch)) 
   mean_aux_rews = mean(aux_rews, dims=1)' |> gpu
   
   return mean_aux_rews
@@ -274,10 +296,10 @@ function get_other_tasks(grid, n_aux)
   return other_grids
 end
 
-actor_opt = ADAM(lr)
-critic_opt = Descent(lr)
+actor_opt = ADAM(lr, (0.9, 0.999))
+critic_opt = ADAM(lr, (0.9, 0.999))
 
-function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
+function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ, critic_ppo)
   local actor_loss
   local critic_loss
   avg_rewards = []
@@ -290,7 +312,7 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
     # ALG STEP 2
     while t_so_far < total_timesteps 
       # ALG STEP 3
-      batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens, action_inds = rollout(mdp, actor, critic) |> gpu
+      batch_grids, batch_acts, batch_log_probs, batch_rtgs, batch_lens, action_inds, batch_rews = rollout(mdp, actor, critic, critic_ppo) |> gpu
 
       # calculate V_{ϕ, k}
       V = evaluate(critic, batch_grids)
@@ -343,8 +365,8 @@ function learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)
 end
 
 λ_stat = []
-λ = 0
-#= for λ in [0, 0.25, 0.5, 0.75, 1] =#
+#= λ = 1.0 =#
+for λ in range(2, 1, 2)
   global actor, critic = init_model(params, conv_size, n_conv, hidden_dim, [length(actions(mdp)), 1]) |> gpu
-  @time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ)])
-#= end =#
+  @time append!(λ_stat, [learn(mdp, actor, critic, actor_opt, critic_opt, total_timesteps, λ, critic_ppo)])
+end
