@@ -1,79 +1,216 @@
-% $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.1 $
-% Do not modify the above lines!
-%
-% This is an auxiliary file used by the 'biblatex' package.
-% This file may safely be deleted. It will be recreated by
-% biber as required.
-%
-\begingroup
-\makeatletter
-\@ifundefined{ver@biblatex.sty}
-  {\@latex@error
-     {Missing 'biblatex' package}
-     {The bibliography requires the 'biblatex' package.}
-      \aftergroup\endinput}
-  {}
-\endgroup
+\begin{thebibliography}{}
 
+\bibitem[Amodei et~al., 2016]{Amodei}
+Amodei, D., Olah, C., Steinhardt, J., Christiano, P.~F., Schulman, J., and
+  Man{\'{e}}, D. (2016).
+\newblock Concrete problems in {AI} safety.
+\newblock {\em CoRR}, abs/1606.06565.
 
-\refsection{0}
-  \datalist[entry]{nyt/global//global/global}
-    \entry{Bostrom}{book}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=892acb64b0a9f67cbe51c2705c652a49}{%
-           family={Bostrom},
-           familyi={B\bibinitperiod},
-           given={Nick},
-           giveni={N\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Oxford University Press}%
-      }
-      \strng{namehash}{892acb64b0a9f67cbe51c2705c652a49}
-      \strng{fullhash}{892acb64b0a9f67cbe51c2705c652a49}
-      \strng{bibnamehash}{892acb64b0a9f67cbe51c2705c652a49}
-      \strng{authorbibnamehash}{892acb64b0a9f67cbe51c2705c652a49}
-      \strng{authornamehash}{892acb64b0a9f67cbe51c2705c652a49}
-      \strng{authorfullhash}{892acb64b0a9f67cbe51c2705c652a49}
-      \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Superintelligence}
-      \field{year}{2016}
-    \endentry
-    \entry{RusselNorvig}{book}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=f3e1e692157b8584b507c91293e03636}{%
-           family={Russel},
-           familyi={R\bibinitperiod},
-           given={S\bibnamedelima \& Norvig\bibnamedelima P},
-           giveni={S\bibinitperiod\bibinitdelim \\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim P\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Pearson}%
-      }
-      \strng{namehash}{f3e1e692157b8584b507c91293e03636}
-      \strng{fullhash}{f3e1e692157b8584b507c91293e03636}
-      \strng{bibnamehash}{f3e1e692157b8584b507c91293e03636}
-      \strng{authorbibnamehash}{f3e1e692157b8584b507c91293e03636}
-      \strng{authornamehash}{f3e1e692157b8584b507c91293e03636}
-      \strng{authorfullhash}{f3e1e692157b8584b507c91293e03636}
-      \field{sortinit}{R}
-      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{year}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Artificial Intelligence - A Modern Approach, Fourth Edition}
-      \field{year}{1995}
-    \endentry
-  \enddatalist
-\endrefsection
-\endinput
+\bibitem[Armstrong, 2022]{co-founding}
+Armstrong, S. (2022).
+\newblock Why i'm co-founding aligned ai.
+\newblock [Online; accessed 7-June-2022].
 
+\bibitem[Armstrong and Levinstein, 2017]{ArmstrongLevinstein}
+Armstrong, S. and Levinstein, B. (2017).
+\newblock Low impact artificial intelligences.
+\newblock {\em CoRR}, abs/1705.10720.
+
+\bibitem[Arulkumaran et~al., 2019]{ALphaStar}
+Arulkumaran, K., Cully, A., and Togelius, J. (2019).
+\newblock Alphastar: An evolutionary computation perspective.
+\newblock {\em CoRR}, abs/1902.01724.
+
+\bibitem[Bostrom, 2016]{Superintelligence}
+Bostrom, N. (2016).
+\newblock {\em Superintelligence}.
+\newblock Oxford University Press.
+
+\bibitem[Carey, 2017]{Carey}
+Carey, R. (2017).
+\newblock Incorrigibility in the {CIRL} framework.
+\newblock {\em CoRR}, abs/1709.06275.
+
+\bibitem[Christiano et~al., 2017]{Christiano}
+Christiano, P., Leike, J., Brown, T.~B., Martic, M., Legg, S., and Amodei, D.
+  (2017).
+\newblock Deep reinforcement learning from human preferences.
+
+\bibitem[Cotra, 2020]{Ajeya}
+Cotra, A. (2020).
+\newblock Forecasting tai with biological anchors.
+\newblock {\em Unpublished manuscript}.
+
+\bibitem[Critch and Krueger, 2020]{CritchKruger}
+Critch, A. and Krueger, D. (2020).
+\newblock {AI} research considerations for human existential safety {(ARCHES)}.
+\newblock {\em CoRR}, abs/2006.04948.
+
+\bibitem[{Custard Smingleigh}, 2018]{Smingleigh}
+{Custard Smingleigh} (2018).
+\newblock Tweet.
+\newblock [Online; accessed 01-06-2022].
+
+\bibitem[Eysenbach et~al., 2017]{Eysenbach}
+Eysenbach, B., Gu, S., Ibarz, J., and Levine, S. (2017).
+\newblock Leave no trace: Learning to reset for safe and autonomous
+  reinforcement learning.
+\newblock {\em CoRR}, abs/1711.06782.
+
+\bibitem[FLI, nd]{FLI}
+FLI (n.d.).
+\newblock Existential risk.
+\newblock [Online; accessed 31-May-2022].
+
+\bibitem[Galef, 2021]{RationallySpeaking}
+Galef, J. (2021).
+\newblock Humanity on the precipice (toby ord).
+
+\bibitem[Good, 1965]{IJGood}
+Good, I.~J. (1965).
+\newblock Concerning the first ultraintelligent machine.
+\newblock {\em Advances in Computers}.
+
+\bibitem[Grace et~al., 2017]{Grace}
+Grace, K., Salvatier, J., Dafoe, A., Zhang, B., and Evans, O. (2017).
+\newblock When will {AI} exceed human performance? evidence from {AI} experts.
+\newblock {\em CoRR}, abs/1705.08807.
+
+\bibitem[Hadfield{-}Menell et~al., 2016]{Hadfield-Menell}
+Hadfield{-}Menell, D., Dragan, A.~D., Abbeel, P., and Russell, S. (2016).
+\newblock The off-switch game.
+\newblock {\em CoRR}, abs/1611.08219.
+
+\bibitem[Hadfield{-}Menell et~al., 2017]{Hadfield-Menell2}
+Hadfield{-}Menell, D., Milli, S., Abbeel, P., Russell, S., and Dragan, A.~D.
+  (2017).
+\newblock Inverse reward design.
+\newblock {\em CoRR}, abs/1711.02827.
+
+\bibitem[Hubinger et~al., 2019]{Hubringer}
+Hubinger, E., van Merwijk, C., Mikulik, V., Skalse, J., and Garrabrant, S.
+  (2019).
+\newblock Risks from learned optimization in advanced machine learning systems.
+\newblock {\em CoRR}, abs/1906.01820.
+
+\bibitem[Häggström, 2021]{TankandeMaskiner}
+Häggström, O. (2021).
+\newblock {\em Tänkande Maskiner - Den artificiella intelligensens
+  genombrott}.
+\newblock Fri Tanke.
+
+\bibitem[Krakovna et~al., 2018]{Krakovna19}
+Krakovna, V., Orseau, L., Martic, M., and Legg, S. (2018).
+\newblock Measuring and avoiding side effects using relative reachability.
+\newblock {\em CoRR}, abs/1806.01186.
+
+\bibitem[Krakovna et~al., 2020]{Krakovna20}
+Krakovna, V., Orseau, L., Ngo, R., Martic, M., and Legg, S. (2020).
+\newblock Avoiding side effects by considering future tasks.
+\newblock {\em CoRR}, abs/2010.07877.
+
+\bibitem[Levinson et~al., 2011]{Levinson}
+Levinson, J., Askeland, J., Becker, J., Dolson, J., Held, D., Kammel, S.,
+  Kolter, J., Langer, D., Pink, O., Pratt, V., Sokolsky, M., Stanek, G.,
+  Stavens, D., Teichman, A., Werling, M., and Thrun, S. (2011).
+\newblock Towards fully autonomous driving: Systems and algorithms.
+
+\bibitem[Mandhane et~al., 2022]{Mandhane}
+Mandhane, A., Zhernov, A., Rauh, M., Gu, C., Wang, M., Xue, F., Shang, W.,
+  Pang, D., Claus, R., Chiang, C.-H., Chen, C., Han, J., Chen, A., Mankowitz,
+  D.~J., Broshear, J., Schrittwieser, J., Hubert, T., Vinyals, O., and Mann, T.
+  (2022).
+\newblock Muzero with self-competition for rate control in vp9 video
+  compression.
+
+\bibitem[McCarthy and Hayes, 1969]{Mc69}
+McCarthy, J. and Hayes, P.~J. (1969).
+\newblock Some philosophical problems from the standpoint of artificial
+  intelligence.
+\newblock In Meltzer, B. and Michie, D., editors, {\em Machine Intelligence 4},
+  pages 463--502. Edinburgh University Press.
+\newblock reprinted in McC90.
+
+\bibitem[McCarthy et~al., 1955]{Dartmouth}
+McCarthy, J., Minsky, M., Rochester, N., and Shannon, C. (1955).
+\newblock A proposal for the dartmouth summer research project on artificial
+  intelligence.
+\newblock {\em AI Magazine}, 27(4).
+
+\bibitem[Mnih et~al., 2013]{Minh}
+Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra,
+  D., and Riedmiller, M.~A. (2013).
+\newblock Playing atari with deep reinforcement learning.
+\newblock {\em CoRR}, abs/1312.5602.
+
+\bibitem[Ord, 2020]{Precipice}
+Ord, T. (2020).
+\newblock {\em The precipice : existential risk and the future of humanity}.
+\newblock New York Hachette Books.
+
+\bibitem[Orseau and Armstrong, 2016]{Interruptible}
+Orseau, L. and Armstrong, S. (2016).
+\newblock Safely interruptible agents.
+\newblock {\em MIRI}.
+
+\bibitem[Russel, 2019]{HumanCompatible}
+Russel, S. (2019).
+\newblock {\em Human Compatible: Artificial Intelligence and the Problem of
+  Control}.
+\newblock Viking.
+
+\bibitem[Russel and Norvig, 1995]{RusselNorvig}
+Russel, S. and Norvig, P. (1995).
+\newblock {\em Artificial Intelligence - A Modern Approach, Fourth Edition}.
+\newblock Pearson.
+
+\bibitem[Saisubramanian et~al., 2020]{Saisubramanian}
+Saisubramanian, S., Zilberstein, S., and Kamar, E. (2020).
+\newblock Avoiding negative side effects due to incomplete knowledge of {AI}
+  systems.
+\newblock {\em CoRR}, abs/2008.12146.
+
+\bibitem[Shah, 2020]{an121}
+Shah, R. (2020).
+\newblock Forecasting transformative ai timelines using biological anchors.
+\newblock [Online; accessed 12-June-2022].
+
+\bibitem[Silver and Hassabis, 2017]{DeepMind}
+Silver, D. and Hassabis, D. (2017).
+\newblock Alphago zero: Starting from scratch.
+\newblock [Online; accessed 30-May-2022].
+
+\bibitem[Silver et~al., 2016]{Silver}
+Silver, D., Huang, A., Maddison, C., Guez, A., Sifre, L., Driessche, G.,
+  Schrittwieser, J., Antonoglou, I., Panneershelvam, V., Lanctot, M., Dieleman,
+  S., Grewe, D., Nham, J., Kalchbrenner, N., Sutskever, I., Lillicrap, T.,
+  Leach, M., Kavukcuoglu, K., Graepel, T., and Hassabis, D. (2016).
+\newblock Mastering the game of go with deep neural networks and tree search.
+\newblock {\em Nature}.
+
+\bibitem[Soares et~al., 2016]{Corrigibility}
+Soares, N., Fallenstein, B., Yudkowsky, E., and Armstrong, S. (2016).
+\newblock Corrigibility.
+\newblock {\em MIRI}.
+
+\bibitem[Turner et~al., 2019]{Turner19}
+Turner, A.~M., Hadfield{-}Menell, D., and Tadepalli, P. (2019).
+\newblock Conservative agency via attainable utility preservation.
+\newblock {\em CoRR}, abs/1902.09725.
+
+\bibitem[Turner et~al., 2020]{Turner20}
+Turner, A.~M., Ratzlaff, N., and Tadepalli, P. (2020).
+\newblock Avoiding side effects in complex environments.
+\newblock {\em CoRR}, abs/2006.06547.
+
+\bibitem[{Wikipedia1}, 2022]{Wiki}
+{Wikipedia1} (2022).
+\newblock Artificial intelligence --- {Wikipedia}{,} the free encyclopedia.
+\newblock [Online; accessed 30-May-2022].
+
+\bibitem[Wikipedia2, 2022]{wikiGoodhart}
+Wikipedia2 (2022).
+\newblock {Goodhart's law} --- {W}ikipedia{,} the free encyclopedia.
+\newblock [Online; accessed 01-June-2022].
+
+\end{thebibliography}
