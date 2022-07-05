@@ -143,6 +143,11 @@ Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra,
 \newblock Playing atari with deep reinforcement learning.
 \newblock {\em CoRR}, abs/1312.5602.
 
+\bibitem[{OpenAI}, 2018]{OpenAI}
+{OpenAI} (2018).
+\newblock Key concepts in rl.
+\newblock [Online; accessed 30-May-2022].
+
 \bibitem[Ord, 2020]{Precipice}
 Ord, T. (2020).
 \newblock {\em The precipice : existential risk and the future of humanity}.

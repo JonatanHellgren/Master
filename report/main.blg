@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: ref.bib
 Warning--empty journal in Levinson
-You've used 39 entries,
+You've used 40 entries,
             1935 wiz_defined-function locations,
-            680 strings with 9565 characters,
-and the built_in function-call counts, 14290 in all, are:
-= -- 1307
-> -- 871
-< -- 21
-+ -- 312
-- -- 306
-* -- 1184
-:= -- 2719
-add.period$ -- 115
-call.type$ -- 39
-change.case$ -- 342
-chr.to.int$ -- 39
-cite$ -- 40
-duplicate$ -- 496
-empty$ -- 772
-format.name$ -- 357
-if$ -- 2629
+            684 strings with 9603 characters,
+and the built_in function-call counts, 14535 in all, are:
+= -- 1333
+> -- 878
+< -- 22
++ -- 314
+- -- 308
+* -- 1199
+:= -- 2768
+add.period$ -- 118
+call.type$ -- 40
+change.case$ -- 348
+chr.to.int$ -- 40
+cite$ -- 41
+duplicate$ -- 506
+empty$ -- 787
+format.name$ -- 360
+if$ -- 2674
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 34
-newline$ -- 195
-num.names$ -- 119
-pop$ -- 295
+newline$ -- 200
+num.names$ -- 122
+pop$ -- 298
 preamble$ -- 1
-purify$ -- 347
+purify$ -- 353
 quote$ -- 0
-skip$ -- 415
+skip$ -- 424
 stack$ -- 0
-substring$ -- 506
+substring$ -- 518
 swap$ -- 37
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 224
+type$ -- 230
 warning$ -- 1
-while$ -- 82
+while$ -- 84
 width$ -- 0
-write$ -- 483
+write$ -- 495
 (There was 1 warning)

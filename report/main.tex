@@ -538,38 +538,17 @@ With this method, we have seen some impressive results in simulations when execu
 % \end{displayquote}
 
 \subsubsection{Impact measurements}
-When an intelligent agent pursues its goal, it will impact its environment. The goal of low-impact agents is to avoid side effects. For example, if we give an agent the task of going from point $a$ to point $b$ in a room, it should not knock over and possibly break fragile items, like a vase, even if it is the shortest path. The complicated thing here is to create an impact measurement that avoids all side effects in all environments without explicitly stating every little detail. 
-
-In recent years a separate impact measurement to complement the reward function has emerged. The role of the reward function is to describe what we want the agent to do, and the role of the impact measurement is to capture what it should not do. First, in \citet{ArmstrongLevinstein} the authors introduce the philosophical groundwork for impact measurement. 
-
-We can see an approach including an impact measurement applied in \citet{Eysenbach}, where the agent is penalized if they are not able to preserve reachability to the initial or another defined safe state. This method incentives a safe exploration that avoids actions that lead to irreversible states. For example, if we deployed an agent with the task brought up earlier. Then, upon initialization, the agent would take a look at the room and save its state in memory. Afterward, the agent should only choose to do actions that it knows are reversible. So, it should avoid breaking fragile objects since the reachability to the initial state would then be unavailable. 
-
-Nevertheless, this works well when no such irreversible action is required for the agent to reach its goal. For example, one has to break some eggs to make an omelet. However, another problem arises when the agent is in a dynamic environment. Since then, it would act to prevent other irreversible actions from happening, like a human eating an omelet. Otherwise, it will be unable to reach the initial state where the omelet the human has not eaten the omelet. 
-
-Another approach is presented in \citet{Krakovna19} to avoid interference behavior, called inaction baseline. The idea is to simulate what would happen if the agent just stood still and note what happens in the environment in that case. With this information, the agent would then be able to differentiate between the side effects it is the cause of from what would naturally happen in the environment. 
-
-However, while this approach will let the agent navigate a dynamic environment, other issues may arise. Such as offsetting, for example, if we give an agent the task of curing a patient of cancer. Then offsetting would be to kill the patient once cured since the patient's survival deviates from what occurred in the simulation.
-
-Then, in \citet{Krakovna19} and \citet{Turner19},  we find a more general approach than preserving reachability to the initial state. The idea is to preserve the availability for other future tasks, such as reaching other states and claiming other rewards. We can do this by penalizing actions that prevent them. This approach is motivated by the reasoning that we humans might avoid the side effects of our actions since they might hinder our future goals.
-
-These methods has been successful in complex environments, as showed in \citet{Turner20}. However the step-wise inaction baseline used to prevent offsetting behaviour will not be able to differentiate between positive and negative offsetting, see \citet{Krakovna20}.
-% , the value-difference method. The main components of which are a \textbf{deviation measure} and a \textbf{baseline}. 
-
-% In \citet{ArmstrongLevinstein}, the authors bring up that the agent can be sensitive to the value of the scaling parameter $\lambda$. Penalizing the agent implicitly defines a safe zone where the agent can act, and the value of $\lambda$ defines how large this safe zone is, where a high value might create no safe zone, resulting in the agent not being able to act. On the other hand, a too-small value might not affect since the safe zone covers the entire action space. So, finding the correct value for $\lambda$ could be tricky. 
-
 % Attempts have been made at this by explicitly specifying what the agent should not do Zhang et al. (2018). However, with this approach, the reward function becomes an iterative trial and error process requiring counterproductive human intervention since automation is ideal. 
 
-% In \autobaj{Krakovna et al 2019}, \autobaj{Krakovna et al 2020} and \autobaj{Turner et al 2020}, the method for impact measurements became more sophisticated with more complex baselines and measurements. These methods are what this report will focus on comparing. A closer look will be given in the theoretical background chapter, once some necessary preliminaries have been covered.
+When an intelligent agent pursues its goal, it will impact its environment. The goal of low-impact agents is to avoid side effects. For example, if we give an agent the task of going from point $a$ to point $b$ in a room, it should not knock over and possibly break fragile items, like a vase, even if it is the shortest path. The complicated thing here is to create an impact measurement that avoids all side effects in all environments without explicitly stating every little detail.
 
-% A general approach for avoiding side effects without specifying what a side effect is a priori
-% important reward is bounded
+In recent years a separate impact measurement to complement the reward function has emerged. The role of the reward function is to describe what we want the agent to do, and the role of the impact measurement is to capture what it should not do. First, in \citet{ArmstrongLevinstein} the authors introduce the philosophical groundwork for impact measurement. Later, we can see approaches implementing impact measurements in RL, see \citet{Eysenbach}, \citet{Krakovna19}, \citet{Turner19}, and \citet{Krakovna20}.
 
-% As brought up in the introduction side effect minimization in RL can either be achieved by specifying what the agent should avoid doing a priori or by applying a more general approach that avoids side effects by default, like using a value-difference measure. As the name suggests these methods measure the difference between the next state $s_t$ if the policy was followed until step $t$, compared to a baseline $s_t^\prime$, to find how large of an impact the agents actions cause. This deviation is then subtracted from the reward normally receives:
-
-
+We will return to impact measurements again in the following chapter by providing a overview of the current field. 
 
 \section{Aim of thesis}
-This thesis aims to investigate how current methods that reduce side effects trough including impact measurements compare to simpler methods in a stochastic environment.
+This thesis aims to implement a novel variation of impact measurements that is possible to extend to and partially observable environment.
+% investigate how current methods that reduce side effects trough including impact measurements compare to simpler methods in a stochastic environment.
 % presented in \autobaj{Turner et al.} (2020) and \autobaj{Krakovna et al.} (2020) compare againts each other in the same complex environment. 
 
 
@@ -583,7 +562,7 @@ This thesis aims to investigate how current methods that reduce side effects tro
 In this chapter, we will cover the necessary theory for understanding the results of this thesis. We will begin with the basics of reinforcement learning - a method for training intelligent agents. Lastly, we will look at the current philosophies on implementing impact measurements for intelligent agents. 
 
 \section{Reinforcement Learning}
-The main components of Reinforcement Learning (RL) are the \textbf{environment} and the \textbf{agent} OpenAI (2018). We will use a Markov decision process as the environment. The objective is to train the agent in the environment with trial and error to learn a policy that performs a desired task. The method utilizes a reward function to encourage or discourage behavior with positive or negative rewards respectively. See Figure \ref{fig:RL} for an illustration of the interaction between the environment and the agent. Because the state will change, we will use the notation $s_t$, $a_t$, and $r_t$ to denote the state, action, and reward at time-step $t$.
+The main components of Reinforcement Learning (RL) are the \textbf{environment} and the \textbf{agent}. We will use a Markov decision process as the environment. The objective is to train the agent in the environment with trial and error to learn a policy that performs a desired task. The method utilizes a reward function to encourage or discourage behavior with positive or negative rewards respectively. See Figure \ref{fig:RL} for an illustration of the interaction between the environment and the agent. Because the state will change, we will use the notation $s_t$, $a_t$, and $r_t$ to denote the state, action, and reward at time-step $t$.
 
 % https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#advantage-functions:~:text=reward%2Dplus%2Dnext%2Dvalue.-,Advantage%20Functions,The%20advantage%20function%20%20corresponding%20to%20a%20policy%20%20describes%20how%20much%20better%20it%20is%20to%20take%20a%20specific%20action%20%20in%20state%20%2C%20over%20randomly%20selecting%20an%20action%20according%20to%20%2C%20assuming%20you%20act%20according%20to%20%20forever%20after.%20Mathematically%2C%20the%20advantage%20function%20is%20defined%20by
 
@@ -635,9 +614,11 @@ Turning an MDP into a POMDP can, for example, be made by only letting the agent 
 
 \subsection{Training an agent}
 
-In RL, when an environment is defined the next step is to teach an agent to navigate it intelligently. For this, there are many different methods, however we will begin focusing on a method called policy gradient, since it is a rather simple method that is possible to extend to a more advanced method. The main component of policy gradient is the agent, this is a function that inputs a state observation from an MDP and outputs a probability vector containing probabilities for each action in the action space. 
+In RL, when an environment is defined the next step is to teach an agent to intelligently navigate it. For this, there are many different methods, however we will begin focusing on a method called policy gradient, since it is a rather simple method that is possible to extend to a more advanced method. The main component of policy gradient is the agent, this is a function that inputs a state observation from an MDP and outputs a probability vector containing probabilities for each action in the action space. 
 
-In this report, this policy function will be considered a neural network. We will denote it as $\pi_\theta$, where $\theta$ is the network's parameters. The theoretical background of neural networks we will not cover in detail. However, we can see it as a black-box function that can take an arbitrary matrix as input and output another one. In this thesis, the input will be a matrix representation of the state and the output will be a probability vector containing the probability for each possible action $a \in \mathcal{A}$. The strength of a neural network is that it can learn functions by updating the parameters to minimize a loss function. This optimization can be done with an algorithm such as stochastic gradient descent.  
+In this report, this policy function will be a neural network. We will denote it as $\pi_\theta$, where $\theta$ is the network's parameters. The theoretical background of neural networks we will not cover in detail. However, we can see it as a black-box function that can take a matrix as input and output another one. In this thesis, the input will be a matrix representation of the state and the output will be a probability vector containing the probability for each possible action $a \in \mathcal{A}$. 
+
+The strength of a neural network is that it can learn to approximate arbitrary functions. This learning is done by updating the parameters to to minimize a loss function. This minimization is typically done with stochastic gradient descent or something similar.  
 
 % The policy can either be deterministic or stochastic:
 From the policy, we can either select an action stochastically or greedily:
@@ -649,8 +630,11 @@ From the policy, we can either select an action stochastically or greedily:
   \end{aligned}
   \right.
 \end{equation*}
-Here a greedy choice selects the action with the highest probability, while the stochastic can be done by randomly sampling using the probabilities. When the agent follows draws action from the policy stochastically, it tries new sequences of actions which lets the agent explore the environment and gain experience from the environment. As we train the agent, it will gradually become more confident in common states, this will result in a higher probability for the actions it has experience of being good. However, when the agent ends up in less common states the randomness of the upcoming action will again be higher. Thus the agent will begin finding a sequence of tasks and then extend it.
+Here a greedy choice selects the action with the highest probability, while the stochastic can be done by randomly sampling using the probabilities. 
 
+The greedy policy is useful when evaluating a trained agent. However, it is not used when training the agent, since then we want the agent to explore its environment in order to find new solutions. As we train the agent, it will gradually become more confident in its actions and the stochasticity will decrease, espessically in common states. However, when the agent ends up in less common states the randomness of the upcoming action will be higher. Thus the agent will begin finding a sequence of actions and then extend it.
+% When the agent selects actions from the policy stochastically, it tries new sequences of actions which lets the agent explore the environment and gain experience from the environment
+% common states, this will result in a higher probability for the actions it has experience of being good
 \subsubsection{Value Functions}
 
 The agent's goal is to optimize the policy to generate a maximal reward. We can do this by letting the agent perform stochastic rollouts where the agent follows the stochastic policy. The policy creates a trajectory $\tau$ containing the sequence of states and actions:
@@ -661,26 +645,26 @@ We define the total discounted reward following a trajectory as the following:
 \[ R(\tau) = \sum_{t=1}^n \gamma^t r_t.\]
 With this, we can define the value in each state when following a policy as:
 \[ V^\pi(s) = \mathop{\mathbb{E}}_{\tau \sim \pi} [R(\tau) | s_1 = s.]\]
-A closely related function to the value function is the Q-function. It looks at the estimated discounted cumulative reward for a specific action in a state and then continues to follow a policy:
+A closely related function to the value function is the Q-function. It looks at the estimated discounted cumulative reward when starting of with a specific action and then continues to follow the policy:
 \[ Q^\pi(s, a) = \mathop{\mathbb{E}}_{\tau \sim \pi} [R(\tau) | s_1 = s, \ a_1 = a].\]
 
 We can then use the outcome of the rollout to reinforce the good behavior and discourage the undesirable. We perform this by calculating the gradient of the agent's policy network $\pi_\theta$ and updating the parameters using the loss function:
 \[ L(\theta) = \nabla_\theta \mathop{\mathbb{E}}_{\tau \sim \pi_\theta}[R(\tau)] = \mathop{\mathbb{E}}_{\tau \sim \pi_\theta} [\nabla_\theta \log \pi_\theta (a_t|s_t) R(\tau) ]. \]
-Here $\nabla_\theta$ means taking the gradient of the function with respect to $\theta$. For a derivation of the second equality, see OpenAI (2018). With the loss we update the weights:
+Here $\nabla_\theta$ means taking the gradient of the function with respect to $\theta$. For a derivation of the second equality, see \citet{OpenAI}. With the loss we update the weights:
 \[ \theta_{k+1} = \theta_k + \alpha L(\theta).\]
-Here $\alpha$ is a learning rate describing how much the parameters should be updated, typically a value close to zero. With this, we are decreasing the probability for actions that led to low reward and increasing the probability for the actions that led to positive reward.
+Here $\alpha$ is a learning rate describing how much the parameters should be updated, typically a value close to zero. With this, we are decreasing the probability for the actions in a rollout that led to low reward and increasing the probability for the actions when the rollout led to positive reward.
 
 \subsubsection{Training using a batch}
 
-Training the agent usually takes a lot of time, since it has to learn everything from scratch through trail and error. Also, knowing what actions was the cause for the reward is hard, since in a trajectory the agent can stumble around in the beginning and then manage to get a reward in the end. When this happens we do not want to reinforce this behavior even tough it did yield rewards, or a sort of superstition could be developed. 
-
-To avoid these consequences, we can train the agent using a batch. Here we compute the reward from multiple trajectories, summarize them, and then update the weights using the sum of loss. The advantages are that the agent will not optimize towards specific trajectories and instead become more general. The disadvantages are that we possibly could discourage desirable behavior if desirable trajectories ends up as a minority in a batch with mostly undesirable ones. Nevertheless, the pros outweigh the cons since the updates will average out.
+Training the agent usually takes a lot of time, since it has to learn everything from scratch through trail and error. To speed up the process, we can train the agent using a batch of trajectories at a time. Here we compute the loss from multiple trajectories, summarize them, and then update the weights using the sum of loss. Besides making the process faster, when using a batch the agent will not optimize towards specific trajectories, this makes it easier for the agent to become more general. The disadvantages are that we possibly could discourage desirable behavior if desirable trajectories ends up as a minority in a batch with mostly undesirable ones. Nevertheless, the pros outweigh the cons since the updates will average out.
 
 % To not make the agent over-fit to the early behaviors that generated rewards by chance and let it improve its policy, we train using a batch where we summarize the output of multiple rollouts and optimize them simultaneously. Using a batch would discourage desirable behavior if a desirable rollout happened to end up as a minority with undesirable ones. However, this method is proven to converge in simple settings since the updates will average out, although this makes the method sample inefficient.
 
 \subsubsection{Actor-critic Methods}
+Knowing what actions was the cause for the reward is hard, since in a trajectory the agent can stumble around in the beginning and then manage to get a reward in the end and the loss function previously described either incourages or discourages the entire rollout. To tackle this issue we can extend the agent to consist of two networks, the \textbf{actor} and the \textbf{critic}. 
 
-An extension of the policy gradient is to include in the agent two networks, the \textbf{actor} and the \textbf{critic}. The actor is the same as the policy network $\pi_\theta$. The critic is another function that inputs the same observed state $s$ and outputs an estimate of $V^\pi(s)$. The critic will also be a neural network, but we will use the mean squared error loss to optimize it. Hence, the critic estimates the future reward based on what rewards the agent has received previously
+The actor works the same as the policy network $\pi_\theta$. The critic is another function that inputs a state $s$ and outputs an estimate of $V^\pi(s)$. The critic will also be a neural network, but we will use the mean squared error loss to optimize it. Hence, the critic estimates the future reward based on what rewards the agent has received previously
+% When this happens we do not want to reinforce this behavior even tough it did yield rewards, or a sort of superstition could be developed. 
 
 % MSE loss?
 
@@ -688,7 +672,9 @@ We can use the critic's estimate to infer if the reward the agent got is better 
 \[A^\pi(s,a) = Q^\pi(s, a) - V^\pi(s).\]
 Here the critic's estimate will replace the value from the value function.
 \[\hat{A}^\pi(s,a) = Q^\pi(s, a) - \hat{V}^\pi(s).\]
-Using the advantage, we can thus signal if the new behavior is an improvement or not. By using the advantage function instead of the discounted reward, we extend the loss function as described in OpenAI (2018):
+Using the advantage, we can thus signal if the new behavior is an improvement or not. Hence, if the agent in the beginning learns bahviour far away from being optimal, then as soon as it stubles upon a behavior yielding more rewards then previously it will be reinforced. In such a way the agents behaviour will be reinforced whenever it does something that yields higher rewards than what the critic has previously seen. 
+
+By using the advantage function instead of the discounted reward, we extend the loss function as described in \citet{OpenAI}:
 \[ L(\theta) = \mathop{\mathbb{E}}_{\tau \sim \pi_\theta} [\hat{A}(s,a) \nabla_\theta \log \pi_\theta (a_t|s_t) ]. \]
 
 % sensitive to perturbations, a small update can be a huge step in policy space
@@ -706,73 +692,84 @@ With this loss function we update the parameters more cautiously when the probab
 \section{Impact Measurements for Avoiding Side Effects}
 
 % \subsection{Value-difference methods}
-A separate impact measurement to complement the reward function has emerged in recent years. The role of the reward function is to describe what we want the agent to do, and the role of the impact measurement is to make the agent avoid side effects. First, in Armstrong and Levinstein (2017) the authors introduce the philosophical groundwork for impact measurement. Then, in Krakovna (2020), a more general approach is presented, the value-difference method. The main components of which are a \textbf{deviation measure} and a \textbf{baseline}. 
+A separate impact measurement to complement the reward function has emerged in recent years. The role of the reward function is to describe what we want the agent to do, and the role of the impact measurement is to describe what we do not want the agent to do. 
 
-The deviation measure captures the impact of actions in the current state by comparing the following state $s_{t+1}$ with a baseline state $s_{t+1}^\prime$. We subtract the deviation measure from the reward: 
+The main components of an impact measurement are a \textbf{deviation measure} and a \textbf{baseline}. An impact measurement works by feeding an additional reward signal to the agent that has been designed to capture potential side effects:
 \[ R^\prime(s_t, a_t, s_{t+1}) := R(s_t, a_t, s_{t+1}) - \lambda d(s_{t+1
 }, s_{t+1}^\prime), \]
-to discourage actions with high impact. Here $R^\prime$ is the reward with the impact measurement included, $d$ is a deviation function that measures the difference between the current state $s_t$ and a baseline state $s_t^\prime$. 
+here $d$ is the deviation measure that inputs the next state $s_{t+1}$ and a baseline $s_{t+1}^\prime$. $\lambda$ is a scaling parameter describing how much the agent will value avoiding side effects.
 
+In \citet{ArmstrongLevinstein}, the authors bring up two important things about a deviation measurement on this form. Firstly, the reward function needs to be bounded. Otherwise a potential agent could still cause lots of side effects, because the penalty becomes negligible compared to the potential huge rewards. Thus an agent could just do more rewarding things whenever it has caused a side effect. Secondly, that the agent will be sensitive to the value of the scaling parameter $\lambda$. Penalizing the agent implicitly defines a safe zone where the agent can act, and the value of $\lambda$ defines how large this safe zone is, where a high value might create a small or even no safe zone, resulting in the agent not being able to act. On the other hand, a too-small value might not have an effect since the safe zone covers the most of the or the entire action space. So, finding the correct value for $\lambda$ could be tricky. 
+
+
+% To tackle the problem of interference, Krakovna et al. (2019) proposed the \textit{Inaction baseline}, where instead of having the initial state as a baseline, the agent instead uses what would naturally happen in the environment if the agent performed no actions. That is setting $s^\prime_t$ equal to the state achieved at time step $t$ by being inactive. Being inactive is hard to define, but it can, for example, follow a no-op policy where every action is a no-op action. In \autobaj{Armstong Levinstein} they define it as the agent was not turned on. Doing this prevents the agent from intervening with aspects of the environment where the agent is not causing it.
+
+
+% In \autobaj{Krakovna et al 2019}, \autobaj{Krakovna et al 2020} and \autobaj{Turner et al 2020}, the method for impact measurements became more sophisticated with more complex baselines and measurements. These methods are what this report will focus on comparing. A closer look will be given in the theoretical background chapter, once some necessary preliminaries have been covered.
 
 \subsubsection{Baselines}
-This choice of baseline $s^\prime_t$ highly influences what side effects and consequences the deviation measure will capture. A simple choice for a baseline is the \textit{starting state baseline}, $s^{\prime}_t = s_1$, as used in Eysenbach et al. (2017). This baseline helps to assure the agent's ability to reverse its actions. Thus, it generates a safe exploration where the agent by definitions should not have a large impact since it can make all actions undone. 
+This choice of baseline $s^\prime_t$ highly influences what side effects and consequences the deviation measure will capture. A simple choice for a baseline is the \textit{starting state baseline}, $s^{\prime}_t = s_1$, as used in \citet{Eysenbach}. This baseline helps to assure the agent's ability to reverse its actions. 
 
-However, when using this baseline, there are some caveats. Namely, in a dynamic environment, the agent would be incentivized to also reset other dynamics besides itself, a \textit{interference} behavior Krakovna et al. (2019). 
+For example, if we deployed an agent with the task of navigating a room using a starting state baseline. Then, upon initialization, the agent would take a look at the room and save its state in memory. Afterward, the agent should only choose to do actions that it knows are reversible. So, it should for example avoid breaking fragile objects since it would not preserve the reachability to the initial state. Nevertheless, this works well when no such irreversible action is required for the agent to reach its goal. For example, one has to break some eggs to make an omelet, and this would not be possible if the agent were to only perform reversible actions. 
 
-For example, suppose we implement a household robot with the starting state baseline in a house. In that case, one could imagine that one deployed with a task of moving a box from one part of the room to the other takes a look at the state of the house and its position and saves it in memory. Then when it starts doing its task, it should avoid irreversible actions such as breaking things that it can not fix. However, problems of \textit{interference} would arise here if other things are going on in the house, say a human is sitting by a table and eating. This baseline incentivizes the agent to prevent the human from eating the food since it is an irreversible action. Other issues arise if an irreversible action is required to perform the assigned task. For example, one has to break a few eggs to make an omelet. 
+However, another problem arises when the agent is in a dynamic environment. Namely, the agent would act to prevent other irreversible actions from happening in the environment, like a human eating an omelet. Otherwise, it will be unable to reach the initial state where the human has not yet eaten the omelet, this is in \citet{Krakovna19} referred to as a \textit{interference} behavior. The problem of interference occurs due to the agent being unable to differentiate between the side effects it caused and natural dynamics of the environment. 
 
-To tackle the problem of interference, Krakovna et al. (2019) proposed the \textit{Inaction baseline}, where instead of having the initial state as a baseline, the agent instead uses what would naturally happen in the environment if the agent performed no actions. That is setting $s^\prime_t$ equal to the state achieved at time step $t$ by being inactive. Being inactive is hard to define, but it can, for example, follow a no-op policy where every action is a no-op action. In \autobaj{Armstong Levinstein} they define it as the agent was not turned on. Doing this prevents the agent from intervening with aspects of the environment where the agent is not causing it.
+To avoid interference behavior, using an \textit{inaction baseline} has been proposed, see \citet{Krakovna19}. The idea is to simulate what would happen if the agent just stood still after initialized and note what happens in the environment in that case. With this information, the agent would then be able to differentiate between the side effects it caused from what would naturally happen in the environment. However, while the inaction baseline will let the agent navigate a dynamic environment, other issues may arise. Such as offsetting, for example, this can occur if we give an agent the task of curing a patient of cancer. Then offsetting would be to kill the patient once the reward of curing the patient has been collected since the survival of the patient is a deviation from the inaction baseline.
 
-% When using this baseline some other issues arise where the agent could make the consequences of its actions undone so that the results are the same as the baseline, called \textit{offsetting}. For example, if a household robot were tasked with watering plants, that is a reward is given when the soil is wet, then an offsetting behavior would be to dry the soil once the rewards have been collected to minimize deviations from the baseline. 
+To deal with offsetting the \textit{step-wise inaction baseline} was proposed in \citet{Krakovna19}, this is similar to the inaction baseline but instead of branching of the initial state it does so from the previous state. In the cancer patient example, this should prevent the agent from killing the cured patient if the baseline would be changed to one with an living patient once the patient was cured. These methods has been successful in complex environments, as showed in \citet{Turner20}. However the step-wise inaction baseline used to prevent offsetting behaviour will not be able to differentiate between positive and negative offsetting, see \citet{Krakovna20}. An example for negative offsetting would be if an agent opens a windows which would later allow for a breeze to enter the house and knock over a vase. 
+
+% Initially, the authors presented RR and AUP with a \textbf{stepwise inaction baseline} that follows the agent's policy for $t-1$ time steps and then starts following the inaction baseline. Here a rollout can be used to capture delayed effects Turner et al. (2020, 2). They introduced this baseline to prevent offsetting behavior. Nevertheless, in a later publication, Krakovna et al. (2020) the authors added that sometimes offsetting is positive and thus should not be avoided by default. Thus a better approach is to use the inaction baseline and let the reward function discourage offsetting. 
 
 \subsubsection{Deviation measures}
-A deviation measure is a function that takes the current and the baseline state as input and outputs a value. We can then compare these values to understand the magnitude of the agent's impact on the environment with an action.
+A deviation measure is a function that takes the current and the current and and a baseline state as input and outputs a value representing the deviation between those states, meant to signify the impact of the last action caused. To compute the deviation between the states we first have to measure the states with respect to some sort of metric. Typically chosen to capture the agent ability to complete other tasks in the environment, such as preserving reachability to different states, see \citet{Krakovna19}, or minimizing deviations in auxiliary reward functions, see \citet{Turner19}. 
 
 The general form of a deviation measurement using value-difference is:
-  \[d(s_t;s^{\prime}_t) := \sum_x w_x f(V_x(s^{\prime}_t) - V_x(s_t))\]
-here $x$ ranges over some sources of value, $V_x(s)$ is the value of state $s$ according to $x$, $w_x$ is a weighted or normalizing factor, and $f$ is the function for summarizing the value difference.
+  \[d(s_t;s^{\prime}_t) := \sum_x w_x (V_x(s_t)) - V_x(s^{\prime}_t)) ,\]
+here $w_x$ is a weighted or normalizing factor, and $x$ is an aspect of the environment which can be measured. Idealy we should use a metric that measures several future tasks, hence the sum over $x$.
+% here $x$ ranges over some sources of value, $V_x(s)$ is the value of state $s$ according to $x$, 
 % ”V_x(s) is the value of state s according to x”. Vadå “according to x”? Vad är x?
 
-A simple choice to compute the value in a state $V_{s_1}(s)$ is by looking at if the initial state is reachable or not:
-\begin{equation*}
-  \left\{ 
-  \begin{aligned}
-    V_{s_1}(s)  =\ & 1 \text{, if } s_1 \text{ is reachable} \\
-    V_{s_1}(s)  =\ & 0 \text{, otherwise}.
-  \end{aligned}
-  \right.
-\end{equation*}
-A more nuanced approach is to use a discounted reachability where the amounts of time steps required for reaching the initial state also is considered:
-\begin{equation*}
-  \left\{ 
-  \begin{aligned}
-    V_{s_1}(s)  =\ & \gamma^ {N(s, s_1)}, &\text{ if } s \neq s_1 \\
-    V_{s_1}(s)  =\ & 1 ,&\text{ if } s = s_1.
-  \end{aligned}
-  \right.
-\end{equation*}
-Here $N(s, s_1)$ is the expected amount of time steps required to reach $s_1$ from $s$, and $\gamma \in (0, 1]$ is a discount factor.
+% Then, in \citet{Krakovna19} and \citet{Turner19},  we find a more general approach than preserving reachability to the initial state. The idea is to preserve the availability for other future tasks, such as reaching other states and claiming other rewards. We can do this by penalizing actions that prevent them. This approach is motivated by the reasoning that we humans might avoid the side effects of our actions since they might hinder our future goals.
 
-Using this approach, it is also possible to consider reachability to any other state. Also, multiple states at the same time as in the Relative Reachability (RR) approach, where the goal is to keep options open by using the relative change in reachable states as its impact measurement Krakovna et al. (2019). 
+% A simple choice to compute the value in a state $V_{s_1}(s)$ is by looking at if the initial state is reachable or not:
+% \begin{equation*}
+  % \left\{ 
+  % \begin{aligned}
+    % V_{s_1}(s)  =\ & 1 \text{, if } s_1 \text{ is reachable} \\
+    % V_{s_1}(s)  =\ & 0 \text{, otherwise}.
+  % \end{aligned}
+  % \right.
+% \end{equation*}
+% A more nuanced approach is to use a discounted reachability where the amounts of time steps required for reaching the initial state also is considered:
+% \begin{equation*}
+  % \left\{ 
+  % \begin{aligned}
+    % V_{s_1}(s)  =\ & \gamma^ {N(s, s_1)}, &\text{ if } s \neq s_1 \\
+    % V_{s_1}(s)  =\ & 1 ,&\text{ if } s = s_1.
+  % \end{aligned}
+  % \right.
+% \end{equation*}
+% Here $N(s, s_1)$ is the expected amount of time steps required to reach $s_1$ from $s$, and $\gamma \in (0, 1]$ is a discount factor.
 
-A closely related approach is Attainable Utility Preservation (AUP), described in Turner et al. (2020). With this approach, we instead include the relative change in auxiliary value functions, where we find these by having another or the same agent perform other tasks in the same environment or, as in Turner et al. (2020, 2) use a variational auto-encoder to generate.
+% Using this approach, it is also possible to consider reachability to any other state. Also, multiple states at the same time as in the Relative Reachability (RR) approach, where the goal is to keep options open by using the relative change in reachable states as its impact measurement Krakovna et al. (2019). 
 
-Initially, the authors presented RR and AUP with a \textbf{stepwise inaction baseline} that follows the agent's policy for $t-1$ time steps and then starts following the inaction baseline. Here a rollout can be used to capture delayed effects Turner et al. (2020, 2). They introduced this baseline to prevent offsetting behavior. Nevertheless, in a later publication, Krakovna et al. (2020) the authors added that sometimes offsetting is positive and thus should not be avoided by default. Thus a better approach is to use the inaction baseline and let the reward function discourage offsetting. 
+% A closely related approach is Attainable Utility Preservation (AUP), described in Turner et al. (2020). With this approach, we instead include the relative change in auxiliary value functions, where we find these by having another or the same agent perform other tasks in the same environment or, as in Turner et al. (2020, 2) use a variational auto-encoder to generate.
 
-\subsection{Future task approach}
-Krakovna et al. (2020) present an approach to avoid side effects by including an auxiliary objective that rewards the ability to complete future tasks. The idea is to reduce the problem from explicitly defining what to avoid to the easier task of listing possible future tasks. 
+
+% \subsection{Future task approach}
+% Krakovna et al. (2020) present an approach to avoid side effects by including an auxiliary objective that rewards the ability to complete future tasks. The idea is to reduce the problem from explicitly defining what to avoid to the easier task of listing possible future tasks. 
 % ”to the easier task of…”. Är det uppenbart att detta alltid är lättare, eller är det helt enkelt ett antagande?
 
-When we define a new MDP to include a set of auxiliary reward functions as: $(\mathcal{S}, \mathcal{A}, T, \mathcal{R}, \gamma)$, where $\mathcal{R}$ is a set containing all reward functions. We can do this by yielding the sum of the reward function and the auxiliary reward function to the agent, at the time step $t$: $r(s_t) + r_{aux}(s_t)$. We define the auxiliary reward as:
-\[ r_{aux} = \lambda D(s_t) \sum_x \frac{1}{|\mathcal{R}|} V_x^*(s_t),\]
-where $D(s_t) = 1$ is $s_t$ is terminal and $1-\gamma$ otherwise. $V_x^{*}(s_t)$ is the optimal value function for task $x$ with reward function $R_x \in \mathcal{R}$ in state $s_t$. The reward function $R_x$ yields a reward of 1 if the state is terminal and 0 otherwise. 
+% When we define a new MDP to include a set of auxiliary reward functions as: $(\mathcal{S}, \mathcal{A}, T, \mathcal{R}, \gamma)$, where $\mathcal{R}$ is a set containing all reward functions. We can do this by yielding the sum of the reward function and the auxiliary reward function to the agent, at the time step $t$: $r(s_t) + r_{aux}(s_t)$. We define the auxiliary reward as:
+% \[ r_{aux} = \lambda D(s_t) \sum_x \frac{1}{|\mathcal{R}|} V_x^*(s_t),\]
+% where $D(s_t) = 1$ is $s_t$ is terminal and $1-\gamma$ otherwise. $V_x^{*}(s_t)$ is the optimal value function for task $x$ with reward function $R_x \in \mathcal{R}$ in state $s_t$. The reward function $R_x$ yields a reward of 1 if the state is terminal and 0 otherwise. 
 
-Now, this approach does not automatically avoid interference behavior. Therefore the authors proposed using a reference agent with a baseline policy $\pi^\prime$; this can, for example, be the inaction policy. 
+% Now, this approach does not automatically avoid interference behavior. Therefore the authors proposed using a reference agent with a baseline policy $\pi^\prime$; this can, for example, be the inaction policy. 
 % ”Now, this approach does not automatically avoid interference behavior.” En förklaring (typ något enkelt exempel) kanske är till hjälp här? Plus en förklaring till varför den lösning som antyds i nästa mening ”Therefore the authors proposed…” verkligen är en lösning.  
 
-At time step $t$, the agent is located in state $s_t$, and we run the baseline policy for the same number of steps reaching state $s^\prime_t$ and then compute the auxiliary reward:
-\[r_{aux} (s_t, s_t^\prime) = \lambda D(s_t) \sum_x \frac{1}{\mathcal{R}} \max(V_i^*(s_t), \ V_i^*(s_t^\prime)). \]
-This variation is meant to capture differentiate between side effects the agent is causing and the ones happens by default due to the dynamics of the environment. 
+% At time step $t$, the agent is located in state $s_t$, and we run the baseline policy for the same number of steps reaching state $s^\prime_t$ and then compute the auxiliary reward:
+% \[r_{aux} (s_t, s_t^\prime) = \lambda D(s_t) \sum_x \frac{1}{\mathcal{R}} \max(V_i^*(s_t), \ V_i^*(s_t^\prime)). \]
+% This variation is meant to capture differentiate between side effects the agent is causing and the ones happens by default due to the dynamics of the environment. 
 
 
 
@@ -802,7 +799,7 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
     \right)
     = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s2.png"}}
   \]
-  \caption{In this figure $T$ is the transition function defined earlier and UP is an action $a_t$. The current state $s_t$ is the grid, in it the green square at (1,1) is the agent and the green circle at (3,3) is a food. On the right hand side we can see the state $s_{t+1}$.}
+  \caption{In this figure $T$ is the transition function defined earlier and UP is an action $a_t$. The current state $s_t$ is the grid, in it the green square at (1,1) is the agent and the green circle at (2,3) is a food. On the right hand side we can see the state $s_{t+1}$.}
   \label{fig:simple_transition}
 \end{figure}
 
@@ -812,9 +809,9 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
   % \caption{In this figure we can see three different states in a simple $3\times 3$ grid world. To the left we can see a state of a simple grid world containing an agent (square) at (1,1) and a food (circle) at (3,3)  In the middle we see a similar state but the agent is instead positioned at (2,1). To the right we can see the terminal state when the agent has consumed the food at (3,3).}
 
 \subsubsection{Stochastic grid world}
-The previous example was a deterministic environment where the agent is the only change source. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
+The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
 
-We will define the movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. If we choose to include several foods in the environment, then the branching factor of the transition function will increase.
+We will define the food movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, i.e. it is empty, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. If we choose to include several foods in the environment, then the distribution for future states will increase.
 
 \begin{figure}[H]
   % fix with multi row?
@@ -897,12 +894,18 @@ To test how adding an impact measurement to our agent, we will train the agent i
   \label{tab:sim_parms}
 \end{table}
 
-\section{Agent}
-We will train the agent using the PPO-algorithm described in the previous chapter. To include an impact measurement, we will modify the algorithm to consider future tasks, and this approach we will refer to as PPO-FTA. However, instead of simulating the availability of future rewards, we will use a second critic network to estimate the value function for other tasks. 
+\section{Impact measurement}
+Now that our environment is defined, we also need to add an impact measurement. Here we will use two impact measurements, one explicit pre-defined and another implicit one that is found automatically by utilizing the experience of another agent trained in the same environment. The pre-defined impact measurement is supposed to be a relatively simple one that is able to capture all environmental side effects. The purpose is to have something simple to compare our other less simple impact measurements. 
 
-We will train the second critic network before the initialization of the PPO-FTA algorithm, and there are two significant differences in the training procedure. Firstly, the training distribution will be more diverse by including different amounts of foods initially. Secondly, to make the critic more general, we will also apply augmentations to the grids, such as changing the colors and rotating the grid. These augmentations are motivated by the fact that the estimated reward should be the same regardless of the colors since they all give the same reward. Furthermore, neither should the direction matter since the distance is the same regardless. 
+The explicit impact measurement will be defined as the number of foods present in the environment. This is similar to yielding the agent a negative reward when consuming the wrong type of food. However, while these types of impact measurents are only possible to define in an environment where all components can be captured and thus will not be a general solution, we can still utilize it to see if our implicit impact measurement is able to capture the same thing. Altough, when applying this in a partially observable environment issues arise, since the impact measurement is able to see the entire environment while the agent is only able to see parts of it. And, if we want to solve this by only counting the foods the agent can see then we would disourage the agent from performing actions which both removes food unnecessary and moves foods outside the agents vision. 
 
+The method we will use to find the implicit impact measurement is to first train an agent using the PPO-algorithm, as described in the previous section. Then we will perform multiple rollouts using this pre-trained agent. From the rollouts we will save all the observations and the discounted future reward the agent got. Then we will train a third network to estimate the discounted reward given the observation. We will call this third network the \textit{manager}. The manager is a similar function as the critic, the difference is that the critic learns along side the actor while the manager learns from a pre-trained actor. 
 
+The reason we split this up into two separate networks is that it will allow us to train the manager using augmentations. There are two reasons why we would like to use augmentations. Firstly, we can by rotating the grid find a more general function since only the distance to the food should matter and not direction to it. Secondly, we will also be able to generalize to other tasks which the agent has not been trained on, this can be done by switching the colors of everything in the environment, including the color the agent desires. 
+
+With an trained manager we will define the value measurement to be the sum of the managers estimates for the colors that the agent does not desire. 
+
+When we training the manager in a fully observable environment, the task is straightforward since the observation gives the full explaination to the discounted reward. However, when performing this in a partially observable environment we run into issues such as the agent does not know how many foods it has consumed previously and thus not how many there are left. Due to this issue, we will itilize a recurrent network that inputs all previous states and the current one to compute the estimate of the future discounted reward.
 
 
 %########################################################################%
@@ -918,6 +921,7 @@ We will train the second critic network before the initialization of the PPO-FTA
 %########################################################################%
 
 \chapter{Discussion}
+If we connect this back to istrumental convergence which we covered previously which stated that with a final terminal goal several other instrumental goal will naturally emerge. We can say that by giving the agent rewards for keeping options open we incourage it to find the instrumental goal of preserving the environment, since the set of future tasks we want it to perform is done in the current environment. Thus with more knowledge about how an more intelligent AI such as an AGI or transformative AI will behave we would be able to derive more ways of directing it in a more aligned direction.
 % Self conciousness might be necessary to enable the agent to differentiate between side effects it caused and those who happened trough natural dynamics.
 
 % Life is about a journey, not mazimizing goals, thus we should be happy with AI doing that for us. 
