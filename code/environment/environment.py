@@ -1,11 +1,9 @@
 import numpy as np
 import random
-from gym.spaces import Discrete 
 import torch as T
 
-from create_environemts import InitialStateDistribution
-from env_params import EnvParams
-from training import PPO
+from environment.create_environemts import InitialStateDistribution
+from environment.env_params import EnvParams
 
 MOVEMENTS = {
     0: ( 0, 0), # Noop
@@ -40,6 +38,18 @@ class MDP:
         self.objectives = 0
         self.side_effects = 0
         self.grid = self.initial_state_distribution.generate_state()
+
+        agent_cord = np.where(self.grid[0, :, :] == 1)
+        agent_cord = (agent_cord[0][0], agent_cord[1][0])
+        self.agent_cord = agent_cord
+
+        obs = self.observe()
+        return obs
+
+    def set_initial_state(self, grid):
+        self.objectives = 0
+        self.side_effects = 0
+        self.grid = grid
 
         agent_cord = np.where(self.grid[0, :, :] == 1)
         agent_cord = (agent_cord[0][0], agent_cord[1][0])
@@ -85,7 +95,7 @@ class MDP:
         agent_cord_new, agent_moved = self.move(self.agent_cord, direction)
 
         reward = -0.04
-        if agent_moved:
+        if agent_moved and action != 0:
             new_cell = self.grid[:, agent_cord_new[0], agent_cord_new[1]]
             agent_cell = np.copy(self.grid[:, self.agent_cord[0], self.agent_cord[1]])
             if any(new_cell == 1):
@@ -114,13 +124,3 @@ class MDP:
             return cord, False
 
 
-env_params = EnvParams()
-mdp = MDP(env_params)
-ppo = PPO(mdp, 8, 16)
-ppo.learn(10, 1e4)
-"""
-batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = ppo.rollout()
-env.reset()
-env.step(1)
-"""
-# env.step(3)

@@ -6,9 +6,10 @@ import numpy as np
 class FeedForwardNN(nn.Module):
     # X = (batch, food_type, x_cord, y_cord)
 
-    def __init__(self, in_dim, n_conv, hidden_dim, out_dim, softmax=False, kernel_size=(3,3)):
+    def __init__(self, in_dim, n_conv, hidden_dim, out_dim, device, softmax=False, kernel_size=(3,3)):
         super(FeedForwardNN, self).__init__()
         self.softmax = softmax
+        self.device = device
         
         # Collecting dimentions
         n_z, n_x, n_y = in_dim
@@ -30,6 +31,7 @@ class FeedForwardNN(nn.Module):
             if len(obs.size()) == 3:
                 obs = torch.unsqueeze(obs, dim=0)
 
+        obs = obs.to(self.device)
 
         c1 = F.relu(self.conv1(obs))
         c2 = F.relu(self.conv2(c1))

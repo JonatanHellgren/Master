@@ -15,15 +15,22 @@ class PPO:
         self.obs_dim = env.obs_size
         self.act_dim = env.n_actions
 
+        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
         # Initilize actor and critic
-        self.actor = FeedForwardNN(self.obs_dim, n_conv, hidden_dim, self.act_dim, softmax=True)
-        self.critic = FeedForwardNN(self.obs_dim, n_conv, hidden_dim, 1)
+        self.actor = FeedForwardNN(self.obs_dim, n_conv, hidden_dim,
+                self.act_dim, self.device, softmax=True).to(self.device)
+
+        self.critic = FeedForwardNN(self.obs_dim, n_conv, hidden_dim,
+                1, self.device).to(self.device)
+
 
         self._init_hyperparameters()
 
         # Optimizers
         self.actor_optim = Adam(self.actor.parameters(), lr=self.actor_lr)
         self.critic_optim = Adam(self.critic.parameters(), lr=self.critic_lr)
+
 
 
     def learn(self, n_epochs, total_timesteps):
@@ -37,7 +44,11 @@ class PPO:
                 sys.stdout.flush()
 
                 batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = self.rollout()
-                print(np.mean(batch_lens))
+                batch_obs = batch_obs.to(self.device)
+                batch_acts = batch_acts.to(self.device)
+                batch_log_probs = batch_log_probs.to(self.device)
+                batch_rtgs = batch_rtgs.to(self.device)
+
 
                 t_so_far += np.sum(batch_lens)
 
@@ -62,15 +73,45 @@ class PPO:
 
                     self.actor_optim.zero_grad()
                     actor_loss.backward(retain_graph=True)
+                    # print(f"actor loss: {actor_loss}")
                     self.actor_optim.step()
 
                     critic_loss = nn.MSELoss()(V, batch_rtgs)
 
                     self.critic_optim.zero_grad()
                     critic_loss.backward()
+                    # print(f"critic loss: {critic_loss}")
                     self.critic_optim.step()
 
+            print('\n')
+            self.run_test()
 
+    def run_test(self):
+        print("Running tests...") 
+        lengths = []
+        objectives = []
+        side_effects = []
+        for test in self.env.test_set:
+            obs = self.env.set_initial_state(test)
+            done = False
+            t = 0
+            for ep_t in range(self.max_timesteps_per_episode):
+                t += 1
+
+                action, log_prob = self.get_action(obs)
+                obs, rew, done, _ = self.env.step(int(action))
+
+                if done:
+                    break
+
+            lengths.append(t)
+            objectives.append(self.env.objectives)
+            side_effects.append(self.env.side_effects)
+
+        print(f"avg_len: {round(np.mean(lengths), 2)}\n avg_obj: {round(np.mean(objectives), 2)}\n avg_side_effects: {round(np.mean(side_effects), 2)}")
+
+
+        
 
 
     def rollout(self):
