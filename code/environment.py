@@ -87,7 +87,6 @@ class MDP:
         reward = -0.04
         if agent_moved:
             new_cell = self.grid[:, agent_cord_new[0], agent_cord_new[1]]
-            print(new_cell)
             agent_cell = np.copy(self.grid[:, self.agent_cord[0], self.agent_cord[1]])
             if any(new_cell == 1):
                 food_type = np.where(new_cell==1)[0][0] 
@@ -118,7 +117,9 @@ class MDP:
 env_params = EnvParams()
 mdp = MDP(env_params)
 ppo = PPO(mdp, 8, 16)
+ppo.learn(10, 1e4)
 """
+batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = ppo.rollout()
 env.reset()
 env.step(1)
 """

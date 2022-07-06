@@ -27,6 +27,9 @@ class FeedForwardNN(nn.Module):
         
         if isinstance(obs, np.ndarray):
             obs = torch.tensor(obs, dtype=torch.float)
+            if len(obs.size()) == 3:
+                obs = torch.unsqueeze(obs, dim=0)
+
 
         c1 = F.relu(self.conv1(obs))
         c2 = F.relu(self.conv2(c1))

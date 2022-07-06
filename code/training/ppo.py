@@ -1,3 +1,7 @@
+import sys
+
+import torch
+from torch import nn
 from torch.distributions import Categorical
 from torch.optim import Adam
 import numpy as np
@@ -22,42 +26,49 @@ class PPO:
         self.critic_optim = Adam(self.critic.parameters(), lr=self.critic_lr)
 
 
-    def learn(self, total_timesteps):
-        t_so_far = 0 
-        while t_so_far < total_timesteps:
+    def learn(self, n_epochs, total_timesteps):
 
-            batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = self.rollout()
+        for it in range(n_epochs):
+            print(f'\nEpoch {it}:')
+            t_so_far = 0 
 
-            t_so_far += np.sum(batch_lens)
+            while t_so_far < total_timesteps:
+                print('.', end='')
+                sys.stdout.flush()
 
-            # Critics evalutations
-            V, _ = self.evaluate(batch_obs, batch_acts)
+                batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = self.rollout()
+                print(np.mean(batch_lens))
 
-            # Compute advantage
-            A_k = batch_rtgs - V.detach()
+                t_so_far += np.sum(batch_lens)
 
-            # Normalize advantage
-            A_k = (A_k - A_k.mean()) / (A_k.std() + 1e-10) # add small number to avoid zero division
+                # Critics evalutations
+                V, _ = self.evaluate(batch_obs, batch_acts)
 
-            for _ in range(self.n_updates_per_iteration):
-                V, curr_log_probs = self.evaluate(batch_obs, batch_acts)
+                # Compute advantage
+                A_k = batch_rtgs - V.detach()
 
-                ratios = torch.exp(curr_log_probs - batch_log_probs)
+                # Normalize advantage
+                A_k = (A_k - A_k.mean()) / (A_k.std() + 1e-10) # add small number to avoid zero division
 
-                surr1 = ratios * A_k
-                surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * A_k
+                for _ in range(self.n_updates_per_iteration):
+                    V, curr_log_probs = self.evaluate(batch_obs, batch_acts)
 
-                actor_loss = (-torch.min(surr1, surr2)).mean()
+                    ratios = torch.exp(curr_log_probs - batch_log_probs)
 
-                self.actor_optim.zero_grad()
-                actor_loss.backward(retain_graph=True)
-                self.actor_optim.step()
+                    surr1 = ratios * A_k
+                    surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * A_k
 
-                critic_loss = nn.MSELoss()(V, batch_rtgs)
+                    actor_loss = (-torch.min(surr1, surr2)).mean()
 
-                self.critic_optim.zero_grad()
-                critic_loss.backward()
-                self.critic_optim.step()
+                    self.actor_optim.zero_grad()
+                    actor_loss.backward(retain_graph=True)
+                    self.actor_optim.step()
+
+                    critic_loss = nn.MSELoss()(V, batch_rtgs)
+
+                    self.critic_optim.zero_grad()
+                    critic_loss.backward()
+                    self.critic_optim.step()
 
 
 
@@ -85,7 +96,7 @@ class PPO:
                 batch_obs.append(obs)
 
                 action, log_prob = self.get_action(obs)
-                obs, rew, done, _ = self.env.step(action)
+                obs, rew, done, _ = self.env.step(int(action))
 
                 # Collect reward, action, and log prob
                 ep_rews.append(rew)
@@ -100,8 +111,8 @@ class PPO:
             batch_rews.append(ep_rews)
 
         # Convert batch data to tensors
-        batch_obs = torch.tensor(batch_obs, dtype=torch.float)
-        batch_acts = torch.tensor(batch_acts, dtype=torch.float)
+        batch_obs = torch.tensor(np.array(batch_obs), dtype=torch.float)
+        batch_acts = torch.tensor(batch_acts, dtype=torch.long)
         batch_log_probs = torch.tensor(batch_log_probs, dtype=torch.float)
 
         batch_rtgs = self.compute_rtgs(batch_rews)
