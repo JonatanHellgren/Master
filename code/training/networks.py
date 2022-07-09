@@ -32,11 +32,15 @@ class FeedForwardNN(nn.Module):
                 obs = torch.unsqueeze(obs, dim=0)
 
         obs = obs.to(self.device)
+        # print(obs.size())
 
         c1 = F.relu(self.conv1(obs))
+        # print(c1.size())
         c2 = F.relu(self.conv2(c1))
+        # print(c1.size())
 
         flat = torch.flatten(c2, start_dim=1) # (batch, feature)
+        # print(flat.size())
 
         activation1 = F.relu(self.layer1(flat))
         activation2 = F.relu(self.layer2(activation1))

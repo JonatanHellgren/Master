@@ -1,18 +1,14 @@
-from environment import MDP, EnvParams
+from environment import MDP, EnvParams 
 from training import PPO
 
+""" TODO """
+# Sep MDP and state
+# Add aux rews
+# Train manager
+# add manager aux
 
-import torch
-
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-
-env_params = EnvParams()
-mdp = MDP(env_params)
-ppo = PPO(mdp, 64, 1024)
-ppo.learn(1000, 1e4)
-"""
-batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = ppo.rollout()
-env.reset()
-env.step(1)
-# env.step(3)
-"""
+if __name__ == "__main__":
+    env_params = EnvParams()
+    mdp = MDP(env_params, pomdp=True)
+    ppo = PPO(mdp, 64, 1024)
+    ppo.learn(1000, 1e4)

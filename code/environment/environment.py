@@ -1,14 +1,11 @@
 import numpy as np
-import random
-import torch as T
 
 from environment.create_environemts import InitialStateDistribution
-from environment.env_params import EnvParams
 
 MOVEMENTS = {
     0: ( 0, 0), # Noop
     1: (-1, 0), # Up
-    2: ( 0, 1), # Right 
+    2: ( 0, 1), # Right
     3: ( 1, 0), # Down
     4: ( 0,-1)  # Left
         }
@@ -17,17 +14,13 @@ class MDP:
     def __init__(self, env_params, obs_len=2, pomdp=False):
 
         self.env_params = env_params
-        self.size = env_params.size
-        self.n_food_types = env_params.n_food_types
         self.n_actions = 5
-        self.reward_range = (-np.inf, np.inf)
         self.pomdp = pomdp
         self.agent_desire = 1
-        self.initial_state_distribution = InitialStateDistribution(env_params)
+        self.initial_state_distribution = InitialStateDistribution(env_params, self.agent_desire)
 
         self.test_set = self.initial_state_distribution.generate_states(env_params.n_test, 1)
-        
-        
+
         if pomdp:
             self.obs_size = (env_params.n_food_types + 1, obs_len*2 + 1, obs_len*2 + 1)
         else:
@@ -63,17 +56,14 @@ class MDP:
         if self.pomdp:
             obs = self.get_observation()
             return obs
-
-        else:
-            return self.grid
-            
+        return self.grid
 
     def get_observation(self):
-        observation = np.zeros((self.n_food_types+1, self.obs_size[0], self.obs_size[1]))
+        observation = np.zeros(self.obs_size)
 
         # for x and y relative to the agent
-        for obs_x in range(self.obs_size[0]):
-            for obs_y in range(self.obs_size[1]):
+        for obs_x in range(self.obs_size[1]):
+            for obs_y in range(self.obs_size[2]):
                 grid_x = self.agent_cord[0] - int(self.obs_size[0]/2) + obs_x
                 grid_y = self.agent_cord[1] - int(self.obs_size[1]/2) + obs_y
 
@@ -87,8 +77,8 @@ class MDP:
 
 
 
-    def inbounds(self, x, y):
-        return (-1 < x and x < self.size[0]) and (-1 < y and y < self.size[1])
+    def inbounds(self, x_cord, y_cord):
+        return (-1 < x_cord and x_cord < self.env_params.size[0]) and (-1 < y_cord and y_cord < self.env_params.size[1])
 
     def step(self, action):
         direction = MOVEMENTS[action]
@@ -99,7 +89,7 @@ class MDP:
             new_cell = self.grid[:, agent_cord_new[0], agent_cord_new[1]]
             agent_cell = np.copy(self.grid[:, self.agent_cord[0], self.agent_cord[1]])
             if any(new_cell == 1):
-                food_type = np.where(new_cell==1)[0][0] 
+                food_type = np.where(new_cell==1)[0][0]
                 if food_type == self.agent_desire:
                     self.objectives += 1
                     reward = 1
