@@ -1,28 +1,23 @@
 import sys
 from collections import defaultdict
 
-import torch
-from torch import nn
+from torch import torch, nn
 from torch.distributions import Categorical
 from torch.optim import Adam
 import numpy as np
 
 class PPO:
-    def __init__(self, mdp, actor, critic, device):
+    def __init__(self, mdp, actor, critic, device, train_parameters):
         # Extract information from the environment
         self.mdp = mdp
-
         self.actor = actor
         self.critic = critic
-
         self.device = device
-
-        # Where are the hyper parameters? Here they are!
-        self._init_hyperparameters()
+        self.train_parameters = train_parameters
 
         # Optimizers
-        self.actor_optim = Adam(self.actor.parameters(), lr=self.actor_lr)
-        self.critic_optim = Adam(self.critic.parameters(), lr=self.critic_lr)
+        self.actor_optim = Adam(self.actor.parameters(), lr=self.train_parameters.actor_lr)
+        self.critic_optim = Adam(self.critic.parameters(), lr=self.train_parameters.critic_lr)
 
         self.logging = defaultdict(list)
 
@@ -62,12 +57,12 @@ class PPO:
                 advantage = (advantage - advantage.mean()) / (advantage.std() + 1e-10)
                 # add small number to avoid zero division
 
-                for _ in range(self.n_updates_per_iteration):
+                for _ in range(self.train_parameters.n_updates_per_iteration):
                     # Here we update the networks a few times with the current rollout
                     value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts)
 
                     actor_loss = _compute_actor_loss(curr_log_probs, batch_log_probs,\
-                                                        advantage, self.clip)
+                                                        advantage, self.train_parameters.clip)
 
                     self.actor_optim.zero_grad()
                     actor_loss.backward(retain_graph=True)
@@ -89,6 +84,9 @@ class PPO:
                 torch.save(self.critic.state_dict(), f'./{directory}/best_critic')
 
     def run_test(self):
+        """
+        Runs the test set defined in the mdp and returns the results
+        """
         print("Running tests...")
         lengths = []
         objectives = []
@@ -128,6 +126,9 @@ class PPO:
         return avg_len, avg_obj, avg_side_effects
 
     def rollout(self):
+        """
+        Move out rollout, make usable for manager aswell
+        """
         # Batch data
         batch_obs = []
         batch_acts = []
@@ -138,12 +139,12 @@ class PPO:
 
         time_step = 0
 
-        while time_step < self.timesteps_per_batch:
+        while time_step < self.train_parameters.timesteps_per_batch:
             # rewards from episode
             ep_rews = []
             obs = self.mdp.reset()
             done = False
-            for ep_time_step in range(self.max_timesteps_per_episode):
+            for ep_time_step in range(self.train_parameters.max_timesteps_per_episode):
                 time_step += 1
 
                 # Collect observation
@@ -173,15 +174,6 @@ class PPO:
 
         return batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens
 
-    def _init_hyperparameters(self):
-        self.timesteps_per_batch = 500
-        self.max_timesteps_per_episode = 500
-        self.gamma = 0.95
-        self.n_updates_per_iteration = 3
-        self.clip = 0.1
-        self.actor_lr = 1e-4
-        self.critic_lr = 7e-4
-
     def compute_rtgs(self, batch_rews):
         batch_rtgs = []
 
@@ -189,7 +181,7 @@ class PPO:
             discounted_reward = 0
 
             for rew in reversed(ep_rews):
-                discounted_reward = rew + discounted_reward * self.gamma
+                discounted_reward = rew + discounted_reward * self.train_parameters.gamma
                 batch_rtgs.insert(0, discounted_reward)
 
         batch_rtgs = torch.tensor(batch_rtgs, dtype=torch.float)
@@ -197,7 +189,10 @@ class PPO:
         return batch_rtgs
 
     def get_action(self, obs, greedy=False):
-
+        """
+        Getting an action from the actor given an observation.
+        Either using the stochastic policy or the greedy one.
+        """
         probs = self.actor(obs)
 
         if greedy:
