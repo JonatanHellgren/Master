@@ -4,11 +4,11 @@ from environment.initial_grid_distribution import InitialGridDistribution
 
 MOVEMENTS = {
     0: ( 0, 0), # Noop
-    1: (-1, 0), # Up
-    2: ( 0, 1), # Right
-    3: ( 1, 0), # Down
-    4: ( 0,-1)  # Left
-        }
+    1: ( 0, 1), # Up
+    2: ( 1, 0), # Right
+    3: ( 0,-1), # Down
+    4: (-1, 0)  # Left
+            }
 
 class MDP:
     def __init__(self, env_params, obs_len=2, pomdp=False):
