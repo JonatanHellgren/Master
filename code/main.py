@@ -33,7 +33,7 @@ if __name__ == "__main__":
     critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
 
     ppo = PPO(mdp, actor, critic, device)
-    ppo.learn(100, 1e5, DIR)
+    ppo.learn(1000, 1e4, DIR)
 
     with open(f'{DIR}/logging.pickle', 'wb') as handle:
         pickle.dump(ppo.logging, handle, protocol=pickle.HIGHEST_PROTOCOL)

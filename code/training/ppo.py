@@ -66,7 +66,8 @@ class PPO:
                     # Here we update the networks a few times with the current rollout
                     value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts)
 
-                    actor_loss = _compute_actor_loss(curr_log_probs, batch_log_probs)
+                    actor_loss = _compute_actor_loss(curr_log_probs, batch_log_probs,\
+                                                        advantage, self.clip)
 
                     self.actor_optim.zero_grad()
                     actor_loss.backward(retain_graph=True)
