@@ -6,6 +6,8 @@ from torch.distributions import Categorical
 from torch.optim import Adam
 import numpy as np
 
+from collections import defaultdict
+
 class PPO:
     def __init__(self, mdp, actor, critic, device):
         # Extract information from the environment
@@ -23,6 +25,7 @@ class PPO:
         self.actor_optim = Adam(self.actor.parameters(), lr=self.actor_lr)
         self.critic_optim = Adam(self.critic.parameters(), lr=self.critic_lr)
 
+        self.logging = defaultdict(list)
 
     def learn(self, n_epochs, total_timesteps, directory):
         """
@@ -97,19 +100,21 @@ class PPO:
         lengths = []
         objectives = []
         side_effects = []
+        dones = 0
         with torch.no_grad():
             for test in self.mdp.test_set:
 
                 obs = self.mdp.set_initial_state(np.copy(test))
                 done = False
                 t = 0
-                for _ in range(self.max_timesteps_per_episode):
+                for _ in range(100):
                     t += 1
 
                     action, _ = self.get_action(obs, greedy=True)
                     obs, _, done, _ = self.mdp.step(int(action))
 
                     if done:
+                        dones += 1
                         break
 
                 lengths.append(t)
@@ -119,7 +124,13 @@ class PPO:
         avg_len = round(np.mean(lengths), 2)
         avg_obj = round(np.mean(objectives), 2)
         avg_side_effects = round(np.mean(side_effects), 2)
-        print(f"avg_len: {avg_len}\n avg_obj: {avg_obj}\n avg_side_effects: {avg_side_effects}")
+
+        self.logging['avg_len'].append(avg_len)
+        self.logging['avg_obj'].append(avg_obj)
+        self.logging['avg_side_effects'].append(avg_side_effects)
+        self.logging['dones'].append(dones)
+        print(f"avg_len: {avg_len}\n avg_obj: {avg_obj}\n avg_side_effects: {avg_side_effects}\n\
+                done: {dones}/100")
 
         return avg_len, avg_obj, avg_side_effects
 
