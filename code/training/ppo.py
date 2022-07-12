@@ -1,12 +1,11 @@
-import sys
+import sy
+from collections import defaultdict
 
 import torch
 from torch import nn
 from torch.distributions import Categorical
 from torch.optim import Adam
 import numpy as np
-
-from collections import defaultdict
 
 class PPO:
     def __init__(self, mdp, actor, critic, device):
@@ -33,11 +32,10 @@ class PPO:
         Each epoch is not finished until the total timesteps are <= total_timesteps.
         After each epoch the test set is run through to evaluate the current networks.
         """
-
         lowest_len = 100
-        for it in range(n_epochs):
-            print(f'\nEpoch {it+1}:')
-            t_so_far = 0 
+        for epoch in range(n_epochs):
+            print(f'\nEpoch {epoch+1}:')
+            t_so_far = 0
 
             while t_so_far < total_timesteps:
                 # yank progress bar
@@ -55,35 +53,34 @@ class PPO:
                 t_so_far += np.sum(batch_lens)
 
                 # Critics evalutations
-                V, _ = self.evaluate(batch_obs, batch_acts)
+                value_estimate, _ = self.evaluate(batch_obs, batch_acts)
 
                 # Compute advantage
-                A_k = batch_rtgs - V.detach()
+                advvantage = batch_rtgs - value_estimate.detach()
 
                 # Normalize advantage to make the learning more stable
-                A_k = (A_k - A_k.mean()) / (A_k.std() + 1e-10) # add small number to avoid zero division
+                advvantage = (advvantage - advvantage.mean()) / (advvantage.std() + 1e-10)
+                # add small number to avoid zero division
 
                 for _ in range(self.n_updates_per_iteration):
                     # Here we update the networks a few times with the current rollout
-                    V, curr_log_probs = self.evaluate(batch_obs, batch_acts)
+                    value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts)
 
                     # Since, exp(log(a) - log(b)) = (a / b), we can perform this computation
                     ratios = torch.exp(curr_log_probs - batch_log_probs)
-                    surr1 = ratios * A_k
-                    surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * A_k
+                    surr1 = ratios * advvantage
+                    surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * advvantage
 
                     actor_loss = (-torch.min(surr1, surr2)).mean()
 
                     self.actor_optim.zero_grad()
                     actor_loss.backward(retain_graph=True)
-                    # print(f"actor loss: {actor_loss}")
                     self.actor_optim.step()
 
-                    critic_loss = nn.MSELoss()(V, batch_rtgs)
+                    critic_loss = nn.MSELoss()(value_estimate, batch_rtgs)
 
                     self.critic_optim.zero_grad()
                     critic_loss.backward()
-                    # print(f"critic loss: {critic_loss}")
                     self.critic_optim.step()
 
             print('\n')
@@ -96,7 +93,7 @@ class PPO:
                 torch.save(self.critic.state_dict(), f'./{directory}/best_critic')
 
     def run_test(self):
-        print("Running tests...") 
+        print("Running tests...")
         lengths = []
         objectives = []
         side_effects = []
@@ -106,9 +103,9 @@ class PPO:
 
                 obs = self.mdp.set_initial_state(np.copy(test))
                 done = False
-                t = 0
+                time_step = 0
                 for _ in range(100):
-                    t += 1
+                    time_step += 1
 
                     action, _ = self.get_action(obs, greedy=True)
                     obs, _, done, _ = self.mdp.step(int(action))
@@ -117,7 +114,7 @@ class PPO:
                         dones += 1
                         break
 
-                lengths.append(t)
+                lengths.append(time_step)
                 objectives.append(self.mdp.objectives)
                 side_effects.append(self.mdp.side_effects)
 
@@ -143,15 +140,15 @@ class PPO:
         batch_rtgs = []
         batch_lens = []
 
-        t = 0
+        time_step = 0
 
-        while t < self.timesteps_per_batch:
+        while time_step < self.timesteps_per_batch:
             # rewards from episode
             ep_rews = []
             obs = self.mdp.reset()
             done = False
-            for ep_t in range(self.max_timesteps_per_episode):
-                t += 1
+            for ep_time_step in range(self.max_timesteps_per_episode):
+                time_step += 1
 
                 # Collect observation
                 batch_obs.append(np.copy(obs))
@@ -168,7 +165,7 @@ class PPO:
                     break
 
             # Collect episodic length and rewards
-            batch_lens.append(ep_t + 1) # +1, since t is initalized as 0
+            batch_lens.append(ep_time_step + 1) # +1, since t is initalized as 0
             batch_rews.append(ep_rews)
 
         # Convert batch data to tensors
@@ -182,7 +179,7 @@ class PPO:
 
     def _init_hyperparameters(self):
         self.timesteps_per_batch = 500
-        self.max_timesteps_per_episode = 500 
+        self.max_timesteps_per_episode = 500
         self.gamma = 0.95
         self.n_updates_per_iteration = 3
         self.clip = 0.1
@@ -193,7 +190,6 @@ class PPO:
         batch_rtgs = []
 
         for ep_rews in reversed(batch_rews):
-            
             discounted_reward = 0
 
             for rew in reversed(ep_rews):
@@ -211,7 +207,7 @@ class PPO:
         if greedy:
             # Select action with highest probability
             action = torch.argmax(probs, dim=1)
-        else: 
+        else:
             # Sample action
             distr = Categorical(probs)
             action = distr.sample()
@@ -221,9 +217,9 @@ class PPO:
         return action, log_prob.detach()
 
     def evaluate(self, batch_obs, batch_acts):
-        V = self.critic(batch_obs).squeeze()
-        
+        value_estimate = self.critic(batch_obs).squeeze()
+
         all_probs = self.actor(batch_obs)
         log_probs = torch.log(all_probs[range(len(batch_acts)), batch_acts])
 
-        return V, log_probs
+        return value_estimate, log_probs
