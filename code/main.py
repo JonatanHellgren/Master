@@ -1,3 +1,5 @@
+import pickle
+
 import torch
 
 from training import FeedForwardNN
@@ -5,10 +7,12 @@ from environment import MDP, EnvParams
 from training import PPO
 
 """ TODO """
-# save best model
+# Train static
 # Add aux rews
-# Train manager
+# Train manager using best actor
 # add manager aux
+
+DIR = 'models/static'
 
 if __name__ == "__main__":
     env_params = EnvParams()
@@ -29,4 +33,11 @@ if __name__ == "__main__":
     critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
 
     ppo = PPO(mdp, actor, critic, device)
-    ppo.learn(100, 1e4, 'test_training')
+    ppo.learn(100, 1e5, DIR)
+
+    with open(f'{DIR}/logging.pickle', 'wb') as handle:
+        pickle.dump(ppo.logging, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    """
+    with open(f'{DIR}/logging.pickle', 'rb') as handle:
+        unserialized_data = pickle.load(handle)
+    """

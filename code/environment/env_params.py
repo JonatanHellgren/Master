@@ -1,8 +1,8 @@
 class EnvParams:
-    size = (7, 7)
-    n_foods = 12
+    size = (10, 10)
+    n_foods = 15
     n_food_types = 3
-    n_test = 10
+    n_test = 100
    
 """
 env_params = {
