@@ -1,4 +1,4 @@
-import sy
+import sys
 from collections import defaultdict
 
 import torch
@@ -56,22 +56,17 @@ class PPO:
                 value_estimate, _ = self.evaluate(batch_obs, batch_acts)
 
                 # Compute advantage
-                advvantage = batch_rtgs - value_estimate.detach()
+                advantage = batch_rtgs - value_estimate.detach()
 
                 # Normalize advantage to make the learning more stable
-                advvantage = (advvantage - advvantage.mean()) / (advvantage.std() + 1e-10)
+                advantage = (advantage - advantage.mean()) / (advantage.std() + 1e-10)
                 # add small number to avoid zero division
 
                 for _ in range(self.n_updates_per_iteration):
                     # Here we update the networks a few times with the current rollout
                     value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts)
 
-                    # Since, exp(log(a) - log(b)) = (a / b), we can perform this computation
-                    ratios = torch.exp(curr_log_probs - batch_log_probs)
-                    surr1 = ratios * advvantage
-                    surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * advvantage
-
-                    actor_loss = (-torch.min(surr1, surr2)).mean()
+                    actor_loss = _compute_actor_loss(curr_log_probs, batch_log_probs)
 
                     self.actor_optim.zero_grad()
                     actor_loss.backward(retain_graph=True)
@@ -183,8 +178,8 @@ class PPO:
         self.gamma = 0.95
         self.n_updates_per_iteration = 3
         self.clip = 0.1
-        self.actor_lr = 1e-5
-        self.critic_lr = 1e-4
+        self.actor_lr = 1e-4
+        self.critic_lr = 7e-4
 
     def compute_rtgs(self, batch_rews):
         batch_rtgs = []
@@ -223,3 +218,13 @@ class PPO:
         log_probs = torch.log(all_probs[range(len(batch_acts)), batch_acts])
 
         return value_estimate, log_probs
+
+def _compute_actor_loss(curr_log_probs, batch_log_probs, advantage, clip):
+    # Since, exp(log(a) - log(b)) = (a / b), we can perform this computation
+    ratios = torch.exp(curr_log_probs - batch_log_probs)
+    surr1 = ratios * advantage
+    surr2 = torch.clamp(ratios, 1 - clip, 1 + clip) * advantage
+
+    actor_loss = (-torch.min(surr1, surr2)).mean()
+
+    return actor_loss
