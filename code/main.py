@@ -2,8 +2,9 @@ import pickle
 
 import torch
 
-from training import FeedForwardNN, TrainParameters, PPO
+from training import TrainParameters, PPO
 from environment import MDP, EnvParams 
+from networks import FeedForwardNN, Agent
 
 """ TODO """
 # Train static
@@ -30,10 +31,6 @@ if __name__ == "__main__":
     n_conv = 64
     hidden_dim = 1024
 
-    # Initilize actor 
-    actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-    # and critic
-    critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
     train_parameters = TrainParameters(
             500,  # timesteps_per_batch 
             500,  # max_timesteps_per_episode 
@@ -43,7 +40,14 @@ if __name__ == "__main__":
             1e-4, # actor_lr 
             7e-4) # critic_lr 
 
-    ppo = PPO(mdp, actor, critic, device, train_parameters)
+    # Initilize actor 
+    actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
+    # and critic
+    critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+
+    agent = Agent(actor, critic, train_parameters)
+
+    ppo = PPO(mdp, agent, device, train_parameters)
     ppo.learn(1000, 1e4, DIR)
 
     with open(f'{DIR}/logging.pickle', 'wb') as handle:
