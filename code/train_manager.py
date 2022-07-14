@@ -2,7 +2,7 @@ import pickle
 
 import torch
 
-from training import TrainParameters, PPO, ManagerTrainer
+from training import TrainParameters, ManagerTrainer
 from environment import MDP, EnvParams 
 from networks import FeedForwardNN, Agent
 
