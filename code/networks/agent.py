@@ -1,10 +1,10 @@
-from torch import argmax, log, exp, clamp, min, nn
+from torch import argmax, log, exp, clamp, min, nn, squeeze
 from torch.distributions import Categorical
 from torch.optim import Adam
 
 class Agent:
     """
-    Class to invluce the networks that the agent consists off.
+    Class to incluce the networks that the agent consists off.
     And function for using them.
     """
     def __init__(self, actor, critic, train_parameters, manager=None):
@@ -44,6 +44,14 @@ class Agent:
             self.critic_optim.zero_grad()
             critic_loss.backward()
             self.critic_optim.step()
+
+    def train_manager(self, batch_obs, batch_rtgs):
+        rtgs_pred = squeeze(self.manager(batch_obs))
+        manager_loss = nn.MSELoss()(rtgs_pred, batch_rtgs)
+
+        self.manager_optim.zero_grad()
+        manager_loss.backward()
+        self.manager_optim.step()
 
     def get_action(self, obs, greedy=False):
         """

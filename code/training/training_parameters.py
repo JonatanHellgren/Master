@@ -9,3 +9,4 @@ class TrainParameters(NamedTuple):
     clip                      : int  # 0.1
     actor_lr                  : int  # 1e-4
     critic_lr                 : int  # 7e-4
+    manager_lr                : int  # 1e-4

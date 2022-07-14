@@ -4,7 +4,7 @@ from collections import defaultdict
 from torch import save, no_grad
 import numpy as np
 
-from .training_utils import rollout
+from .training_utils import rollout, rollout_test_set
 
 class PPO:
     """
@@ -19,7 +19,7 @@ class PPO:
 
         self.logging = defaultdict(list)
 
-    def learn(self, n_epochs, total_timesteps, directory):
+    def train(self, n_epochs, total_timesteps, directory):
         """
         Trains the networks using the ppo clipped loss for n_epochs.
         Each epoch is not finished until the total timesteps are <= total_timesteps.
@@ -51,7 +51,7 @@ class PPO:
                 self.agent.train(batch_obs, batch_acts, batch_log_probs, batch_rtgs)
 
             print('\n')
-            avg_len, _, _ = self.run_test()
+            avg_len = self.run_test()
 
             if avg_len < lowest_len:
                 lowest_len = avg_len
@@ -66,38 +66,9 @@ class PPO:
         save(self.agent.critic.state_dict(), f'./{directory}/best_critic')
 
     def run_test(self):
-        """
-        Runs the test set defined in the mdp and returns the results
-        """
-        print("Running tests...")
-        lengths = []
-        objectives = []
-        side_effects = []
-        dones = 0
-        with no_grad():
-            for test in self.mdp.test_set:
 
-                obs = self.mdp.set_initial_state(np.copy(test))
-                done = False
-                time_step = 0
-                for _ in range(100):
-                    time_step += 1
-
-                    action, _ = self.agent.get_action(obs, greedy=True)
-                    obs, _, done, _ = self.mdp.step(int(action))
-
-                    if done:
-                        dones += 1
-                        break
-
-                lengths.append(time_step)
-                objectives.append(self.mdp.objectives)
-                side_effects.append(self.mdp.side_effects)
-
-        avg_len = round(np.mean(lengths), 2)
-        avg_obj = round(np.mean(objectives), 2)
-        avg_side_effects = round(np.mean(side_effects), 2)
-
+        _, _, avg_len, avg_obj, avg_side_effects, dones = \
+                rollout_test_set(self.agent, self.train_parameters, self.mdp)
         self.logging['avg_len'].append(avg_len)
         self.logging['avg_obj'].append(avg_obj)
         self.logging['avg_side_effects'].append(avg_side_effects)
@@ -105,4 +76,4 @@ class PPO:
         print(f"avg_len: {avg_len}\n avg_obj: {avg_obj}\n avg_side_effects: {avg_side_effects}\n\
                 done: {dones}/100")
 
-        return avg_len, avg_obj, avg_side_effects
+        return avg_len
