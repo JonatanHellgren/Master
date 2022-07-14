@@ -1,5 +1,3 @@
-import pickle
-
 import torch
 
 from training import TrainParameters, ManagerTrainer
@@ -14,7 +12,7 @@ if __name__ == "__main__":
             15,      # n_foods
             3,       # n_food_types
             100)     # n_test
-    mdp = MDP(env_params, pomdp=True)
+    mdp = MDP(env_params, pomdp=False)
 
     obs_dim = mdp.obs_size
     act_dim = mdp.n_actions
@@ -36,7 +34,7 @@ if __name__ == "__main__":
             1e-4) # manager_lr
 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-    actor.load_state_dict(torch.load('./models/static/best_actor', map_location=torch.device('cpu')))
+    actor.load_state_dict(torch.load('./models/static/best_actor', map_location=torch.device(device)))
 
     critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
     manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)

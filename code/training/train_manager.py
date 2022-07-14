@@ -17,6 +17,7 @@ class ManagerTrainer:
         self.logging = defaultdict(list)
 
         self.x_test, self.y_test = self.get_test_set()
+        self.y_test = self.y_test.to(device)
 
         # Make sure that manager is incuded in agent
         assert agent.manager is not None

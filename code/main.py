@@ -14,7 +14,7 @@ if __name__ == "__main__":
             15,      # n_foods
             3,       # n_food_types
             100)     # n_test
-    mdp = MDP(env_params, pomdp=True)
+    mdp = MDP(env_params, pomdp=False)
 
     obs_dim = mdp.obs_size
     act_dim = mdp.n_actions
