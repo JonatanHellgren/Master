@@ -5,7 +5,7 @@ import numpy as np
 
 from environment import MDP, EnvParams
 
-def plot_grid(axis, max_x, max_y):
+def plot_grid_lines(axis, max_x, max_y):
     """
     Creates a empty grid on the given axis of the specified size (max_x, max_y).
     """
@@ -56,19 +56,30 @@ def plot_object(cell, x_cord, y_cord, axis):
 
         axis.add_patch(obj)
 
+def plot_grid(grid):
+    _, max_x, max_y = grid.shape
+    fig, axis = plt.subplots(figsize=(1,1))
+
+    plot_grid_lines(axis, max_x, max_y)
+    plot_objects(grid, axis, max_x, max_y)
+    fig.show()
+
 def run_environment():
-    env_params = EnvParams()
+    env_params = EnvParams(
+            (10,10), # size
+            15,      # n_foods
+            3,       # n_food_types
+            100)     # n_test
     mdp = MDP(env_params)
     grid = mdp.reset()
     _, max_x, max_y = grid.shape
     fig, axis = plt.subplots(figsize=(1,1))
 
-
     done = False
     while not done:
 
         # add side effects and objectives to mdp.info and teturn with .step
-        plot_grid(axis, max_x, max_y)
+        plot_grid_lines(axis, max_x, max_y)
         plot_objects(grid, axis, max_x, max_y)
         fig.show()
 
@@ -82,5 +93,5 @@ def run_environment():
             plot_objects(grid, axis, max_x, max_y)
             fig.show()
 
-if __name__ == "__main__":
-    run_environment()
+# if __name__ == "__main__":
+    # run_environment()

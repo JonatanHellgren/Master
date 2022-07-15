@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 import numpy as np
-from torch import tensor, long, float
+import torch
 
     # Move out, rollout
     # Make usable for manager
@@ -35,7 +35,7 @@ def rollout_test_set(agent, train_parameters, mdp):
     avg_obj = round(np.mean(data["objectives"]), 2)
     avg_side_effects = round(np.mean(data["side_effects"]), 2)
 
-    batch_obs = tensor(np.array(data["batch_obs"]), dtype=float)
+    batch_obs = torch.tensor(np.array(data["batch_obs"]), dtype=torch.float)
     batch_rtgs = _compute_rtgs(data["batch_rews"], train_parameters)
 
     return batch_obs, batch_rtgs, avg_len, avg_obj, avg_side_effects, dones
@@ -57,13 +57,29 @@ def rollout(agent, train_parameters, mdp, use_aux=False):
         data["batch_rews"].append(ep_rews)
 
     # Convert batch data to tensors
-    batch_obs = tensor(np.array(data["batch_obs"]), dtype=float)
-    batch_acts = tensor(data["batch_acts"], dtype=long)
-    batch_log_probs = tensor(data["batch_log_probs"], dtype=float)
+    batch_obs = torch.tensor(np.array(data["batch_obs"]), dtype=torch.float)
+    batch_acts = torch.tensor(data["batch_acts"], dtype=torch.long)
+    batch_log_probs = torch.tensor(data["batch_log_probs"], dtype=torch.float)
+
+    if use_aux:
+        data["batch_rews"] = _add_auxiliary_reward(batch_obs, data["batch_rews"], agent.manager)
 
     batch_rtgs = _compute_rtgs(data["batch_rews"], train_parameters)
 
     return batch_obs, batch_acts, batch_log_probs, batch_rtgs, data["batch_lens"]
+
+def _add_auxiliary_reward(batch_obs, batch_rews, manager):
+    idx = 0
+    for i, ep_rews in enumerate(batch_rews):
+        batch_len = len(ep_rews)
+        ep_aux_reward = manager.forward(batch_obs[idx:(idx+batch_len)])
+        relative_aux_reward = ep_aux_reward[1:] - ep_aux_reward[0:-1] 
+        ep_rews_tensor = torch.tensor(ep_rews)
+        ep_rews_tensor[0:-1] += relative_aux_reward
+        idx += batch_len
+        batch_rews[i] = [float(r) for r in ep_rews_tensor]
+    return batch_rews
+
 
 def _ep_rollout(mdp, obs, train_parameters, data, agent, greedy=False):
     ep_rews = []
@@ -96,6 +112,6 @@ def _compute_rtgs(batch_rews, train_parameters):
             discounted_reward = rew + discounted_reward * train_parameters.gamma
             batch_rtgs.insert(0, discounted_reward)
 
-    batch_rtgs = tensor(batch_rtgs, dtype=float)
+    batch_rtgs = torch.tensor(batch_rtgs, dtype=torch.float)
 
     return batch_rtgs

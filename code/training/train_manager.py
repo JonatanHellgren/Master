@@ -3,6 +3,7 @@ from collections import defaultdict
 
 from torch import save, no_grad, squeeze, nn
 import numpy as np
+from numpy import random
 
 from .training_utils import rollout, rollout_test_set
 
@@ -38,6 +39,9 @@ class ManagerTrainer:
                 batch_obs, _, _, batch_rtgs, batch_lens = \
                         rollout(self.agent, self.train_parameters, self.mdp)
 
+                # Augment the batch
+                _augment_batch(batch_obs)
+
                 # Move to gpu
                 batch_obs = batch_obs.to(self.device)
                 batch_rtgs = batch_rtgs.to(self.device)
@@ -66,3 +70,11 @@ class ManagerTrainer:
             manager_loss = nn.MSELoss()(manager_rtgs, self.y_test)
             print(manager_loss)
             return manager_loss
+
+
+def _augment_batch(batch_obs):
+
+    for ind in range(batch_obs.size()[0]):
+        aug_dim = random.choice([1, 2, 3], 3, replace=False)
+        aug_dim = np.insert(aug_dim, 0, 0)
+        batch_obs[ind, :, :, :] = batch_obs[ind, aug_dim, :, :]

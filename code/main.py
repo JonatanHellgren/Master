@@ -46,7 +46,7 @@ if __name__ == "__main__":
     Train agent
     """
     ppo = PPO(mdp, agent, device, train_parameters)
-    ppo.train(1000, 1e4, DIR)
+    # ppo.train(1000, 1e4, DIR)
 
     """
     Manager
