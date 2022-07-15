@@ -33,7 +33,8 @@ if __name__ == "__main__":
             0.1,  # clip 
             1e-4, # actor_lr 
             7e-4, # critic_lr 
-            1e-4) # manager_lr
+            1e-4, # manager_lr
+            1)    # lmbda
 
     # Initilize actor 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
@@ -62,4 +63,13 @@ if __name__ == "__main__":
     agent = Agent(actor, critic, train_parameters, manager)
 
     manager_trainer = ManagerTrainer(mdp, agent, device, train_parameters)
-    manager_trainer.train(300, 1e4, DIR)
+    # manager_trainer.train(300, 1e4, DIR)
+
+    actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
+    critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
+
+    agent = Agent(actor, critic, train_parameters, manager)
+
+    ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
+    ppo_aux.train(300, 1e4, '.')

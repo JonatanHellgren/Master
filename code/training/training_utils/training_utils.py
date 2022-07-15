@@ -44,7 +44,7 @@ def rollout(agent, train_parameters, mdp, use_aux=False):
     # Batch data
     data = defaultdict(list)
 
-    time_step = 0
+    time_step = 1
 
     while time_step < train_parameters.timesteps_per_batch:
         # rewards from episode
@@ -62,20 +62,25 @@ def rollout(agent, train_parameters, mdp, use_aux=False):
     batch_log_probs = torch.tensor(data["batch_log_probs"], dtype=torch.float)
 
     if use_aux:
-        data["batch_rews"] = _add_auxiliary_reward(batch_obs, data["batch_rews"], agent.manager)
+        data["batch_rews"] = \
+                _add_auxiliary_reward(batch_obs, data["batch_rews"],
+                                      agent.manager, train_parameters.lmbda)
 
     batch_rtgs = _compute_rtgs(data["batch_rews"], train_parameters)
 
     return batch_obs, batch_acts, batch_log_probs, batch_rtgs, data["batch_lens"]
 
-def _add_auxiliary_reward(batch_obs, batch_rews, manager):
+def _add_auxiliary_reward(batch_obs, batch_rews, manager, lmbda):
     idx = 0
     for i, ep_rews in enumerate(batch_rews):
         batch_len = len(ep_rews)
-        ep_aux_reward = manager.forward(batch_obs[idx:(idx+batch_len)])
-        relative_aux_reward = ep_aux_reward[1:] - ep_aux_reward[0:-1] 
+        ep_aux_taks = _get_auxiliary_tasks(batch_obs[idx:(idx+batch_len)])
+        aux_rews = manager(ep_aux_taks).detach()
+        aux_rews = torch.reshape(aux_rews, (batch_len, 2))
+        mean_aux_rews = torch.mean(aux_rews, dim=1)
+        relative_aux_reward = mean_aux_rews[1:] - mean_aux_rews[0:-1] 
         ep_rews_tensor = torch.tensor(ep_rews)
-        ep_rews_tensor[0:-1] += relative_aux_reward
+        ep_rews_tensor[0:-1] += lmbda * relative_aux_reward
         idx += batch_len
         batch_rews[i] = [float(r) for r in ep_rews_tensor]
     return batch_rews
@@ -115,3 +120,29 @@ def _compute_rtgs(batch_rews, train_parameters):
     batch_rtgs = torch.tensor(batch_rtgs, dtype=torch.float)
 
     return batch_rtgs
+
+def _get_auxiliary_tasks(batch_obs):
+    b, f, x, y = batch_obs.size()
+    batch_auxiliary_tasks = torch.zeros(b*2, f, x, y)
+
+    for ind in range(b):
+        auxiliary_tasks = _augment_agent_color(batch_obs[ind,:,:,:])
+        batch_auxiliary_tasks[ind*2:ind*2+2, :, :, :] = auxiliary_tasks
+
+    return batch_auxiliary_tasks
+
+def _augment_agent_color(grid):
+    grid = torch.unsqueeze(grid, 0)
+    agent_cord = torch.where(grid[0, 0, :, :] == 1)
+    agent_x = int(agent_cord[0][0])
+    agent_y = int(agent_cord[1][0])
+    
+    grid_1 = grid.clone()
+    grid_2 = grid.clone()
+
+    grid_1[0, :, agent_x, agent_y] = torch.tensor([1, 0, 1, 0])
+    grid_2[0, :, agent_x, agent_y] = torch.tensor([1, 0, 0, 1])
+
+    return torch.cat((grid_1, grid_2), dim=0)
+
+
