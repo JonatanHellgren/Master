@@ -46,7 +46,7 @@ if __name__ == "__main__":
     Train agent
     """
     ppo = PPO(mdp, agent, device, train_parameters)
-    # ppo.train(1000, 1e4, DIR)
+    # ppo.train(300, 1e4, DIR)
 
     """
     Manager
@@ -55,11 +55,11 @@ if __name__ == "__main__":
         pickle.dump(ppo.logging, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-    actor.load_state_dict(torch.load('./models/static/best_actor', map_location=torch.device(device)))
+    actor.load_state_dict(torch.load(f'./{DIR}/best_actor', map_location=torch.device(device)))
 
     manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
 
     agent = Agent(actor, critic, train_parameters, manager)
 
     manager_trainer = ManagerTrainer(mdp, agent, device, train_parameters)
-    manager_trainer.train(1000, 1e4, DIR)
+    manager_trainer.train(300, 1e4, DIR)
