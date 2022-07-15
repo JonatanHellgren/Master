@@ -1,6 +1,7 @@
 import pickle
 
 import torch
+import numpy as np
 
 from training import TrainParameters, PPO, ManagerTrainer
 from environment import MDP, EnvParams 
@@ -8,7 +9,8 @@ from networks import FeedForwardNN, Agent
 
 DIR = 'models/static'
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
+def main():
     env_params = EnvParams(
             (10,10), # size
             15,      # n_foods
@@ -34,7 +36,7 @@ if __name__ == "__main__":
             1e-4, # actor_lr 
             7e-4, # critic_lr 
             1e-4, # manager_lr
-            1)    # lmbda
+            0.1)    # lmbda
 
     # Initilize actor 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
@@ -65,11 +67,44 @@ if __name__ == "__main__":
     manager_trainer = ManagerTrainer(mdp, agent, device, train_parameters)
     # manager_trainer.train(300, 1e4, DIR)
 
-    actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-    critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+def train_aux():
+    env_params = EnvParams(
+            (10,10), # size
+            15,      # n_foods
+            3,       # n_food_types
+            100)     # n_test
+    mdp = MDP(env_params, pomdp=False)
+
+    obs_dim = mdp.obs_size
+    act_dim = mdp.n_actions
+
+    # Find what device is available
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+    n_conv = 64
+    hidden_dim = 1024
+
+    manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
     manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
+    
+    loggings = []
+    for lmbda in np.linspace(0,1,11):
+        train_parameters = TrainParameters(
+                100,  # timesteps_per_batch 
+                500,  # max_timesteps_per_episode 
+                0.95, # gamma 
+                3,    # n_updates_per_iteration 
+                0.1,  # clip 
+                1e-4, # actor_lr 
+                7e-4, # critic_lr 
+                1e-4, # manager_lr
+                lmbda)# lmbda
 
-    agent = Agent(actor, critic, train_parameters, manager)
+        actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
+        critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+        agent = Agent(actor, critic, train_parameters, manager)
 
-    ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
-    ppo_aux.train(300, 1e4, '.')
+        ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
+        ppo_aux.train(200, 1e4, '.')
+        loggings.append(ppo_aux.logging)
+    return loggings
