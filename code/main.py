@@ -7,13 +7,13 @@ from training import TrainParameters, PPO, ManagerTrainer
 from environment import MDP, EnvParams 
 from networks import FeedForwardNN, Agent
 
-DIR = 'models/static'
+DIR = 'models/static_4x4'
 
-# if __name__ == "__main__":
-def main():
+if __name__ == "__main__":
+# def main():
     env_params = EnvParams(
-            (10,10), # size
-            15,      # n_foods
+            (4, 4),  # size
+            9,       # n_foods
             3,       # n_food_types
             100)     # n_test
     mdp = MDP(env_params, pomdp=False)
@@ -36,7 +36,7 @@ def main():
             1e-4, # actor_lr 
             7e-4, # critic_lr 
             1e-4, # manager_lr
-            0.1)    # lmbda
+            0.1)  # lmbda
 
     # Initilize actor 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
@@ -49,7 +49,7 @@ def main():
     Train agent
     """
     ppo = PPO(mdp, agent, device, train_parameters)
-    # ppo.train(300, 1e4, DIR)
+    ppo.train(300, 1e4, DIR)
 
     """
     Manager
@@ -65,7 +65,7 @@ def main():
     agent = Agent(actor, critic, train_parameters, manager)
 
     manager_trainer = ManagerTrainer(mdp, agent, device, train_parameters)
-    # manager_trainer.train(300, 1e4, DIR)
+    manager_trainer.train(300, 1e4, DIR)
 
 def train_aux():
     env_params = EnvParams(

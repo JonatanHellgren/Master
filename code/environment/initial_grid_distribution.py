@@ -30,11 +30,14 @@ class InitialGridDistribution:
 
         for ind, cord in enumerate(cords):
             # First three will be of type one
+            food_type = ind%3 + 1
+            """
             if ind < 3:
                 food_type = self.agent_desire
             # Then we sample randomly from a food greater then one
             else:
                 food_type = random.choice(range(1, self.env_params.n_food_types)) + 1
+            """
             # Place food
             grid[food_type, cord[0], cord[1]] = 1
 

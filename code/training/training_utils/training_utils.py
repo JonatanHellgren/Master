@@ -13,8 +13,6 @@ def rollout_test_set(agent, train_parameters, mdp):
 
     dones = 0
 
-    objectives = []
-    side_effects = []
     for test in mdp.test_set:
         # rewards from episode
         obs = mdp.set_initial_state(np.copy(test))
@@ -28,8 +26,6 @@ def rollout_test_set(agent, train_parameters, mdp):
         data["batch_rews"].append(ep_rews)
         data["objectives"].append(mdp.objectives)
         data["side_effects"].append(mdp.side_effects)
-
-    data["batch_rtgs"] = _compute_rtgs(data["batch_rews"], train_parameters)
 
     avg_len = round(np.mean(data["batch_lens"]), 2)
     avg_obj = round(np.mean(data["objectives"]), 2)
@@ -109,6 +105,7 @@ def _ep_rollout(mdp, obs, train_parameters, data, agent, greedy=False):
 
 def _compute_rtgs(batch_rews, train_parameters):
     batch_rtgs = []
+    # print(batch_rews)
 
     for ep_rews in reversed(batch_rews):
         discounted_reward = 0

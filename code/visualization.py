@@ -1,5 +1,9 @@
 import itertools
+import sys
 
+import colorama
+from colorama import Fore
+import torch
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -63,6 +67,56 @@ def plot_grid(grid):
     plot_grid_lines(axis, max_x, max_y)
     plot_objects(grid, axis, max_x, max_y)
     fig.show()
+
+def print_grid(grid):
+
+    if type(grid) is not torch.Tensor:
+        grid = torch.tensor(grid)
+
+    f, max_x, max_y = grid.size()
+
+    _print_boarder(max_x)
+    for y_cord in range(max_y):
+
+        print(Fore.WHITE, '|', end='')
+        for x_cord in range(max_x):
+            cell = grid[:, y_cord, x_cord]
+
+            # If agent cell
+            if cell[0] == 1:
+                if cell[1] == 1:
+                    print(Fore.RED, '[=]', end='')
+                    sys.stdout.flush()
+                elif cell[2] == 1:
+                    print(Fore.GREEN, '[=]', end='')
+                elif cell[3] == 1:
+                    print(Fore.BLUE, '[=]', end='')
+                else:
+                    print('[=]', end='')
+
+
+            elif cell[1] == 1:
+                print(Fore.RED, ' 0 ', end='')
+            elif cell[2] == 1:
+                print(Fore.GREEN, ' 0 ', end='')
+            elif cell[3] == 1:
+                print(Fore.BLUE, ' 0 ', end='')
+            else:
+                print('    ', end='')
+
+            print(Fore.WHITE, '|', end='')
+        
+        print('\n')
+
+        _print_boarder(max_x)
+
+def _print_boarder(max_x):
+    print(Fore.WHITE, '+', end='')
+    for _ in range(max_x):
+        print(Fore.WHITE, '--- +', end='')
+
+    print('\n')
+
 
 def run_environment():
     env_params = EnvParams(
