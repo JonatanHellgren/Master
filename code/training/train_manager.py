@@ -73,7 +73,6 @@ class ManagerTrainer:
 
 
 def _augment_batch(batch_obs):
-
     for ind in range(batch_obs.size()[0]):
         aug_dim = random.choice([1, 2, 3], 3, replace=False)
         aug_dim = np.insert(aug_dim, 0, 0)

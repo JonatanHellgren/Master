@@ -69,8 +69,8 @@ if __name__ == "__main__":
 
 def train_aux():
     env_params = EnvParams(
-            (10,10), # size
-            15,      # n_foods
+            (4,4), # size
+            9,      # n_foods
             3,       # n_food_types
             100)     # n_test
     mdp = MDP(env_params, pomdp=False)
@@ -105,6 +105,6 @@ def train_aux():
         agent = Agent(actor, critic, train_parameters, manager)
 
         ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
-        ppo_aux.train(200, 1e4, '.')
+        ppo_aux.train(100, 1e4, '.')
         loggings.append(ppo_aux.logging)
     return loggings

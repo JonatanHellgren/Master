@@ -1,9 +1,54 @@
 import torch
+from numpy import random
 
 from training import TrainParameters
 from environment import MDP, EnvParams 
 from networks import FeedForwardNN, Agent
 from training.training_utils import rollout
+
+DIR = 'models/static_4x4'
+
+def test_augmentation():
+    """
+    Tests if the manager outputs similar expected utilities when augmenting 
+    the environment
+    """
+    # setup environment
+    env_params = EnvParams(
+            (4, 4),  # size
+            9,      # n_foods
+            3,       # n_food_types
+            100)     # n_test
+    mdp = MDP(env_params, pomdp=False)
+
+    obs_dim = mdp.obs_size
+    act_dim = mdp.n_actions
+
+    # Find what device is available
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+    # Loading manager for 4x4 environment
+    n_conv = 64
+    hidden_dim = 1024
+    manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
+
+    random.seed(1)
+    grid = mdp.reset()
+
+    # Get expected value from manager using the original grid
+    v = manager(grid)
+
+    # Compare expected values between original and augmented grids 
+    # Check if they are within a range of 0.25
+    v_aug_1 = manager(grid[[0,2,1,3],:,:])
+    assert torch.abs(v - v_aug_1) < 0.25
+
+    v_aug_2 = manager(grid[[0,2,3,1],:,:])
+    assert torch.abs(v - v_aug_2) < 0.25
+
+    v_aug_3 = manager(grid[[0,3,2,1],:,:])
+    assert torch.abs(v - v_aug_3) < 0.25
 
 def test_manager_decrease():
     env_params = EnvParams(
