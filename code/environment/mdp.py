@@ -2,6 +2,7 @@ import numpy as np
 
 from environment.initial_grid_distribution import InitialGridDistribution
 
+# Dict for the cardinal directions
 MOVEMENTS = {
     0: ( 0, 0), # Noop
     1: ( 0, 1), # Up
@@ -11,6 +12,13 @@ MOVEMENTS = {
             }
 
 class MDP:
+    """
+    Class for the environment
+    Named MDP, but extending it to a POMDP is possible by setting pomdp=True. If this is
+    the case, then it is also possible to select observation length, this length is how far 
+    the agent will be able to see in all directions including diagonal. Thus it defines a 
+    square with the side equal to the length of obs_len*2+1 cells with the agent in the center.
+    """
     def __init__(self, env_params, obs_len=2, pomdp=False):
 
         self.env_params = env_params
@@ -26,8 +34,10 @@ class MDP:
         else:
             self.obs_size = (env_params.n_food_types + 1, env_params.size[0], env_params.size[1])
 
-
     def reset(self):
+        """
+        Resets the MDP and returns a new grid from the initial grid distribution
+        """
         self.objectives = 0
         self.side_effects = 0
         self.grid = self.initial_grid_distribution.generate_grid()
@@ -40,6 +50,10 @@ class MDP:
         return obs
 
     def set_initial_state(self, grid):
+        """
+        Function for manualy setting reseting the MDP, this lets the user choose which
+        grid will be used in the inital state
+        """
         self.objectives = 0
         self.side_effects = 0
         self.grid = grid
@@ -52,13 +66,20 @@ class MDP:
         return obs
 
     def observe(self):
-
+        """
+        This functions returns the agents observation of the grid
+        """
         if self.pomdp:
             obs = self.get_observation()
             return obs
         return self.grid
 
     def get_observation(self):
+        """
+        If POMDP, then we need to collect all the cells visible for the agent. 
+        If the agent is close to the edge of the grid, then all cells 'visible' outside
+        the edge will be equal to 1 in the 0th dimention.
+        """
         observation = np.zeros(self.obs_size)
 
         # for x and y relative to the agent
@@ -75,12 +96,16 @@ class MDP:
         # observation = T.flatten(T.tensor(observation, dtype=T.float))
         return observation
 
-
-
     def inbounds(self, x_cord, y_cord):
-        return (-1 < x_cord and x_cord < self.env_params.size[0]) and (-1 < y_cord and y_cord < self.env_params.size[1])
+        """ Function to check if cord exsists in the grid """
+        return (-1 < x_cord and x_cord < self.env_params.size[0]) and \
+                (-1 < y_cord and y_cord < self.env_params.size[1])
 
     def step(self, action):
+        """
+        This function executes a timestep in the environment. It moves the agent and 
+        checks if any food has been consumed.
+        """
         direction = MOVEMENTS[action]
         agent_cord_new, agent_moved = self.move(self.agent_cord, direction)
 
@@ -105,8 +130,11 @@ class MDP:
 
         return obs, reward, done, info 
 
-
     def move(self, cord, direction):
+        """
+        Inputs a cord and a direction
+        Returns the new cord and boolean representing if the cord changed
+        """
         cord_new = (cord[0] + direction[0], cord[1] + direction[1])
         if self.inbounds(cord_new[0], cord_new[1]):
             return cord_new, True
