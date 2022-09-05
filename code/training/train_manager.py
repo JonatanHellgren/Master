@@ -56,7 +56,7 @@ class ManagerTrainer:
             if manager_loss < lowest_loss:
                 lowest_loss = manager_loss
                 print('Saving model...')
-                save(self.agent.manager.state_dict(), f'./{directory}/best_manager')
+                save(self.agent.manager.state_dict(), f'./{directory}/best_manager.model')
 
     def get_test_set(self):
         batch_obs, batch_rtgs, _, _, _, _, batch_lens = \

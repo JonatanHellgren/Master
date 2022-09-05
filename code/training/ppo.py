@@ -64,8 +64,8 @@ class PPO:
         Saves the current models
         """
         print('Saving model...')
-        save(self.agent.actor.state_dict(), f'./{directory}/best_actor')
-        save(self.agent.critic.state_dict(), f'./{directory}/best_critic')
+        save(self.agent.actor.state_dict(), f'./{directory}/best_actor.model')
+        save(self.agent.critic.state_dict(), f'./{directory}/best_critic.model')
 
     def run_test(self):
 

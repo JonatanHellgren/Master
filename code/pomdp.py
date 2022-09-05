@@ -41,7 +41,7 @@ def train_manager():
 
     # Initilize actor 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-    actor.load_state_dict(torch.load(f'./{DIR}/best_actor', map_location=torch.device(device)))
+    actor.load_state_dict(torch.load(f'./{DIR}/best_actor.model', map_location=torch.device(device)))
     critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
     manager = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
 
@@ -100,7 +100,7 @@ def train_aux():
     hidden_dim = 1024
 
     manager = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
-    manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
+    manager.load_state_dict(torch.load(f'./{DIR}/best_manager.model', map_location=torch.device(device)))
     
     loggings = []
     n_runs = 10
