@@ -17,7 +17,7 @@ class ManagerTrainer:
 
         self.logging = defaultdict(list)
 
-        self.x_test, self.y_test = self.get_test_set()
+        self.x_test, self.y_test, self.batch_lens = self.get_test_set()
         self.y_test = self.y_test.to(device)
 
         # Make sure that manager is incuded in agent
@@ -49,7 +49,7 @@ class ManagerTrainer:
                 # We only need batch_lens to count the total amount of steps
                 t_so_far += np.sum(batch_lens)
 
-                self.agent.train_manager(batch_obs, batch_rtgs)
+                self.agent.train_manager(batch_obs, batch_rtgs, batch_lens)
 
             manager_loss = self.run_test()
             self.logging["loss"].append(manager_loss)
@@ -59,15 +59,19 @@ class ManagerTrainer:
                 save(self.agent.manager.state_dict(), f'./{directory}/best_manager')
 
     def get_test_set(self):
-        batch_obs, batch_rtgs, _, _, _, _ = \
+        batch_obs, batch_rtgs, _, _, _, _, batch_lens = \
                 rollout_test_set(self.agent, self.train_parameters, self.mdp)
 
-        return batch_obs, batch_rtgs
+        return batch_obs, batch_rtgs, batch_lens
 
     def run_test(self):
         with no_grad():
-            manager_rtgs = squeeze(self.agent.manager(self.x_test))
-            manager_loss = nn.MSELoss()(manager_rtgs, self.y_test)
+            if self.mdp.pomdp:
+                rtgs_pred = squeeze(self.agent.manager(self.x_test, self.batch_lens))
+            else:
+                rtgs_pred = squeeze(self.agent.manager(self.x_test))
+            # manager_rtgs = squeeze(self.agent.manager(self.x_test))
+            manager_loss = nn.MSELoss()(rtgs_pred, self.y_test)
             print(manager_loss)
             return manager_loss
 

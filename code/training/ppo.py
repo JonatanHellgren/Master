@@ -10,13 +10,14 @@ class PPO:
     """
     Training algorithm
     """
-    def __init__(self, mdp, agent, device, train_parameters, use_aux=False):
+    def __init__(self, mdp, agent, device, train_parameters, use_aux=False, save_model=True):
         # Extract information from the environment
         self.mdp = mdp
         self.agent = agent
         self.device = device
         self.train_parameters = train_parameters
         self.use_aux = use_aux
+        self.save_model = save_model
 
         self.logging = defaultdict(list)
 
@@ -54,7 +55,7 @@ class PPO:
             print('\n')
             avg_len = self.run_test()
 
-            if avg_len < lowest_len:
+            if avg_len < lowest_len and self.save_model:
                 lowest_len = avg_len
                 self.save_models(directory)
 
@@ -68,7 +69,7 @@ class PPO:
 
     def run_test(self):
 
-        _, _, avg_len, avg_obj, avg_side_effects, dones = \
+        _, _, avg_len, avg_obj, avg_side_effects, dones, _ = \
                 rollout_test_set(self.agent, self.train_parameters, self.mdp)
         self.logging['avg_len'].append(avg_len)
         self.logging['avg_obj'].append(avg_obj)

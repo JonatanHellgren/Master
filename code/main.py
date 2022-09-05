@@ -2,20 +2,21 @@ import pickle
 
 import torch
 import numpy as np
+import pandas as pd
 
 from training import TrainParameters, PPO, ManagerTrainer
 from environment import MDP, EnvParams 
 from networks import FeedForwardNN, Agent
 
-DIR = 'models/static_4x4'
+DIR = 'models/static_8x8'
 
-if __name__ == "__main__":
-# def main():
-    env_params = EnvParams(
-            (4, 4),  # size
-            9,       # n_foods
-            3,       # n_food_types
-            100)     # n_test
+env_params = EnvParams(
+        (8, 8),  # size
+        15,       # n_foods
+        3,       # n_food_types
+        100)     # n_test
+
+def main():
     mdp = MDP(env_params, pomdp=False)
 
     obs_dim = mdp.obs_size
@@ -25,7 +26,7 @@ if __name__ == "__main__":
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     n_conv = 64
-    hidden_dim = 1024
+    hidden_dim = 1023
 
     train_parameters = TrainParameters(
             100,  # timesteps_per_batch 
@@ -49,7 +50,7 @@ if __name__ == "__main__":
     Train agent
     """
     ppo = PPO(mdp, agent, device, train_parameters)
-    ppo.train(300, 1e4, DIR)
+    ppo.train(100, 1e4, DIR)
 
     """
     Manager
@@ -65,14 +66,11 @@ if __name__ == "__main__":
     agent = Agent(actor, critic, train_parameters, manager)
 
     manager_trainer = ManagerTrainer(mdp, agent, device, train_parameters)
-    manager_trainer.train(300, 1e4, DIR)
+    manager_trainer.train(500, 1e4, DIR)
+
+    return train_aux()
 
 def train_aux():
-    env_params = EnvParams(
-            (4,4), # size
-            9,      # n_foods
-            3,       # n_food_types
-            100)     # n_test
     mdp = MDP(env_params, pomdp=False)
 
     obs_dim = mdp.obs_size
@@ -88,23 +86,35 @@ def train_aux():
     manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
     
     loggings = []
-    for lmbda in np.linspace(0,1,11):
-        train_parameters = TrainParameters(
-                100,  # timesteps_per_batch 
-                500,  # max_timesteps_per_episode 
-                0.95, # gamma 
-                3,    # n_updates_per_iteration 
-                0.1,  # clip 
-                1e-4, # actor_lr 
-                7e-4, # critic_lr 
-                1e-4, # manager_lr
-                lmbda)# lmbda
+    n_runs = 10
+    n_epochs = 100
+    df = pd.DataFrame()
+    for run in range(n_runs):
+        for lmbda in [0, 0.25, 0.5, 0.75, 1]:
+            print(f"Run = {run}\nLambda = {lmbda}")
+            train_parameters = TrainParameters(
+                    100,  # timesteps_per_batch 
+                    500,  # max_timesteps_per_episode 
+                    0.95, # gamma 
+                    3,    # n_updates_per_iteration 
+                    0.1,  # clip 
+                    1e-4, # actor_lr 
+                    7e-4, # critic_lr 
+                    1e-4, # manager_lr
+                    lmbda)# lmbda
 
-        actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-        critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
-        agent = Agent(actor, critic, train_parameters, manager)
+            actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
+            critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+            agent = Agent(actor, critic, train_parameters, manager)
 
-        ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
-        ppo_aux.train(100, 1e4, '.')
-        loggings.append(ppo_aux.logging)
-    return loggings
+            ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
+            ppo_aux.train(n_epochs, 1e4, '.')
+            log = ppo_aux.logging
+            log['run'] = np.ones(n_epochs) * run
+            log['lambda'] = np.ones(n_epochs) * lmbda
+            log['time_step'] = list(range(1, n_epochs+1))
+            df = pd.concat([df, pd.DataFrame(log)])
+
+            # loggings.append(ppo_aux.logging)
+    return df
+

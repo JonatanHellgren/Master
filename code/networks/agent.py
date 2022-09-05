@@ -7,11 +7,12 @@ class Agent:
     Class to incluce the networks that the agent consists off.
     And function for using them.
     """
-    def __init__(self, actor, critic, train_parameters, manager=None):
+    def __init__(self, actor, critic, train_parameters, manager=None, pomdp=False):
         self.actor = actor
         self.critic = critic
         self.manager = manager
         self.train_parameters = train_parameters
+        self.pomdp = pomdp
 
         # Add optimizers
         self.actor_optim = Adam(self.actor.parameters(), lr=self.train_parameters.actor_lr)
@@ -45,8 +46,12 @@ class Agent:
             critic_loss.backward()
             self.critic_optim.step()
 
-    def train_manager(self, batch_obs, batch_rtgs):
-        rtgs_pred = squeeze(self.manager(batch_obs))
+    def train_manager(self, batch_obs, batch_rtgs, batch_lens):
+
+        if self.pomdp:
+            rtgs_pred = squeeze(self.manager(batch_obs, batch_lens))
+        else:
+            rtgs_pred = squeeze(self.manager(batch_obs))
         manager_loss = nn.MSELoss()(rtgs_pred, batch_rtgs)
 
         self.manager_optim.zero_grad()

@@ -1,2 +1,2 @@
 from .agent import Agent
-from .feed_forward import FeedForwardNN
+from .neural_nets import FeedForwardNN, RecurrentNN
