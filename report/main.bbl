@@ -21,9 +21,18 @@ Arulkumaran, K., Cully, A., and Togelius, J. (2019).
 \newblock Alphastar: An evolutionary computation perspective.
 \newblock {\em CoRR}, abs/1902.01724.
 
-\bibitem[Bostrom, 2016]{Superintelligence}
-Bostrom, N. (2016).
-\newblock {\em Superintelligence}.
+\bibitem[Bostrom, 2003]{Bostrom03}
+Bostrom, N. (2003).
+\newblock Ethical issues in advanced artificial intelligence.
+
+\bibitem[Bostrom, 2012]{Bostrom12}
+Bostrom, N. (2012).
+\newblock The superintelligent will: Motivation and instrumental rationality in
+  advanced artificial agents.
+
+\bibitem[Bostrom, 2014]{Bostrom14}
+Bostrom, N. (2014).
+\newblock {\em Superintelligence: Paths, Dangers, Strategies}.
 \newblock Oxford University Press.
 
 \bibitem[Carey, 2017]{Carey}
@@ -87,14 +96,30 @@ Hadfield{-}Menell, D., Milli, S., Abbeel, P., Russell, S., and Dragan, A.~D.
 \newblock Inverse reward design.
 \newblock {\em CoRR}, abs/1711.02827.
 
+\bibitem[Hilton, 2022]{80000}
+Hilton, B. (2022).
+\newblock Preventing an ai-related catastrophe.
+\newblock [Online; accessed 30-August-2022].
+
 \bibitem[Hubinger et~al., 2019]{Hubringer}
 Hubinger, E., van Merwijk, C., Mikulik, V., Skalse, J., and Garrabrant, S.
   (2019).
 \newblock Risks from learned optimization in advanced machine learning systems.
 \newblock {\em CoRR}, abs/1906.01820.
 
-\bibitem[Häggström, 2021]{TankandeMaskiner}
-Häggström, O. (2021).
+\bibitem[Häggström, 2019]{Haggstrom19}
+Häggström, O. (2019).
+\newblock Challenges to the omohundro-bostrom framework for ai motivations.
+\newblock {\em Foresight}.
+
+\bibitem[Häggström, 2021a]{Haggstrom21}
+Häggström, O. (2021a).
+\newblock Ai, orthogonality and the m{\"{u}}ller-cannon instrumental vs general
+  intelligence distinction.
+\newblock {\em CoRR}, abs/2109.07911.
+
+\bibitem[Häggström, 2021b]{TankandeMaskiner}
+Häggström, O. (2021b).
 \newblock {\em Tänkande Maskiner - Den artificiella intelligensens
   genombrott}.
 \newblock Fri Tanke.
@@ -142,6 +167,16 @@ Mnih, V., Kavukcuoglu, K., Silver, D., Graves, A., Antonoglou, I., Wierstra,
   D., and Riedmiller, M.~A. (2013).
 \newblock Playing atari with deep reinforcement learning.
 \newblock {\em CoRR}, abs/1312.5602.
+
+\bibitem[Müller and Cannon, 2021]{MullerCannon}
+Müller, V. and Cannon, M. (2021).
+\newblock Existential risk from ai and orthogonality: Can we have it both ways?
+\newblock {\em Ratio}.
+
+\bibitem[Omohundro, 2008]{Omohundro08}
+Omohundro, S. (2008).
+\newblock The nature of self-improving artificial intelligence.
+\newblock {\em Proceedings of the First AGI Conferance}.
 
 \bibitem[{OpenAI}, 2018]{OpenAI}
 {OpenAI} (2018).
@@ -198,6 +233,16 @@ Soares, N., Fallenstein, B., Yudkowsky, E., and Armstrong, S. (2016).
 \newblock Corrigibility.
 \newblock {\em MIRI}.
 
+\bibitem[Turing, 1951]{Turing51}
+Turing, A.~M. (1951).
+\newblock Intelligent machinery, a heretical theory.
+\newblock {\em Philosophia Mathematica}.
+
+\bibitem[Turner, 2019]{Turner19a}
+Turner, A.~M. (2019).
+\newblock Optimal farsighted agents tend to seek power.
+\newblock {\em CoRR}, abs/1912.01683.
+
 \bibitem[Turner et~al., 2019]{Turner19}
 Turner, A.~M., Hadfield{-}Menell, D., and Tadepalli, P. (2019).
 \newblock Conservative agency via attainable utility preservation.
@@ -217,5 +262,14 @@ Turner, A.~M., Ratzlaff, N., and Tadepalli, P. (2020).
 Wikipedia2 (2022).
 \newblock {Goodhart's law} --- {W}ikipedia{,} the free encyclopedia.
 \newblock [Online; accessed 01-June-2022].
+
+\bibitem[Yudkowsky, 2013]{Yudkowsky13}
+Yudkowsky, E. (2013).
+\newblock Intelligence explosion microeconomics.
+\newblock {\em MIRI}.
+
+\bibitem[Yudkowsky, 2016]{Yudkowsky16}
+Yudkowsky, E. (2016).
+\newblock Ai alignment: Why it's hard, and where to start.
 
 \end{thebibliography}
