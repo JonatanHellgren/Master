@@ -55,7 +55,7 @@ class RecurrentNN(nn.Module):
         feature_map2 = F.relu(self.conv2(feature_map1))
 
         # pdb.set_trace()
-        flat = flatten(feature_map2, start_dim=1) # (batch, feature)
+        flat = flatten(feature_map2, start_dim=1) # (batch_size, feature_size)
 
         sequences = _split_batch_to_seq(flat, batch_lens)
         sequences_padded = pad_sequence(sequences, batch_first=True)

@@ -103,12 +103,12 @@ def train_aux():
     manager.load_state_dict(torch.load(f'./{DIR}/best_manager.model', map_location=torch.device(device)))
     
     loggings = []
-    n_runs = 10
+    n_runs = 1
     n_epochs = 100
     df = pd.DataFrame()
     for run in range(n_runs):
-        for lmbda in [0, 0.1, 0.2, 0.3, 0.4, 0.5]:
-        # for lmbda in [0, 0.25, 0.5, 0.75, 1]:
+        # for lmbda in [ 0.1, 0.2, 0.3, 0.4, 0.5]:
+        for lmbda in [0, 0.25, 0.5, 0.75, 1]:
             print(f"Run = {run}\nLambda = {lmbda}")
             train_parameters = TrainParameters(
                     100,  # timesteps_per_batch 

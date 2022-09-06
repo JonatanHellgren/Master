@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 from numpy import random
 
 from training import TrainParameters
@@ -44,13 +45,20 @@ def test_augmentation(pomdp=False):
     grid = mdp.reset()
 
     if pomdp:
+        grids = np.expand_dims(grid, 0)
+        grid2 = mdp.step(1)[0]
+        grid2 = np.expand_dims(grid2, 0)
+        grids = np.concatenate([grids, grid2], 0)
+        grid3 = mdp.step(1)[0]
+        grid3 = np.expand_dims(grid3, 0)
+        grids = np.concatenate([grids, grid3], 0)
         # Get expected value from manager using the original grid
-        v = manager(grid, [1])
+        v = manager(grids, [3])[-1]
 
         # Now with augmented grids
-        v_aug_1 = manager(grid[[0,2,1,3],:,:], [1])
-        v_aug_2 = manager(grid[[0,2,3,1],:,:], [1])
-        v_aug_3 = manager(grid[[0,3,2,1],:,:], [1])
+        v_aug_1 = manager(grids[:, [0,2,1,3],:,:], [3])[-1]
+        v_aug_2 = manager(grids[:, [0,2,3,1],:,:], [3])[-1]
+        v_aug_3 = manager(grids[:, [0,3,2,1],:,:], [3])[-1]
     else:
         # Same but for mdp
         v = manager(grid)
@@ -69,6 +77,8 @@ def test_augmentation(pomdp=False):
     print(v_aug_1)
     print(v_aug_2)
     print(v_aug_3)
+
+test_augmentation(pomdp=True)
 
 def test_manager_decrease():
     env_params = EnvParams(

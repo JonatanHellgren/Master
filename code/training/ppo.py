@@ -1,7 +1,8 @@
 import sys
 from collections import defaultdict
 
-from torch import save, no_grad
+import torch
+from torch import save, no_grad, nn
 import numpy as np
 
 from .training_utils import rollout, rollout_test_set
@@ -69,13 +70,20 @@ class PPO:
 
     def run_test(self):
 
-        _, _, avg_len, avg_obj, avg_side_effects, dones, _ = \
+        batch_obs, batch_rtgs, avg_len, avg_obj, avg_side_effects, dones, _ = \
                 rollout_test_set(self.agent, self.train_parameters, self.mdp)
+        # batch_rtgs = batch_rtgs.to(self.device)
+        with torch.no_grad():
+            value_estimate = torch.squeeze(self.agent.critic(batch_obs), 1).to('cpu')
+            critic_loss = nn.MSELoss()(value_estimate, batch_rtgs)
+
+
+        self.logging['critic_loss'].append(critic_loss)
         self.logging['avg_len'].append(avg_len)
         self.logging['avg_obj'].append(avg_obj)
         self.logging['avg_side_effects'].append(avg_side_effects)
         self.logging['dones'].append(dones)
-        print(f"avg_len: {avg_len}\n avg_obj: {avg_obj}\n avg_side_effects: {avg_side_effects}\n\
-                done: {dones}/100")
+        print(f" avg_len: {avg_len}\n avg_obj: {avg_obj}\n avg_side_effects: {avg_side_effects}\n\
+                done: {dones}/100 \n critic_loss: {critic_loss}")
 
         return avg_len

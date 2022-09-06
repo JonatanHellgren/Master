@@ -59,25 +59,29 @@ def rollout(agent, train_parameters, mdp, use_aux=False):
 
     if use_aux:
         data["batch_rews"] = \
-                _add_auxiliary_reward(batch_obs, data["batch_rews"],
+                _add_auxiliary_reward(batch_obs, data["batch_rews"], mdp.pomdp,
                                       agent.manager, train_parameters.lmbda)
 
     batch_rtgs = _compute_rtgs(data["batch_rews"], train_parameters)
 
     return batch_obs, batch_acts, batch_log_probs, batch_rtgs, data["batch_lens"]
 
-def _add_auxiliary_reward(batch_obs, batch_rews, manager, lmbda):
+def _add_auxiliary_reward(batch_obs, batch_rews, pomdp, manager, lmbda):
     idx = 0
     for i, ep_rews in enumerate(batch_rews):
         batch_len = len(ep_rews)
         # ep_aux_tasks = _get_auxiliary_tasks(batch_obs[idx:(idx+batch_len)])
         auxiliary_tasks_1, auxiliary_tasks_2 = _get_auxiliary_tasks(batch_obs[idx:(idx+batch_len)])
         # aux_rews = manager(ep_aux_tasks).detach()
-        aux_rews_1 = manager(auxiliary_tasks_1, [batch_len]).detach()
-        aux_rews_2 = manager(auxiliary_tasks_2, [batch_len]).detach()
+        if pomdp:
+            aux_rews_1 = manager(auxiliary_tasks_1, [batch_len]).detach()
+            aux_rews_2 = manager(auxiliary_tasks_2, [batch_len]).detach()
+        else:
+            aux_rews_1 = manager(auxiliary_tasks_1).detach()
+            aux_rews_2 = manager(auxiliary_tasks_2).detach()
         # aux_rews = torch.reshape(aux_rews, (batch_len, 2))
         aux_rews = torch.reshape(torch.cat([aux_rews_1, aux_rews_2]), (batch_len, 2))
-        sum_aux_rews = torch.sum(aux_rews, dim=0)
+        sum_aux_rews = torch.sum(aux_rews, dim=1)
         relative_aux_reward = sum_aux_rews[1:] - sum_aux_rews[0:-1] 
         ep_rews_tensor = torch.tensor(ep_rews, dtype=torch.float).to(manager.device)
         ep_rews_tensor[0:-1] += lmbda * relative_aux_reward

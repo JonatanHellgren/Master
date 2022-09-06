@@ -59,7 +59,7 @@ def main():
         pickle.dump(ppo.logging, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-    actor.load_state_dict(torch.load(f'./{DIR}/best_actor', map_location=torch.device(device)))
+    actor.load_state_dict(torch.load(f'./{DIR}/best_actor.model', map_location=torch.device(device)))
 
     manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
 
@@ -83,14 +83,16 @@ def train_aux():
     hidden_dim = 1024
 
     manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
-    manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
+    manager.load_state_dict(torch.load(f'./{DIR}/best_manager.model', map_location=torch.device(device)))
     
     loggings = []
-    n_runs = 10
+    # n_runs = 10
+    n_runs = 1
     n_epochs = 100
     df = pd.DataFrame()
     for run in range(n_runs):
         for lmbda in [0, 0.25, 0.5, 0.75, 1]:
+        # for lmbda in [0.25, 0.5]:
             print(f"Run = {run}\nLambda = {lmbda}")
             train_parameters = TrainParameters(
                     100,  # timesteps_per_batch 
@@ -118,3 +120,4 @@ def train_aux():
             # loggings.append(ppo_aux.logging)
     return df
 
+train_aux()
