@@ -1,5 +1,4 @@
 papers/*
 sim/log
 *.csv
- 
-
+*.model

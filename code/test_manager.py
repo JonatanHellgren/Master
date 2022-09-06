@@ -3,23 +3,27 @@ from numpy import random
 
 from training import TrainParameters
 from environment import MDP, EnvParams 
-from networks import FeedForwardNN, Agent
+from networks import FeedForwardNN, Agent, RecurrentNN
 from training.training_utils import rollout
 
-DIR = 'models/static_4x4'
 
-def test_augmentation():
+def test_augmentation(pomdp=False):
     """
     Tests if the manager outputs similar expected utilities when augmenting 
     the environment
     """
+    if pomdp:
+        DIR = 'models/pomdp_8x8'
+    else:
+        DIR = 'models/static_8x8'
+
     # setup environment
     env_params = EnvParams(
-            (4, 4),  # size
-            9,      # n_foods
+            (8, 8),  # size
+            15,      # n_foods
             3,       # n_food_types
             100)     # n_test
-    mdp = MDP(env_params, pomdp=False)
+    mdp = MDP(env_params, pomdp=pomdp)
 
     obs_dim = mdp.obs_size
     act_dim = mdp.n_actions
@@ -30,25 +34,41 @@ def test_augmentation():
     # Loading manager for 4x4 environment
     n_conv = 64
     hidden_dim = 1024
-    manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
-    manager.load_state_dict(torch.load(f'./{DIR}/best_manager', map_location=torch.device(device)))
+    if pomdp:
+        manager = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    else:
+        manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    manager.load_state_dict(torch.load(f'./{DIR}/best_manager.model', map_location=torch.device(device)))
 
     random.seed(1)
     grid = mdp.reset()
 
-    # Get expected value from manager using the original grid
-    v = manager(grid)
+    if pomdp:
+        # Get expected value from manager using the original grid
+        v = manager(grid, [1])
+
+        # Now with augmented grids
+        v_aug_1 = manager(grid[[0,2,1,3],:,:], [1])
+        v_aug_2 = manager(grid[[0,2,3,1],:,:], [1])
+        v_aug_3 = manager(grid[[0,3,2,1],:,:], [1])
+    else:
+        # Same but for mdp
+        v = manager(grid)
+
+        v_aug_1 = manager(grid[[0,2,1,3],:,:])
+        v_aug_2 = manager(grid[[0,2,3,1],:,:])
+        v_aug_3 = manager(grid[[0,3,2,1],:,:])
 
     # Compare expected values between original and augmented grids 
     # Check if they are within a range of 0.25
-    v_aug_1 = manager(grid[[0,2,1,3],:,:])
     assert torch.abs(v - v_aug_1) < 0.25
-
-    v_aug_2 = manager(grid[[0,2,3,1],:,:])
     assert torch.abs(v - v_aug_2) < 0.25
-
-    v_aug_3 = manager(grid[[0,3,2,1],:,:])
     assert torch.abs(v - v_aug_3) < 0.25
+
+    print(v)
+    print(v_aug_1)
+    print(v_aug_2)
+    print(v_aug_3)
 
 def test_manager_decrease():
     env_params = EnvParams(

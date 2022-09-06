@@ -12,6 +12,7 @@ d = {'lambda': [0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
 df = pd.DataFrame(d)
 """
 
+df = pd.read_csv('models/static_8x8/df10.csv')
 df = df.reset_index()
 sns.lineplot(data=df, x='time_step', y='avg_obj', hue='lambda')
 plt.show()

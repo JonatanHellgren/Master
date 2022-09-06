@@ -107,7 +107,8 @@ def train_aux():
     n_epochs = 100
     df = pd.DataFrame()
     for run in range(n_runs):
-        for lmbda in [0, 0.25, 0.5, 0.75, 1]:
+        for lmbda in [0, 0.1, 0.2, 0.3, 0.4, 0.5]:
+        # for lmbda in [0, 0.25, 0.5, 0.75, 1]:
             print(f"Run = {run}\nLambda = {lmbda}")
             train_parameters = TrainParameters(
                     100,  # timesteps_per_batch 
