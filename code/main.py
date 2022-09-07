@@ -120,4 +120,4 @@ def train_aux():
             # loggings.append(ppo_aux.logging)
     return df
 
-train_aux()
+df = train_aux()

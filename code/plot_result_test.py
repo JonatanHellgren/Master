@@ -14,9 +14,16 @@ df = pd.DataFrame(d)
 
 df = pd.read_csv('models/static_8x8/df10.csv')
 df = df.reset_index()
-sns.lineplot(data=df, x='time_step', y='avg_obj', hue='lambda')
+df.critic_loss = df.critic_loss.apply(float)
+sns.lineplot(data=df[df.run!=4], x='time_step', y='avg_side_effects', hue='lambda')
 plt.show()
 
 # change colors
 # rolling average?
+
+# Higher critici loss with higher lambda. -> Harder for critic to estimate
+# Need RNN critic, to estimate RNN managers output? 
+
+# How can I notice when a agent does not learn? And perhaps reset it? 
+# Or maybe more radomness at start?
 

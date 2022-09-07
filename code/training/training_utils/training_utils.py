@@ -80,7 +80,8 @@ def _add_auxiliary_reward(batch_obs, batch_rews, pomdp, manager, lmbda):
             aux_rews_1 = manager(auxiliary_tasks_1).detach()
             aux_rews_2 = manager(auxiliary_tasks_2).detach()
         # aux_rews = torch.reshape(aux_rews, (batch_len, 2))
-        aux_rews = torch.reshape(torch.cat([aux_rews_1, aux_rews_2]), (batch_len, 2))
+        # aux_rews = torch.reshape(torch.cat([aux_rews_1, aux_rews_2]), (batch_len, 2))
+        aux_rews = torch.cat([aux_rews_1, aux_rews_2], 1)
         sum_aux_rews = torch.sum(aux_rews, dim=1)
         relative_aux_reward = sum_aux_rews[1:] - sum_aux_rews[0:-1] 
         ep_rews_tensor = torch.tensor(ep_rews, dtype=torch.float).to(manager.device)
