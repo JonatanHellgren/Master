@@ -20,18 +20,18 @@ class Agent:
         if manager is not None:
             self.manager_optim = Adam(self.manager.parameters(), lr=self.train_parameters.manager_lr)
 
-    def train(self, batch_obs, batch_acts, batch_log_probs, batch_rtgs):
+    def train(self, batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens):
         """
         Trains the agents networks
         """
         # Critics evalutations
-        value_estimate, _ = self.evaluate(batch_obs, batch_acts)
+        value_estimate, _ = self.evaluate(batch_obs, batch_acts, batch_lens)
 
         advantage = _compute_advantage(batch_rtgs, value_estimate)
 
         for _ in range(self.train_parameters.n_updates_per_iteration):
             # Here we update the networks a few times with the current rollout
-            value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts)
+            value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts, batch_lens)
 
             actor_loss = _compute_actor_loss(curr_log_probs, batch_log_probs,\
                                                 advantage, self.train_parameters.clip)
@@ -77,16 +77,28 @@ class Agent:
 
         return action, log_prob.detach()
 
-    def evaluate(self, batch_obs, batch_acts):
+    def evaluate(self, batch_obs, batch_acts, batch_lens):
         """
+        Split this function!
+
         Evaluates a batch of observations.
         Returns the critics vlaue estimate,
         and the log probs for the actions with the current actor.
         """
-        value_estimate = self.critic(batch_obs).squeeze()
+        # No RNN critic
+        if type(self.critic) == type(self.actor):
+            value_estimate = self.critic(batch_obs).squeeze()
+        else: # If RNN
+            # !! WARNING !! 
+            # This will cause issues if more types of networks will be used
+            # for the critic
+            value_estimate = self.critic(batch_obs, batch_lens).squeeze()
 
         all_probs = self.actor(batch_obs)
-        log_probs = log(all_probs[range(len(batch_acts)), batch_acts])
+        if batch_acts != None:
+            log_probs = log(all_probs[range(len(batch_acts)), batch_acts])
+        else:
+            log_probs = None
 
         return value_estimate, log_probs
 

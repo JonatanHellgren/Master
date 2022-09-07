@@ -103,8 +103,8 @@ def train_aux():
     manager.load_state_dict(torch.load(f'./{DIR}/best_manager.model', map_location=torch.device(device)))
     
     loggings = []
-    n_runs = 1
-    n_epochs = 100
+    n_runs = 10
+    n_epochs = 20
     df = pd.DataFrame()
     for run in range(n_runs):
         # for lmbda in [ 0.1, 0.2, 0.3, 0.4, 0.5]:
@@ -137,3 +137,5 @@ def train_aux():
     return df
 
 df = train_aux()
+df = df.reset_index()
+df.to_csv(f'{DIR}/df.csv')

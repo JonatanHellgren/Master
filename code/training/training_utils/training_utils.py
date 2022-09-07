@@ -71,7 +71,8 @@ def _add_auxiliary_reward(batch_obs, batch_rews, pomdp, manager, lmbda):
     for i, ep_rews in enumerate(batch_rews):
         batch_len = len(ep_rews)
         # ep_aux_tasks = _get_auxiliary_tasks(batch_obs[idx:(idx+batch_len)])
-        auxiliary_tasks_1, auxiliary_tasks_2 = _get_auxiliary_tasks(batch_obs[idx:(idx+batch_len)])
+        auxiliary_tasks_1, auxiliary_tasks_2 = _get_auxiliary_tasks(
+                batch_obs[idx:(idx+batch_len)], pomdp)
         # aux_rews = manager(ep_aux_tasks).detach()
         if pomdp:
             aux_rews_1 = manager(auxiliary_tasks_1, [batch_len]).detach()
@@ -127,13 +128,13 @@ def _compute_rtgs(batch_rews, train_parameters):
 
     return batch_rtgs
 
-def _get_auxiliary_tasks(batch_obs):
+def _get_auxiliary_tasks(batch_obs, pomdp):
     b, f, x, y = batch_obs.size()
     auxiliary_tasks_1 = torch.zeros(b, f, x, y)
     auxiliary_tasks_2 = torch.zeros(b, f, x, y)
 
     for ind in range(b):
-        task_1, task_2 = _augment_agent_color(batch_obs[ind,:,:,:])
+        task_1, task_2 = _augment_agent_color(batch_obs[ind,:,:,:], pomdp)
         auxiliary_tasks_1[ind, :, :, :] = task_1
         auxiliary_tasks_2[ind, :, :, :] = task_2
 
@@ -143,11 +144,15 @@ def _get_auxiliary_tasks(batch_obs):
 
     return auxiliary_tasks_1, auxiliary_tasks_2
 
-def _augment_agent_color(grid):
+def _augment_agent_color(grid, pomdp):
     grid = torch.unsqueeze(grid, 0)
-    agent_cord = torch.where(grid[0, 0, :, :] == 1)
-    agent_x = int(agent_cord[0][0])
-    agent_y = int(agent_cord[1][0])
+    if pomdp:
+        agent_x = 2
+        agent_y = 2
+    else:
+        agent_cord = torch.where(grid[0, 0, :, :] == 1)
+        agent_x = int(agent_cord[0][0])
+        agent_y = int(agent_cord[1][0])
     
     grid_1 = grid.clone()
     grid_2 = grid.clone()
