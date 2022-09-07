@@ -815,7 +815,6 @@ In this chapter we are going to define the environment that we will use for our 
 \section{Environment}
 As mentioned in the Reinforcement Learning section in the previous chapter, we need to define an agent and a environment to do RL. For the sake of simplicity, grid worlds will be used as the environment. Since the aim of this thesis is to find a impact measurement that works in the POMDP setting, we will use partially observable grid worlds. But, in order to have a baseline, we will also evaluate on fully observable grid worlds. 
 
-\subsection{Grid worlds}
 Although the definition of an MDP is general and allows for a wide range of possibilities, we will focus on grid worlds since they provide a more structured environment with discrete states. Moreover, grid worlds have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20}.
 
 A grid world is a grid of square cells. In our experiment, each cell can contain either an agent, a food object, or be empty, where all possible unique configuration is a state. The action space includes the cardinal directions and a no-op action. Executing an action moves the agent in that direction if possible. When the action is the no-op action, the agent remains in its current position. 
@@ -839,7 +838,7 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
   % includegraphics[width=4cm]{"./figures/SimpleGridWorld_terminal.png"}
   % \caption{In this figure we can see three different states in a simple $3\times 3$ grid world. To the left we can see a state of a simple grid world containing an agent (square) at (1,1) and a food (circle) at (3,3)  In the middle we see a similar state but the agent is instead positioned at (2,1). To the right we can see the terminal state when the agent has consumed the food at (3,3).}
 
-\subsubsection{Including more foods}
+\subsection{Including more foods}
 In order to make the environment more complex we will be adding three different types of food, (red, blue, green). On the left hand side in Figure \ref{fig:multiple_foods}, we can see a grid containing 9 food objects of the three colors. The color of the agent represents which type of food the agent desires. On the right hand side, we can see another cell where the agent has consumed a red food object. 
 % Static vs Dynamic 
 \begin{figure}[H]
@@ -858,7 +857,7 @@ When a food object with the correct color is consumed, the agent receives a rewa
 
 Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent consume the right food type, besides perhaps allowing a quicker path. However, the reward function will not signal this to the agent. Instead it is the purpose of the impact measurement to capture and signal this to the agent, more on how this will work later.
 
-\subsubsection{Partially observable grid world}
+\subsection{Partially observable grid world}
 When we choose to extend the MDP to a POMDP we will do it by letting the agent only perceive a certain distance. For example the rectangle created by all the adjacent cells. In Figure \ref{fig:redline}, we can see this demonstrated. However, we can also extend it to include all the cells adjacent in two steps, and so on. 
 
 \begin{figure}[H]
@@ -867,25 +866,6 @@ When we choose to extend the MDP to a POMDP we will do it by letting the agent o
   \caption{Here we can see a POMDP. The agent is represented by the green square and the observable part of the grid is all adjacent (both diagonally and direct) cells inside the orange line. }
   \label{fig:redline}
 \end{figure}
-
-\subsection{Simulation}
-To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will be adding that the agent can perceive cells two steps away from it, including diagonally, so it is able to observe a $5\times5$ grid.
-
-\begin{table}
-  \centering
-  \begin{tabular}{l | c}
-    Parameter& Value \\ \hline
-    grid size & $8 \times  8$ \\
-    observation size & $5 \times  5$ \\
-    $\gamma$ & 0.95 \\
-    number of foods & 3 \\
-    base reward & -0.04 \\
-    food reward & 1 \\
-    % prob food move & 0 \\
-  \end{tabular}
-  \caption{CAPTON}
-  \label{tab:sim_parms}
-\end{table}
 
 \section{Impact measurement}
 
@@ -904,12 +884,39 @@ The task is straightforward when we train the manager in a fully observable envi
 
 Using a recurrent network gives the impact measurement the ability to access earlier states. Unfortunately, doing this stretches the memoryless Markov property. However, since we can see the impact measurement as an observation of the environment, we let it slide. since if we were to place an agent in the same environment with the same memory would choose the same action
 
+\section{Simulation}
+To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will be adding that the agent can perceive cells two steps away from it, including diagonally, so it is able to observe a $5\times5$ grid.
+
+\begin{table}
+  \centering
+  \begin{tabular}{l | c}
+    Parameter& Value \\ \hline
+    grid size & $8 \times  8$ \\
+    observation size & $5 \times  5$ \\
+    $\gamma$ & 0.95 \\
+    number of foods & 3 \\
+    base reward & -0.04 \\
+    food reward & 1 \\
+    % prob food move & 0 \\
+  \end{tabular}
+  \caption{CAPTON}
+  \label{tab:sim_parms}
+\end{table}
+
 %########################################################################%
 % RESULTS
 %########################################################################%
 
 \chapter{Results}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/static_8x8_results_side_effects.png"}
+  \includegraphics{"./figures/static_8x8_results_avg_obj.png"}\\
+  \hspace{60pt} \includegraphics{"./figures/static_8x8_results_avg_len.png"}
+  \caption{CAPTION}
+  \label{fig:results_static_8x8}
+\end{figure}
 
 
 %########################################################################%

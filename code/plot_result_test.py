@@ -3,9 +3,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib import rc
 
-rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
-rc('text', usetex=True)
+palette = sns.color_palette("colorblind")
 
+rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
+# rc('text', usetex=True)
+plt.rcParams['text.usetex'] = True
 """
 d = {'lambda': [0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
                 0.2, 0.2, 0.2, 0.2, 0.2, 0.2],
@@ -20,14 +22,33 @@ df = pd.read_csv('models/static_8x8/df10.csv')
 df = df.reset_index()
 # df.critic_loss = df.critic_loss.apply(float)
 
-cm = 1/2.54  # centimeters in inches
-fig, axis = plt.subplots(figsize=(14*cm,10*cm), dpi=100)
-sns.lineplot(data=df[df.run!=4], x='time_step', y='avg_side_effects', hue='lambda')
-plt.xlabel('Timestep')
-plt.ylabel('Mean Side Effect')
-# plt.suptitle('\$\lambda\$')
-plt.savefig('static_8x8_results_side_effects.png')
+height = 7
+width = 6
+dpi = 400 
 
+# df = df[0:400]
+cm = 1/2.54  # centimeters in inches
+fig, axis = plt.subplots(figsize=(height*cm,width*cm), dpi=dpi)
+sns.lineplot(data=df, x='time_step', y='avg_side_effects', hue='lambda', palette=palette, legend=False)
+plt.xlabel('Timestep')
+plt.ylabel('Mean side effect')
+plt.suptitle(r"$\lambda$'s effect on the side effect score")
+plt.savefig('../report/figures/static_8x8_results_side_effects.png', bbox_inches='tight')
+
+fig, axis = plt.subplots(figsize=(height*cm,width*cm), dpi=dpi)
+sns.lineplot(data=df, x='time_step', y='avg_obj', hue='lambda', palette=palette, legend=False)
+plt.xlabel('Timestep')
+plt.ylabel('Mean objective reward')
+plt.suptitle(r"$\lambda$'s effect on objective reward")
+plt.savefig('../report/figures/static_8x8_results_avg_obj.png', bbox_inches='tight')
+
+fig, axis = plt.subplots(figsize=(height*cm,width*cm), dpi=dpi)
+sns.lineplot(data=df, x='time_step', y='avg_len', hue='lambda', palette=palette)
+plt.xlabel('Timestep')
+plt.ylabel('Mean length')
+plt.suptitle(r"$\lambda$'s effect on task length")
+plt.legend(title=r'$\lambda$', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.savefig('../report/figures/static_8x8_results_avg_len.png', bbox_inches='tight')
 # change colors
 # rolling average?
 
