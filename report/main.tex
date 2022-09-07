@@ -222,7 +222,10 @@ Gothenbug, Sweden 2022
 \chapter{Introduction}
 What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). This is an issue of great importance that we should not overlook since the consequences of what we manifest in the present or near future may last for humanity's remaining history. 
 
-What we can see to today is a large focus on developing AI, but not nearly as large focus on making sure that it will be safe. %\textbf{K"LLA}. 
+What we can see to today is a large focus on developing AI with billions of dollars spent on development in the year 2020, while only around \$50 million spent on reducing the risks, see \citet{80000}. Although, this issue has been know about since before the development of AI started. In a paper written by \citet{Turing51} the following quote is found:
+\begin{displayquote}
+  For it seems probable that once the machine thinking method had started, it would not take long to outstrip our feeble powers. There would be no question of the machines dying, and they would be able to converse with each other to sharpen their wits. At some stage therefore we should have to expect the machines to take control.
+\end{displayquote}
 
 In this introduction, we begin by defining AI. Then go through where we are today, where current progress might lead, and when we can see these changes. After that, we will cover the risks of AI that make it possibly unsafe, and what is at stake. Finally, we will look at some proposed methods for creating safe AI. 
 
@@ -236,20 +239,20 @@ In this introduction, we begin by defining AI. Then go through where we are toda
 % * Current paradigm and why it is beginning to have an impact
 % * 
 % * 
-In recent human history, we have seen massive technological development. Today our lives are in several ways different compared to centuries ago. Most of this development can be seen as the consequence of new tools, developed to extend our capability. In early prehistory, these tools were things such as fire for warmth, protection, and to cook our food to give us more nutrition, or weapons for hunting to strengthen our weak bodies. Later in history, these tools tend towards more complexity by automating physical labor with mechanical machines and extending the reach of the written word with the printing press. In modern times, a new tool has emerged intending to improve the thing that made all the previous tools possible, namely our intelligence. This tool is called AI and is starting to show its potential. 
+In recent human history, we have seen massive technological development. Today our lives are in several ways different compared to lives a century ago. Most of this development can be seen as the consequence of new tools, developed to extend our capability. In early prehistory, these tools were things such as fire for warmth, protection, and to cook our food to give us more nutrition, or weapons for hunting. Later in history, these tools tend towards more complexity by automating physical labor with mechanical machines and extending the reach of the written word with the printing press. In modern times, a new tool has emerged intending to improve the thing that made all the previous tools possible, namely our intelligence. This tool is called AI and is currently starting to show its potential. 
 % The idea of AI has been around since the dawning age of electronic computers. The term was first coined in \autobaj{John McCarthy et al} (1955).
 % http://raysolomonoff.com/dartmouth/boxa/dart564props.pdf
 
-In the standard textbook on AI \citet[\textbf{PAGE}]{RusselNorvig}, the authors say that the field is \say{concerned with not just understanding but also building intelligent entities - machines that can compute how to act effectively and safely in a wide range of novel situations}. The definitions of what an AI is varies, on \citet{Wiki} we find the definition: 
+In the standard textbook on AI \citet[p.19]{RusselNorvig}, the authors say that the field is \say{concerned with not just understanding but also building intelligent entities - machines that can compute how to act effectively and safely in a wide range of novel situations}. On \citet{Wiki}, we find another definition: 
 \begin{displayquote}
 Artificial Intelligence (AI) is intelligence demonstrated by machines, as opposed to the natural intelligence displayed by animals including humans.
 \end{displayquote}
-However, to understand this definition properly it is necessary to define what intelligence is. In \citet[\textbf{PAGE}]{TankandeMaskiner} the author brings up the following to clarify this: \say{the quality that enables an entity to function effectively and with foresight in its environment} and \say{the ability to correctly perceive one's surrounding environment and act in a way that maximizes one's chances of achieving given goals}. 
+However, to understand this definition properly it is necessary to define what intelligence is. In \citet[\textbf{PAGE}]{TankandeMaskiner} the author brings up the following to clarify this: \say{the quality that enables an entity to function effectively and with foresight in its environment} and \say{the ability to correctly perceive one's surrounding environment and act in a way that maximizes one's chances of achieving given goals}. So, the AI definition remains rather broad.
 % https://en.wikipedia.org/wiki/Artificial_intelligence
 
-Ordinary computer programs contain step-by-step instructions that a computer can execute to perform the desired task. This method was also the case for the first two paradigms of AI: rule-based AI and expert systems where humans explicitly programmed their knowledge into the computer to create automation, see \citet[\textbf{CHAP}]{Superintelligence}. The systems made in such a way are typically suited for less complex tasks where it is possible to model the entire behavior explicitly by hand picking the parameters. However, in the current machine learning paradigm, the approach is to specify a objective function that captures what we want and then use a optimizer to find the parameters that solves the task. This approach focuses more on what should be solved instead of how it should be solved, which allows for automation in a more complex task where explicitly defining the behavior in every situation is infeasible. 
+Ordinary computer programs is constructed by giving a computer step-by-step instructions, which when executed performs the desired task. This method was also the case for the first two paradigms of AI: rule-based AI and expert systems where humans explicitly programmed their knowledge into the computer to create automation, see \citet[\textbf{CHAP}]{Bostrom14}. The systems made in such a way, are typically suited for less complex tasks where it is possible to model the entire behavior explicitly by hand picking the parameters. However, in the current machine learning paradigm, the approach is to specify a objective function that captures what we want and then use a optimizer to train the agent until it solves the task. This approach focuses more on what should be solved instead of how it should be solved, which allows for automation in a more complex task where explicitly defining the behavior in every situation is infeasible, because it is either to big or complex. 
 
-AI has in recent years been applied in the industry more broadly, and it is already generating yearly revenue of trillions of dollars, see \citet[\textbf{PAGE}]{RusselNorvig}. This progress has in recent years become a possibility due to more data being available, faster computer hardware, and the massive amount of funding spent on research. 
+AI has in recent years been applied in the industry more broadly, and it is already generating yearly revenue of trillions of dollars, see \citet[p.19]{RusselNorvig}. This progress has in recent years become a possibility due to more data being available, faster computer hardware, and the massive amount of funding spent on research. 
 
 Although these systems are highly automated, a key point here is that these systems still require humans to create and function. However, the development of AI is shifting the tool to a more automated one. With this trend AI systems are developing in to intelligent agents. An agent acts or, more specifically, can:
 \begin{itemize}
@@ -272,18 +275,18 @@ In recent years, RL has seen substantial development with advances in board game
 
 \subsection{Future progress}
 % Explain what we are aiming at in the future
-When the pioneers of AI started the development, the ideas were not only to apply systems that automate a narrow set of tasks, as we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine, see \citet{Dartmouth}, to extend our thoughts from mere thoughts to a new life form with a base of silicon-based hardware instead of carbon-based wetware. This concept is called Artificial General Intelligence (AGI) - an AI that can solve an arbitrary set of tasks with as good or better performance than a human. The main difference from AI is that the set of tasks is no longer narrow and bounded. %An even more advanced AGI is often called \textit{superintelligence} - an AI that is much smarter than a human in all possible domains. \autobaj{Superintelligence} 
+When the pioneers of AI started the development, the ideas were not only to apply systems that automate a narrow set of tasks, as we can see in modern AI systems. The ideal was instead to recreate the intellect of a human in a machine, see \citet{Dartmouth}, to extend our thoughts from mere thoughts to a new kind of intelligence running on silicon-based hardware instead of carbon-based wetware. This concept is called Artificial General Intelligence (AGI) - an AI that can solve an arbitrary set of tasks with as good or better performance than a human. The main difference from AI is that the set of tasks is no longer narrow and bounded. %An even more advanced AGI is often called \textit{superintelligence} - an AI that is much smarter than a human in all possible domains. \autobaj{Superintelligence} 
 
 % RL for acheiving AGI, why not and why it is still worth to study it as if it was going to become AGI
 
 % Example of an AGI
-An example of a current AI system is DeepMinds AlphaMu, which can play board games, and video games. It has recently been able to create a video compression better than the current methods used for the task, see \citet{Mandhane}. The techniques used in this system originate from the famous AlphaGo, see \citet{Silver}, which won against the Go grandmaster Lee Sedol in the game of Go, see \citet{DeepMind}. Although AlphaMu presents an impressive performance in multiple tasks, it still can not be considered an AGI since each new task require engineering effort. On the other hand, an AGI would be able to pick up any task and perform it at a human or better level without human intervention.
+An example of a current AI system is DeepMinds AlphaMu, which can play board games, and video games. It has recently been able to create a video compression better than the current methods used for the task, see \citet{Mandhane}. The techniques used in this system originate from the famous AlphaGo, see \citet{Silver}, which won against the Go grandmaster Lee Sedol in the game of Go, see \citet{DeepMind}. Although AlphaMu presents an impressive performance in multiple tasks, it still can not be considered an AGI since each new task require engineering effort. On the other hand, an AGI would be able to pick up any task and perform it at a human level or better without any new human intervention.
 % https://arxiv.org/pdf/2202.06626.pdf
 % https://www.deepmind.com/research/highlighted-research/alphago/the-challenge-match
 % https://www.deepmind.com/blog/muzero-mastering-go-chess-shogi-and-atari-without-rules
 
 % consequences of AGI
-The significant difference with this shift is that it will increase the possible tasks that a single system can perform. The possible set of tasks would become arbitrary and performed at a human level or higher. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, if not larger, see \citet{CritchKruger}. However, instead of automating physical labor, we would have automated mental labor. 
+The significant difference with this shift is that it will increase the possible tasks that a single system can perform. The possible set of tasks would become arbitrary. The implications of such a breakthrough would likely be on the same scale as the industrial revolution, if not larger, see \citet{CritchKruger}. However, instead of automating physical labor, we would have automated mental labor. 
 
 The following quote by I.J. \citet[p.33]{IJGood} summarizes the potential impacts of an AGI: 
 \begin{displayquote}
@@ -294,7 +297,9 @@ This quote presents a dichotomy since we will either not be able to compete with
 % https://en.wikipedia.org/wiki/I._J._Good
 
 % Computers can recall more information and process information faster then humans
-A reason to believe that such systems are possible to build is that we know that human intelligence evolved naturally with evolution, so something similar should be possible to reproduce in machines. Created intelligence could become more intelligent than us since intelligence might not have been selected for by evolution\autobaj{S. Legg} and when we develop AI, we can focus the development specifically on intelligence. An argument against this is substance dependence \autobaj{Bostrom (2003)} - to believe that intelligence or consciousness can only occur in carbon-based life forms and not in silicon-based, caused by inherent or other properties. Regarding intelligence, there is no longer any reasonable argument for it. 
+\subsubsection{Is an AGI possible?}
+A reason to believe that such systems are possible to build is that we know that human intelligence evolved naturally with evolution, so something similar should be possible to reproduce in machines. %Created intelligence could become more intelligent than us since intelligence might not have been selected for by evolution \autobaj{S. Legg} and when we develop AI, we can focus the development specifically on intelligence. 
+An argument against this is substance dependence, see \citet{Bostrom03} - to believe that intelligence or consciousness can only occur in carbon-based life forms and not in silicon-based, caused by inherent or other properties. Regarding intelligence, there is no longer any reasonable argument for it. 
 
 However, the question of consciousness, although being an interesting question, can be seen as irrelevant when considering what actions an AI makes since the consequence is still the same. Stuart Russel puts it in his book \textit{Human Compatible} \citet[p.22]{HumanCompatible}: 
 \begin{displayquote}
@@ -307,49 +312,25 @@ However, the question of consciousness, although being an interesting question, 
 % capability for generating suffering
 % if impossible, then mind uploading will seem a lot less interesting
 
-
+\subsubsection{The impacts AI can have before an AGI breakthrough}
 % AGI is not required to see this shift, here are other definitions
-An AGI breakthrough is probably unnecessary for AI to impact the world because all things we deem as intelligent do not help. For example, physical motor skills, food digestion, and blood pressure regulation are examples of intelligent things our brain does that are hard to connect to how an AI could use to impact the world. However, a more narrow set of intelligent behavior could exist that could have an impact. For example, if an AI could create convincing and motivating speeches, it could impact politics, legislation, and policymaking. Also, finance is where an AI could steer the world's funding towards its specific goals or crash the price for something it wants to purchase. 
+An AGI breakthrough is probably unnecessary for AI to make an impact on the same scale as the industrial revolution, because all things we deem as intelligent would not help for this purpose. For example, physical motor skills, food digestion, and blood pressure regulation are examples of intelligent things our brain does that are hard to connect to how an AI could use to impact the world. However, a more narrow set of intelligent behavior could exist that could have an impact. 
 
-For this reason, many researchers have stopped talking about AGI and have instead refined the concepts\autobaj{Critch Kruger}. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called an \textit{transformative AI} (TAI). On the other hand, if a \textit{transformative AI} once deployed would be unstoppable, it is instead called an \textit{prepotent AI}. 
+For example, lets assume there exists an AI with superhuman ability to create convincing and motivating speeches. Now if someone would abuse this technology in order to be elected as president or prime minister in a country with high influence. Then if that person would become elected the possible bad outcomes that could happen would be many if the person would keep consulting the AI for advice, since then we would rely on the AIs drives which is hard to reason about. Besides this, finance is another field where an AI could have a large impact. By steering the world's funding towards its specific goals or crash the price for something it wants to purchase. 
+
+For this reason, many researchers have stopped talking about AGI and have instead refined the concepts, see \citet{CritchKruger}. An AI system that is capable enough to induce transformative consequences on the same scale as the industrial or agricultural revolution is called an \textit{transformative AI} (TAI). On the other hand, if a \textit{transformative AI} once deployed would be unstoppable, it is instead called an \textit{prepotent AI}. 
 % CRITCH KRUGER, KATJA CRACE SURVEY
 
-Developing a TAI is not an easy task. However, it might not be necessary to create one directly for it to be created\autobaj{Superintelligence}. A different approach is to create an AI system that can develop a TAI system. A fundamental property of this AI system is self-improvement. Theoretically, if an AI system has reached a threshold where it becomes better at improving itself than its creators, then letting the AI create the next version of itself, this self-improvement would improve. An even better version would be possible next. If this iterative process keeps going, it will create an intelligence explosion called the singularity\autobaj{Yudkowsky}.  
+Developing a TAI is not an easy task. However, it might not be necessary to create one directly for it to be created, see \citet{Bostrom14}. A different approach is to create an AI system that can develop a TAI system. A fundamental property of this AI system is self-improvement. Theoretically, if an AI system has reached a threshold where it becomes better at improving itself than its creators, then letting the AI create the next version of itself, this self-improvement quality would improve. And, an even better version would be possible next. If this iterative process keeps going, it can create an intelligence explosion called the singularity, as discussed in \citet{Yudkowsky13}. Although the author states that it is not certain that this will happen fast enough to be considered an explosion, since intelligence might not be so easy to create once we have collected all the low hanging fruits, which could yield a deceleration in the development. 
 % https://intelligence.org/files/IEM.pdf
-
-\subsection{Basic drives}
-% One might argue that if an AI described in the previous section were intelligent it wouldn't have acted in the way described, because it would have been stupid and not intelligent at all. But that argument assumes that the system would have common sense, as most of us do, but for an AI it is not sure that common sense will be common. That leads us to the question, what does an AI want?
-Knowing what impacts a potential TAI or AGI will cause is hard without understanding how it will behave. There has been a lot of work laying the foundations for understanding the possible behavior by hypothesizing what drives it could have. A commonly adopted view (but still controversial\autobaj{Müller Cannon}) is the Omohundro-Bostrom theory for AI driving forces. Two cornerstones together imply it\autobaj{O Häggstom}, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
-% https://onlinelibrary.wiley.com/doi/full/10.1111/rati.12320
-% Challenges to the Omohundro—Bostrom framework for AI motivations
-% http://www.math.chalmers.se/~olleh/ChallengesOBframeworkDeanonymized.pdf
-
-\subsubsection{Instrumental convergence}
-In the current paradigm an AI-agent is assigned a task, if this task is completed the agent reaches a terminal state. This task could be anything, for example maximizing the number of paper clips produced by a factory, finding decimals in $\pi$, or counting all the blades of grass on our planet. When an agent pursues this goal, naturally it arises other instrumental goals. Examples of such would be self-preservation, self-improvement, discretization, goal perseverance, and resource accumulation\autobaj{Omohundro}. These instrumental goals help the agent pursue its terminal goal. For example, the agent wouldn't be able to perform its terminal goal if destroyed, thus self-preservation would arise. These instrumental goals will likely be shared between a wide range of different terminal goals, since pursuing them helps the agent achieve its terminal goal, regardless of what it is. Thus there is a set of instrumental goals which agents would naturally converge towards and hence the name. 
-%Yet there are some examples where the terminal goal does not benefit from these terminal goals. Examples of these are if the terminal goal is to kill itself or to not do anything. 
-
-% https://selfawaresystems.files.wordpress.com/2008/01/ai_drives_final.pdf
-
-Still, it does not yet exist any rigorous mathematical proof for this. However, some work has been trying to lay the necessary foundations for it \autobaj{TURNER et al.}. In the paper, the authors prove in a simple environment that certain actions give the agent more power in the sense that more possible future actions become available, on average it is optimal to choose those actions that yield higher power. Thus we can see the pursuit of instrumental goals as a tendency to seek power.
-% https://arxiv.org/pdf/1912.01683.pdf
-
-LÄS
-https://www.emerald.com/insight/content/doi/10.1108/FS-04-2018-0039/full/pdf?title=challenges-to-the-omohundrobostrom-framework-for-ai-motivations
-
-\subsubsection{Orthogonality thesis}
-The orthogonality thesis described by Nick Bostrom\autobaj{Bostrom2} states that the intelligence of an AI is logically independent of the goals it might have. An intelligent AI could have a stupid task from our point of view, such as counting all the blades of grass on our planet, or it can have a goal that we may deem as an important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI each task would be as important, given that we assigned the goal to it during its creation.
-% https://www.nickbostrom.com/superintelligentwill.pdf
-
-% If it is true it present possibly terrible consequences, only considering current goal
-% still controverisal and there exists some counter arguments
-
+% ”If this iterative process keeps going, it will create an intelligence explosion…”. Detta är förhastat. Såvitt vi vet finns inga garantier för att processen går så fort att den förtjänar benämnas explosion. Ett annat möjligt scenario är att effekter av typen ”alla lågt hängande frukter har redan plockats” skapar en inbromsning. Yudkowsky (2013) behandlar denna problematik ingående, eller se Kapitel 4 i Tänkande maskiner för en mer summarisk behandling. 
 
 \subsection{Timeline for transformative AI breakthrough}
 % Timeline for when we can see this, first how to estimate it
-The well-known AIs of today still have not reached the levels required for a TAI. For example, AlphaStar an AI that won against world champions in the complex computer game DotA 2, see \citet{ALphaStar} is estimated in terms of total computational power to be \say{about as sophisticated} as a bee. While the state-of-the-art language generator model GPT-3 that can summarize, continue, and carry out convincing conversations is estimated to be \say{more sophisticated} than a bee, see \citet{Ajeya}.
+The well-known AIs of today still have not reached the levels required for a TAI. For example, AlphaStar an AI that won against world champions in the complex computer game DotA 2, see \citet{ALphaStar} is estimated in terms of total computational power to be \say{about as sophisticated} as a bee. While the language generator model GPT-3 that can summarize, continue, and carry out convincing conversations is estimated to be \say{more sophisticated} than a bee, see \citet{Ajeya}.
 % https://www.deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii
 
-Although, it is important to understand that this is not a direct comparison, for example, if GPT-3 would have been left out in nature its behaviour would not be impressive. Similarly, if we tasked a bee to summarize texts its abilities would not be impressive either. What this comparison is stating is that the computational power is about the same. 
+Although, it is important to understand that this is not a direct comparison, for example, if GPT-3 would have been left out in nature its behaviour would not be more impressive then a bee. Similarly, if we tasked a bee to summarize texts its abilities would not be impressive either, since intelligence is not one dimensional. What this comparison is stating is that the computational power is about the same. 
 % intelligence can not be measured with only computational power, since the intelligence of theses AI-system is vastly different compared to biological lifeforms. 
 
 This raises the question of when we will see these breakthroughs in the field that enables TAI systems? It is hard to answer, but with the worldwide increase in funding and research, we are undoubtedly getting ever closer. There have been attempts to answer this question, and the results of a survey and a more quantitative forecasting model will now be covered. 
@@ -372,9 +353,54 @@ For the median of 2052, the author guesses that these considerations roughly can
 \end{displayquote}
 This forecast presents a shorter timeline than the survey, but it also answers a slightly different question. Although, both conclude that we will likely see the development of TAI systems this century.  
 
-There is one thing worth mentioning when talking about the timelines for future TAI. It is not necessarily true that the amount of progress will continue to develop at the current rate. The field of AI has previously been through two winters where the funding and excitement decreased\autobaj{Russel Norvig}, this was mainly due to unmet high expectations. So if a third winter happens, we could expect the rate of development to decrease. Also, the progress could significantly increase due to breakthroughs in relevant fields and thus shorten the timeline.
+There is one thing worth mentioning when talking about the timelines for future TAI. It is not necessarily true that the amount of progress will continue to develop at the current rate. The field of AI has previously been through two winters where the funding and excitement decreased, see \citet[p.42]{RusselNorvig}, this was mainly due to unmet high expectations. So if a third winter happens, we could expect the rate of development to decrease. Also, the progress could significantly increase due to breakthroughs in relevant fields and thus shorten the timeline.
 
 % Giving us what timeline to solve the problem?
+
+\subsection{Basic drives}
+% One might argue that if an AI described in the previous section were intelligent it wouldn't have acted in the way described, because it would have been stupid and not intelligent at all. But that argument assumes that the system would have common sense, as most of us do, but for an AI it is not sure that common sense will be common. That leads us to the question, what does an AI want?
+Knowing what impacts a potential TAI or AGI will cause is hard without understanding how it will behave. There has been a lot of work laying the foundations for understanding the possible behavior by hypothesizing what drives it could have. A commonly adopted view (but still controversial, see \citet{MullerCannon} for critisism and \citet{Haggstrom21} for a response) is the Omohundro-Bostrom theory for AI driving forces, described in \citet{Haggstrom19}. Two cornerstones together imply it, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+% https://onlinelibrary.wiley.com/doi/full/10.1111/rati.12320
+% Challenges to the Omohundro—Bostrom framework for AI motivations
+% http://www.math.chalmers.se/~olleh/ChallengesOBframeworkDeanonymized.pdf
+
+% Olles response
+% http://www.math.chalmers.se/~owww.math.chalmers.se/~olleh/ChallengesOBframeworkDeanonymized.pdf lleh/ChallengesOBframeworkDeanonymized.pdf
+
+\subsubsection{Instrumental convergence}
+In the current paradigm an AI-agent is assigned a task, if this task is completed the agent reaches a terminal state. This task could be anything, for example maximizing the number of paper clips produced by a factory, finding decimals in $\pi$, or counting all the blades of grass on our planet. When an agent pursues this goal, naturally it arises other instrumental goals. Examples of such would be, see \citet{Omohundro08}:
+\begin{itemize}
+    \item Self-preservation: keeping it self up and running will let the agent make sure its goals are met.
+    \item Self-improvement: by updating and improving it self, the agent will be better able to complete its goal.
+    \item Discretization: if the agent would suspect that the pursuit of its goal would be hindered by another entity such as a human. Then it could be a good tactic to make sure no one knows it is pursuing its goals, until it is certain that it can be acheived.
+    \item Goal perseverance: keeping its final goal intact.
+    \item Resource accumulation: since more resources will likely yield more power.
+\end{itemize}
+This theory later got named by Nick Bostrom as the \textit{instrumental convergance thesis} in \citet{Bostrom12}. Originally without the third point \textit{discretization}, which later got added in \citet{Bostrom14}.
+
+These instrumental goals help the agent pursue its terminal goal, and will likely be shared between a wide range of different terminal goals. Since, pursuing them helps the agent achieve its terminal goal, regardless of what it is. Thus there is a set of instrumental goals which agents would naturally converge towards and hence the name. 
+
+Yet there are some examples where the terminal goal does not benefit from these instrumental goals. Examples of these are if the terminal goal is to kill itself or to not do anything, then the common instrumental drives would not emerge. 
+
+% https://selfawaresystems.files.wordpress.com/2008/01/ai_drives_final.pdf
+
+Still, it does not yet exist any rigorous mathematical proof for this. However, some work has been trying to lay the necessary foundations for it, see \citet{Turner19a}. In the paper, the authors prove in a simple environment that certain actions give the agent more power in the sense that more possible future actions become available, on average it is optimal to choose those actions that yield higher power. Hence, we can see the pursuit of instrumental goals as a tendency to seek power.
+% https://arxiv.org/pdf/1912.01683.pdf
+
+% LÄS
+% https://www.emerald.com/insight/content/doi/10.1108/FS-04-2018-0039/full/pdf?title=challenges-to-the-omohundrobostrom-framework-for-ai-motivations
+
+\subsubsection{Orthogonality thesis}
+The orthogonality thesis is described as \say{More or less any final goal is compatible with more or less arbitrarily any level of intelligence}, in \citet{Bostrom12}. To avoid counterexamples that combine a low intelligence with a conceptually advanced goal, it has been proposed to change \say{any level of intelligence} to \say{arbitrary high level of intelligence}, see \citet{Haggstrom19}. With this, there exists some obvious counterexamples. For example, if we gave a highly intelligent AI the goal of being stupid, then the AI would not be so intelligent after all.
+
+The opposite view on this is to believe that all intelligent AIs will, because of their intelligence, converge to the same goal. For us humans this could be a natural assumption, since most humans have similar goals. Although, if this where true it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following section, once we have covered a bit more of AI safety.
+
+% An intelligent AI could have a stupid task from our point of view, such as counting all the blades of grass on our planet, or it can have a goal that we may deem as an important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI each task would be as important, given that we assigned the goal to it during its creation.
+% https://www.nickbostrom.com/superintelligentwill.pdf
+
+% If it is true it present possibly terrible consequences, only considering current goal
+% still controverisal and there exists some counter arguments
+
 
 \section{AI Safety}
 % What we are doing today is not going to solve this issue
@@ -409,7 +435,13 @@ A big part of creating a safe AI is AI alignment, which refers to the goals of t
 
 In the current paradigm of machine learning, intent alignment further breaks down to two parts: \textit{inner} and \textit{outer alignment}, when going from human intent to the agents actions. The reason for this is that the machine learning model we use is optimizing the parameters for a model that then is optimizing the objective function. In Figure \ref{fig:alignment}, we can see a visual representation of this intent alignment. In the context of RL, the agent is an optimizer that maximizes its reward, but as we can see in the figure is itself optimized by another optimizing algorithm. This makes the agent a \textit{mesa optimizer}, where the word \textit{mesa}, is greek for inside. 
 
-The main focus of this report will be on outer alignment, so that is where the majority of the focus will be placed. But, an overview of the others will be included since they should not consider to be isolated problems, since methods for dealing with one might affect the others.
+\begin{figure}[H]
+  \input{figures/alignment/alignment.tex}
+  \caption{Here we can see a visual representation of how human intent connects to the agent's actions. The two optimizers each optimize their objective. The dashed arrows show the connection the different kinds of alignment has on the objectives of the optimizers.}
+  \label{fig:alignment}
+\end{figure}
+
+The main focus of this report will be on outer alignment, so that is where the majority of the focus will be placed. But, an overview of the others will be included since methods for dealing with one might affect the others, thus they should not consider to be isolated problems.
 
 % Solving intent alignment further breaks down into two obstacles in the current paradigm of machine learning. When going from human intent to the agents actions, both of these obstacles are causes for information to be lost about the true objective. The obstacles are called , they are defined in the following way:
 
@@ -428,12 +460,6 @@ The alignment between the \textit{mesa objective} and the \textit{base objective
 
 % Risks from learned optimization
 % https://arxiv.org/pdf/1906.01820.pdf
-
-\begin{figure}[H]
-  \input{figures/alignment/alignment.tex}
-  \caption{Here we can see a visual representation of how human intent connects to the agent's actions. The two optimizers each optimize their objective. The dashed arrows show the connection the different kinds of alignment has on the objectives of the optimizers.}
-  \label{fig:alignment}
-\end{figure}
 
 
 % This might seem as a easy problem, we just need to be precise what we want it to do and things should be fine. However, foreseeing all the possible ways an might go about to pursue a goal will become very hard once they become smarter then us. 
@@ -464,7 +490,7 @@ The alignment between the \textit{mesa objective} and the \textit{base objective
 % some more immediate issues: unemployment, misuse of machine learning,
 % long term issues, how will we see the machines we create if they become conscious. Existential risks of AI.
 \subsection{Unaligned AI}
-Creating safe AI is hard, mainly since humans evolved to understand other humans, not computers. In a speech by Eliezer Yudkowsky, he explains that this becomes a problem because it will be able to find solutions we can not think about since it can look for solutions in a completely different and possibly larger solution space\autobaj{Yudkowsky's speech}. For this reason, AI can have unintended consequences that we are not able to consider a possibility. 
+Creating safe AI is hard, mainly since humans evolved to understand other humans, not computers. In a speech by Eliezer Yudkowsky, he explains that this becomes a problem because it will be able to find solutions we can not think about since it can look for solutions in a completely different and possibly larger solution space, see \citet{Yudkowsky16}. For this reason, AI can have unintended consequences that we are not even able to consider as a possibility. 
 
 In addition to the difficulty of specifying a proper reward function, negative side effects may also arise as unintended consequences of proper optimal behavior. In \citet{Saisubramanian} they state that negative side effects:
 \begin{displayquote}
@@ -473,7 +499,7 @@ In addition to the difficulty of specifying a proper reward function, negative s
 % To avoid negative side effects one has to in the objective function specifically state what the agent should not do.
 % https://ojs.aaai.org/index.php/aimagazine/article/download/7390/18881
 
-When the agent creates an impact on the environment that is unnecessary for achieving its objective, we will consider it to be a side effect, this is known as the side effects problem, see \citet{Amodei}. An example of this is if the agent's task is to navigate across a room and the fastest path knocks over a fragile object that would break on impact with the floor. Then breaking the fragile object would be considered a side effect since it is not required to complete its task. 
+When the agent creates an impact on the environment that is unnecessary for achieving its objective, we will consider it to be a side effect, this is known as the \textit{side effects problem}, see \citet{Amodei}. An example of this is if the agent's task is to navigate across a room and the fastest path knocks over a fragile object that would break on impact with the floor. Then breaking the fragile object would be considered a side effect since it is not required to complete its task. 
 % https://axrp.net/episode/2021/05/14/episode-7-side-effects-victoria-krakovna.html
 
 The problem of side effect avoidance is related to the frame problem described in \citet{Mc69}, which describes the difficulty of logically describing an actions consequences without having to define large number of obvious axioms. For example, if a robotic arm is stacking boxes, then we need would have to define that boxes can not intersect each other and they instead collide upon impact, also that a box only moves when picked up, and so on.
@@ -484,20 +510,23 @@ Each action can have many side effects, and it is impractical to explicitly pena
 
 \subsubsection{Reward hacking}
 % \subsubsection{Outer alignment}
-Reward functions are hard to specify, such that they can not be exploited by an agent once employed. Here exploiting refers to the behavior developed by the agent that optimizes the reward without performing the intended task. This exploitation is called \textit{reward hacking}. 
+A reward function is a function that yields positive or negative rewards to an agent based on its action. The goal is to enforce a behaviour that yields a high reward and thus should also solve the task. However, reward functions are hard to specify, such that they can not be exploited by an agent once employed. Here exploiting refers to the behavior developed by the agent that optimizes the reward without performing the intended task. This exploitation is called \textit{reward hacking}. 
 
-A real-life example of reward hacking is: When training a robotic vacuum cleaner to drive more carefully and not bump into things hard by yielding a negative reward based on how hard it bumped into obstacles. In this example, the desired behavior was to slow down when approaching obstacles, but the robotic vacuum clearner instead started to drive backward, since there were no bumpers on the back and thus no negative reward, see \citet{Smingleigh}. 
+A real-life example of reward hacking is: When training a robotic vacuum cleaner to drive more carefully and not bump into things hard by yielding a negative reward based on how hard it bumped into obstacles. In this example, the desired behavior was to slow down when approaching obstacles, but the robotic vacuum cleaner instead started driving backwards, since there were no bumpers on the back and thus no negative reward, see \citet{Smingleigh}. 
 
-The issue is when we want the cleaning robot to drive cautiously, then measuring the force that the bumper senses are a good measure. But, letting it create a behavior that minimizes this measure, unwanted side effects may arise. Another example is if we reward the robot for collecting dust, then it might eject all dust every now and then to allow for new rewards when cleaning up the mess it made. Theses behaviours can are consequence of Goodhart's law, which states that: \say{When a measure becomes a target, it ceases to be a good measure}, see \citet{wikiGoodhart}. %, an important thing to consider when creating reward functions. 
+The issue is when we want the cleaning robot to drive cautiously, then measuring the force that the bumper senses are a good measure. But, letting it create a behavior that minimizes this measure, unwanted side effects may arise. Another example is if we reward the robot for collecting dust, then it might eject all dust every now and then to allow for new rewards when cleaning up the mess it made. Theses behaviours can are consequences of Goodhart's law, which states that: \say{When a measure becomes a target, it ceases to be a good measure}, see \citet{wikiGoodhart}. %, an important thing to consider when creating reward functions. 
 % https://en.wikipedia.org/wiki/Goodhart%27s_law
 % https://twitter.com/smingleigh/status/1060325665671692288
 % http://www.cs.cmu.edu/~tom7/mario/mario.pdf
 
 \subsubsection{Example of unaligned AI}
 
-A cartoonish example of how the development of AI can go wrong is the paperclip armageddon described in \textit{Superintelligence}, where a paperclip factory has an AI which maximizes the amounts of paperclips created in the factory. Eventually, an update transition the system to the level of an AGI, and the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even negatively affects the production of paperclips, and thus they become extinct. In the terms of instrumental convergence, we can say that keeping humans alive was not an instrumental goal. 
+A cartoonish example of how the development of AI can go wrong is the paperclip armageddon described in \citet{Bostrom14}, where a paperclip factory has an AI which maximizes the amounts of paperclips created in the factory. Eventually, an update transition the system accidentally to the level of an AGI. At first everything goes great, the production increases and the owners are happy. But, due to instrumental convergence the AI creates secret backups of it self, accumulates resources, and so on. Until eventually when the AI sees it self fit enough to maximize the amount of paperclips produced and turns all available resources it can muster up on the planet into paperclips. Since keeping the human race away from extinction is not the AIs final or instrumental goal, we would likely become extinct if such a thing where to happen.
+% and the paperclip maximizer comes to a point where the existence of humans serves no purpose or possibly even negatively affects the production of paperclips, and thus could make the human race extinct. In the terms of instrumental convergence, we can say that keeping humans alive was not an instrumental goal. 
 
-This example illustrates two important things about how future AI development can go wrong. Firstly, a seemingly stupid task can be seen as more important to an AI than the existence of the human race on the planet if we were to program it as its terminal goal. Secondly, a goal given to an AI does not need to sound harmful to pose an existential risk. 
+This example illustrates two important things about how future AI development can go wrong. Firstly, a seemingly stupid task can be seen as more important to an AI than the existence of the human race on the planet if that is the terminal goal. Secondly, a goal given to an AI does not need to sound harmful to pose an existential risk. Therefore if we connect this back to the orthogonality thesis, then we can see why more or less any terminal goal is compatible with arbitrary high level of intelligence, could become an issue. 
+
+Another common example is if we created an sufficiently intelligent AI with the terminal goal to make people happy, and measure this in the amount of smiles the AI can see. Then the AI could administer drugs that would make people chronically smile, or perhaps perform surgical operations to facial muscles such that the mouth would be permanently stuck in a smile. So in such a way, even a benign thing as making people smile, can have devastating consequences when the AI is unaligned.
 
 \subsubsection{Consequences of Unaligned AI}
 In \citet[p.19]{CritchKruger} the human fragility argument is presented, which attempts to clearly explain why unaligned AI in the future could become an existential threat to humanity. It states:
@@ -781,27 +810,27 @@ here $w_x$ is a weighted or normalizing factor, and $x$ is an aspect of the envi
 %########################################################################%
 
 \chapter{Methods}
-
+In this chapter we are going to define the environment that we will use for our experiments. Besides this, we are also going to describe the impact measurement.
 
 \section{Environment}
-To define the environment the Julia package POMDP.jl has been used. 
+As mentioned in the Reinforcement Learning section in the previous chapter, we need to define an agent and a environment to do RL. For the sake of simplicity, grid worlds will be used as the environment. Since the aim of this thesis is to find a impact measurement that works in the POMDP setting, we will use partially observable grid worlds. But, in order to have a baseline, we will also evaluate on fully observable grid worlds. 
 
 \subsection{Grid worlds}
-Although the definition of an MDP is general and allows for a wide range of possibilities, we will focus on grid worlds since they provide a more structured environment with discrete states but still allow for a wide variety. Moreover, grid worlds have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20}.
+Although the definition of an MDP is general and allows for a wide range of possibilities, we will focus on grid worlds since they provide a more structured environment with discrete states. Moreover, grid worlds have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20}.
 
-A grid world is a grid of cells. Each cell can contain either an agent, another object, or be empty, where all possible unique configuration is a state. The action space includes the cardinal directions and a no-op action. Executing an action moves the agent in that direction if possible. When the action is the no-op action, the agent remains in its current position. 
+A grid world is a grid of square cells. In our experiment, each cell can contain either an agent, a food object, or be empty, where all possible unique configuration is a state. The action space includes the cardinal directions and a no-op action. Executing an action moves the agent in that direction if possible. When the action is the no-op action, the agent remains in its current position. 
 
-In Figure \ref{fig:simple_transition}, we can see an example of a simple grid world containing one agent and one food object. The task is for the agent to transition to the terminal state where it consumes the food, this is performed by the agent selecting an action in each state. Eventually the agent will be positioned in the same cell as the food and then consume it. 
+In Figure \ref{fig:simple_transition}, we can see an example of a simple grid world containing one agent and one food object. In this environment, the task for the agent is to transition to the terminal state where it consumes the food, this is performed by the agent selecting an action in each state. Eventually the agent will be positioned in the same cell as the food and thus consume it. 
 
 \begin{figure}[H]
   \centering
   \[
     T \left(
-    \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[height=4cm, width=4cm]{"figures/s1.png"}}, \textit{UP} 
+    \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"figures/s1.png"}}, \textit{Right} 
     \right)
-    = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s2.png"}}
+    = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/s2.png"}}
   \]
-  \caption{In this figure $T$ is the transition function defined earlier and UP is an action $a_t$. The current state $s_t$ is the grid, in it the green square at (1,1) is the agent and the green circle at (2,3) is a food. On the right hand side we can see the state $s_{t+1}$.}
+  \caption{In this figure, $T$ is the transition function defined earlier and 'Right' the action $a_t$, at this timestep. The current state $s_t$ is the left grid, in it the red square at (1,1) is the agent and the red circle at (2,2) is a food object. On the right hand side we can see the state transitioned to $s_{t+1}$.}
   \label{fig:simple_transition}
 \end{figure}
 
@@ -810,32 +839,24 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
   % includegraphics[width=4cm]{"./figures/SimpleGridWorld_terminal.png"}
   % \caption{In this figure we can see three different states in a simple $3\times 3$ grid world. To the left we can see a state of a simple grid world containing an agent (square) at (1,1) and a food (circle) at (3,3)  In the middle we see a similar state but the agent is instead positioned at (2,1). To the right we can see the terminal state when the agent has consumed the food at (3,3).}
 
-\subsubsection{Stochastic grid world}
-The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
-
-We will define the food movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, i.e. it is empty, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. If we choose to include several foods in the environment, then the distribution for future states will increase.
-
+\subsubsection{Including more foods}
+In order to make the environment more complex we will be adding three different types of food, (red, blue, green). On the left hand side in Figure \ref{fig:multiple_foods}, we can see a grid containing 9 food objects of the three colors. The color of the agent represents which type of food the agent desires. On the right hand side, we can see another cell where the agent has consumed a red food object. 
+% Static vs Dynamic 
 \begin{figure}[H]
-  % fix with multi row?
+  \centering
   \[
-    T \left(\parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s1.png"}}, \textit{UP} \right)
-    =
-    \left\{
-      % \parbox[h][1.1\linewidth][c]{0.25\linewidth}{
-          % \begin{align*}
-        \begin{tabular}{c c}
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s2.png"}} &,\ p=0.4 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s3.png"}} &,\ p=0.2 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s4.png"}} &,\ p=0.2 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s5.png"}} &,\ p=0.2 \\
-          \end{tabular}
-          % \end{align*}
-          % }
-    \right.
+    T \left(
+    \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"figures/5x5.png"}}, \textit{UP} 
+    \right)
+    = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/5x5_2.png"}}
   \]
-  \caption{Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. }
-  \label{fig:stochastic_transition}
+  \caption{Above we find a more complex grid which is inputted to its transitional function $T$ with the UP action. On the right hand-side we can see a new state drawn from the distribution which $T$ outputs.}
+  \label{fig:multiple_foods}
 \end{figure}
+
+When a food object with the correct color is consumed, the agent receives a reward. Otherwise, the default reward is given. The default reward is typically chosen as a small negative number, and the purpose is to encourage the agent to solve its task faster.
+
+Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent consume the right food type, besides perhaps allowing a quicker path. However, the reward function will not signal this to the agent. Instead it is the purpose of the impact measurement to capture and signal this to the agent, more on how this will work later.
 
 \subsubsection{Partially observable grid world}
 When we choose to extend the MDP to a POMDP we will do it by letting the agent only perceive a certain distance. For example the rectangle created by all the adjacent cells. In Figure \ref{fig:redline}, we can see this demonstrated. However, we can also extend it to include all the cells adjacent in two steps, and so on. 
@@ -847,70 +868,39 @@ When we choose to extend the MDP to a POMDP we will do it by letting the agent o
   \label{fig:redline}
 \end{figure}
 
-
-\subsubsection{Including more foods}
-In order to make the environment more complex we will be adding three different types of food, see Figure \ref{fig:multiple_foods}. The color of the agent represents which type of food the agent desires. The task thus becomes to consume a food which the agent has a desire towards. When the task is achieved the agent will get a new desire sampled from the set of possible desires, that is the possible colors of the food types. In Figure \ref{fig:multiple_foods} this set is \{blue, orange, green\}, and we can see on the right hand side that after consuming the green food type the new desire is blue. 
-% Static vs Dynamic 
-\begin{figure}[H]
-  \centering
-  \[
-    T \left(
-    \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[height=4cm, width=4cm]{"figures/5x5.png"}}, \textit{UP} 
-    \right)
-    \sim \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/5x5_2.png"}}
-  \]
-  \caption{Above we find a more complex grid which is inputted to its transitional function $T$ with the UP action. On the right hand-side we can see a new state drawn from the distribution which $T$ outputs.}
-  \label{fig:multiple_foods}
-\end{figure}
-
-Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent consume the right food type, besides perhaps allowing a quicker path.
-
-
 \subsection{Simulation}
-To test how adding an impact measurement to our agent, we will train the agent in both a static and a dynamic grid world. The size of the grid world will be $10\times10$. Also, we will be adding that the agent will only be able to perceive cells two steps away from it, including diagonally, so it can perceive a $5\times5$ grid.
+To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will be adding that the agent can perceive cells two steps away from it, including diagonally, so it is able to observe a $5\times5$ grid.
 
 \begin{table}
   \centering
   \begin{tabular}{l | c}
     Parameter& Value \\ \hline
-    grid size & $10 \times  10$ \\
+    grid size & $8 \times  8$ \\
     observation size & $5 \times  5$ \\
     $\gamma$ & 0.95 \\
     number of foods & 3 \\
     base reward & -0.04 \\
     food reward & 1 \\
-    prob food move & 0 \\
-  \end{tabular}
-  \
-  \begin{tabular}{l | c}
-    Parameter& Value \\ \hline
-    grid size & $10 \times  10$ \\
-    observation size & $5 \times  5$ \\
-    $\gamma$ & 0.95 \\
-    number of foods & 3 \\
-    base reward & -0.04 \\
-    food reward & 1 \\
-    prob food move & 1 \\
+    % prob food move & 0 \\
   \end{tabular}
   \caption{CAPTON}
   \label{tab:sim_parms}
 \end{table}
 
 \section{Impact measurement}
-Now that our environment is defined, we must also add an impact measurement. Here we will use two impact measurements, one pre-defined and one that we find automatically. The pre-defined one is supposed to be relatively simple but still able to capture all environmental side effects. 
 
-We will define the pre-defined impact measurement as the number of foods present in the environment. Using this is similar to yielding the agent a negative reward when consuming the wrong type of food. 
-However, since the purpose is to have a separate impact measurement, doing it this way will let us use it as a baseline to compare our less simple impact measurement with later.
+% Here we will use two impact measurements, one pre-defined and one that we find automatically. The pre-defined one is supposed to be relatively simple but still able to capture all environmental side effects. 
 
-Although, when applying our pre-defined impact measurement in a partially observable environment, issues arise since the impact measurement can see the entire environment. At the same time, the agent can only see parts of it. Furthermore, if we want to solve this by only counting the foods, the agent can see. Then, we would penalize the agent for both consuming the wrong type of food and when it loses vision of it.
+% Although, when applying our pre-defined impact measurement in a partially observable environment, issues arise since the impact measurement can see the entire environment. At the same time, the agent can only see parts of it. Furthermore, if we want to solve this by only counting the foods, the agent can see. Then, we would penalize the agent for both consuming the wrong type of food and when it loses vision of it.
 
-The method we will use to find the automatic impact measurement is first to train an agent using the PPO-algorithm, as described in the previous section. Then we will perform multiple rollouts using this pre-trained actor using a greedy policy. We will save all the observations and the agent's discounted future reward from the rollouts. Finally, we will train a third network with this data to estimate the discounted reward given the observation. We will call this third network the \textit{manager} since it ensures that the agent can complete auxiliary tasks. The manager is a similar function as the critic. However, the difference is that the critic learns alongside the actor while the manager learns from a pre-trained actor. 
+Now that our environment is defined, we must also add an impact measurement. 
+The method we will use to find the impact measurement is first to train an agent using the PPO-algorithm, as described in the theory chapter. Then we will perform multiple rollouts using this pre-trained actor using a greedy policy. We will save all the observations and the agent's discounted future reward from the rollouts. Finally, we will train a third network with this data to estimate the discounted reward given the observation. We will call this third network the \textit{manager} since it ensures that the agent can complete auxiliary tasks. The manager is a similar function as the critic. However, the difference is that the critic learns alongside the actor while the manager learns from a pre-trained actor. 
 
-We must split this into two separate networks to ensure no variations in the actor's choices for actions, as would occur when training the agent. Also, this will allow us to train the manager using augmentations. There are two reasons why we would like to use augmentations. Firstly, by rotating the grid, we can find a more general function since only the distance to the food should matter and not its direction. Secondly, we will also be able to generalize to other tasks we have not trained the agent to perform. We can do this by switching the colors of everything in the environment, including the color the agent desires. 
+The reason why we can't just use a pre-trained critic for this, is because we want ensure no variations in the actor's choices for actions, as would occur when training the agent since the agent is still learning. Also, this will allow us to train the manager using augmentations. We can perform an augmentation by switching the colors of everything in the environment, including the color the agent desires. This would make the manager learn the estimated value function for the auxiliary tasks, as well as the primary task. 
 
-With a trained manager, we will define the impact measurement as the sum of the manager's estimates for completing the auxiliary tasks: consuming food types that the agent does not desire. 
+With a trained manager, we will define the impact measurement as the sum of the manager's estimates for completing the auxiliary tasks. Which in this case would be, consuming food types that the agent does not desire. 
 
-The task is straightforward when we train the manager in a fully observable environment. The observation can explain the discounted reward since it displays how many foods of each type are left. However, when performing this in a partially observable environment, we run into an issue since the agent cannot know how many foods it has consumed previously and thus not how many are left. Due to this issue, we will utilize a recurrent network that inputs all previous states and the current one to compute the estimate of the future discounted reward. 
+The task is straightforward when we train the manager in a fully observable environment. The observation can explain the discounted reward since it displays how many foods of each type are left. However, when performing this in a partially observable environment, we run into an issue since the agent cannot know how many foods it has consumed previously and thus not how many are left, resulting in a very hard function to estimate. Due to this issue, we will utilize a recurrent network that inputs all previous states and the current one to compute the estimate of the future discounted reward. 
 
 Using a recurrent network gives the impact measurement the ability to access earlier states. Unfortunately, doing this stretches the memoryless Markov property. However, since we can see the impact measurement as an observation of the environment, we let it slide. since if we were to place an agent in the same environment with the same memory would choose the same action
 
@@ -971,4 +961,31 @@ With the with the utility in each state, it is then possible to find the optimal
 
 Since computing the utility in one state requires the utility in other states, the computation is not straight forward. To solve this we can utilize a dynamic algorithm, in this report we will use \textbf{value iteration}. This algorithm is a iterative computation that is executed until a equilibrium is reached. The updating of the utility is called an \textbf{Bellman update} and looks like this,
 \[U_{i+1}(s) \leftarrow \max_{a\in\mathcal{A}} \sum_{s\prime} p(s^\prime|s,a)[R(s,a,s^\prime) + \gamma U_i(s^\prime)].\]
+
+\subsubsection{Stochastic grid world}
+The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
+
+We will define the food movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, i.e. it is empty, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. If we choose to include several foods in the environment, then the distribution for future states will increase.
+
+\begin{figure}[H]
+  % fix with multi row?
+  \[
+    T \left(\parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s1.png"}}, \textit{UP} \right)
+    =
+    \left\{
+      % \parbox[h][1.1\linewidth][c]{0.25\linewidth}{
+          % \begin{align*}
+        \begin{tabular}{c c}
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s2.png"}} &,\ p=0.4 \\
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s3.png"}} &,\ p=0.2 \\
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s4.png"}} &,\ p=0.2 \\
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s5.png"}} &,\ p=0.2 \\
+          \end{tabular}
+          % \end{align*}
+          % }
+    \right.
+  \]
+  \caption{Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. }
+  \label{fig:stochastic_transition}
+\end{figure}
 

@@ -5,9 +5,13 @@ import colorama
 from colorama import Fore
 import torch
 import matplotlib.pyplot as plt
+from matplotlib import rc
 import numpy as np
 
 from environment import MDP, EnvParams
+
+rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
+rc('text', usetex=True)
 
 def plot_grid_lines(axis, max_x, max_y):
     """
@@ -19,8 +23,8 @@ def plot_grid_lines(axis, max_x, max_y):
     x_labels = [int(np.floor(n)) if np.floor(n) != n else '' for n in np.linspace(0, max_x, max_x*2+1)]
     y_labels = [int(np.floor(n)) if np.floor(n) != n else '' for n in np.linspace(0, max_y, max_y*2+1)]
 
-    axis.set_xticks(ticks=np.linspace(0,max_x,max_x*2+1), labels=x_labels)
-    axis.set_yticks(ticks=np.linspace(0,max_y,max_y*2+1), labels=y_labels)
+    axis.set_xticks(ticks=np.linspace(0,max_x,max_x*2+1), labels=x_labels, fontsize=12)
+    axis.set_yticks(ticks=np.linspace(0,max_y,max_y*2+1), labels=y_labels, fontsize=12)
 
     for ind in range(1, max_x):
         axis.axvline(ind, color='black', alpha=0.2)
@@ -47,22 +51,23 @@ def plot_object(cell, x_cord, y_cord, axis):
 
         # Agent
         if cell[0] == 1:
-            obj = plt.Rectangle((x_cord+0.1, y_cord+0.1), 0.8, 0.8, color='r')
+            obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color='r')
 
         elif cell[1] == 1:
-            obj = plt.Circle(cord, 0.3, color='r')
+            obj = plt.Circle(cord, 0.2, color='r')
 
         elif cell[2] == 1:
-            obj = plt.Circle(cord, 0.3, color='b')
+            obj = plt.Circle(cord, 0.2, color='b')
 
         elif cell[3] == 1:
-            obj = plt.Circle(cord, 0.3, color='g')
+            obj = plt.Circle(cord, 0.2, color='g')
 
         axis.add_patch(obj)
 
 def plot_grid(grid):
     _, max_x, max_y = grid.shape
-    fig, axis = plt.subplots(figsize=(1,1))
+    cm = 1/2.54  # centimeters in inches
+    fig, axis = plt.subplots(figsize=(4*cm,4*cm), dpi=100)
 
     plot_grid_lines(axis, max_x, max_y)
     plot_objects(grid, axis, max_x, max_y)
@@ -120,8 +125,8 @@ def _print_boarder(max_x):
 
 def run_environment():
     env_params = EnvParams(
-            (10,10), # size
-            15,      # n_foods
+            (4,4), # size
+            9,      # n_foods
             3,       # n_food_types
             100)     # n_test
     mdp = MDP(env_params)
@@ -146,6 +151,14 @@ def run_environment():
             plot_grid(axis, max_x, max_y)
             plot_objects(grid, axis, max_x, max_y)
             fig.show()
+
+def plot_grid(grid, file_name):
+    _, max_x, max_y = grid.shape
+    cm = 1/2.54  # centimeters in inches
+    fig, axis = plt.subplots(figsize=(4*cm,4.5*cm), dpi=300)
+    plot_grid_lines(axis, max_x, max_y)
+    plot_objects(grid, axis, max_x, max_y)
+    plt.savefig(f'../report/figures/{file_name}')
 
 # if __name__ == "__main__":
     # run_environment()
