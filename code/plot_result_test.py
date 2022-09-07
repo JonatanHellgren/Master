@@ -3,8 +3,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib import rc
 
-# rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
-# rc('text', usetex=True)
+rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
+rc('text', usetex=True)
 
 """
 d = {'lambda': [0.1, 0.1, 0.1, 0.1, 0.1, 0.1,
