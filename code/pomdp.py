@@ -122,7 +122,7 @@ def train_aux():
                     lmbda)# lmbda
 
             actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-            critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+            critic = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
             agent = Agent(actor, critic, train_parameters, manager)
 
             ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
