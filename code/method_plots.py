@@ -21,17 +21,19 @@ def fig_3_1():
 
     plot_grid(grid, 's2.png')
 
-fig_3_1()
+# fig_3_1()
 
 def fig_3_2():
     env_params = EnvParams(
-            (5,5), # size
-            9,      # n_foods
+            (8,8), # size
+            15,      # n_foods
             3,       # n_food_types
             100)     # n_test
 
     mdp = MDP(env_params)
     grid = mdp.reset()
+    grid[1, 0, 6] = 0
+    grid[1, 3, 3] = 1
 
     plot_grid(grid, '5x5.png')
 
@@ -40,7 +42,30 @@ def fig_3_2():
     plot_grid(grid, '5x5_2.png')
 
 
-fig_3_2()
+# fig_3_2()
+
+def aux_example():
+    env_params = EnvParams(
+            (8,8), # size
+            15,      # n_foods
+            3,       # n_food_types
+            100)     # n_test
+
+    mdp = MDP(env_params)
+    grid = mdp.reset()
+
+    grid[1, 0, 6] = 0
+    grid[1, 3, 3] = 1
+
+    grid[1,3,2] = 0
+    grid[2,3,2] = 1
+    plot_grid(grid, 'aux_1.png')
+
+    grid[2,3,2] = 0
+    grid[3,3,2] = 1
+    plot_grid(grid, 'aux_2.png')
+
+aux_example()
 
 """
 cm = 1/2.54  # centimeters in inches

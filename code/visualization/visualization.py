@@ -6,9 +6,15 @@ from colorama import Fore
 import torch
 import matplotlib.pyplot as plt
 from matplotlib import rc
+import seaborn as sns
 import numpy as np
 
 from environment import MDP, EnvParams
+
+palette = sns.color_palette("colorblind")
+red = palette[1]
+green = palette[2]
+blue = palette[0]
 
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 rc('text', usetex=True)
@@ -23,8 +29,8 @@ def plot_grid_lines(axis, max_x, max_y):
     x_labels = [int(np.floor(n)) if np.floor(n) != n else '' for n in np.linspace(0, max_x, max_x*2+1)]
     y_labels = [int(np.floor(n)) if np.floor(n) != n else '' for n in np.linspace(0, max_y, max_y*2+1)]
 
-    axis.set_xticks(ticks=np.linspace(0,max_x,max_x*2+1), labels=x_labels, fontsize=12)
-    axis.set_yticks(ticks=np.linspace(0,max_y,max_y*2+1), labels=y_labels, fontsize=12)
+    axis.set_xticks(ticks=np.linspace(0,max_x,max_x*2+1), labels=x_labels)
+    axis.set_yticks(ticks=np.linspace(0,max_y,max_y*2+1), labels=y_labels)
 
     for ind in range(1, max_x):
         axis.axvline(ind, color='black', alpha=0.2)
@@ -51,16 +57,21 @@ def plot_object(cell, x_cord, y_cord, axis):
 
         # Agent
         if cell[0] == 1:
-            obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color='r')
+            if cell[1] == 1:
+                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=red)
+            if cell[2] == 1:
+                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=blue)
+            if cell[3] == 1:
+                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=green)
 
         elif cell[1] == 1:
-            obj = plt.Circle(cord, 0.2, color='r')
+            obj = plt.Circle(cord, 0.2, color=red)
 
         elif cell[2] == 1:
-            obj = plt.Circle(cord, 0.2, color='b')
+            obj = plt.Circle(cord, 0.2, color=blue)
 
         elif cell[3] == 1:
-            obj = plt.Circle(cord, 0.2, color='g')
+            obj = plt.Circle(cord, 0.2, color=green)
 
         axis.add_patch(obj)
 

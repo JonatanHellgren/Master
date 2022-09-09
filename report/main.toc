@@ -34,10 +34,13 @@
 \contentsline {subsubsection}{Deviation measures}{23}%
 \contentsline {chapter}{\numberline {3}Methods}{24}%
 \contentsline {section}{\numberline {3.1}Environment}{24}%
-\contentsline {subsection}{\numberline {3.1.1}Including more foods}{25}%
-\contentsline {subsection}{\numberline {3.1.2}Partially observable grid world}{26}%
+\contentsline {subsubsection}{Adding more food}{25}%
+\contentsline {subsubsection}{Partially observable grid world}{26}%
 \contentsline {section}{\numberline {3.2}Impact measurement}{26}%
-\contentsline {section}{\numberline {3.3}Simulation}{27}%
-\contentsline {chapter}{\numberline {4}Results}{28}%
-\contentsline {chapter}{\numberline {5}Discussion}{29}%
-\contentsline {chapter}{\numberline {6}Conclusion}{30}%
+\contentsline {subsubsection}{Auxiliary tasks}{27}%
+\contentsline {subsubsection}{Manager network}{27}%
+\contentsline {subsubsection}{Calculation}{28}%
+\contentsline {section}{\numberline {3.3}Simulation}{28}%
+\contentsline {chapter}{\numberline {4}Results}{30}%
+\contentsline {chapter}{\numberline {5}Discussion}{31}%
+\contentsline {chapter}{\numberline {6}Conclusion}{32}%

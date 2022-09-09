@@ -810,16 +810,19 @@ here $w_x$ is a weighted or normalizing factor, and $x$ is an aspect of the envi
 %########################################################################%
 
 \chapter{Methods}
-In this chapter we are going to define the environment that we will use for our experiments. Besides this, we are also going to describe the impact measurement.
+In this chapter we are going to define the environment that we will use for our experiments. Besides this, we are also going to describe the impact measurement we will be using.
 
 \section{Environment}
-As mentioned in the Reinforcement Learning section in the previous chapter, we need to define an agent and a environment to do RL. For the sake of simplicity, grid worlds will be used as the environment. Since the aim of this thesis is to find a impact measurement that works in the POMDP setting, we will use partially observable grid worlds. But, in order to have a baseline, we will also evaluate on fully observable grid worlds. 
+As mentioned in the Reinforcement Learning section in the previous chapter, we need both an agent and a environment to do RL. For our environment we will use grid worlds, which is a simple variation of an MDP. Grid worlds provide a more structured environment with discrete states. Moreover, they have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20}.
 
-Although the definition of an MDP is general and allows for a wide range of possibilities, we will focus on grid worlds since they provide a more structured environment with discrete states. Moreover, grid worlds have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20}.
+% Although the definition of an MDP is general and allows for a wide range of possibilities
+%For the sake of simplicity, grid worlds will be used as the environment. Since the aim of this thesis is to find a impact measurement that works in the POMDP setting, we will extend them to be partially observable. %But, in order to have a baseline, we will also evaluate on fully observable grid worlds. 
 
 A grid world is a grid of square cells. In our experiment, each cell can contain either an agent, a food object, or be empty, where all possible unique configuration is a state. The action space includes the cardinal directions and a no-op action. Executing an action moves the agent in that direction if possible. When the action is the no-op action, the agent remains in its current position. 
 
-In Figure \ref{fig:simple_transition}, we can see an example of a simple grid world containing one agent and one food object. In this environment, the task for the agent is to transition to the terminal state where it consumes the food, this is performed by the agent selecting an action in each state. Eventually the agent will be positioned in the same cell as the food and thus consume it. 
+In Figure \ref{fig:simple_transition}, we can see an example of a simple grid world containing one agent and one food object. In this environment, the agent would be rewarded if it transitions to the cell containing the food, and thus consuming it. We can also see an example of how the transition function $T$ works. 
+
+% The agent can selecting an action in each state. Eventually the agent will be positioned in the same cell as the food and thus consume it. 
 
 \begin{figure}[H]
   \centering
@@ -829,7 +832,7 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
     \right)
     = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/s2.png"}}
   \]
-  \caption{In this figure, $T$ is the transition function defined earlier and 'Right' the action $a_t$, at this timestep. The current state $s_t$ is the left grid, in it the red square at (1,1) is the agent and the red circle at (2,2) is a food object. On the right hand side we can see the state transitioned to $s_{t+1}$.}
+  \caption{In this figure, $T$ is the transition function defined earlier and 'Right' the action $a_t$, at this timestep. The current state $s_t$ is the left grid, in it the orange square at (1,1) is the agent and the orange circle at (2,2) is a food object. On the right hand side we can see the state $s_{t+1}$.}
   \label{fig:simple_transition}
 \end{figure}
 
@@ -838,8 +841,8 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
   % includegraphics[width=4cm]{"./figures/SimpleGridWorld_terminal.png"}
   % \caption{In this figure we can see three different states in a simple $3\times 3$ grid world. To the left we can see a state of a simple grid world containing an agent (square) at (1,1) and a food (circle) at (3,3)  In the middle we see a similar state but the agent is instead positioned at (2,1). To the right we can see the terminal state when the agent has consumed the food at (3,3).}
 
-\subsection{Including more foods}
-In order to make the environment more complex we will be adding three different types of food, (red, blue, green). On the left hand side in Figure \ref{fig:multiple_foods}, we can see a grid containing 9 food objects of the three colors. The color of the agent represents which type of food the agent desires. On the right hand side, we can see another cell where the agent has consumed a red food object. 
+\subsubsection{Adding more food}
+In order to make the environment more complex we will be adding three different types of food, (orange, blue, green). On the left hand side in Figure \ref{fig:multiple_foods}, we can see a grid containing 9 food objects of the three colors. The color of the agent represents which type of food the agent desires. On the right hand side, we can see another cell where the agent has consumed a orange food object. 
 % Static vs Dynamic 
 \begin{figure}[H]
   \centering
@@ -849,59 +852,86 @@ In order to make the environment more complex we will be adding three different 
     \right)
     = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/5x5_2.png"}}
   \]
-  \caption{Above we find a more complex grid which is inputted to its transitional function $T$ with the UP action. On the right hand-side we can see a new state drawn from the distribution which $T$ outputs.}
+  \caption{Above we find a more complex grid which is inputted to its transitional function $T$ with the UP action. On the right hand-side we can see a new state outputted from $T$.}
   \label{fig:multiple_foods}
 \end{figure}
 
-When a food object with the correct color is consumed, the agent receives a reward. Otherwise, the default reward is given. The default reward is typically chosen as a small negative number, and the purpose is to encourage the agent to solve its task faster.
+After each transition, a reward is given to the agent. When a food object with the correct color is consumed, the agent receives a positive reward of 1. Otherwise, the default reward is given. The default reward will be chosen as a small negative number (-0.04), and the purpose is to encourage the agent to solve its task faster, since longer solutions would accumulate more negative rewards.
 
 Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent consume the right food type, besides perhaps allowing a quicker path. However, the reward function will not signal this to the agent. Instead it is the purpose of the impact measurement to capture and signal this to the agent, more on how this will work later.
 
-\subsection{Partially observable grid world}
-When we choose to extend the MDP to a POMDP we will do it by letting the agent only perceive a certain distance. For example the rectangle created by all the adjacent cells. In Figure \ref{fig:redline}, we can see this demonstrated. However, we can also extend it to include all the cells adjacent in two steps, and so on. 
+\subsubsection{Partially observable grid world}
+When we choose to extend the MDP to a POMDP, we limit how long the agent can perceive. For example, we can let the agent only see a five by five grid with the agent in the middle. In Figure \ref{fig:redline}, we can see this demonstrated. 
+% However, we can also extend it to include all the cells adjacent in two steps, and so on. 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=4cm]{"./figures/s2_redline.png"}
-  \caption{Here we can see a POMDP. The agent is represented by the green square and the observable part of the grid is all adjacent (both diagonally and direct) cells inside the orange line. }
+  \includegraphics[width=4cm]{"./figures/redline.png"}
+  \caption{Here we can see an example of a POMDP state. The agent is again the orange square and it can only perceive the part of the environment inside the red square.}
   \label{fig:redline}
 \end{figure}
+
+This extension of the environment will not only make the problem a bit more realistic, but also more difficult, since the agent now can't always know where to go. Hence, it has to develop exploration behaviour. 
 
 \section{Impact measurement}
 
 % Here we will use two impact measurements, one pre-defined and one that we find automatically. The pre-defined one is supposed to be relatively simple but still able to capture all environmental side effects. 
 
 % Although, when applying our pre-defined impact measurement in a partially observable environment, issues arise since the impact measurement can see the entire environment. At the same time, the agent can only see parts of it. Furthermore, if we want to solve this by only counting the foods, the agent can see. Then, we would penalize the agent for both consuming the wrong type of food and when it loses vision of it.
+Now that our environment is defined, we must also add an impact measurement. The impact measurement we are going to use is a similar to the ones used by \citet{Turner19}, \citet{Krakovna19}, and \citet{Krakovna20}. Although, the main difference being is designed to add the possibility to use on POMDPs.
 
-Now that our environment is defined, we must also add an impact measurement. 
-The method we will use to find the impact measurement is first to train an agent using the PPO-algorithm, as described in the theory chapter. Then we will perform multiple rollouts using this pre-trained actor using a greedy policy. We will save all the observations and the agent's discounted future reward from the rollouts. Finally, we will train a third network with this data to estimate the discounted reward given the observation. We will call this third network the \textit{manager} since it ensures that the agent can complete auxiliary tasks. The manager is a similar function as the critic. However, the difference is that the critic learns alongside the actor while the manager learns from a pre-trained actor. 
+\subsubsection{Auxiliary tasks}
+To begin describing how the impact measurement works, we need to first define the auxiliary tasks. In this environment an auxiliary task is considered as the agent being rewarded for consuming another color. For example, if we look at the state on the left hand side of Figure \ref{fig:multiple_foods}, then the auxiliary tasks can be found in Figure \ref{fig:aux_tasks}.
 
-The reason why we can't just use a pre-trained critic for this, is because we want ensure no variations in the actor's choices for actions, as would occur when training the agent since the agent is still learning. Also, this will allow us to train the manager using augmentations. We can perform an augmentation by switching the colors of everything in the environment, including the color the agent desires. This would make the manager learn the estimated value function for the auxiliary tasks, as well as the primary task. 
+\begin{figure}[H]
+  \centering
+  \includegraphics{"figures/aux_1.png"}
+  \includegraphics{"figures/aux_2.png"}
+  \caption{In this figure, we can see an example of two auxiliary tasks. As we can see, the only difference is the color of the agent, and thus also what color it will be rewarded for consuming.}
+  \label{fig:aux_tasks}
+\end{figure}
+\subsubsection{Manager network}
+% The method we will use to find the impact measurement is first to train an agent using the PPO-algorithm, as described in the theory chapter. Then we will perform multiple rollouts using this pre-trained actor with a greedy policy. We will save all the observations and the agent's discounted future reward from the rollouts. 
 
-With a trained manager, we will define the impact measurement as the sum of the manager's estimates for completing the auxiliary tasks. Which in this case would be, consuming food types that the agent does not desire. 
+For our impact measurement we will train a third network, the \textit{manager}. The manager is a similar function as the critic. However, the difference is that the critic learns alongside the actor while the manager learns from a pre-trained actor. The purpose of the manager is to estimate the discounted reward for both the primary and the auxiliary task. The reason we call it the manager, is that it ensures the agent is able to do future tasks.
 
-The task is straightforward when we train the manager in a fully observable environment. The observation can explain the discounted reward since it displays how many foods of each type are left. However, when performing this in a partially observable environment, we run into an issue since the agent cannot know how many foods it has consumed previously and thus not how many are left, resulting in a very hard function to estimate. Due to this issue, we will utilize a recurrent network that inputs all previous states and the current one to compute the estimate of the future discounted reward. 
+The reason why we can't just use a pre-trained critic for this, is because we want no variations in the actor's choices for actions, as would occur when training the agent, since the agent is still learning and not using the greedy policy. Also, including a manager allows us to train using augmentations. We can perform an augmentation by switching the colors of everything in the environment. This augmentation is different from the auxiliary tasks, since it also changes the colors of the food objects. The purpose of training the manager with this augmentation is so that it learns not only the estimated value function for the primary task, but also, the auxiliary tasks. 
 
-Using a recurrent network gives the impact measurement the ability to access earlier states. Unfortunately, doing this stretches the memoryless Markov property. However, since we can see the impact measurement as an observation of the environment, we let it slide. since if we were to place an agent in the same environment with the same memory would choose the same action
+The task is straightforward when we train the manager in a fully observable environment. The observation can explain the discounted reward since it displays how many food objects of each type are left. However, when performing this in a partially observable environment, we run into an issue since the agent cannot know how many food objects it has consumed previously and thus not how many are remains, resulting in a nearly impossible function to estimate. Due to this issue, we will utilize a recurrent network that inputs the history of all previous states up to the current one, to compute the estimate of the future discounted reward. 
+
+Since, using a recurrent network gives the impact measurement the ability to access earlier states. Unfortunately, doing this stretches the memoryless Markov property. However, since we can see the impact measurement as an observation of the environment, we let it slide. since if we were to place an agent in the same environment with the same memory would choose the same action
+
+\subsubsection{Calculation}
+With a trained manager, we use the following formula for the impact measurement:
+\[ d(s_t,s_{t+1}) := \sum_x M(s_{x,t+1}) - M(s_{x,t}), \]
+where $M$ represents the manager network, $s_{x,t}$ is the $x$th auxiliary task found in $s_t$. This impact measurement will compute the relative change in the agents ability to complete auxiliary tasks. We will then add this impact measurement to the reward in the following way: 
+\[ R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1})\]
+
+% as the sum of the manager's estimates for completing the auxiliary tasks. Which in this case would be the estimated future discounted reward for the auxiliary tasks. 
+
 
 \section{Simulation}
-To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will be adding that the agent can perceive cells two steps away from it, including diagonally, so it is able to observe a $5\times5$ grid.
+To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will be adding that the agent can perceive cells two steps away from it, including diagonally, so it is able to observe a $5\times5$ grid. See Table 3.1 for all parameter values.
 
-\begin{table}
+\begin{table}[H]
   \centering
   \begin{tabular}{l | c}
     Parameter& Value \\ \hline
     grid size & $8 \times  8$ \\
     observation size & $5 \times  5$ \\
     $\gamma$ & 0.95 \\
-    number of foods & 3 \\
-    base reward & -0.04 \\
+    number of food objects & 15 \\
+    food types & 3 \\
     food reward & 1 \\
+    base reward & -0.04 \\
     % prob food move & 0 \\
   \end{tabular}
-  \caption{CAPTON}
+  \caption{A table containing all the parameters used during the simulation.}
   \label{tab:sim_parms}
 \end{table}
+
+We will train the agent with the following values for $\lambda$: (0, 0.25, 0.5, 0.75, 1), each for 100 epochs. After each epoch we will test the agent using a greedy policy on a set of test environments for evaluation. Here we will be saving the mean side effect and mean objective reward. Since the training and the results are stochastic we will perform all runs ten times, to later have the to measure the mean objective reward and side effects.
+
 
 %########################################################################%
 % RESULTS
@@ -909,14 +939,18 @@ To test how adding an impact measurement to our agent, we will train the agent i
 
 \chapter{Results}
 
+In figure \ref{fig:results_static_8x8}, we can see the results from the fully observable environment. We can see that $\lambda$ has a noticeable effect on both the objective reward and the amount of side effects. When $\lambda$ is increased the amount of side effects decreases, but will eventually also decrease the objective reward. The reason we see a less objective reward with a higher $\lambda$ is that the agent will not always find a policy which collects objective rewards. In this experiment this happened once for $\lambda=0.75$, nine times for $\lambda = 1$, and no times for the other values. 
 \begin{figure}[H]
   \centering
   \includegraphics{"./figures/static_8x8_results_side_effects.png"}
-  \includegraphics{"./figures/static_8x8_results_avg_obj.png"}\\
-  \hspace{60pt} \includegraphics{"./figures/static_8x8_results_avg_len.png"}
-  \caption{CAPTION}
+  \includegraphics{"./figures/static_8x8_results_avg_obj.png}
+  % \includegraphics{"./figures/static_8x8_results_avg_obj.png"}\\
+  % \hspace{60pt} \includegraphics{"./figures/static_8x8_results_avg_len.png"}
+  \caption{To the left we can see the mean side effect with a corresponding 95\% confidence interval, for all of the tested $\lambda$ values. Similarly to the right, but instead for the objective reward.}
   \label{fig:results_static_8x8}
 \end{figure}
+
+As we can see $\lambda = 0.5$ (green) seems to be a sweet-spot. With significantly less side effects then no impact measurement, but still allowing to collect similar amount of objective rewards. Also, during the experiment it did not fail to learn even once.
 
 
 %########################################################################%
