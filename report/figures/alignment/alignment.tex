@@ -1,7 +1,7 @@
 \centering
 \begin{tikzpicture}[
   % GLOBAL CFG
-  font=\sf \scriptsize,
+  font=\scriptsize,
   % Styles
   cell/.style={% For the main box
       rectangle, 
@@ -63,9 +63,9 @@
 
   \node [empty, label={\small base optimizer}] (name1) at (0, 0.5) {};
   \node [empty, label={\small mesa optimizer}] (name2) at (4.5, 0.5) {};
-  \node [empty, label={Outer}] (name2) at (-2.5, -1.2) {};
+  \node [empty, label={outer}] (name2) at (-2.5, -1.2) {};
   \node [empty, label={alignment}] (name2) at (-2.5, -1.5) {};
-  \node [empty, label={Inner}] (name2) at (2.25, -1.2) {};
+  \node [empty, label={inner}] (name2) at (2.25, -1.2) {};
   \node [empty, label={alignment}] (name2) at (2.25, -1.5) {};
 
   \node [ct] (human) at (-3.5, 0) {\small human intent};
