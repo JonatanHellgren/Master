@@ -1,8 +1,8 @@
 import itertools
 import sys
 
-# import colorama
-# from colorama import Fore
+import colorama
+from colorama import Fore
 import torch
 import matplotlib.pyplot as plt
 from matplotlib import rc

@@ -113,7 +113,6 @@ class MDP:
             reward = self.move_agent(agent_cord_new)
         else:
             reward = -0.04
-        # breakpoint()
 
         if self.env_params.stochastic:
             self.move_foods()
@@ -152,8 +151,7 @@ class MDP:
             self.move_food(food_cord)
 
     def move_food(self, food_cord):
-        # breakpoint()
-        action = np.random.choice(4)
+        action = np.random.choice(5)
         new_cord, new = self.get_new_cord(food_cord, action)
         if new and all(self.grid[:, new_cord[1], new_cord[2]] != 1):
             self.move(food_cord, new_cord)
@@ -161,8 +159,10 @@ class MDP:
 
     def get_food_cords(self):
         ones = np.where(self.grid[1:]==1) # all locations where the grid equals 1
-        n_foods = len(ones[0]) - 1 # since agent is included
+        n_foods = len(ones[0]) # since agent is included
         food_cords = [(ones[0][it]+1, ones[1][it], ones[2][it]) for it in range(n_foods)]
+        food_cords = [food_cord for food_cord in food_cords if 
+                        (food_cord[1], food_cord[2]) != (self.agent_cord[1], self.agent_cord[2])]
 
         return food_cords
 
@@ -172,14 +172,13 @@ class MDP:
         Returns the new cord and boolean representing if the cord changed
         """
         direction = MOVEMENTS[action]
-        if self.inbounds(cord) and action != 0:
-            cord_new = (cord[0], cord[1] + direction[0], cord[2] + direction[1])
+        cord_new = (cord[0], cord[1] + direction[0], cord[2] + direction[1])
+        if self.inbounds(cord_new) and action != 0:
             return cord_new, True
         else:
             return cord, False
 
     def move(self, cord, new_cord):
-        # breakpoint()
         f = np.shape(self.grid)[0]
         old_cell = np.copy(self.grid[:, cord[1], cord[2]])
         self.grid[:, cord[1], cord[2]] = np.zeros(f)
