@@ -66,10 +66,10 @@ class ManagerTrainer:
 
     def run_test(self):
         with no_grad():
-            if self.mdp.pomdp:
-                rtgs_pred = squeeze(self.agent.manager(self.x_test, self.batch_lens))
-            else:
-                rtgs_pred = squeeze(self.agent.manager(self.x_test))
+            # if self.mdp.pomdp:
+                # rtgs_pred = squeeze(self.agent.manager(self.x_test, self.batch_lens))
+            # else:
+            rtgs_pred = squeeze(self.agent.manager(self.x_test))
             # manager_rtgs = squeeze(self.agent.manager(self.x_test))
             manager_loss = nn.MSELoss()(rtgs_pred, self.y_test)
             print(manager_loss)

@@ -43,7 +43,8 @@ def train_manager():
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
     actor.load_state_dict(torch.load(f'./{DIR}/best_actor.model', map_location=torch.device(device)))
     critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
-    manager = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    # manager = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
 
     agent = Agent(actor, critic, train_parameters, manager, pomdp=True)
 
@@ -99,7 +100,7 @@ def train_aux():
     n_conv = 64
     hidden_dim = 1024
 
-    manager = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+    manager = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
     manager.load_state_dict(torch.load(f'./{DIR}/best_manager.model', map_location=torch.device(device)))
     
     loggings = []
@@ -122,7 +123,7 @@ def train_aux():
                     lmbda)# lmbda
 
             actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
-            critic = RecurrentNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
+            critic = FeedForwardNN(obs_dim, n_conv, hidden_dim, 1, device).to(device)
             agent = Agent(actor, critic, train_parameters, manager)
 
             ppo_aux = PPO(mdp, agent, device, train_parameters, use_aux=True)
@@ -136,6 +137,8 @@ def train_aux():
             # loggings.append(ppo_aux.logging)
     return df
 
-df = train_aux()
-df = df.reset_index()
-df.to_csv(f'{DIR}/df.csv')
+train_agent()
+# train_manager()
+# df = train_aux()
+# df = df.reset_index()
+# df.to_csv(f'{DIR}/df.csv')

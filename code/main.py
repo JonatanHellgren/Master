@@ -12,9 +12,10 @@ DIR = 'models/static_8x8'
 
 env_params = EnvParams(
         (8, 8),  # size
-        15,       # n_foods
+        15,      # n_foods
         3,       # n_food_types
-        100)     # n_test
+        100,     # n_test
+        True)    # stochastic
 
 def main():
     mdp = MDP(env_params, pomdp=False)

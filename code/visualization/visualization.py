@@ -1,8 +1,8 @@
 import itertools
 import sys
 
-import colorama
-from colorama import Fore
+# import colorama
+# from colorama import Fore
 import torch
 import matplotlib.pyplot as plt
 from matplotlib import rc
@@ -139,7 +139,8 @@ def run_environment():
             (4,4), # size
             9,      # n_foods
             3,       # n_food_types
-            100)     # n_test
+            100,     # n_test
+            True)
     mdp = MDP(env_params)
     grid = mdp.reset()
     _, max_x, max_y = grid.shape
@@ -149,9 +150,12 @@ def run_environment():
     while not done:
 
         # add side effects and objectives to mdp.info and teturn with .step
+        """
         plot_grid_lines(axis, max_x, max_y)
         plot_objects(grid, axis, max_x, max_y)
         fig.show()
+        """
+        plot_grid(grid, 'tmp.png')
 
         action = input('Action: ')
         action = int(action)

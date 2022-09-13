@@ -74,12 +74,12 @@ def _add_auxiliary_reward(batch_obs, batch_rews, pomdp, manager, lmbda):
         auxiliary_tasks_1, auxiliary_tasks_2 = _get_auxiliary_tasks(
                 batch_obs[idx:(idx+batch_len)], pomdp)
         # aux_rews = manager(ep_aux_tasks).detach()
-        if pomdp:
-            aux_rews_1 = manager(auxiliary_tasks_1, [batch_len]).detach()
-            aux_rews_2 = manager(auxiliary_tasks_2, [batch_len]).detach()
-        else:
-            aux_rews_1 = manager(auxiliary_tasks_1).detach()
-            aux_rews_2 = manager(auxiliary_tasks_2).detach()
+        # if pomdp:
+            # aux_rews_1 = manager(auxiliary_tasks_1, [batch_len]).detach()
+            # aux_rews_2 = manager(auxiliary_tasks_2, [batch_len]).detach()
+        # else:
+        aux_rews_1 = manager(auxiliary_tasks_1).detach()
+        aux_rews_2 = manager(auxiliary_tasks_2).detach()
         # aux_rews = torch.reshape(aux_rews, (batch_len, 2))
         # aux_rews = torch.reshape(torch.cat([aux_rews_1, aux_rews_2]), (batch_len, 2))
         aux_rews = torch.cat([aux_rews_1, aux_rews_2], 1)

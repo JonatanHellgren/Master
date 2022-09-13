@@ -48,10 +48,12 @@ class Agent:
 
     def train_manager(self, batch_obs, batch_rtgs, batch_lens):
 
+        """
         if self.pomdp:
             rtgs_pred = squeeze(self.manager(batch_obs, batch_lens))
         else:
-            rtgs_pred = squeeze(self.manager(batch_obs))
+        """
+        rtgs_pred = squeeze(self.manager(batch_obs))
         manager_loss = nn.MSELoss()(rtgs_pred, batch_rtgs)
 
         self.manager_optim.zero_grad()
