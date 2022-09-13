@@ -115,7 +115,7 @@ class MDP:
             reward = -0.04
         # breakpoint()
 
-        if env_params.stochastic:
+        if self.env_params.stochastic:
             self.move_foods()
 
         obs = self.observe()
@@ -179,7 +179,7 @@ class MDP:
             return cord, False
 
     def move(self, cord, new_cord):
-        breakpoint()
+        # breakpoint()
         f = np.shape(self.grid)[0]
         old_cell = np.copy(self.grid[:, cord[1], cord[2]])
         self.grid[:, cord[1], cord[2]] = np.zeros(f)

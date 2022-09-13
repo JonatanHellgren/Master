@@ -9,7 +9,6 @@ from matplotlib import rc
 import seaborn as sns
 import numpy as np
 
-from environment import MDP, EnvParams
 
 palette = sns.color_palette("colorblind")
 red = palette[1]
