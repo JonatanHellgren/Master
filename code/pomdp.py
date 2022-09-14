@@ -14,7 +14,8 @@ env_params = EnvParams(
         (8, 8),  # size
         15,       # n_foods
         3,       # n_food_types
-        100)     # n_test
+        100,     # n_test
+        False)
 
 def train_manager():
     mdp = MDP(env_params, pomdp=True)
@@ -105,11 +106,11 @@ def train_aux():
     
     loggings = []
     n_runs = 10
-    n_epochs = 20
+    n_epochs = 100
     df = pd.DataFrame()
     for run in range(n_runs):
         # for lmbda in [ 0.1, 0.2, 0.3, 0.4, 0.5]:
-        for lmbda in [0, 0.25, 0.5, 0.75, 1]:
+        for lmbda in [0, 0.5, 1, 1.5, 2, 2.5, 3]:
             print(f"Run = {run}\nLambda = {lmbda}")
             train_parameters = TrainParameters(
                     100,  # timesteps_per_batch 
@@ -138,7 +139,7 @@ def train_aux():
     return df
 
 train_agent()
-# train_manager()
-# df = train_aux()
-# df = df.reset_index()
-# df.to_csv(f'{DIR}/df.csv')
+train_manager()
+df = train_aux()
+df = df.reset_index()
+df.to_csv(f'{DIR}/df.csv')

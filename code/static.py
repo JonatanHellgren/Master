@@ -14,8 +14,7 @@ env_params = EnvParams(
         (8, 8),  # size
         15,      # n_foods
         3,       # n_food_types
-        100,     # n_test
-        True)    # stochastic
+        100)     # n_test
 
 def main():
     mdp = MDP(env_params, pomdp=False)
@@ -121,4 +120,8 @@ def train_aux():
             # loggings.append(ppo_aux.logging)
     return df
 
+train_agent()
+train_manager()
 df = train_aux()
+df = df.reset_index()
+df.to_csv(f'{DIR}/df.csv')
