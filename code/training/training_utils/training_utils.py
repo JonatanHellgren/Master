@@ -36,7 +36,7 @@ def rollout_test_set(agent, train_parameters, mdp):
 
     return batch_obs, batch_rtgs, avg_len, avg_obj, avg_side_effects, dones, data["batch_lens"]
 
-def rollout(agent, train_parameters, mdp, use_aux=False):
+def rollout(agent, train_parameters, mdp, lmbda):
     # Batch data
     data = defaultdict(list)
 
@@ -57,10 +57,10 @@ def rollout(agent, train_parameters, mdp, use_aux=False):
     batch_acts = torch.tensor(data["batch_acts"], dtype=torch.long)
     batch_log_probs = torch.tensor(data["batch_log_probs"], dtype=torch.float)
 
-    if use_aux:
+    if lmbda != None:
         data["batch_rews"] = \
                 _add_auxiliary_reward(batch_obs, data["batch_rews"], mdp.pomdp,
-                                      agent.manager, train_parameters.lmbda)
+                                      agent.manager, lmbda)
 
     batch_rtgs = _compute_rtgs(data["batch_rews"], train_parameters)
 

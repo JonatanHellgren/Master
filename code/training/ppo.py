@@ -11,13 +11,13 @@ class PPO:
     """
     Training algorithm
     """
-    def __init__(self, mdp, agent, device, train_parameters, use_aux=False, save_model=True):
+    def __init__(self, mdp, agent, device, train_parameters, lmbda=None, save_model=True):
         # Extract information from the environment
         self.mdp = mdp
         self.agent = agent
         self.device = device
         self.train_parameters = train_parameters
-        self.use_aux = use_aux
+        self.lmbda = lmbda
         self.save_model = save_model
 
         self.logging = defaultdict(list)
@@ -40,7 +40,7 @@ class PPO:
 
                 # Performing a rollout and moving all the information to the gpu, except batch_lens
                 batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens = \
-                        rollout(self.agent, self.train_parameters, self.mdp, self.use_aux)
+                        rollout(self.agent, self.train_parameters, self.mdp, self.lmbda)
 
                 # Move to gpu
                 batch_obs = batch_obs.to(self.device)

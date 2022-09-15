@@ -14,10 +14,12 @@ env_params = EnvParams(
         (8, 8),  # size
         15,      # n_foods
         3,       # n_food_types
-        100)     # n_test
+        100,     # n_test
+        False,   # is_stochastic
+        True)    # is_pomdp
 
 def main():
-    mdp = MDP(env_params, pomdp=False)
+    mdp = MDP(env_params)
 
     obs_dim = mdp.obs_size
     act_dim = mdp.n_actions
@@ -26,7 +28,7 @@ def main():
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
     n_conv = 64
-    hidden_dim = 1023
+    hidden_dim = 1024
 
     train_parameters = TrainParameters(
             100,  # timesteps_per_batch 
@@ -37,7 +39,9 @@ def main():
             1e-4, # actor_lr 
             7e-4, # critic_lr 
             1e-4, # manager_lr
-            0.1)  # lmbda
+            0.1,  # lmbda
+            64,
+            1024)
 
     # Initilize actor 
     actor = FeedForwardNN(obs_dim, n_conv, hidden_dim, act_dim, device, softmax=True).to(device)
@@ -120,8 +124,8 @@ def train_aux():
             # loggings.append(ppo_aux.logging)
     return df
 
-train_agent()
-train_manager()
-df = train_aux()
-df = df.reset_index()
-df.to_csv(f'{DIR}/df.csv')
+# train_agent()
+# train_manager()
+# df = train_aux()
+# df = df.reset_index()
+# df.to_csv(f'{DIR}/df.csv')

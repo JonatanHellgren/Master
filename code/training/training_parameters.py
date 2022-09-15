@@ -10,4 +10,5 @@ class TrainParameters(NamedTuple):
     actor_lr                  : float # 1e-4
     critic_lr                 : float # 7e-4
     manager_lr                : float # 1e-4
-    lmbda                     : float # 0 < lmbda
+    n_conv                    : int   # 64
+    hidden_dim                : int   # 1024

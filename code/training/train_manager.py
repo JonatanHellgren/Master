@@ -36,8 +36,9 @@ class ManagerTrainer:
                 sys.stdout.flush()
 
                 # Performing a rollout and moving all the information to the gpu, except batch_lens
+                lmbda = None
                 batch_obs, _, _, batch_rtgs, batch_lens = \
-                        rollout(self.agent, self.train_parameters, self.mdp)
+                        rollout(self.agent, self.train_parameters, self.mdp, lmbda)
 
                 # Augment the batch
                 _augment_batch(batch_obs)
