@@ -109,7 +109,7 @@ def train_aux(DIR):
             df = pd.concat([df, pd.DataFrame(log)])
 
     df = df.reset_index()
-    df.to_csv(f'{DIR}/df.csv')
+    df.to_csv(f'{DIR}/{out_file_name}')
 
 def initialize_environment(DIR):
 
