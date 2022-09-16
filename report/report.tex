@@ -1039,8 +1039,8 @@ We will train the agent with the following values for $\lambda$: (0, 0.25, 0.5, 
 In figure \ref{fig:results_static_8x8}, we can see the results from the fully observable environment. We can see that $\lambda$ has a noticeable effect on both the objective reward and the number of side effects. When we increase $\lambda$, the side effects decrease. Although, eventually,  the objective reward also starts to decrease. The cause for this decrease is that the agent will not always find a policy that collects objective rewards, see Table \ref{tab:results_static_8x8} for how many times this happened. 
 \begin{figure}[H]
   \centering
-  \includegraphics{"./figures/static_8x8_results_side_effects.png"}
-  \includegraphics{"./figures/static_8x8_results_avg_obj.png}
+  \includegraphics{"./figures/pomdp_8x8_results.png"}
+  \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
   % \includegraphics{"./figures/static_8x8_results_avg_obj.png"}\\
   % \hspace{60pt} \includegraphics{"./figures/static_8x8_results_avg_len.png"}
   \caption{To the left we can see the mean side effect with a corresponding 95\% confidence interval, for all of the tested $\lambda$ values. Similarly to the right, but instead for the objective reward.}
