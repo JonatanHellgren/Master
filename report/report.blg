@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: report.aux
+The style file: apalike.bst
+Database file #1: ref.bib
+Warning--empty journal in Levinson
+You've used 52 entries,
+            1935 wiz_defined-function locations,
+            743 strings with 10905 characters,
+and the built_in function-call counts, 17868 in all, are:
+= -- 1659
+> -- 984
+< -- 33
++ -- 351
+- -- 340
+* -- 1426
+:= -- 3408
+add.period$ -- 151
+call.type$ -- 52
+change.case$ -- 424
+chr.to.int$ -- 51
+cite$ -- 53
+duplicate$ -- 651
+empty$ -- 1015
+format.name$ -- 406
+if$ -- 3297
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 42
+newline$ -- 257
+num.names$ -- 158
+pop$ -- 352
+preamble$ -- 1
+purify$ -- 429
+quote$ -- 0
+skip$ -- 548
+stack$ -- 0
+substring$ -- 684
+swap$ -- 45
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 302
+warning$ -- 1
+while$ -- 109
+width$ -- 0
+write$ -- 636
+(There was 1 warning)

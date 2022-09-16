@@ -1,5 +1,0 @@
-Svårt att implementera impact measurements i POMDP sålänge man inte inkluderar ett minne i agenten. Eftersom den annars staffas av att maten lämmnar dess område som den kan se. Jag hade gärna velat testa detta, men jag tror jag hade behövs koda om hela agenten för att lyckas med det.
-
-Det hade varit najs med en mer komplex miljö, men det känns också som att det skeppen har seglat. Jag borde försöka lösa något med det jag redan har och inte byta fokus.
-
-
