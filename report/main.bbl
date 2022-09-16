@@ -193,14 +193,14 @@ Orseau, L. and Armstrong, S. (2016).
 \newblock Safely interruptible agents.
 \newblock {\em MIRI}.
 
-\bibitem[Russel, 2019]{HumanCompatible}
-Russel, S. (2019).
+\bibitem[Russell, 2019]{HumanCompatible}
+Russell, S. (2019).
 \newblock {\em Human Compatible: Artificial Intelligence and the Problem of
   Control}.
 \newblock Viking.
 
-\bibitem[Russel and Norvig, 1995]{RusselNorvig}
-Russel, S. and Norvig, P. (1995).
+\bibitem[Russell and Norvig, 2021]{RussellNorvig}
+Russell, S. and Norvig, P. (2021).
 \newblock {\em Artificial Intelligence - A Modern Approach, Fourth Edition}.
 \newblock Pearson.
 
@@ -227,6 +227,11 @@ Silver, D., Huang, A., Maddison, C., Guez, A., Sifre, L., Driessche, G.,
   Leach, M., Kavukcuoglu, K., Graepel, T., and Hassabis, D. (2016).
 \newblock Mastering the game of go with deep neural networks and tree search.
 \newblock {\em Nature}.
+
+\bibitem[Silver et~al., 2021]{Silver21}
+Silver, D., Singh, S., Precup, D., and Sutton, R.~S. (2021).
+\newblock Reward is enough.
+\newblock {\em Artificial Intelligence}, 299:103535.
 
 \bibitem[Soares et~al., 2016]{Corrigibility}
 Soares, N., Fallenstein, B., Yudkowsky, E., and Armstrong, S. (2016).

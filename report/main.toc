@@ -1,50 +1,43 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}%
-\contentsline {section}{\numberline {1.1}Artificial Intelligence}{1}%
-\contentsline {subsubsection}{AI Paradigms}{2}%
-\contentsline {subsubsection}{Intelligent Agents}{3}%
-\contentsline {subsection}{\numberline {1.1.1}Future Progress}{3}%
-\contentsline {subsubsection}{Is an AGI Possible?}{4}%
-\contentsline {subsubsection}{Impacts of AGI}{5}%
-\contentsline {subsection}{\numberline {1.1.2}Timeline for Transformative AI Breakthrough}{5}%
+\contentsline {chapter}{\numberline {2}Artificial Intelligence}{2}%
+\contentsline {section}{\numberline {2.1}Defining AI}{2}%
+\contentsline {section}{\numberline {2.2}Future Progress}{4}%
+\contentsline {section}{\numberline {2.3}Timeline for Transformative AI Breakthrough}{6}%
 \contentsline {subsubsection}{Survey Results}{6}%
-\contentsline {subsubsection}{Forecasting Model}{6}%
-\contentsline {subsection}{\numberline {1.1.3}Basic Drives}{7}%
-\contentsline {subsubsection}{Instrumental Convergence}{7}%
-\contentsline {subsubsection}{Orthogonality Thesis}{8}%
-\contentsline {section}{\numberline {1.2}AI Safety}{9}%
-\contentsline {subsection}{\numberline {1.2.1}AI Alignment}{9}%
-\contentsline {subsection}{\numberline {1.2.2}Unaligned AI}{10}%
-\contentsline {subsubsection}{Reward Hacking}{11}%
-\contentsline {subsubsection}{Example of Unaligned AI}{12}%
-\contentsline {subsubsection}{Consequences of Unaligned AI}{12}%
-\contentsline {subsection}{\numberline {1.2.3}Approaches for creating safe AI}{13}%
-\contentsline {subsubsection}{Corrigibility and Interruptibility }{13}%
-\contentsline {subsubsection}{Inverse Reinforcement Learning}{14}%
-\contentsline {subsubsection}{Impact Measurements}{15}%
-\contentsline {section}{\numberline {1.3}Aim of Thesis}{15}%
-\contentsline {chapter}{\numberline {2}Theoretical Background}{16}%
-\contentsline {section}{\numberline {2.1}Reinforcement Learning}{16}%
-\contentsline {subsection}{\numberline {2.1.1}Defining an environment}{17}%
-\contentsline {subsubsection}{Partially Observable Environments}{17}%
-\contentsline {subsection}{\numberline {2.1.2}Training an Agent}{18}%
-\contentsline {subsubsection}{Value Functions}{19}%
-\contentsline {subsubsection}{Training Using a Batch}{20}%
-\contentsline {subsubsection}{Actor-Critic Methods}{20}%
-\contentsline {subsubsection}{Clipped loss function}{21}%
-\contentsline {section}{\numberline {2.2}Impact Measurements for Avoiding Side Effects}{21}%
-\contentsline {subsection}{\numberline {2.2.1}Baselines}{22}%
-\contentsline {subsection}{\numberline {2.2.2}Deviation Measures}{23}%
-\contentsline {chapter}{\numberline {3}Methods}{24}%
-\contentsline {section}{\numberline {3.1}Environment}{24}%
-\contentsline {subsection}{\numberline {3.1.1}Adding More Food Objects}{25}%
-\contentsline {subsection}{\numberline {3.1.2}Partially Observable Grid World}{26}%
-\contentsline {section}{\numberline {3.2}Impact measurement}{26}%
-\contentsline {subsection}{\numberline {3.2.1}Auxiliary Tasks}{26}%
-\contentsline {subsection}{\numberline {3.2.2}Manager network}{27}%
-\contentsline {subsection}{\numberline {3.2.3}Computation}{28}%
-\contentsline {subsubsection}{Fully Observable}{28}%
-\contentsline {subsubsection}{Partially Observable}{29}%
-\contentsline {section}{\numberline {3.3}Simulation}{29}%
-\contentsline {chapter}{\numberline {4}Results}{30}%
-\contentsline {chapter}{\numberline {5}Discussion}{32}%
-\contentsline {chapter}{\numberline {6}Conclusion}{33}%
+\contentsline {subsubsection}{Forecasting Model}{7}%
+\contentsline {section}{\numberline {2.4}Basic Drives}{8}%
+\contentsline {subsubsection}{Instrumental Convergence}{8}%
+\contentsline {subsubsection}{Orthogonality Thesis}{9}%
+\contentsline {chapter}{\numberline {3}AI Safety}{10}%
+\contentsline {section}{\numberline {3.1}AI Alignment}{10}%
+\contentsline {section}{\numberline {3.2}Unaligned AI}{11}%
+\contentsline {section}{\numberline {3.3}Approaches for creating safe AI}{14}%
+\contentsline {subsubsection}{Corrigibility and Interruptibility }{14}%
+\contentsline {subsubsection}{Inverse Reinforcement Learning}{15}%
+\contentsline {subsubsection}{Impact Measurements}{16}%
+\contentsline {chapter}{\numberline {4}Theoretical Background}{17}%
+\contentsline {section}{\numberline {4.1}Reinforcement Learning}{17}%
+\contentsline {subsection}{\numberline {4.1.1}Defining an environment}{18}%
+\contentsline {subsubsection}{Partially Observable Environments}{19}%
+\contentsline {subsection}{\numberline {4.1.2}Training an Agent}{19}%
+\contentsline {subsubsection}{Value Functions}{20}%
+\contentsline {subsubsection}{Training Using a Batch}{21}%
+\contentsline {subsubsection}{Actor-Critic Methods}{21}%
+\contentsline {subsubsection}{Clipped loss function}{22}%
+\contentsline {section}{\numberline {4.2}Impact Measurements for Avoiding Side Effects}{22}%
+\contentsline {subsection}{\numberline {4.2.1}Baselines}{23}%
+\contentsline {subsection}{\numberline {4.2.2}Deviation Measures}{24}%
+\contentsline {chapter}{\numberline {5}Methods}{26}%
+\contentsline {section}{\numberline {5.1}Environment}{26}%
+\contentsline {subsection}{\numberline {5.1.1}Adding More Food Objects}{27}%
+\contentsline {subsection}{\numberline {5.1.2}Partially Observable Grid World}{28}%
+\contentsline {section}{\numberline {5.2}Impact measurement}{28}%
+\contentsline {subsection}{\numberline {5.2.1}Auxiliary Tasks}{28}%
+\contentsline {subsection}{\numberline {5.2.2}Manager network}{29}%
+\contentsline {subsection}{\numberline {5.2.3}Computation}{30}%
+\contentsline {subsubsection}{Fully Observable}{30}%
+\contentsline {subsubsection}{Partially Observable}{31}%
+\contentsline {section}{\numberline {5.3}Simulation}{31}%
+\contentsline {chapter}{\numberline {6}Results}{32}%
+\contentsline {chapter}{\numberline {7}Discussion}{34}%
+\contentsline {chapter}{\numberline {8}Conclusion}{35}%
