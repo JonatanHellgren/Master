@@ -45,7 +45,7 @@ def train_agent(DIR):
 
     # train agent
     ppo = PPO(environment, agent, device, train_params)
-    ppo.train(10, 1e4, DIR)
+    ppo.train(100, 1e4, DIR)
 
 def train_manager(DIR):
 
@@ -70,7 +70,7 @@ def train_manager(DIR):
 
     # train manager
     manager_trainer = ManagerTrainer(environment, agent, device, train_params)
-    manager_trainer.train(5, 1e4, DIR)
+    manager_trainer.train(500, 1e4, DIR)
 
 def train_aux(DIR):
 
