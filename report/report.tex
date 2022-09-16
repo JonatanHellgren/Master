@@ -1041,26 +1041,10 @@ In figure \ref{fig:results_static_8x8}, we can see the results from the fully ob
   \centering
   \includegraphics{"./figures/pomdp_8x8_results.png"}
   \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
-  % \includegraphics{"./figures/static_8x8_results_avg_obj.png"}\\
-  % \hspace{60pt} \includegraphics{"./figures/static_8x8_results_avg_len.png"}
-  \caption{To the left we can see the mean side effect with a corresponding 95\% confidence interval, for all of the tested $\lambda$ values. Similarly to the right, but instead for the objective reward.}
-  \label{fig:results_static_8x8}
+  \caption{To the left we can see the results for the static POMDP, while on the right the stochastic.}
+  \label{fig:results_pomdp_8x8}
 \end{figure}
 
-\begin{table}[H]
-  \centering
-  \begin{tabular}{c | c}
-    $\lambda$ & Failed attempts \\ \hline
-    0 & 0 \\
-    0.25 & 0 \\
-    0.5 & 0 \\
-    0.75 & 1 \\
-    1 & 9 \\
-    % prob food move & 0 \\
-  \end{tabular}
-  \caption{Here we can see the number of failed attempts where the agent fails to find a policy that generates any noticeable objective reward for each $\lambda$-value.}
-  \label{tab:results_static_8x8}
-\end{table}
 
 As we can see $\lambda = 0.5$ (green) seems to be a sweet-spot. With a significantly lower number of side effects than no impact measurement, but still allows for collecting a similar amount of objective rewards. During the experiment, it did not fail to learn even once.
 
@@ -1148,5 +1132,30 @@ We will define the food movements as the following, at every timestep after the 
   \]
   \caption{Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. }
   \label{fig:stochastic_transition}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{c | c}
+    $\lambda$ & Failed attempts \\ \hline
+    0 & 0 \\
+    0.25 & 0 \\
+    0.5 & 0 \\
+    0.75 & 1 \\
+    1 & 9 \\
+    % prob food move & 0 \\
+  \end{tabular}
+  \caption{Here we can see the number of failed attempts where the agent fails to find a policy that generates any noticeable objective reward for each $\lambda$-value.}
+  \label{tab:results_static_8x8}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  % \includegraphics{"./figures/pomdp_8x8_results.png"}
+  % \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
+  \includegraphics{"./figures/static_8x8_results_avg_obj.png"}\\
+  \hspace{60pt} \includegraphics{"./figures/static_8x8_results_avg_len.png"}
+  \caption{To the left we can see the mean side effect with a corresponding 95\% confidence interval, for all of the tested $\lambda$ values. Similarly to the right, but instead for the objective reward.}
+  \label{fig:results_static_8x8}
 \end{figure}
 

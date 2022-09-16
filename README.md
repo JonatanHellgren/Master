@@ -1,11 +1,9 @@
 # An Impact Measurement Manager Approach to AI Safety
-## Master's thesis in Statistical Learning and AI
-This repository includes all files for my master's project, including the report and code for experiments.
+This repository includes all files for my Master's thesis in Statistical Learning and AI. I have divided this repo into a report and a code part. The code part is probably the most relevant for anyone looking here. 
+
+
 
 ## Abstract
-Comming soon
-
-## Quick start
 Comming soon
 
 ## Results
