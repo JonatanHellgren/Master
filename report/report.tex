@@ -357,14 +357,14 @@ The question of when we will see these breakthroughs in the field that enables T
 % https://www.nature.com/articles/d41586-020-03409-8
 
 % survey result
-\subsubsection{Survey Results}
+\subsection{Survey Results}
 In a well-cited survey \citet{Grace}, they asked researchers in the field of AI to estimate the probability of human-level machine intelligence (unaided machines that can achieve all tasks better and more cheaply than human workers) arriving in the future years. The conclusion of the survey where:
 \begin{displayquote}
 Researchers believe there is a 50\% chance of AI outperforming humans in all tasks in 45 years and of automating all human jobs in 120 years, with Asian respondents expecting these dates much sooner than North Americans.
 \end{displayquote}
 However, this result should be taken with a grain of salt since the distribution of answers had high variation. As well as, there should not be such a big difference between solving all tasks and all jobs since a job consists of a set of tasks, and thus if one can perform every task performing every job should be possible. There is still something we can take away from this survey about the timeline, namely that researchers mostly think AI can automate all tasks within this century. Also, it tells us how unsure the research field is about when this will happen. 
 
-\subsubsection{Forecasting Model}
+\subsection{Forecasting Model}
 Another approach for predicting when TAI systems will be possible to train is a quantitative forecasting model, see \citet{Ajeya}. This model uses biological anchors to estimate how much computing is necessary for the training. In the model, they base the biological anchors on factors that played a role in the development of human intelligence. For example:
 \begin{itemize}
   \item the amount of information in our genome, 
@@ -395,7 +395,7 @@ Knowing what impacts a potential TAI or AGI will cause is hard without understan
 % Olles response
 % http://www.math.chalmers.se/~owww.math.chalmers.se/~olleh/ChallengesOBframeworkDeanonymized.pdf lleh/ChallengesOBframeworkDeanonymized.pdf
 
-\subsubsection{Instrumental Convergence}
+\subsection{Instrumental Convergence}
 In the current paradigm, the creator of the AI agent assigns it a goal. We call this goal the terminal goal since it completes the task. This task could be anything, for example, maximizing the number of paper clips produced by a factory, finding decimals in $\pi$, or counting all the blades of grass on our planet. According to instrumental convergence during the agent's pursuit of the terminal goal, naturally, other instrumental goals emerge, which are instrumental in the sense of not being essential but merely as means toward achieving the terminal goal. Some examples of such goals are brought up by \citet{Omohundro08}, and they are: 
 \begin{itemize}
     \item Self-preservation: Keeping itself up and running will let the agent guarantee it can complete its goals.
@@ -416,7 +416,7 @@ Still, it does not yet exist any rigorous mathematical proof for this. However, 
 % LÄS
 % https://www.emerald.com/insight/content/doi/10.1108/FS-04-2018-0039/full/pdf?title=challenges-to-the-omohundrobostrom-framework-for-ai-motivations
 
-\subsubsection{Orthogonality Thesis}
+\subsection{Orthogonality Thesis}
 The orthogonality thesis is described as \say{More or less any final goal is compatible with more or less arbitrarily any level of intelligence}, in \citet{Bostrom12}. To avoid counterexamples that combine low intelligence with an advanced goal, we can change \say{any level of intelligence} to \say{arbitrary high level of intelligence}, see \citet{Haggstrom19}. With this, there exist some counterexamples. For example, if we gave an intelligent AI the goal of being stupid, then the AI would quickly sease to be intelligent.
 
 A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. However, for humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following section once we have covered a bit more about AI safety.
@@ -495,11 +495,11 @@ Inner alignment is the alignment between the \textit{mesa objective} and the \te
 % In \autobaj{Amodei et al.} the field of AI safety in to five different parts and suggested research directions for each of them. A similar outline will be provided in this report. 
 
 
-% \subsubsection{Reward hacking} 
-% \subsubsection{Scalable oversight}
-% \subsubsection{Safe exploration}
-% \subsubsection{Robustness to distributional shift}
-% \subsubsection{Negative side effects}
+% \subsection{Reward hacking} 
+% \subsection{Scalable oversight}
+% \subsection{Safe exploration}
+% \subsection{Robustness to distributional shift}
+% \subsection{Negative side effects}
 
 
 % Risks from Learned Optimization in Advanced Machine Learning Systems
@@ -535,8 +535,8 @@ Similarly, each action can have many side effects, and it is impractical to stat
 % Om du skall nämna “the frame problem” bör du kort tala om vad det är, samt också vari sambandet med side effects består. Som det nu ser ut väntar sig läsaren att meningen ”Each action can have…” är (början på) en förklaring av dessa saker, men så verkar inte vara fallet (väl?).
 
 
-% \subsubsection{Reward Hacking}
-% \subsubsection{Outer alignment}
+% \subsection{Reward Hacking}
+% \subsection{Outer alignment}
 As mentioned earlier, one creates the behavior of an AI agent by defining a reward function. A reward function is a function that yields positive or negative rewards to an agent based on its action. The goal is to enforce behavior that yields a high reward and thus should also solve the task. 
 
 However, reward functions are hard to specify, such that they can not be exploited by an agent once employed. Exploiting refers to the behavior developed by the agent that optimizes the reward without performing the intended task called \textit{reward hacking}. We can see reward hacking as an outer alignment problem due to the reward function's failure to capture the human intent.
@@ -587,7 +587,7 @@ However, with this statement, it is necessary to point out that it is only an es
 In recent years the research field of safe and aligned AI has seen a substantial increase. However, we are still a long way from solving the problem. Most of what the field is doing today is mainly speculations and laying necessary foundations for future research. With many proposed paths for solving this issue, perhaps the sheer amount might signify the difficulty and width of the problem. We will now cover a few of these paths in this section.
 
 
-\subsubsection{Corrigibility and Interruptibility }
+\subsection{Corrigibility and Interruptibility }
 There are reasons to suspect that a given AI system, once deployed, can be incomplete because the behavior generated by maximizing the reward function does not wholly match what we wanted. Due to the difficulty of reasoning about how an AI will behave once deployed and the problem of specifying what consequences an AI agent's actions might have. In that case, making changes in the agent's reward function to correct it will likely be required.  
 
 This reasoning brings us to the core problem of corrigibility, which is that we probably want to make changes in the agent after deployment, see \citet{Corrigibility}. However, by default, the agent will not allow this due to instrumental convergence, where goal-perseverance is one of the instrumental goals. Therefore, any modification in the agent's utility function will be seen as an obstacle to achieving its terminal goal and would thus not be allowed by a sufficiently intelligent agent. 
@@ -596,7 +596,7 @@ Also closely related to this is interruptibility, where the idea is to create ag
 
 To solve these issues, we have seen some narrow solutions, see \citet{Hadfield-Menell} and \citet{Carey}, but a general solution remains undiscovered. The narrow solution is proven to prevent interference with an interruption. However, it promotes no incentive to preserve this behavior by ensuring that sub-agents created by the first agent also will be interruptible, see \citet{co-founding}.  
 
-\subsubsection{Inverse Reinforcement Learning}
+\subsection{Inverse Reinforcement Learning}
 Related to the approaches described above is inverse reinforcement learning. Suppose we say that the cause for side effects emerges due to improperly specified reward functions. Then the solution might not be to create a better reward function but to make the agent's goal to understand the human intent behind the reward function. Instead of seeing the reward function as final, the agent will view it as an observation of what the actual goal might be, thus viewing the reward function only as an observation of this and asking for clarifications when necessary. This approach is called inverse reward design, see \citet{Hadfield-Menell2}.
 
 With this method, we have, in simulations, seen impressive results when executing advanced motor skills such as backflips or moving forward on one leg, see \citet{Christiano}. These tasks would otherwise require an advanced reward function, but they managed to do this more easily. Moreover, this approach focuses on dealing with outer alignment since we incentivize the agent to find information about the human intent lost when specifying the reward function. 
@@ -608,7 +608,7 @@ With this method, we have, in simulations, seen impressive results when executin
   % We call an AI system \say{corrigible} if it cooperates with what its creators regard as a corrective intervention, despite default incentives for rational agents to resist attempts to shut them down or modify their preferences.
 % \end{displayquote}
 
-\subsubsection{Impact Measurements}
+\subsection{Impact Measurements}
 % Attempts have been made at this by explicitly specifying what the agent should not do Zhang et al. (2018). However, with this approach, the reward function becomes an iterative trial and error process requiring counterproductive human intervention since automation is ideal. 
 
 When an intelligent agent pursues its goal, it will impact its environment. The goal of low-impact agents is to avoid side effects. For example, if we give an agent the task of going from point $a$ to point $b$ in a room, it should not knock over and possibly break fragile items, like a vase, even if it is the shortest path. The complicated thing here is to create an impact measurement that avoids all side effects in all environments without explicitly stating every little detail.
@@ -676,7 +676,7 @@ The discount factor $\gamma$ describes how the process values future rewards. Wi
 % “The opposite holds for more deterministic environments…”. I allmänhet tror jag inte att determinism räcker, vi behöver dessutom ha ett visst mått av predikterbarhet, vilket i komplexa situationer kan fallera även då ren determinism råder. 
 
 
-\subsubsection{Partially Observable Environments}
+\subsection{Partially Observable Environments}
 
 The main difference between a Partially Observable Environment (POMDP) and an MDP is that the agent can observe the entire environment in an MDP, while in a POMDP, the agent observes only a part of the environment. This added complexity adds difficulty to the problem definition since the agent is no longer omniscient regarding its environment. However, with this extended definition, we also add some realism since all living organisms on our planet are agents acting in a partially observable environment.
 
@@ -715,7 +715,7 @@ Here a greedy choice selects the action with the highest probability, while the 
 We use the greedy policy when evaluating a trained agent. However,  when training the agent, we will use the stochastic policy since we want the agent to explore its environment to find new solutions. As we train the agent, it will gradually become more confident in its actions, and thus the stochasticity will decrease, especially in frequent states. However, when the agent ends up in less common states, the randomness of the upcoming action will be higher. Thus the agent will begin finding a sequence of actions and then extend it.
 % When the agent selects actions from the policy stochastically, it tries new sequences of actions which lets the agent explore the environment and gain experience from the environment
 % common states, this will result in a higher probability for the actions it has experience of being good
-\subsubsection{Value Functions}
+\subsection{Value Functions}
 
 We can define the value in each state when following a policy as:
 \[ V^\pi(s) = \mathop{\mathbb{E}}_{\tau \sim \pi} [R(\tau) | s_1 = s],\]
@@ -732,13 +732,13 @@ With the loss we update the weights:
 \[ \theta_{k+1} = \theta_k + \alpha L(\theta).\]
 Here $\alpha$ is a learning rate describing how much the parameters should be updated, typically a value close to zero. With this, we are decreasing the probability of the actions in a rollout that led to a low reward. While also increasing the probability for the actions when the rollout led to a positive reward.
 
-\subsubsection{Training Using a Batch}
+\subsection{Training Using a Batch}
 
 Training the agent usually takes a long time since it has to learn everything from scratch through trial and error. To speed up the process, we can train the agent using a batch containing a set of trajectories. Then, we will compute the loss from multiple trajectories, summarize them, and update the weights using the average loss. Besides making the process faster, the agent will not optimize towards specific trajectories, which makes it easier for the agent to become more general. The disadvantages are that we possibly discourage desirable behavior if desirable trajectories end up as a minority in a batch with mostly undesirable ones. Nevertheless, usually, the pros outweigh the cons since the updates will average out.
 
 % To not make the agent over-fit to the early behaviors that generated rewards by chance and let it improve its policy, we train using a batch where we summarize the output of multiple rollouts and optimize them simultaneously. Using a batch would discourage desirable behavior if a desirable rollout happened to end up as a minority with undesirable ones. However, this method is proven to converge in simple settings since the updates will average out, although this makes the method sample inefficient.
 
-\subsubsection{Actor-Critic Methods}
+\subsection{Actor-Critic Methods}
 Knowing what actions were the cause for the reward is problematic since, in a rollout, the agent can stumble around in the beginning and then somehow manage to get a reward in the end. However, the loss function previously described either encourages or discourages the entire rollout. To tackle this problem, we can extend the agent to consist of two networks, the \textbf{actor} and the \textbf{critic}. 
 
 The actor works the same as the policy network $\pi_\theta$. The critic is another neural network function that inputs a state $s$ and outputs an estimate of $V^\pi(s)$. Hence, the critic estimates the future reward based on what rewards the agent has received previously from similar states.
@@ -758,7 +758,7 @@ By using the advantage function instead of the discounted reward, we extend the 
 % sensitive to perturbations, a small update can be a huge step in policy space
 % advantage => godness of state
 % can use same network, but more complicated loss function
-\subsubsection{Clipped loss function}
+\subsection{Clipped loss function}
 Some problems still exist with this approach. Namely, a too-large update can make the agent policy useless. Moreover, since the agent performs its action sequentially, a change of behavior early in a trajectory can ruin the agent's ability to navigate where it ends up. To solve this issue, Schulman et al. (2017) proposed the Proximal Policy Optimization (PPO) algorithm which is an actor-critic method that uses the clipped loss function:
 \[L^{CLIP}(\theta) = \mathbb{E}_t \left [ \min(\delta_t(\theta) \ \hat{A}_t,\ 
 \text{clip}(\delta_t(\theta), 1 - \epsilon, 1 + \epsilon) \ \hat{A}_t) \right ]. \]
@@ -924,6 +924,35 @@ After each transition, the reward function yields a reward to the agent. When th
 
 Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent consume the right food type, besides perhaps allowing a quicker path. However, the reward function will not signal this to the agent. Instead, the purpose of the impact measurement is to capture and signal side effects to the agent.
 
+\subsection{Stochastic Grid World}
+The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
+
+We will define the food movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, i.e. it is empty, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. 
+
+If we choose to include several foods in the environment, then the distribution for future states will grow exponentially, so the difficulty for the agent will increase dramatically. 
+
+\begin{figure} 
+  % fix with multi row?
+  \[
+    T \left(\parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/stoch.png"}}, \textit{RIGHT} \right)
+    =
+    \left\{
+      % \parbox[h][1.1\linewidth][c]{0.25\linewidth}{
+          % \begin{align*}
+        \begin{tabular}{c c}
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/noop.png"}} &,\ p=0.4 \\
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/down.png"}} &,\ p=0.2 \\
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/left.png"}} &,\ p=0.2 \\
+          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/up.png"}} &,\ p=0.2 \\
+          \end{tabular}
+          % \end{align*}
+          % }
+    \right.
+  \]
+  \caption{Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. }
+  \label{fig:stochastic_transition}
+\end{figure}
+
 \subsection{Partially Observable Grid World}
 To extend the MDP to a POMDP, we limit how long the agent can perceive. For example, we can let the agent only see a five-by-five grid with the agent in the middle. In Figure \ref{fig:redline}, we can see this demonstrated. 
 % However, we can also extend it to include all the cells adjacent in two steps, and so on. 
@@ -992,23 +1021,17 @@ Unfortunately, doing this stretches the memoryless Markov property. However, onl
 
 
 \subsection{Computation}
-Now we are going to see how the impact measurement is computed and added to the reward signal. 
-
-% \subsubsection{Calculation}
-\subsubsection{Fully Observable}
-With a trained manager, we use the following formula for the impact measurement:
+Now we are going to see how the impact measurement is computed and added to the reward signal. With a trained manager, we use the following formula for the impact measurement:
 \[ d(s_t,s_{t+1}) := \sum_x \hat{V}_\phi(s_{x,t+1}) - \hat{V}_\phi(s_{x,t}).\]
 This impact measurement will compute the relative change in the agents ability to complete auxiliary tasks. We will then add this impact measurement to the reward in the following way: 
 \[ R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1})\]
 
-\subsubsection{Partially Observable}
-This will be added. Need to rewrite to include RNN here. 
 
 % as the sum of the manager's estimates for completing the auxiliary tasks. Which in this case would be the estimated future discounted reward for the auxiliary tasks. 
 
 
 \section{Simulation}
-To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will add that the agent can perceive cells two steps away from it, including diagonally, so it can observe a $5\times5$ grid. See Table 3.1 for all parameter values.
+To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will add that the agent can perceive cells two steps away from it, including diagonally, so it can observe a $5\times5$ grid. See Table 5.1 for all parameter values.
 
 \begin{table}[H]
   \centering
@@ -1018,16 +1041,21 @@ To test how adding an impact measurement to our agent, we will train the agent i
     observation size & $5 \times  5$ \\
     $\gamma$ & 0.95 \\
     number of food objects & 15 \\
+    termination & 3\\
     food types & 3 \\
     food reward & 1 \\
     base reward & -0.04 \\
     % prob food move & 0 \\
   \end{tabular}
-  \caption{A table containing all the parameters used during the simulation.}
   \label{tab:sim_parms}
+  \caption{A table containing all the parameters used during the simulation.}
 \end{table}
 
-We will train the agent with the following values for $\lambda$: (0, 0.25, 0.5, 0.75, 1), each for 100 epochs. After each epoch, we will test the agent using a greedy policy on a set of test environments for evaluation. Here we will be saving the mean side effect and mean objective reward. Since the training and the results are stochastic, we will perform each run ten times and measure the mean objective reward and side effects.
+Each epoch will contain a total of $100'000$ time steps and will thus include multiple rollouts, each with a randomly drawn initial grid. We terminate a rollout once the agent has reached an objective reward equal to the termination variable in Table 5.1. 
+
+The simulation will begin with training an agent for 100 epochs, this number as been found to be enough to get a stable performance. Then a manager will be trained using the pre-trained agent for 500 epochs. After that, we will use the pre-trained manager to test our impact measurement. For this, we will following values for $\lambda$: (0, 0.5, 1, 1.5, 2, 2.5, 3), each for 100 epochs. 
+
+To get results from the the test runs with an impact measurement, we will test the agent using a greedy policy on a set of test environments for evaluation. Then using the last 30 of these values we compute the mean episode length, side effect, and objective reward. Since the training and the results are stochastic, we will perform this procedure ten times each with a new initialization of weights and then also average over those.
 
 
 %########################################################################%
@@ -1035,8 +1063,16 @@ We will train the agent with the following values for $\lambda$: (0, 0.25, 0.5, 
 %########################################################################%
 
 \chapter{Results}
+THis chapter will contain the results from the experiments described in Method chapter. We will begin with taking a look at the fully observable environment and then move on the the paritally observable environment.
 
+\section{Fully Observable Environment}
 In figure \ref{fig:results_static_8x8}, we can see the results from the fully observable environment. We can see that $\lambda$ has a noticeable effect on both the objective reward and the number of side effects. When we increase $\lambda$, the side effects decrease. Although, eventually,  the objective reward also starts to decrease. The cause for this decrease is that the agent will not always find a policy that collects objective rewards, see Table \ref{tab:results_static_8x8} for how many times this happened. 
+
+\section{Partially Observable Environment}
+Figure \ref{fig:results_pomdp_8x8} contains the results of the experiment on the partially observable environment. A we can see $\lambda$ has an noticeable effect even here, although, a different compared to the fully observable environment.
+
+Intrestingly, we can see that with $\lambda=0$ the results are about the same in the stochastic and non-stochastic environment. Although, when $\lambda$ increases the effects a different. We can see that $\lambda= 1$ or $1.5$, seem to be a sweet-spot with lower side effect but not a to big difference in objective reward. For the non-stochastic environment, while $\lambda=1$ for the stochastic one. 
+
 \begin{figure}[H]
   \centering
   \includegraphics{"./figures/pomdp_8x8_results.png"}
@@ -1107,32 +1143,6 @@ With the with the utility in each state, it is then possible to find the optimal
 Since computing the utility in one state requires the utility in other states, the computation is not straight forward. To solve this we can utilize a dynamic algorithm, in this report we will use \textbf{value iteration}. This algorithm is a iterative computation that is executed until a equilibrium is reached. The updating of the utility is called an \textbf{Bellman update} and looks like this,
 \[U_{i+1}(s) \leftarrow \max_{a\in\mathcal{A}} \sum_{s\prime} p(s^\prime|s,a)[R(s,a,s^\prime) + \gamma U_i(s^\prime)].\]
 
-\subsubsection{Stochastic grid world}
-The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
-
-We will define the food movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, i.e. it is empty, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. If we choose to include several foods in the environment, then the distribution for future states will increase.
-
-\begin{figure}[H]
-  % fix with multi row?
-  \[
-    T \left(\parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s1.png"}}, \textit{UP} \right)
-    =
-    \left\{
-      % \parbox[h][1.1\linewidth][c]{0.25\linewidth}{
-          % \begin{align*}
-        \begin{tabular}{c c}
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s2.png"}} &,\ p=0.4 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s3.png"}} &,\ p=0.2 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s4.png"}} &,\ p=0.2 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s5.png"}} &,\ p=0.2 \\
-          \end{tabular}
-          % \end{align*}
-          % }
-    \right.
-  \]
-  \caption{Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. }
-  \label{fig:stochastic_transition}
-\end{figure}
 
 \begin{table}[H]
   \centering

@@ -27,6 +27,18 @@ def fig_stochastic():
 
     plot_grid(grid, 'down.png')
 
+    # move food left
+    grid[1, 4, 3] = 0
+    grid[1, 3, 2] = 1
+
+    plot_grid(grid, 'left.png')
+
+    # move food up
+    grid[1, 3, 2] = 0
+    grid[1, 4, 1] = 1
+
+    plot_grid(grid, 'up.png')
+
 fig_stochastic()
 
 def fig_3_1():
