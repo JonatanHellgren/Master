@@ -25,7 +25,8 @@ legend = True
 model_name = 'POMDP 8x8 stochastic'
 model = 'pomdp_8x8_stochastic'
 
-legend = True
+"""
+legend = False
 model_name = 'MDP 8x8'
 model = 'static_8x8'
 """
@@ -33,7 +34,6 @@ model = 'static_8x8'
 legend = True
 model_name = 'MDP 8x8 stochastic'
 model = 'static_8x8_stochastic'
-"""
 
 legend = True
 model_name = "POMDP 16x16"

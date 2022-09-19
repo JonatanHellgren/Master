@@ -1,6 +1,7 @@
 \relax 
-\citation{80000}
+\citation{wiki:ENIAC}
 \citation{Turing51}
+\citation{80000}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -94,14 +95,13 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A visual representation of how to agent interacts with an environment. For example, at time step t, the agent observes the environment $s_t$ and receives the reward $r_t$. The agent then responds with an action $a_t$, which will transition the agent to the next state $s_{t+1}$ and receive the reward $r_{t+1}$. From this new state the agent again responds with an action, this time $a_{t+1}$, and so the process continues. \relax }}{17}\protected@file@percent }
 \newlabel{fig:RL}{{4.1}{17}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Defining an environment}{18}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Partially Observable Environments}{19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Training an Agent}{19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.4}Value Functions}{20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Partially Observable Environments}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Training an Agent}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Value Functions}{20}\protected@file@percent }
 \citation{OpenAI}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.5}Training Using a Batch}{21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.6}Actor-Critic Methods}{21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Actor-Critic Methods}{21}\protected@file@percent }
 \citation{OpenAI}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.7}Clipped loss function}{22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Clipped loss function}{22}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Impact Measurements for Avoiding Side Effects}{22}\protected@file@percent }
 \citation{ArmstrongLevinstein}
 \citation{Eysenbach}
@@ -115,49 +115,43 @@
 \citation{Krakovna19}
 \citation{Turner19}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Deviation Measures}{24}\protected@file@percent }
-\citation{Turner20}
+\citation{Turner20,Krakovna19,Krakovna20}
 \@writefile{toc}{\contentsline {chapter}{\numberline {5}Methods}{26}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Environment}{26}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces In this figure, $T$ is the transition function defined earlier, and 'Right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.\relax }}{26}\protected@file@percent }
-\newlabel{fig:simple_transition}{{5.1}{26}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Adding More Food Objects}{27}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Above we find a more complex grid compared to Figure 5.1\hbox {} which is inputted to its transitional function $T$ with the UP action. On the right hand-side we can see a new state outputted from $T$.\relax }}{27}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces In this figure, $T$ is the transition function defined earlier, and 'right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.\relax }}{27}\protected@file@percent }
+\newlabel{fig:simple_transition}{{5.1}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Above we find a more complex grid compared to Figure 5.1\hbox {} which is inputted to its transitional function $T$ with the \textit  {up} action. On the right hand-side we can see a new state outputted from $T$.\relax }}{27}\protected@file@percent }
 \newlabel{fig:multiple_foods}{{5.2}{27}}
-\citation{Turner19}
-\citation{Krakovna19}
-\citation{Krakovna20}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Stochastic Grid World}{28}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.3}Partially Observable Grid World}{28}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Here we can see an example of a POMDP state. Again the orange square is the agent. It can now only perceive the part of the environment inside the red square.\relax }}{28}\protected@file@percent }
+\citation{Turner19,Krakovna19,Krakovna20}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Here we can see an example of a POMDP state. Again the orange square is the agent, it can now only perceive the part of the environment inside the red square.\relax }}{28}\protected@file@percent }
 \newlabel{fig:redline}{{5.4}{28}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. \relax }}{29}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces In this figure, we can see an example of a stochastic transition function. On the left-hand side we can see the state $s_t$ and the action $a_t$. On the right-hand side, we can see the probability distribution over the future states and their corresponding probabilities. \relax }}{29}\protected@file@percent }
 \newlabel{fig:stochastic_transition}{{5.3}{29}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.2}Impact measurement}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Auxiliary Tasks}{30}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces In this figure, we can see an example of two auxiliary tasks. As we can see, the only difference is the color of the agent, and thus also what color the reward function will reward the agent for consuming.\relax }}{30}\protected@file@percent }
 \newlabel{fig:aux_tasks}{{5.5}{30}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Manager network}{30}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Algorithm for training manager\relax }}{31}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Algorithm for training a manager network\relax }}{31}\protected@file@percent }
 \newlabel{alg:manager}{{1}{31}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Computation}{32}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Simulation}{32}\protected@file@percent }
-\newlabel{tab:sim_parms}{{\caption@xref {tab:sim_parms}{ on input line 1050}}{32}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces A table containing all the parameters used during the simulation.\relax }}{32}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Simulation}{31}\protected@file@percent }
+\newlabel{tab:sim_parms}{{\caption@xref {tab:sim_parms}{ on input line 1057}}{32}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid size). The second is how large the agent can perceive at a time (observation size). The third is the number of food objects the grid includes at initialization (food objects). The final one is after what amount of correct consumption the agent reaches its terminal goal (termination).\relax }}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{33}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Fully Observable Environment}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Fully Observable Environment}{33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces To the left we can see the results for the static MDP, while on the right the stochastic. As we can see in the legend, each line color represents a $\lambda $ value. By following a line we can see the average length, side effects, and objectives the model generated when using that value.\relax }}{33}\protected@file@percent }
+\newlabel{fig:results_static_8x8}{{6.1}{33}}
 \@writefile{toc}{\contentsline {section}{\numberline {6.2}Partially Observable Environment}{34}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces To the left we can see the results for the static POMDP, while on the right the stochastic.\relax }}{35}\protected@file@percent }
-\newlabel{fig:results_pomdp_8x8}{{6.1}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces This figure is made the same way as Figure 6.1\hbox {}, but instead summarizes the data from the partially observable environment.\relax }}{34}\protected@file@percent }
+\newlabel{fig:results_pomdp_8x8}{{6.2}{34}}
 \citation{ArmstrongLevinstein}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Discussion}{36}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Discussion}{35}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{ref}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{37}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{36}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{Amodei}{{1}{2016}{{Amodei et~al.}}{{}}}
@@ -209,7 +203,8 @@
 \bibcite{Turner19}{{47}{2019}{{Turner et~al.}}{{}}}
 \bibcite{Turner20}{{48}{2020}{{Turner et~al.}}{{}}}
 \bibcite{Wiki}{{49}{2022}{{Wikipedia}}{{}}}
-\bibcite{wikiGoodhart}{{50}{2022}{{Wikipedia}}{{}}}
-\bibcite{Yudkowsky13}{{51}{2013}{{Yudkowsky}}{{}}}
-\bibcite{Yudkowsky16}{{52}{2016}{{Yudkowsky}}{{}}}
+\bibcite{wiki:ENIAC}{{50}{2022a}{{Wikipedia}}{{}}}
+\bibcite{wikiGoodhart}{{51}{2022b}{{Wikipedia}}{{}}}
+\bibcite{Yudkowsky13}{{52}{2013}{{Yudkowsky}}{{}}}
+\bibcite{Yudkowsky16}{{53}{2016}{{Yudkowsky}}{{}}}
 \bibstyle{apalike}

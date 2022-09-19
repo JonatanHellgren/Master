@@ -263,8 +263,13 @@ Turner, A.~M., Ratzlaff, N., and Tadepalli, P. (2020).
 \newblock Artificial intelligence --- {Wikipedia}{,} the free encyclopedia.
 \newblock [Online; accessed 30-May-2022].
 
-\bibitem[Wikipedia, 2022]{wikiGoodhart}
-Wikipedia (2022).
+\bibitem[Wikipedia, 2022a]{wiki:ENIAC}
+Wikipedia (2022a).
+\newblock {ENIAC} --- {W}ikipedia{,} the free encyclopedia.
+\newblock [Online; accessed 19-September-2022].
+
+\bibitem[Wikipedia, 2022b]{wikiGoodhart}
+Wikipedia (2022b).
 \newblock {Goodhart's law} --- {W}ikipedia{,} the free encyclopedia.
 \newblock [Online; accessed 01-June-2022].
 
