@@ -5,6 +5,7 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {subsubsection}{Aim of Thesis}{1}\protected@file@percent }
 \citation{RussellNorvig}
 \citation{Wiki}
 \citation{TankandeMaskiner}
@@ -33,20 +34,21 @@
 \citation{Ajeya}
 \citation{Grace}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Timeline for Transformative AI Breakthrough}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Survey Results}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Survey}{6}\protected@file@percent }
 \citation{Ajeya}
 \citation{an121}
 \citation{RussellNorvig}
+\citation{Cotra22}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Forecasting Model}{7}\protected@file@percent }
 \citation{MullerCannon}
 \citation{Haggstrom21}
 \citation{Haggstrom19}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Forecasting Model}{7}\protected@file@percent }
 \citation{Omohundro08}
 \citation{Bostrom12}
 \citation{Bostrom14}
-\citation{Turner19a}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Basic Drives}{8}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Instrumental Convergence}{8}\protected@file@percent }
+\citation{Turner19a}
 \citation{Bostrom12}
 \citation{Haggstrom19}
 \citation{MullerCannon}
@@ -58,36 +60,37 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}AI Alignment}{10}\protected@file@percent }
 \citation{Yudkowsky16}
-\citation{Saisubramanian}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Here we can see a visual representation of how human intent connects to the agent's actions. The two optimizers each optimize their objective. The dashed arrows show the connection the different kinds of alignment has on the objectives of the optimizers.\relax }}{11}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:alignment}{{3.1}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Unaligned AI}{11}\protected@file@percent }
+\citation{Saisubramanian}
 \citation{Amodei}
 \citation{Mc69}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Unaligned AI}{12}\protected@file@percent }
 \citation{Smingleigh}
 \citation{wikiGoodhart}
 \citation{Bostrom14}
 \citation{IJGood}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Consequences of Unaligned AI}{13}\protected@file@percent }
 \citation{CritchKruger}
 \citation{Precipice}
 \citation{RationallySpeaking}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Approaches for creating safe AI}{14}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Corrigibility and Interruptibility }{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Approaches for creating safe AI}{14}\protected@file@percent }
 \citation{Corrigibility}
 \citation{Interruptible}
 \citation{Hadfield-Menell}
 \citation{Carey}
 \citation{co-founding}
 \citation{Hadfield-Menell2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Corrigibility and Interruptibility }{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Inverse Reinforcement Learning}{15}\protected@file@percent }
 \citation{Christiano}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Inverse Reinforcement Learning}{15}\protected@file@percent }
 \citation{ArmstrongLevinstein}
 \citation{Eysenbach}
 \citation{Krakovna19}
 \citation{Turner19}
 \citation{Krakovna20}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Impact Measurements}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Impact Measurements}{16}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Theoretical Background}{17}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -122,38 +125,40 @@
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Environment}{26}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces In this figure, $T$ is the transition function defined earlier, and 'right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.\relax }}{27}\protected@file@percent }
 \newlabel{fig:simple_transition}{{5.1}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Above we find a more complex grid compared to Figure 5.1\hbox {} which is inputted to its transitional function $T$ with the \textit  {up} action. On the right hand-side we can see a new state outputted from $T$.\relax }}{27}\protected@file@percent }
-\newlabel{fig:multiple_foods}{{5.2}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces In this figure, we can see an example of a stochastic transition function. On the left-hand side we can see the state $s_t$ and the action $a_t$. On the right-hand side, we can see the probability distribution over the future states and their corresponding probabilities. \relax }}{28}\protected@file@percent }
+\newlabel{fig:stochastic_transition}{{5.2}{28}}
 \citation{Turner19,Krakovna19,Krakovna20}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Here we can see an example of a POMDP state. Again the orange square is the agent, it can now only perceive the part of the environment inside the red square.\relax }}{28}\protected@file@percent }
-\newlabel{fig:redline}{{5.4}{28}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces In this figure, we can see an example of a stochastic transition function. On the left-hand side we can see the state $s_t$ and the action $a_t$. On the right-hand side, we can see the probability distribution over the future states and their corresponding probabilities. \relax }}{29}\protected@file@percent }
-\newlabel{fig:stochastic_transition}{{5.3}{29}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Impact measurement}{30}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Above we find a more complex grid compared to Figure 5.1\hbox {} which is inputted to its transitional function $T$ with the \textit  {up} action. On the right hand-side we can see a new state outputted from $T$.\relax }}{29}\protected@file@percent }
+\newlabel{fig:multiple_foods}{{5.3}{29}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Here we can see an example of a POMDP state. Again the orange square is the agent, it can now only perceive the part of the environment inside the red square.\relax }}{29}\protected@file@percent }
+\newlabel{fig:redline}{{5.4}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Impact measurement}{29}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces In this figure, we can see an example of two auxiliary tasks. As we can see, the only difference is the color of the agent, and thus also what color the reward function will reward the agent for consuming.\relax }}{30}\protected@file@percent }
 \newlabel{fig:aux_tasks}{{5.5}{30}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Algorithm for training a manager network\relax }}{31}\protected@file@percent }
 \newlabel{alg:manager}{{1}{31}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.3}Simulation}{31}\protected@file@percent }
-\newlabel{tab:sim_parms}{{\caption@xref {tab:sim_parms}{ on input line 1057}}{32}}
+\newlabel{tab:sim_parms}{{\caption@xref {tab:sim_parms}{ on input line 1070}}{32}}
 \@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid size). The second is how large the agent can perceive at a time (observation size). The third is the number of food objects the grid includes at initialization (food objects). The final one is after what amount of correct consumption the agent reaches its terminal goal (termination).\relax }}{32}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{33}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {6.1}Fully Observable Environment}{33}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces To the left we can see the results for the static MDP, while on the right the stochastic. As we can see in the legend, each line color represents a $\lambda $ value. By following a line we can see the average length, side effects, and objectives the model generated when using that value.\relax }}{33}\protected@file@percent }
-\newlabel{fig:results_static_8x8}{{6.1}{33}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Partially Observable Environment}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Partially Observable Environment}{33}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces To the left, we can see the results for the static MDP, while the stochastic is on the right. As we can see in the legend, each line color represents a $\lambda $ value. By following a line, we can see the average length, side effects, and objectives the model generated when using that value. Besides this, since we draw the lines on top of each other, some lines seem missing from the figure. Thus, the higher $\lambda $ values cover the lower ones if the results are similar.\relax }}{34}\protected@file@percent }
+\newlabel{fig:results_static_8x8}{{6.1}{34}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces This figure is made the same way as Figure 6.1\hbox {}, but instead summarizes the data from the partially observable environment.\relax }}{34}\protected@file@percent }
 \newlabel{fig:results_pomdp_8x8}{{6.2}{34}}
 \citation{ArmstrongLevinstein}
 \@writefile{toc}{\contentsline {chapter}{\numberline {7}Discussion}{35}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}The Effects of $\lambda $'s Scale}{35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Comparing the Environments}{35}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Value of Working on Simulations}{36}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Future Work}{36}\protected@file@percent }
 \bibdata{ref}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{36}\protected@file@percent }
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Conclusion}{37}\protected@file@percent }
 \bibcite{Amodei}{{1}{2016}{{Amodei et~al.}}{{}}}
 \bibcite{co-founding}{{2}{2022}{{Armstrong}}{{}}}
 \bibcite{ArmstrongLevinstein}{{3}{2017}{{Armstrong and Levinstein}}{{}}}
@@ -164,47 +169,48 @@
 \bibcite{Carey}{{8}{2017}{{Carey}}{{}}}
 \bibcite{Christiano}{{9}{2017}{{Christiano et~al.}}{{}}}
 \bibcite{Ajeya}{{10}{2020}{{Cotra}}{{}}}
-\bibcite{CritchKruger}{{11}{2020}{{Critch and Krueger}}{{}}}
-\bibcite{Smingleigh}{{12}{2018}{{Custard Smingleigh}}{{}}}
-\bibcite{Eysenbach}{{13}{2017}{{Eysenbach et~al.}}{{}}}
-\bibcite{FLI}{{14}{nd}{{FLI}}{{}}}
-\bibcite{RationallySpeaking}{{15}{2021}{{Galef}}{{}}}
-\bibcite{IJGood}{{16}{1965}{{Good}}{{}}}
-\bibcite{Grace}{{17}{2017}{{Grace et~al.}}{{}}}
-\bibcite{Hadfield-Menell}{{18}{2016}{{Hadfield{-}Menell et~al.}}{{}}}
-\bibcite{Hadfield-Menell2}{{19}{2017}{{Hadfield{-}Menell et~al.}}{{}}}
-\bibcite{80000}{{20}{2022}{{Hilton}}{{}}}
-\bibcite{Hubringer}{{21}{2019}{{Hubinger et~al.}}{{}}}
-\bibcite{Haggstrom19}{{22}{2019}{{Häggström}}{{}}}
-\bibcite{Haggstrom21}{{23}{2021a}{{Häggström}}{{}}}
-\bibcite{TankandeMaskiner}{{24}{2021b}{{Häggström}}{{}}}
-\bibcite{Krakovna19}{{25}{2018}{{Krakovna et~al.}}{{}}}
-\bibcite{Krakovna20}{{26}{2020}{{Krakovna et~al.}}{{}}}
-\bibcite{Levinson}{{27}{2011}{{Levinson et~al.}}{{}}}
-\bibcite{Mandhane}{{28}{2022}{{Mandhane et~al.}}{{}}}
-\bibcite{Mc69}{{29}{1969}{{McCarthy and Hayes}}{{}}}
-\bibcite{Dartmouth}{{30}{1955}{{McCarthy et~al.}}{{}}}
-\bibcite{Minh}{{31}{2013}{{Mnih et~al.}}{{}}}
-\bibcite{MullerCannon}{{32}{2021}{{Müller and Cannon}}{{}}}
-\bibcite{Omohundro08}{{33}{2008}{{Omohundro}}{{}}}
-\bibcite{OpenAI}{{34}{2018}{{OpenAI}}{{}}}
-\bibcite{Precipice}{{35}{2020}{{Ord}}{{}}}
-\bibcite{Interruptible}{{36}{2016}{{Orseau and Armstrong}}{{}}}
-\bibcite{HumanCompatible}{{37}{2019}{{Russell}}{{}}}
-\bibcite{RussellNorvig}{{38}{2021}{{Russell and Norvig}}{{}}}
-\bibcite{Saisubramanian}{{39}{2020}{{Saisubramanian et~al.}}{{}}}
-\bibcite{an121}{{40}{2020}{{Shah}}{{}}}
-\bibcite{DeepMind}{{41}{2017}{{Silver and Hassabis}}{{}}}
-\bibcite{Silver}{{42}{2016}{{Silver et~al.}}{{}}}
-\bibcite{Silver21}{{43}{2021}{{Silver et~al.}}{{}}}
-\bibcite{Corrigibility}{{44}{2016}{{Soares et~al.}}{{}}}
-\bibcite{Turing51}{{45}{1951}{{Turing}}{{}}}
-\bibcite{Turner19a}{{46}{2019}{{Turner}}{{}}}
-\bibcite{Turner19}{{47}{2019}{{Turner et~al.}}{{}}}
-\bibcite{Turner20}{{48}{2020}{{Turner et~al.}}{{}}}
-\bibcite{Wiki}{{49}{2022}{{Wikipedia}}{{}}}
-\bibcite{wiki:ENIAC}{{50}{2022a}{{Wikipedia}}{{}}}
-\bibcite{wikiGoodhart}{{51}{2022b}{{Wikipedia}}{{}}}
-\bibcite{Yudkowsky13}{{52}{2013}{{Yudkowsky}}{{}}}
-\bibcite{Yudkowsky16}{{53}{2016}{{Yudkowsky}}{{}}}
+\bibcite{Cotra22}{{11}{2022}{{Cotra}}{{}}}
+\bibcite{CritchKruger}{{12}{2020}{{Critch and Krueger}}{{}}}
+\bibcite{Smingleigh}{{13}{2018}{{Custard Smingleigh}}{{}}}
+\bibcite{Eysenbach}{{14}{2017}{{Eysenbach et~al.}}{{}}}
+\bibcite{FLI}{{15}{nd}{{FLI}}{{}}}
+\bibcite{RationallySpeaking}{{16}{2021}{{Galef}}{{}}}
+\bibcite{IJGood}{{17}{1965}{{Good}}{{}}}
+\bibcite{Grace}{{18}{2017}{{Grace et~al.}}{{}}}
+\bibcite{Hadfield-Menell}{{19}{2016}{{Hadfield{-}Menell et~al.}}{{}}}
+\bibcite{Hadfield-Menell2}{{20}{2017}{{Hadfield{-}Menell et~al.}}{{}}}
+\bibcite{80000}{{21}{2022}{{Hilton}}{{}}}
+\bibcite{Hubringer}{{22}{2019}{{Hubinger et~al.}}{{}}}
+\bibcite{Haggstrom19}{{23}{2019}{{Häggström}}{{}}}
+\bibcite{Haggstrom21}{{24}{2021a}{{Häggström}}{{}}}
+\bibcite{TankandeMaskiner}{{25}{2021b}{{Häggström}}{{}}}
+\bibcite{Krakovna19}{{26}{2018}{{Krakovna et~al.}}{{}}}
+\bibcite{Krakovna20}{{27}{2020}{{Krakovna et~al.}}{{}}}
+\bibcite{Levinson}{{28}{2011}{{Levinson et~al.}}{{}}}
+\bibcite{Mandhane}{{29}{2022}{{Mandhane et~al.}}{{}}}
+\bibcite{Mc69}{{30}{1969}{{McCarthy and Hayes}}{{}}}
+\bibcite{Dartmouth}{{31}{1955}{{McCarthy et~al.}}{{}}}
+\bibcite{Minh}{{32}{2013}{{Mnih et~al.}}{{}}}
+\bibcite{MullerCannon}{{33}{2021}{{Müller and Cannon}}{{}}}
+\bibcite{Omohundro08}{{34}{2008}{{Omohundro}}{{}}}
+\bibcite{OpenAI}{{35}{2018}{{OpenAI}}{{}}}
+\bibcite{Precipice}{{36}{2020}{{Ord}}{{}}}
+\bibcite{Interruptible}{{37}{2016}{{Orseau and Armstrong}}{{}}}
+\bibcite{HumanCompatible}{{38}{2019}{{Russell}}{{}}}
+\bibcite{RussellNorvig}{{39}{2021}{{Russell and Norvig}}{{}}}
+\bibcite{Saisubramanian}{{40}{2020}{{Saisubramanian et~al.}}{{}}}
+\bibcite{an121}{{41}{2020}{{Shah}}{{}}}
+\bibcite{DeepMind}{{42}{2017}{{Silver and Hassabis}}{{}}}
+\bibcite{Silver}{{43}{2016}{{Silver et~al.}}{{}}}
+\bibcite{Silver21}{{44}{2021}{{Silver et~al.}}{{}}}
+\bibcite{Corrigibility}{{45}{2016}{{Soares et~al.}}{{}}}
+\bibcite{Turing51}{{46}{1951}{{Turing}}{{}}}
+\bibcite{Turner19a}{{47}{2019}{{Turner}}{{}}}
+\bibcite{Turner19}{{48}{2019}{{Turner et~al.}}{{}}}
+\bibcite{Turner20}{{49}{2020}{{Turner et~al.}}{{}}}
+\bibcite{Wiki}{{50}{2022}{{Wikipedia}}{{}}}
+\bibcite{wiki:ENIAC}{{51}{2022a}{{Wikipedia}}{{}}}
+\bibcite{wikiGoodhart}{{52}{2022b}{{Wikipedia}}{{}}}
+\bibcite{Yudkowsky13}{{53}{2013}{{Yudkowsky}}{{}}}
+\bibcite{Yudkowsky16}{{54}{2016}{{Yudkowsky}}{{}}}
 \bibstyle{apalike}
