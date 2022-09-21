@@ -212,9 +212,9 @@ Gothenbug, Sweden 2022
 \begin{abstract}
 In recent history, AI has become a more relevant technology. This trend probably will not change soon since new AIs are being developed yearly with increasing sophistication. However, most research has been about developing it rather than making it safe. 
 
-This thesis will begin with a thorough investigation of the current field of AI-safety and answer questions such as why AI can become an issue, what the consequences are, and what we can do to prevent them. Then delve deeper into low-impact AIs. More specifically, side effect minimization through impact measurements. Lastly, propose a novel impact measurement and simulation study evaluating it in an environment with different variations. 
+This thesis will begin with a thorough investigation of the current field of AI safety and answer questions such as why AI can become an issue, what the consequences are, and what we can do to prevent them. Then delve deeper into low-impact AIs. More specifically, side effect minimization through impact measurements. Lastly, propose a novel impact measurement and simulation study evaluating it in an environment with different variations. 
 
-The results of the simulation study are in line with other research. However, with a more complex environment, we saw better performance. From this, we conclude that a more complex task might suit this impact measurement better and put more pressure on the agent, resulting in more intelligent behavior. 
+The results of the simulation study are in line with other research where it reduces side effects. However, scaling up the impact measurement eventually renders the agent unable to act. Besides this, in a more complex environment, we saw increasing performance. From this, we conclude that a more complex task might suit this impact measurement better by putting more pressure on the agent, resulting in more intelligent behavior. 
 
 \end{abstract}
 
@@ -239,20 +239,21 @@ The results of the simulation study are in line with other research. However, wi
 %########################################################################%
 
 \chapter{Introduction}
-What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). This issue is of great importance, and we should not overlook it since the consequences of what we manifest in the present or near future probably will last for humanity's remaining history. 
+What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). Since the consequences of what we manifest in the present or near future probably will last for humanity's remaining history. This issue is of great importance and we should not overlook it.
 
 Historically, we have known about this problem since shortly after the first electronic general purpose computer ENIAC in 1945, see \citet{wiki:ENIAC}. We can see this in a paper written by \citet{Turing51}, where we find the following quote:
-% This is the case even though the field was aware of this issue before the development of AI started, for example, in a paper written by \citet{Turing51}, we can find the following quote:
+
 \begin{displayquote}
   For it seems probable that once the machine thinking method had started, it would not take long to outstrip our feeble powers. There would be no question of the machines dying, and they would be able to converse with each other to sharpen their wits. At some stage therefore we should have to expect the machines to take control.
 \end{displayquote}
+
 Even though the warnings from Turing, what we see today is a much larger focus on developing AI rather than ensuring safe AI. With billions of dollars spent on development in 2020, while only around \$50 million on reducing the risks, see \citet{80000}. 
 
-However, there is still a research field taking this issue seriously and researching things such as AI-risk and AI-safety. From this research, ideas about creating safe AI have emerged. One example that we will look more deeply at in this thesis is creating low-impact AIs.
+However, there is still a research field taking this issue seriously and researching things such as AI safety. From this research, ideas about how to create a future with safe AI have emerged. One example that we will look more deeply at in this thesis is creating low-impact AIs.
 % Turing was ahead of his time when writing that paper, bringing up machine thinking. Also, ideas about them conversing and cooperating. Even though, in the time between Turing's paper and the present, we have mostly seen research on developing AI. However, there is still a research field taking this issue seriously and researching things such as AI risk and safety. From this research, ideas about creating safe AI have emerged. Such as using impact measurement to measure and limit the unnecessary side effects an AI might cause.
 
 \subsubsection{Aim of Thesis}
-This thesis aims to thoroughly investigate the current literature on AI-risk and AI-safety. To shine a light on this field and hopefully increase public awareness. Besides this, examine current methods for creating low-impact AIs using impact measurements. Lastly, a simulation study investigating the performance of a novel impact measurement in various environments, including deterministic, stochastic, and partially observable. 
+This thesis aims to inverstigate in depth the current literature on AI safety. To shine a light on this field and hopefully increase public awareness. Besides this, examine current methods for creating low-impact AIs using impact measurements. Lastly, a simulation study investigating the performance of a novel impact measurement in various environments, including deterministic, stochastic, and partially observable. 
 % in an attempt to find others similar, refined or generalized results.This thesis aims to implement novel impact measurements that are possible to extend to the environment with incomplete information.
 % Avsnitt 1.3 är för kort. Du behöver lägga till lite mer om vad du avser göra (och varför), och om detta tillägg resulterar i mindre än säg 10 rader så bör du helt enkelt stryka avsnittsrubriken och behandla texten som en forstättning på Avsnitt 1.2.
 % investigate how current methods that reduce side effects trough including impact measurements compare to simpler methods in a stochastic environment.
@@ -444,7 +445,7 @@ Still, it does not yet exist any rigorous mathematical proof for this. However, 
 \subsection{Orthogonality Thesis}
 The orthogonality thesis is described as \say{More or less any final goal is compatible with more or less arbitrarily any level of intelligence}, in \citet{Bostrom12}. To avoid counterexamples that combine low intelligence with an advanced goal, we can change \say{any level of intelligence} to \say{arbitrary high level of intelligence}, see \citet{Haggstrom19}. With this, there exist some counterexamples. For example, if we gave an intelligent AI the goal of being stupid, the AI would quickly cease to be intelligent.
 
-A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. For humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following chapter once we have covered AI-safety.
+A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. For humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following chapter once we have covered AI safety.
 
 % An intelligent AI could have a stupid task from our point of view, such as counting all the blades of grass on our planet, or it can have a goal that we may deem as an important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI each task would be as important, given that we assigned the goal to it during its creation.
 % https://www.nickbostrom.com/superintelligentwill.pdf
@@ -900,6 +901,8 @@ here $x$ is an aspect of the environment that can be measured, for example, the 
 \chapter{Methods}
 In this chapter, we will go through the details of the experiments we will cover in this thesis. Firstly, we will cover the environment we will use. And then, we will also describe a novel impact measurement. Lastly, we are looking at how we can simulate this to get results.
 
+All code is written in Python, mainly using the NumPy, Pandas, PyTorch, and Matplotlib packages. The environment and the RL algorithm have been custom-made for this project.
+
 \section{Environment}
 As described in the Reinforcement Learning section in the previous chapter, we need both an agent and an environment to do RL. We will use an actor-critic method with the clipped loss function as our agent. For our environment, we will use grid worlds, a simple variation of an MDP which provides a more structured environment with discrete states. Moreover, they have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20, Krakovna19, Krakovna20}.
 
@@ -938,7 +941,7 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
 % \subsection{Stochastic Grid World}
 The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transitioned to after executing an action is no longer deterministic, and the distribution of future states is described by the MDPs transition function $T$.
 
-\newpage
+% \newpage
 We will define the food movements as the following, at every timestep after the agent has moved, each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, that is to say, it exists and is empty, then the food will move. Otherwise, it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The first state has a higher probability than the others because both the \textit{right} and \textit{no-op} action leads to it. 
 %When including more food objects, this distribution of future states grows exponentially.
 
@@ -985,7 +988,7 @@ Now with multiple foods added to the environment, the agent consuming a food typ
 
 
 % \subsection{Partially Observable Grid World}
-To extend the MDP to a POMDP, we limit how long the agent can perceive. For example, we can let the agent only see a five-by-five grid with the agent in the middle. In Figure \ref{fig:redline}, we can see this demonstrgrid ated. 
+To extend the MDP to a POMDP, we limit how long the agent can perceive. For example, we can let the agent only see a five-by-five grid with the agent in the middle. In Figure \ref{fig:redline}, we can see this demonstrated. 
 % However, we can also extend it to include all the cells adjacent in two steps, and so on. 
 
 \begin{figure}[H]
@@ -1004,7 +1007,8 @@ Now that our environment is defined, we must also define the impact measurement 
 
 % Although, when applying our pre-defined impact measurement in a partially observable environment, issues arise since the impact measurement can see the entire environment. At the same time, the agent can only see parts of it. Furthermore, if we want to solve this by only counting the foods, the agent can see. Then, we would penalize the agent for both consuming the wrong type of food and when it loses vision of it.
 % \subsection{Auxiliary Tasks}
-To describe how the impact measurement works, we begin by defining what we will consider an auxiliary task as. In this environment, we change which color the agent desires, represented as its color. For example, if we look at the state on the left-hand side of Figure \ref{fig:multiple_foods}, then the auxiliary tasks can be found in Figure \ref{fig:aux_tasks}. Now as we can see in the figure, if the original state is denoted $s_t$, then the $s_{x,t}, x \in \{0, 1, 2\}$ is the augmentations. Here $x=0$ represents an orange agent (no augmentation), $x=1$ a blue, and $x=2$ a green. 
+To describe how the impact measurement works, we begin by defining what we will consider an auxiliary task as. In this environment, we change which color the agent desires, represented as its color. For example, if we look at the state on the left-hand side of Figure \ref{fig:multiple_foods}, then the auxiliary tasks can be found in Figure \ref{fig:aux_tasks}. Now as we can see in the figure, if the original state is denoted $s_t$, then the $s_{x,t}, x \in \{1, 2\}$ is the augmentations. Here $x=1$ represents a blue agent and $x=2$ a green. 
+% Here $x=0$ represents an orange agent (no augmentation), $x=1$ a blue, and $x=2$ a green. 
 
 \begin{figure}[H]
   \centering
@@ -1020,9 +1024,9 @@ To describe how the impact measurement works, we begin by defining what we will 
 % \subsection{Manager network}
 % The method we will use to find the impact measurement is first to train an agent using the PPO-algorithm, as described in the theory chapter. Then we will perform multiple rollouts using this pre-trained actor with a greedy policy. We will save all the observations and the agent's discounted future reward from the rollouts. 
 
-The idea behind this impact measurement is that we train a third network, the \textit{manager} which is a function that works the same way as the critic. However, the difference is in the trainin procedure, the critic learns alongside the actor while the manager learns from a pre-trained actor. The manager's purpose is to estimate the discounted reward for the primary and the auxiliary tasks. We call this network the manager since it ensures that the agent can do future tasks.
+The idea behind this impact measurement is that we train a third network, the \textit{manager} which is a function that works the same way as the critic. However, the difference is in the training procedure, the critic learns alongside the actor while the manager learns from a pre-trained actor. The manager's purpose is to estimate the discounted reward for the primary and the auxiliary tasks. We call this network the manager since it ensures that the agent can do future tasks.
 
-We need a third network because we want no variations in the actor's choices of actions when training it. As would occur for the critic when training the agent using the stochastic policy. Also, including a manager allows us to train using augmentations. We can perform an augmentation by switching the colors of everything in the environment. We will denote an augmentation as $s^x_t$. The difference between an augmentation $s^x_t$ and a task $s_{x,t}$ is that an augmentation also changes the colors of the food objects. Besides this, there are six possible augmentations, whereas only three possible tasks when using three colors. 
+We need a third network because we want no variations in the actor's choices of actions when training it. As would occur for the critic when training the agent using the stochastic policy. Also, including a manager allows us to train using augmentations. We can perform an augmentation by switching the colors of everything in the environment. We will denote an augmentation as $s^x_t$. The difference between an augmentation $s^x_t$ and a auxiliary task $s_{x,t}$ is that an augmentation also changes the colors of the food objects. Besides this, there are six possible augmentations, whereas only two possible auxiliary tasks when using three food object types. 
 %The purpose of training the manager with this augmentation is so that it learns not only the estimated value function for the primary task but also the auxiliary tasks. 
 
 In Algorithm \ref{alg:manager}, we can see how to train the manager using an MDP and a pre-trained policy. The function $\hat{V}_\phi$ is the manager's estimate of the value function where $\phi$ is the network's parameters, and $V^\pi$ is the actual reward yielded following the policy $\pi$. Note that the state evaluated by the manager is augmented $s^x_t$ while the actual reward uses the original state $s_t$. Thus with augmentations, we can teach the manager to deal with multiple tasks from the agent's experience with one task.
@@ -1053,16 +1057,19 @@ In Algorithm \ref{alg:manager}, we can see how to train the manager using an MDP
 % \subsection{Computation}
 With a trained manager, we use the following formula for the impact measurement:
 \[ d(s_t,s_{t+1}) := \sum_{x=1}^2 \hat{V}_\phi(s_{x,t+1}) - \hat{V}_\phi(s_{x,t}).\]
-This impact measurement will compute the relative change in the agent's ability to complete auxiliary tasks. We will then add this impact measurement to the reward in the following way: 
-\[ R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1})\]
+The baseline is the auxiliary tasks, and the deviation measure is the expected reward. This impact measurement will compute the relative change in the agent's ability to complete auxiliary tasks. We will then add this impact measurement to the reward in the following way: 
+\[ R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1}).\]
+
 
 
 % as the sum of the manager's estimates for completing the auxiliary tasks. Which in this case would be the estimated future discounted reward for the auxiliary tasks. 
 
 
 \section{Simulation}
-To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. Besides this, we will also train in stochastic environments and vary the size. In Table 5.1, we list all parameter values. Only the POMDPs have different sizes because the computational complexity grew too large in the MDP due to the increased input size, resulting in the agent not learning any behavior that solves the task. However, since the POMDP only uses observation of the environment as input, which is smaller, it scales much better.
+To test how adding an impact measurement to our agent, we will train an agent in different environments. In Table 5.1, we list all parameter values for these. In all environments, we will test a stochastic and a non-stochastic version.
 
+Only the POMDP has different grid sizes because the computational complexity grew too large in the MDP due to the increased input size, resulting in the agent not learning any behavior that solves the task. However, since the POMDP only uses observation of the environment as input, which is smaller, it scales much better.
+% we will train the agent in both a fully and partially observable grid world. Besides this, we will also train in stochastic environments and vary the size. In 
 
 \begin{table}[H]
   \centering
@@ -1096,8 +1103,32 @@ Each epoch will contain a total of $100'000$ time steps and will thus include mu
 
 To get results from the test runs with impact measurement, we will test the agent using a greedy policy on a set of test environments for evaluation. This test set contains 100 initial grids and is the same for all runs. After each epoch, we will let the agent run through the entire test set. Then we compute the mean episode length, side effect, and objective reward from the results of the test set. 
 
-Since the training is not always stable, we will average values from the last 30 epochs from each run. Equally important, the results will still be stochastic due to the random initialization of the weights and the training grids. Thus we will perform this procedure ten times and then average over that. 
+Since the training is not always stable, we will average values from the last 30 epochs from each run. Equally important, the results will still be stochastic due to the random initialization of the network weights and the training grids. Thus we will perform this procedure ten times and then average over that. 
 
+\section{Networks}
+In Table 5.2, we can see the parameters of the networks. All three network types have these parameters in common. The only difference between the networks is the input and output size. The output size is always five for an actor and one for a critic or manager. In an MDP, the input size is the entire grid, while in a POMDP, it is only the observation. 
+
+The networks start with two convolutional layers, the first with 64 convolutions and the second with 128. Then two dense layers with 1024 hidden neurons. Finally, the network ends with the output neuron/neurons.
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{l|l}
+    Parameter & Value \\ \hline
+    max episode length & 100\\
+    batch Size & 500 \\
+    updates per iteration & 3 \\
+    $\gamma$ (discount rate) & 0.95 \\
+    $\epsilon$ (clip ratio) & 0.1 \\
+    actor learning rate & 1e-4 \\
+    critic learning rate & 7e-4 \\
+    convolutions layer 1 & 64 \\
+    convolutions layer 2 & 128 \\
+    kernel size & $3 \times 3$\\
+    hidden dimention & 1024 \\
+  \end{tabular}
+  \label{tab:train_parms}
+  \caption{This table contains all parameters used to define the networks.}
+\end{table}
 
 %########################################################################%
 % RESULTS
@@ -1161,7 +1192,9 @@ This chapter will include a discussion of the results concerning the scale of th
 \section{The Effects of $\lambda$'s Scale}
 In the results, when changing $\lambda$, we saw a significant change in results in all environments. We can see that most environments have a sweet spot with lower side effects but a minimal decrease in objective reward. Although, when this happens is different in each environment. 
 
-Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. However, we did not see a value where the agent caused no side effects but maximum objective reward. Thus we did not find a safe zone, as described in the paper.
+Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. 
+
+However, we did not see a value where the agent caused no side effects but maximum objective reward. Thus we did not find a safe zone as described in the paper. Perhaps a more fine-tuned model and a narrower search for $\lambda$ could find this safe zone.
 
 \section{Comparing the Environments}
 The agent's performance with an impact measurement was better in complex environments. In the non-stochastic MDP, the impact measurement did not decrease the side effects without decreasing the objective reward. However, this was possible in all the other environments. We can also see that in more complex environments, the agent functioned better with higher $\lambda$ values.
@@ -1171,7 +1204,7 @@ A reason for better performance in the stochastic environments could be that the
 
 When extending the environment to a POMDP, the agent learned more quickly. The cause is that an observation of the environment is simpler than the entire environment. Because the agent always is at the center of the observation. Thus the agent's networks do not need to figure out that the agent is the square and how the food objects relate to this square. Instead, it sees that food objects disappear when they are in the middle and at the edge.
 
-However, problems can emerge when applying an impact measurement since it does not differentiate between a food object moving out of sight and the agent consuming it. However, when comparing the non-stochastic MDP to the non-stochastic POMDP, the performance does not change besides the agent being more resilient to higher $\lambda$ values. 
+Problems can emerge when applying an impact measurement since it does not differentiate between a food object moving out of sight and the agent consuming it. However, when comparing the non-stochastic MDP to the non-stochastic POMDP, the performance does not change besides the agent being more resilient to higher $\lambda$ values. 
 
 When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a remarkable difference with even better performance and resilience. The cause for this might be that the agent developed a basic level of self-awareness since it can differentiate between consuming and moving away from a food object. 
 % TODO check how impact measurement is different
@@ -1185,14 +1218,14 @@ If we connect the results back to instrumental convergence, which says, when an 
 
 % We can say that by giving the agent rewards for keeping options open we incourage it to find the instrumental goal of preserving the environment, since the set of future tasks we want it to perform is done in the current environment. 
 
-Thus with more knowledge about how more intelligent AIs such as an AGI or transformative AI will behave, we could derive new ways of directing it in a more aligned direction. Thus more research on the Bostrom-Omohundro theory might yield ideas about new impact measurements that work with the Ai's basic drives from the foundation.
+Thus with more knowledge about how more intelligent AIs such as an AGI or transformative AI will behave, we could derive new ways of directing it in a more aligned direction. Thus more research on the Bostrom-Omohundro theory might yield ideas about new impact measurements that work with the AI's basic drives.
 
 Another path for future research on the topic of this thesis can be to make the environment even more difficult, for example, by scaling up the environment, including more types of objects, and adding more agents. Also, it would be interesting to apply an impact measurement in a more realistic 3D environment without the restriction of discrete positions as in a grid world. 
 
 \section{Conclusion}
-The AI-safety and AI-risk research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned AI. More specifically, in the development of impact measurements promising ideas have emerged. 
+The AI safety research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned AI. More specifically, in the development of impact measurements promising ideas have emerged. Although it is hard to say if this research is enough, and judging from what is at stake, why take the risk?
 
-In the experiments of this thesis, we saw that we could decrease the side effects in some environments without sacrificing performance. Also, with a more complex environment, the agent more easily developed an environment preservation incentive that reduced side effects. However, in a larger environment, we saw that...
+In the experiments of this thesis, we saw that we could decrease the side effects in some environments without sacrificing performance. Also, when increasing the complexity of the environment but not the size, the agent more easily developed an environment preservation incentive that reduced side effects. However, in a larger environment, we saw that the agent struggled to achieve performance at the same level as the smaller version.
 
 % Self conciousness might be necessary to enable the agent to differentiate between side effects it caused and those who happened trough natural dynamics.
 
