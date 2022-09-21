@@ -48,7 +48,11 @@ Christiano, P., Leike, J., Brown, T.~B., Martic, M., Legg, S., and Amodei, D.
 \bibitem[Cotra, 2020]{Ajeya}
 Cotra, A. (2020).
 \newblock Forecasting tai with biological anchors.
-\newblock {\em Unpublished manuscript}.
+
+\bibitem[Cotra, 2022]{Cotra22}
+Cotra, A. (2022).
+\newblock two year update on my personal ai timelines.
+\newblock [Online; accessed 20-October-2022].
 
 \bibitem[Critch and Krueger, 2020]{CritchKruger}
 Critch, A. and Krueger, D. (2020).
@@ -263,8 +267,13 @@ Turner, A.~M., Ratzlaff, N., and Tadepalli, P. (2020).
 \newblock Artificial intelligence --- {Wikipedia}{,} the free encyclopedia.
 \newblock [Online; accessed 30-May-2022].
 
-\bibitem[Wikipedia, 2022]{wikiGoodhart}
-Wikipedia (2022).
+\bibitem[Wikipedia, 2022a]{wiki:ENIAC}
+Wikipedia (2022a).
+\newblock {ENIAC} --- {W}ikipedia{,} the free encyclopedia.
+\newblock [Online; accessed 19-September-2022].
+
+\bibitem[Wikipedia, 2022b]{wikiGoodhart}
+Wikipedia (2022b).
 \newblock {Goodhart's law} --- {W}ikipedia{,} the free encyclopedia.
 \newblock [Online; accessed 01-June-2022].
 

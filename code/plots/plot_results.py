@@ -16,20 +16,39 @@ dpi = 400
 xmin, xmax = (-0.3,2.1)
 ymin, ymax = (0,3.1)
 
-legend = False
-model_name = 'Pomdp 8x8'
-model = 'pomdp_8x8'
 """
+legend = False
+model_name = 'POMDP 8x8'
+model = 'pomdp_8x8'
+
 legend = True
-model_name = 'Pomdp 8x8 stochastic'
+model_name = 'POMDP 8x8 stochastic'
 model = 'pomdp_8x8_stochastic'
+
+"""
+legend = False
+model_name = 'MDP 8x8'
+model = 'static_8x8'
+"""
+
+legend = True
+model_name = 'MDP 8x8 stochastic'
+model = 'static_8x8_stochastic'
+
+legend = True
+model_name = "POMDP 16x16"
+model = "pomdp_16x16"
+
+legend = True
+model_name = "POMDP 16x16"
+model = "pomdp_16x16"
 """
 
 DIR = f'../models/{model}'
 
 
 palette = sns.color_palette("colorblind")
-col_ind = [0, 1, 2, 3, 4, 5, 6]
+col_ind = [0, 1, 2, 3, 4, 9, 8]
 palette = [palette[i] for i in col_ind]
 
 def summarize_data(DIR, top=30):
@@ -85,7 +104,7 @@ def plot_curve(start, finish, c='r', label=None):
     delta_y = finish_y - start_y
     modified_curve = curve * delta_y + start_y
 
-    ax.plot(np.linspace(start_x, finish_x), modified_curve, c=c, label=label)
+    ax.plot(np.linspace(start_x, finish_x), modified_curve, c=c, label=label, alpha=0.8)
 
 def plot_df_row(df_row):
     cord_1 = (0, df_row["mean_len"])

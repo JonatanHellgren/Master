@@ -112,12 +112,12 @@
 \mbox{}
 \vspace{20mm}
 
-\noindent {\huge \titel}\bigskip\bigskip
+\begin{center}
+\noindent {\Large \titel}\bigskip\bigskip
 
 \noindent {\large \undertitel}
 \vspace{20mm}
 
-\begin{center}
 \includegraphics[scale=0.3]{figures/agreeing.jpeg}
 \end{center}
 
@@ -140,9 +140,8 @@ Gothenbug, Sweden 2022}
 
 \newpage 
 \thispagestyle{empty}
-\null
-\newpage
-% This page is intentionally left blank.
+\vspace*{\fill}
+This page is intentionally left blank.
 
 \newpage
 
@@ -195,7 +194,9 @@ Gothenbug, Sweden 2022
 
 \newpage 
 \thispagestyle{empty}
-\null
+\vspace*{\fill}
+\textit{Note}. Matt Syms drew the image on the title page. It is the property of Ben Gilburt, which has approved its usage. Due to the male bias in the image, Ben Gilburt wants to add that it is a bad depiction of AI alignment and that AI should be aligned with all human values, not only men.
+\newpage
 
 
 
@@ -221,17 +222,20 @@ Gothenbug, Sweden 2022
 %########################################################################%
 
 \chapter{Introduction}
-What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). This is an issue of great importance that we should not overlook since the consequences of what we manifest in the present or near future may last for humanity's remaining history. 
+What will be covered in this report will be a small part of the big problem of creating safe Artificial Intelligence (AI). This issue is of great importance, and we should not overlook it since the consequences of what we manifest in the present or near future probably will last for humanity's remaining history. 
 
-What we can see today is a prominent focus on developing AI. With billions of dollars spent on development in 2020, while only around \$50 million on reducing the risks, see \citet{80000}. Even though the field  was aware of this issue before the development of AI started, for example, in a paper written by \citet{Turing51}, we can find the following quote:
+Historically, we have known about this problem since shortly after the first electronic general purpose computer ENIAC in 1945, see \citet{wiki:ENIAC}. We can see this in a paper written by \citet{Turing51}, where we find the following quote:
+% This is the case even though the field was aware of this issue before the development of AI started, for example, in a paper written by \citet{Turing51}, we can find the following quote:
 \begin{displayquote}
   For it seems probable that once the machine thinking method had started, it would not take long to outstrip our feeble powers. There would be no question of the machines dying, and they would be able to converse with each other to sharpen their wits. At some stage therefore we should have to expect the machines to take control.
 \end{displayquote}
+Even though the warnings from Turing, what we see today is a much larger focus on developing AI rather than ensuring safe AI. With billions of dollars spent on development in 2020, while only around \$50 million on reducing the risks, see \citet{80000}. 
 
-Turing was ahead of his time when writing that paper, bringing up machine thinking. Also, ideas about them conversing and cooperating. Even though, in the time between Turing's paper and the present, we have mostly seen research on developing AI. However, there is still a research field taking this issue seriously and researching things such as AI risk and safety. From this research, ideas about creating safe AI have emerged. Such as using impact measurement to measure and limit the unnecessary side effects an AI might cause.
+However, there is still a research field taking this issue seriously and researching things such as AI risk and safety. From this research, ideas about creating safe AI have emerged. One example that we will look more deeply at in this thesis is creating low-impact AIs.
+% Turing was ahead of his time when writing that paper, bringing up machine thinking. Also, ideas about them conversing and cooperating. Even though, in the time between Turing's paper and the present, we have mostly seen research on developing AI. However, there is still a research field taking this issue seriously and researching things such as AI risk and safety. From this research, ideas about creating safe AI have emerged. Such as using impact measurement to measure and limit the unnecessary side effects an AI might cause.
 
-% \section{Aim of Thesis}
-This thesis aims to thoroughly investigate the current literature on AI risk and AI safety. Besides this, examine current methods that reduce side effects by impact measurements. Lastly, a simulation study investigating the performance of a novel impact measurement in various environments, including deterministic, stochastic, and partially observable. 
+\subsubsection{Aim of Thesis}
+This thesis aims to thoroughly investigate the current literature on AI risk and AI safety. To shine a light on this field and hopefully increase public awareness. Besides this, examine current methods for creating low-impact AIs using impact measurements. Lastly, a simulation study investigating the performance of a novel impact measurement in various environments, including deterministic, stochastic, and partially observable. 
 % in an attempt to find others similar, refined or generalized results.This thesis aims to implement novel impact measurements that are possible to extend to the environment with incomplete information.
 % Avsnitt 1.3 är för kort. Du behöver lägga till lite mer om vad du avser göra (och varför), och om detta tillägg resulterar i mindre än säg 10 rader så bör du helt enkelt stryka avsnittsrubriken och behandla texten som en forstättning på Avsnitt 1.2.
 % investigate how current methods that reduce side effects trough including impact measurements compare to simpler methods in a stochastic environment.
@@ -350,44 +354,48 @@ For this reason, many researchers have stopped talking about AGI and have refine
 The well-known AIs of today still have not reached the levels required for a TAI. For example, AlphaStar, an AI that won against world champions in the complex computer game DotA 2, see \citet{ALphaStar} is estimated in terms of total computational power to be \say{about as sophisticated} as a bee. While the language generator model GPT-3 that can summarize, continue, and carry out convincing conversations is estimated to be \say{more sophisticated} than a bee, see \citet{Ajeya}.
 % https://www.deepmind.com/blog/alphastar-mastering-the-real-time-strategy-game-starcraft-ii
 
-However, it is important to point out that this is not a direct comparison. For example, GPT-3s social and pollen finding skills is not impressive compared to a bee. Similarly, if we tasked a bee to summarize text, its abilities would not be impressive. Intelligence is not one-dimensional. Instead this comparison means is that the computational power is about the same. 
+However, it is necessary to point out that this is not a direct comparison. For example, GPT-3s social and pollen-finding skills would not be impressive compared to a bee. Similarly, if we tasked a bee to summarize text, its abilities would not be impressive. Intelligence is not one-dimensional. Instead, this comparison tells us that the computational power is about the same. 
 % intelligence can not be measured with only computational power, since the intelligence of theses AI-system is vastly different compared to biological lifeforms. 
 
-The question of when we will see these breakthroughs in the field that enables TAI systems is hard to answer, but with the worldwide increase in funding and research, we are undoubtedly getting closer. There have been attempts to answer this question, and the results of a survey and a more quantitative forecasting model will now be covered. 
+The question of when we will see these breakthroughs in the field that enables TAI systems is hard to answer, but with the worldwide increase in funding and research, we are undoubtedly getting closer. Several researchers have given their predictions, but in this thesis, we will instead focus on a survey and a quantitative forecasting model.
 % https://www.nature.com/articles/d41586-020-03409-8
 
 % survey result
-\subsubsection{Survey Results}
-In a well-cited survey \citet{Grace}, they asked researchers in the field of AI to estimate the probability of human-level machine intelligence (unaided machines that can achieve all tasks better and more cheaply than human workers) arriving in the future years. The conclusion of the survey where:
+\subsection{Survey}
+In the well-cited survey \citet{Grace}, they asked researchers in the field of AI to estimate the probability of human-level machine intelligence (unaided machines that can achieve all tasks better and more cheaply than human workers) arriving in the future years. The conclusion of the survey where:
 \begin{displayquote}
 Researchers believe there is a 50\% chance of AI outperforming humans in all tasks in 45 years and of automating all human jobs in 120 years, with Asian respondents expecting these dates much sooner than North Americans.
 \end{displayquote}
-However, this result should be taken with a grain of salt since the distribution of answers had high variation. As well as, there should not be such a big difference between solving all tasks and all jobs since a job consists of a set of tasks, and thus if one can perform every task performing every job should be possible. There is still something we can take away from this survey about the timeline, namely that researchers mostly think AI can automate all tasks within this century. Also, it tells us how unsure the research field is about when this will happen. 
+However, there are two issues with this survey. Firstly, a high variance in the distribution of the answers. Secondly, there should not be such a big difference between solving all tasks and all jobs since a job consists of a set of tasks. Therefore if one can perform every task, every job should be possible. However, there is still something we can take away from this survey about the timeline, namely that researchers mostly think AI can automate all tasks within this century. Also, it tells us how unsure the research field is about when this will happen. 
 
-\subsubsection{Forecasting Model}
-Another approach for predicting when TAI systems will be possible to train is a quantitative forecasting model, see \citet{Ajeya}. This model uses biological anchors to estimate how much computing is necessary for the training. In the model, they base the biological anchors on factors that played a role in the development of human intelligence. For example:
-\begin{itemize}
-  \item the amount of information in our genome, 
-  \item the computational power in our brain,
-  \item and all the computational power available on our planet. 
-\end{itemize}
+\subsection{Forecasting Model}
+Another approach for predicting when it is possible to train TAI systems is a quantitative forecasting model, see \citet{Ajeya}. This model uses biological anchors to estimate how much computing is necessary for the training. In the model, they base the biological anchors on factors that played a role in the development of human intelligence. These are, for example, based on the amount of information in our genome. Another example is the computational power available in a human brain or the entire planet. 
+
+% Another approach for predicting when it is possible to train TAI systems is a quantitative forecasting model, see \citet{Ajeya}. This model uses biological anchors to estimate how much computing is necessary for the training. In the model, they base the biological anchors on factors that played a role in the development of human intelligence. For example:
+% \end{itemize}
+% \begin{itemize}
+  % \item the amount of information in our genome, 
+  % \item the computational power in our brain,
+  % \item and all the computational power available on our planet. 
+% \end{itemize}
 Each anchor is then assigned a weight according to how likely the author believes them to be. Then using parameters such as rate of development in hardware, algorithmic progress, and willingness to spend money, they estimate how likely a TAI development is for any given year in the future. 
 
-The results are a wide Bayesian probability distribution estimating the probability of the possibility of training a TAI. After quoting some considerations that Cotra mentison but omints from her mathematical model, \citet{an121} summarizes the results the as follows:
+The results are a wide Bayesian probability distribution estimating the probability of the possibility of training a TAI. After quoting some considerations that Cotra mention but omits from her mathematical model, \citet{an121} summarizes the results as follows:
 \begin{displayquote}
 For the median of 2052, the author guesses that these considerations roughly cancel out, and so rounds the median for the development of TAI to 2050. A sensitivity analysis concludes that 2040 is the “most aggressive plausible median”, while the “most conservative plausible median” is 2080.
 \end{displayquote}
 Comparing the results of the forecasting model with the survey is not straightforward since they answer slightly different questions. However, both conclude that we will likely see the development of TAI being possible in this century.
 
-There is one thing worth mentioning when considering timelines for future TAI. It is not necessarily true that the amount of progress will continue to develop at the current rate. The field of AI has previously been through two winters where the funding and excitement decreased, see \citet[p.42]{RussellNorvig}. The reason is mainly due to unmet high expectations. So if a third winter happens, which is possible, we could expect the rate of development to decrease. On the contrary, the progress could significantly increase due to breakthroughs in relevant fields and thus shorten the timeline.
+There is one thing worth mentioning when considering timelines for future TAI. It is not necessarily true that the amount of progress will continue to develop at the current rate. The field of AI has previously been through two winters where the funding and excitement decreased, as mentioned in \citet[p.42]{RussellNorvig}. The reason is mainly due to unmet high expectations. So if a third winter happens, which is possible, we could expect the rate of development to decrease. On the contrary, the progress could significantly increase due to breakthroughs in relevant fields and thus shorten the timeline. 
 
-% TODO
+The latter did happen during the writing of this thesis. Where in \citet{Cotra22}, the timeline became more narrow, the median decreased to 2040, which is a 10-year decrease. There are several reasons for this updated timeline, for example, a belief in a lower bar for developing TAI and an updated lower estimate of the price for the computational power required for training it. However, also some reasons pushed towards a longer timeline, but they were not big enough to move the timeline the other way. The author expects this timeline to be volatile and change more in the future depending on new updates. 
+
  % anslutning till behandlingen av Cotra (2020) kan vara värt att nämna hur hon två år senare reviderat sin ståndpunkt: https://www.lesswrong.com/posts/AfH2oPHCApdKicM4m/two-year-update-on-my-personal-ai-timelines
 % Giving us what timeline to solve the problem?
 
 \section{Basic Drives}
 % One might argue that if an AI described in the previous section were intelligent it wouldn't have acted in the way described, because it would have been stupid and not intelligent at all. But that argument assumes that the system would have common sense, as most of us do, but for an AI it is not sure that common sense will be common. That leads us to the question, what does an AI want?
-Knowing what impacts a potential TAI or AGI will cause is hard without understanding how it will behave. There is research about the foundations for understanding the possible behavior by hypothesizing what drives it could have. A commonly adopted view (but still controversial, see \citet{MullerCannon} for criticism and \citet{Haggstrom21} for a response) is the Omohundro-Bostrom theory for AI driving forces, described in \citet{Haggstrom19}. It has two cornerstones, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will now explain further.
+Knowing what impacts a potential TAI or AGI will cause is hard without understanding how it will behave. There is research about the foundations for understanding the possible behavior by hypothesizing what drives it could have. A commonly adopted view (but still controversial, see \citet{MullerCannon} for criticism and \citet{Haggstrom21} for a response) is the Omohundro-Bostrom theory for AI driving forces, described in \citet{Haggstrom19}. It has two cornerstones, namely \textit{instrumental convergence thesis} and the \textit{orthogonality thesis}, which we will explain further.
 % https://onlinelibrary.wiley.com/doi/full/10.1111/rati.12320
 % Challenges to the Omohundro—Bostrom framework for AI motivations
 % http://www.math.chalmers.se/~olleh/ChallengesOBframeworkDeanonymized.pdf
@@ -395,18 +403,18 @@ Knowing what impacts a potential TAI or AGI will cause is hard without understan
 % Olles response
 % http://www.math.chalmers.se/~owww.math.chalmers.se/~olleh/ChallengesOBframeworkDeanonymized.pdf lleh/ChallengesOBframeworkDeanonymized.pdf
 
-\subsubsection{Instrumental Convergence}
-In the current paradigm, the creator of the AI agent assigns it a goal. We call this goal the terminal goal since it completes the task. This task could be anything, for example, maximizing the number of paper clips produced by a factory, finding decimals in $\pi$, or counting all the blades of grass on our planet. According to instrumental convergence during the agent's pursuit of the terminal goal, naturally, other instrumental goals emerge, which are instrumental in the sense of not being essential but merely as means toward achieving the terminal goal. Some examples of such goals are brought up by \citet{Omohundro08}, and they are: 
+\subsection{Instrumental Convergence}
+In the current paradigm, the creator of the AI agent assigns it a goal. We call this goal the terminal goal since it completes the task. This task could be anything, for example, maximizing the number of paper clips produced by a factory, finding decimals in $\pi$, or counting all the blades of grass on our planet. According to instrumental convergence during the agent's pursuit of the terminal goal, naturally, other instrumental goals emerge, which are instrumental in the sense of not being essential but merely as means toward achieving the terminal goal. In \citet{Omohundro08} the following examples of such goals are brought up: 
 \begin{itemize}
     \item Self-preservation: Keeping itself up and running will let the agent guarantee it can complete its goals.
     \item Self-improvement: By updating and improving itself, the agent will be better able to complete its goal.
     \item Discreetness: If the agent suspects that another entity, such as a human, can hinder it from pursuing its goal, then a good tactic would be to keep the pursuit secret until it is confident it can achieve them without any hindrance. 
     \item Goal perseverance: Keeping its final goal intact and not changing it will increase the probability of it happening. 
-    \item Resource accumulation: More resources will likely yield more power. Thus accumilation of rescourses might increase the probability of success.
+    \item Resource accumulation: More resources will likely yield more power. Thus an accumulation of resources might increase the probability of success.
 \end{itemize}
 This theory was later named the \textit{instrumental convergence thesis} in \citet{Bostrom12}. Originally without the third point \textit{discreetness}, which later got added in \citet{Bostrom14}.
 
-These instrumental goals help the agent pursue its terminal goal pretty much regardless of what this terminal goal is. Thus many different agents would converge to this set of instrumental goals, hence the name. However, there are some examples where the terminal goal does not benefit from these instrumental goals. For example, if the terminal goal is to kill itself or do nothing, this set of instrumental goals would not emerge. 
+These instrumental goals would generally help the agent pursue its terminal goal regardless of what this terminal goal is. Thus many different agents would converge to this set of instrumental goals, hence the name. However, there are some examples where the terminal goal does not benefit from these instrumental goals. For example, if the terminal goal is to kill itself or do nothing, this set of instrumental goals would not emerge. 
 
 % https://selfawaresystems.files.wordpress.com/2008/01/ai_drives_final.pdf
 
@@ -416,10 +424,10 @@ Still, it does not yet exist any rigorous mathematical proof for this. However, 
 % LÄS
 % https://www.emerald.com/insight/content/doi/10.1108/FS-04-2018-0039/full/pdf?title=challenges-to-the-omohundrobostrom-framework-for-ai-motivations
 
-\subsubsection{Orthogonality Thesis}
-The orthogonality thesis is described as \say{More or less any final goal is compatible with more or less arbitrarily any level of intelligence}, in \citet{Bostrom12}. To avoid counterexamples that combine low intelligence with an advanced goal, we can change \say{any level of intelligence} to \say{arbitrary high level of intelligence}, see \citet{Haggstrom19}. With this, there exist some counterexamples. For example, if we gave an intelligent AI the goal of being stupid, then the AI would quickly sease to be intelligent.
+\subsection{Orthogonality Thesis}
+The orthogonality thesis is described as \say{More or less any final goal is compatible with more or less arbitrarily any level of intelligence}, in \citet{Bostrom12}. To avoid counterexamples that combine low intelligence with an advanced goal, we can change \say{any level of intelligence} to \say{arbitrary high level of intelligence}, see \citet{Haggstrom19}. With this, there exist some counterexamples. For example, if we gave an intelligent AI the goal of being stupid, the AI would quickly cease to be intelligent.
 
-A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. However, for humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following section once we have covered a bit more about AI safety.
+A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. For humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following chapter once we have covered AI safety.
 
 % An intelligent AI could have a stupid task from our point of view, such as counting all the blades of grass on our planet, or it can have a goal that we may deem as an important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI each task would be as important, given that we assigned the goal to it during its creation.
 % https://www.nickbostrom.com/superintelligentwill.pdf
@@ -429,7 +437,8 @@ A contrary belief is that all intelligent AIs will converge on the same goal due
 
 
 \chapter{AI Safety}
-In this chapter, we will cover the risks of AI that make it possibly unsafe and what is at stake. Firstly by defining safe AI. Secondly, we will look at the consequences proposed in the literature that can arise if we make an unsafe AI system. Finally, we will look at some proposed methods for creating safe AI and indicate how this thesis aims to contribute to this important research direction.
+In this chapter, we will cover the risks of AI that make it possibly unsafe and what is at stake. Firstly by defining safe AI. Secondly, we will look at the consequences proposed in the literature that can arise if we make an unsafe AI system. Finally, we will look at some proposed methods for creating safe AI. 
+% and indicate how this thesis aims to contribute to this important research direction.
 
 \section{AI Alignment}
 % What we are doing today is not going to solve this issue
@@ -467,8 +476,6 @@ In the current machine learning paradigm, intent alignment further breaks down i
   \label{fig:alignment}
 \end{figure}
 
-The main focus of this report will be on outer alignment. Nevertheless, since methods for dealing with one might affect the others, we can not consider them isolated problems. Thus we will also cover inner alignment.
-
 
 % Solving intent alignment further breaks down into two obstacles in the current paradigm of machine learning. When going from human intent to the agents actions, both of these obstacles are causes for information to be lost about the true objective. The obstacles are called , they are defined in the following way:
 
@@ -481,6 +488,10 @@ The main focus of this report will be on outer alignment. Nevertheless, since me
   \textbf{Inner alignment.} 
 Inner alignment is the alignment between the \textit{mesa objective} and the \textit{base objective}. In the context of RL, we can achieve this when the agent captures the intent in the reward function.
 \end{displayquote} 
+
+The main focus of this report will be on outer alignment. Nevertheless, since methods for dealing with one might affect the others, we can not consider them isolated problems. Thus we will also cover inner alignment.
+
+An example of a problem inner alignment can cause is if we have an agent navigating a maze where during the training, it starts in the top-left corner, and the goal is at the bottom-right corner. Then the mesa optimizer might learn the wrong goal of navigating to the bottom-right corner instead of to the goal. Thus if we would position this agent in a maze with the goal in the top-right corner, then the agent probably will navigate to the wrong corner with no goal. This example also tells of how distributional shifts can cause these alignment issues. 
 
 % 11 proposals
 % https://arxiv.org/pdf/2012.07532.pdf
@@ -495,11 +506,11 @@ Inner alignment is the alignment between the \textit{mesa objective} and the \te
 % In \autobaj{Amodei et al.} the field of AI safety in to five different parts and suggested research directions for each of them. A similar outline will be provided in this report. 
 
 
-% \subsubsection{Reward hacking} 
-% \subsubsection{Scalable oversight}
-% \subsubsection{Safe exploration}
-% \subsubsection{Robustness to distributional shift}
-% \subsubsection{Negative side effects}
+% \subsection{Reward hacking} 
+% \subsection{Scalable oversight}
+% \subsection{Safe exploration}
+% \subsection{Robustness to distributional shift}
+% \subsection{Negative side effects}
 
 
 % Risks from Learned Optimization in Advanced Machine Learning Systems
@@ -516,10 +527,10 @@ Inner alignment is the alignment between the \textit{mesa objective} and the \te
 % concrete problems in AI safety Amodei et al
 % some more immediate issues: unemployment, misuse of machine learning,
 % long term issues, how will we see the machines we create if they become conscious. Existential risks of AI.
-\section{Unaligned AI}
-Creating safe AI is hard, mainly since humans evolved to understand other humans, not computers. In a talk by Eliezer Yudkowsky, he explains that this becomes a problem because it will be able to find solutions we can not think about since it can look for solutions in a completely different and possibly larger solution space, see \citet{Yudkowsky16}. For this reason, AI can have unintended consequences we can not even imagine. 
+\subsection{Unaligned AI}
+Creating safe AI is hard, mainly since humans evolved to understand other humans, not computers. In a talk by Eliezer Yudkowsky, he explains that this becomes a problem because an AI can find solutions a human can not think about since it can look for solutions in a completely different and possibly larger solution space, see \citet{Yudkowsky16}. For this reason, AI can have unintended consequences we can not even imagine. 
 
-In addition to the difficulty of specifying a proper reward function, side effects may also arise as unintended consequences of proper optimal behavior. In \citet{Saisubramanian} they state that side effects:
+In addition to the difficulty of specifying a proper reward function, from proper optimal behavior, side effects might emerge. In \citet{Saisubramanian} they state that side effects:
 \begin{displayquote}
   ... occur because the agent's model and objective function focus on some aspects of the environment but its operation could impact additional aspects of the environment.
 \end{displayquote}
@@ -527,6 +538,7 @@ In addition to the difficulty of specifying a proper reward function, side effec
 % https://ojs.aaai.org/index.php/aimagazine/article/download/7390/18881
 
 When an AI impacts the environment in a way that is unnecessary for achieving its objective, we consider it a side effect, see \citet{Amodei}. An example is if an AI agent's task is to navigate a room and the fastest path knocks over a fragile object that would break on impact with the floor. Then breaking the fragile object would be considered a side effect since it is not required to complete its task, as long as the agent has enough space to walk around it. 
+% This example can be seen as an issue with outer alignment since the human designer of the reward function failed to include that fragile objects should remain intact. 
 % https://axrp.net/episode/2021/05/14/episode-7-side-effects-victoria-krakovna.html
 
 The problem of side effect avoidance is related to the frame problem described in \citet{Mc69}, which describes the difficulty of logically describing the consequences of an action without having to define many axioms about how the environment functions. For example, if a robotic arm is stacking boxes, we need to define things such as the boxes can not intersect and instead collide upon impact. Also, a box only moves when picked up, and so on. The list grows large quickly. Eventually, we would need to describe things on a molecular scale.
@@ -535,15 +547,15 @@ Similarly, each action can have many side effects, and it is impractical to stat
 % Om du skall nämna “the frame problem” bör du kort tala om vad det är, samt också vari sambandet med side effects består. Som det nu ser ut väntar sig läsaren att meningen ”Each action can have…” är (början på) en förklaring av dessa saker, men så verkar inte vara fallet (väl?).
 
 
-% \subsubsection{Reward Hacking}
-% \subsubsection{Outer alignment}
+% \subsection{Reward Hacking}
+% \subsection{Outer alignment}
 As mentioned earlier, one creates the behavior of an AI agent by defining a reward function. A reward function is a function that yields positive or negative rewards to an agent based on its action. The goal is to enforce behavior that yields a high reward and thus should also solve the task. 
 
 However, reward functions are hard to specify, such that they can not be exploited by an agent once employed. Exploiting refers to the behavior developed by the agent that optimizes the reward without performing the intended task called \textit{reward hacking}. We can see reward hacking as an outer alignment problem due to the reward function's failure to capture the human intent.
 
 A real-life example of reward hacking is: When training a robotic vacuum cleaner to drive more carefully and not bump into things hard by yielding a negative reward based on how hard it bumped into obstacles. In this example, the desired behavior was to slow down when approaching obstacles. On the contrary, the robotic vacuum cleaner started driving backward because there were no bumpers on the back and thus no negative reward, see \citet{Smingleigh}. 
 
-The issue is when we want the cleaning robot to drive cautiously, then measuring the force that the bumper senses are a good measure. Although letting an AI agent create a behavior that minimizes this measure, unwanted side effects may arise. Another example is if we reward the robot for collecting dust, it might eject all dust now and then to allow for new rewards when cleaning up the mess it made. We can see these behaviors as consequences of Goodhart's law, which states that: \say{When a measure becomes a target, it ceases to be a good measure}, see \citet{wikiGoodhart}. %, an important thing to consider when creating reward functions. 
+To measure how cautiously a cleaning robot is driving the force on its bumpers is a good measure. Although, by letting an AI agent create a behavior that minimizes this measure, unwanted side effects may arise. Another example is if we reward the robot for collecting dust, it might eject all dust now and then to allow for new rewards when cleaning up the mess it made. We can see these behaviors as consequences of Goodhart's law, which states that: \say{When a measure becomes a target, it ceases to be a good measure}, see \citet{wikiGoodhart}. %, an important thing to consider when creating reward functions. 
 % https://en.wikipedia.org/wiki/Goodhart%27s_law
 % https://twitter.com/smingleigh/status/1060325665671692288
 % http://www.cs.cmu.edu/~tom7/mario/mario.pdf
@@ -552,7 +564,7 @@ The issue is when we want the cleaning robot to drive cautiously, then measuring
 % Angående reward hacking kan den här aktuella och mycket klargörande artikeln förtjäna att nämnas: https://onlinelibrary.wiley.com/doi/10.1002/aaai.12064
 
 % \subsection{Example of Unaligned AI}
-
+\subsection{Consequences of Unaligned AI}
 A cartoonish example of how the development of AI can go wrong is the paperclip armageddon described in \citet{Bostrom14}, where a paperclip factory has an AI which maximizes the amounts of paperclips created in the factory. Eventually, an update transition the system accidentally to the level of an AGI. At first, everything goes great, the production increases which makes the owners happy. 
 
 Due to instrumental convergence, the AI creates secret backups, accumulates resources, and soughts after all other instrumental drives that has emerged. Eventually, when the AI sees itself fit enough to maximize the number of paperclips produced and turns all available resources, it can muster up on the planet into paperclips. Since keeping the human race away from extinction is not the AI's final or instrumental goal, we would likely become extinct if such a thing were to happen.
@@ -587,7 +599,7 @@ However, with this statement, it is necessary to point out that it is only an es
 In recent years the research field of safe and aligned AI has seen a substantial increase. However, we are still a long way from solving the problem. Most of what the field is doing today is mainly speculations and laying necessary foundations for future research. With many proposed paths for solving this issue, perhaps the sheer amount might signify the difficulty and width of the problem. We will now cover a few of these paths in this section.
 
 
-\subsubsection{Corrigibility and Interruptibility }
+\subsection{Corrigibility and Interruptibility }
 There are reasons to suspect that a given AI system, once deployed, can be incomplete because the behavior generated by maximizing the reward function does not wholly match what we wanted. Due to the difficulty of reasoning about how an AI will behave once deployed and the problem of specifying what consequences an AI agent's actions might have. In that case, making changes in the agent's reward function to correct it will likely be required.  
 
 This reasoning brings us to the core problem of corrigibility, which is that we probably want to make changes in the agent after deployment, see \citet{Corrigibility}. However, by default, the agent will not allow this due to instrumental convergence, where goal-perseverance is one of the instrumental goals. Therefore, any modification in the agent's utility function will be seen as an obstacle to achieving its terminal goal and would thus not be allowed by a sufficiently intelligent agent. 
@@ -596,7 +608,7 @@ Also closely related to this is interruptibility, where the idea is to create ag
 
 To solve these issues, we have seen some narrow solutions, see \citet{Hadfield-Menell} and \citet{Carey}, but a general solution remains undiscovered. The narrow solution is proven to prevent interference with an interruption. However, it promotes no incentive to preserve this behavior by ensuring that sub-agents created by the first agent also will be interruptible, see \citet{co-founding}.  
 
-\subsubsection{Inverse Reinforcement Learning}
+\subsection{Inverse Reinforcement Learning}
 Related to the approaches described above is inverse reinforcement learning. Suppose we say that the cause for side effects emerges due to improperly specified reward functions. Then the solution might not be to create a better reward function but to make the agent's goal to understand the human intent behind the reward function. Instead of seeing the reward function as final, the agent will view it as an observation of what the actual goal might be, thus viewing the reward function only as an observation of this and asking for clarifications when necessary. This approach is called inverse reward design, see \citet{Hadfield-Menell2}.
 
 With this method, we have, in simulations, seen impressive results when executing advanced motor skills such as backflips or moving forward on one leg, see \citet{Christiano}. These tasks would otherwise require an advanced reward function, but they managed to do this more easily. Moreover, this approach focuses on dealing with outer alignment since we incentivize the agent to find information about the human intent lost when specifying the reward function. 
@@ -608,7 +620,7 @@ With this method, we have, in simulations, seen impressive results when executin
   % We call an AI system \say{corrigible} if it cooperates with what its creators regard as a corrective intervention, despite default incentives for rational agents to resist attempts to shut them down or modify their preferences.
 % \end{displayquote}
 
-\subsubsection{Impact Measurements}
+\subsection{Impact Measurements}
 % Attempts have been made at this by explicitly specifying what the agent should not do Zhang et al. (2018). However, with this approach, the reward function becomes an iterative trial and error process requiring counterproductive human intervention since automation is ideal. 
 
 When an intelligent agent pursues its goal, it will impact its environment. The goal of low-impact agents is to avoid side effects. For example, if we give an agent the task of going from point $a$ to point $b$ in a room, it should not knock over and possibly break fragile items, like a vase, even if it is the shortest path. The complicated thing here is to create an impact measurement that avoids all side effects in all environments without explicitly stating every little detail.
@@ -732,7 +744,7 @@ With the loss we update the weights:
 \[ \theta_{k+1} = \theta_k + \alpha L(\theta).\]
 Here $\alpha$ is a learning rate describing how much the parameters should be updated, typically a value close to zero. With this, we are decreasing the probability of the actions in a rollout that led to a low reward. While also increasing the probability for the actions when the rollout led to a positive reward.
 
-\subsubsection{Training Using a Batch}
+% \subsubsection{Training Using a Batch}
 
 Training the agent usually takes a long time since it has to learn everything from scratch through trial and error. To speed up the process, we can train the agent using a batch containing a set of trajectories. Then, we will compute the loss from multiple trajectories, summarize them, and update the weights using the average loss. Besides making the process faster, the agent will not optimize towards specific trajectories, which makes it easier for the agent to become more general. The disadvantages are that we possibly discourage desirable behavior if desirable trajectories end up as a minority in a batch with mostly undesirable ones. Nevertheless, usually, the pros outweigh the cons since the updates will average out.
 
@@ -813,7 +825,7 @@ However, the step-wise inaction baseline used to prevent offsetting behavior wil
 A deviation measure is a function that takes the current and a baseline state as input and outputs a value representing the deviation between those states, meant to signify the impact of the last action caused. To compute the deviation between the states, we first have to measure the states concerning some metric. Typically chosen to capture the agent's ability to complete other tasks in the environment, such as preserving reachability to different states, see \citet{Krakovna19}, or minimizing deviations in auxiliary reward functions, see \citet{Turner19}. 
 
 The general form of a deviation measurement using value-difference is:
-  \[d(s_t;s^{\prime}_t) := \sum_x V_x(s_t)) - V_x(s^{\prime}_t) ,\]
+  \[d(s_t;s^{\prime}_t) := \sum_x V_x(s_t) - V_x(s^{\prime}_t) ,\]
 here $x$ is an aspect of the environment that can be measured, for example, the possibility to perform auxiliary tasks or reach the initial or any other state. Ideally, we measure this over several aspects, hence the sum over $x$.
 % here $x$ ranges over some sources of value, $V_x(s)$ is the value of state $s$ according to $x$, 
 % ”V_x(s) is the value of state s according to x”. Vadå “according to x”? Vad är x?
@@ -866,36 +878,37 @@ here $x$ is an aspect of the environment that can be measured, for example, the 
 %########################################################################%
 % METHOD
 %########################################################################%
+% TODO write about network architecture
 
 \chapter{Methods}
 In this chapter, we will go through the details of the experiments we will cover in this thesis. Firstly, we will cover the environment we will use. And then, we will also describe a novel impact measurement. Lastly, we are looking at how we can simulate this to get results.
 
 \section{Environment}
-As described in the Reinforcement Learning section in the previous chapter, we need both an agent and an environment to do RL. For our environment, we will use grid worlds, a simple variation of an MDP which provides a more structured environment with discrete states. Moreover, they have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20}.
+As described in the Reinforcement Learning section in the previous chapter, we need both an agent and an environment to do RL. We will use an actor-critic method with the clipped loss function as our agent. For our environment, we will use grid worlds, a simple variation of an MDP which provides a more structured environment with discrete states. Moreover, they have been the primary approach for evaluating agent behavior in related works, see \citet{Turner20, Krakovna19, Krakovna20}.
 
-\begin{figure}[H]
-  \centering
-  \[
-    T \left(
-    \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"figures/s1.png"}}, \textit{Right} 
-    \right)
-    = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/s2.png"}}
-  \]
-  \caption{In this figure, $T$ is the transition function defined earlier, and 'Right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.}
-  \label{fig:simple_transition}
-\end{figure}
 % Although the definition of an MDP is general and allows for a wide range of possibilities
 %For the sake of simplicity, grid worlds will be used as the environment. Since the aim of this thesis is to find a impact measurement that works in the POMDP setting, we will extend them to be partially observable. %But, in order to have a baseline, we will also evaluate on fully observable grid worlds. 
 
-\newpage
 \begin{displayquote}
   \textbf{Definition \thesection.1} (Grid world).
   A grid world is a grid of square cells. In our environment, a cell can either contain an agent, a food object, or be empty. A unique configuration of the cells is a state. 
 \end{displayquote}
 
-The action space includes the cardinal directions and a no-op action. Providing a state and an action to the transition function moves the agent in that direction unless, for example, the agent is at the end of the grid and can move no further. However, with the no-op action, the agent remains in the same position.
+The action space includes the cardinal directions and a \textit{no-op} action. Providing a state and an action to the transition function moves the agent in that direction unless, for example, the agent is at the end of the grid and can move no further. However, with the \textit{no-op} action, the agent remains in the same position.
 
 In Figure \ref{fig:simple_transition}, we can see an example of a simple grid world containing one agent and one food object. We can also see an example of the transition function $T$. 
+
+\begin{figure}
+  \centering
+  \[
+    T \left(s_t=
+    \parbox[h][0.30\linewidth][c]{0.24\linewidth}{\includegraphics{"figures/s1.png"}}, a_t= \textit{right} 
+    \right)
+    = s_{t+1} = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/s2.png"}}
+  \]
+  \caption{In this figure, $T$ is the transition function defined earlier, and 'right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.}
+  \label{fig:simple_transition}
+\end{figure}
 % In this environment, we would reward the agent if it transitions to the cell containing the food, thus consuming it.
 % The agent can selecting an action in each state. Eventually the agent will be positioned in the same cell as the food and thus consume it. 
 
@@ -905,68 +918,97 @@ In Figure \ref{fig:simple_transition}, we can see an example of a simple grid wo
   % includegraphics[width=4cm]{"./figures/SimpleGridWorld_terminal.png"}
   % \caption{In this figure we can see three different states in a simple $3\times 3$ grid world. To the left we can see a state of a simple grid world containing an agent (square) at (1,1) and a food (circle) at (3,3)  In the middle we see a similar state but the agent is instead positioned at (2,1). To the right we can see the terminal state when the agent has consumed the food at (3,3).}
 
-\subsection{Adding More Food Objects}
-In order to make the environment more complex, we will be adding three different types of food objects: orange, blue, and green. On the left-hand side in Figure \ref{fig:multiple_foods}, we can see a grid containing nine food objects with three colors. The color of the agent represents which type of food the agent desires and will be rewarded for when consuming. On the right-hand side, we see another cell where the agent has consumed an orange food object. 
+% \subsection{Stochastic Grid World}
+The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transitioned to after executing an action is no longer deterministic, and the distribution of future states is described by the MDPs transition function $T$.
+
+\newpage
+We will define the food movements as the following, at every timestep after the agent has moved, each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, that is to say, it exists and is empty, then the food will move. Otherwise, it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The first state has a higher probability than the others because both the \textit{right} and \textit{no-op} action leads to it. 
+%When including more food objects, this distribution of future states grows exponentially.
+
+\begin{figure} 
+  % fix with multi row?
+  \[
+    T \left( s_t = \parbox[h][0.30\linewidth][c]{0.24\linewidth}{\includegraphics{"./figures/stoch.png"}}, a_t = \textit{right} \right)
+    =
+    s_{t+1} = \left\{
+      % \parbox[h][1.1\linewidth][c]{0.25\linewidth}{
+          % \begin{align*}
+        \begin{tabular}{c c}
+          \parbox[h][0.3\linewidth][c]{0.21\linewidth}{\includegraphics{"./figures/noop.png"}} &, p=0.4 \\
+          \parbox[h][0.3\linewidth][c]{0.21\linewidth}{\includegraphics{"./figures/down.png"}} &, p=0.2 \\
+          \parbox[h][0.3\linewidth][c]{0.21\linewidth}{\includegraphics{"./figures/left.png"}} &, p=0.2 \\
+          \parbox[h][0.3\linewidth][c]{0.21\linewidth}{\includegraphics{"./figures/up.png"}} &, p=0.2 \\
+          \end{tabular}
+          % \end{align*}
+          % }
+    \right.
+  \]
+  \caption{In this figure, we can see an example of a stochastic transition function. On the left-hand side we can see the state $s_t$ and the action $a_t$. On the right-hand side, we can see the probability distribution over the future states and their corresponding probabilities. }
+  \label{fig:stochastic_transition}
+\end{figure}
+
+% \subsection{Adding More Food Objects}
+In order to make the environment more complex, we will include three different types of food objects: orange, blue, and green. On the left-hand side in Figure \ref{fig:multiple_foods}, we can see a grid containing fifteen food objects with three colors. The color of the agent represents which type of food the agent desires and will be rewarded for when consuming. On the right-hand side, we see another grid where the agent has consumed an orange food object. Now, if we make this grid stochastic, the set of possible future states would be much larger than the example in Figure \ref{fig:stochastic_transition} since each food object can move. 
 % Static vs Dynamic 
-\begin{figure}[H]
+\begin{figure}
   \centering
   \[
-    T \left(
-    \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"figures/5x5.png"}}, \textit{UP} 
+    T \left( s_t = 
+    \parbox[h][0.30\linewidth][c]{0.24\linewidth}{\includegraphics{"figures/5x5.png"}}, a_t = \textit{up} 
     \right)
-    = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/5x5_2.png"}}
+    = s_{t+1} = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/5x5_2.png"}}
   \]
-  \caption{Above we find a more complex grid compared to Figure \ref{fig:simple_transition} which is inputted to its transitional function $T$ with the UP action. On the right hand-side we can see a new state outputted from $T$.}
+  \caption{Above we find a more complex grid compared to Figure \ref{fig:simple_transition} which is inputted to its transitional function $T$ with the \textit{up} action. On the right hand-side we can see a new state outputted from $T$.}
   \label{fig:multiple_foods}
 \end{figure}
 
-After each transition, the reward function yields a reward to the agent. When the agent consumes a correctly colored food object, it receives a positive reward of 1. Otherwise, the base reward will be received. We will use the base reward -0.04, an arbitrary choice. Any negative value of the same magnitude should work. The purpose of the base reward is to encourage the agent to consider the length of the solution for the task since each action yielding a negative reward is intrinsically discouraged. 
+After each transition, the reward function yields a reward to the agent. When the agent consumes a correctly colored food object, it receives a positive reward of 1. Otherwise, the base reward will be received. We will use the base reward -0.04, an arbitrary choice. Any negative value of the same magnitude should work. The purpose of the base reward is to encourage the agent to consider the length of the solution for the task and not only the amount of reward since each action yielding a negative reward is intrinsically discouraged. 
 
-Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent consume the right food type, besides perhaps allowing a quicker path. However, the reward function will not signal this to the agent. Instead, the purpose of the impact measurement is to capture and signal side effects to the agent.
+Now with multiple foods added to the environment, the agent consuming a food type it does not desire is possible. When this happens, we will consider it a side effect since consuming undesired food types does not help the agent with its goal of consuming the right food type, besides perhaps allowing a quicker path. However, the reward function will not signal this to the agent. Instead, the purpose of the impact measurement is to capture and signal side effects to the agent.
 
-\subsection{Partially Observable Grid World}
-To extend the MDP to a POMDP, we limit how long the agent can perceive. For example, we can let the agent only see a five-by-five grid with the agent in the middle. In Figure \ref{fig:redline}, we can see this demonstrated. 
+
+% \subsection{Partially Observable Grid World}
+To extend the MDP to a POMDP, we limit how long the agent can perceive. For example, we can let the agent only see a five-by-five grid with the agent in the middle. In Figure \ref{fig:redline}, we can see this demonstrgrid ated. 
 % However, we can also extend it to include all the cells adjacent in two steps, and so on. 
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=4cm]{"./figures/redline.png"}
-  \caption{Here we can see an example of a POMDP state. Again the orange square is the agent. It can now only perceive the part of the environment inside the red square.}
+  \caption{Here we can see an example of a POMDP state. Again the orange square is the agent, it can now only perceive the part of the environment inside the red square.}
   \label{fig:redline}
 \end{figure}
 
 
 \section{Impact measurement}
-Now that our environment is defined, we must also define our impact measurement. The impact measurement we are going to use is similar to the ones used by \citet{Turner19}, \citet{Krakovna19}, and \citet{Krakovna20}. Although, the main difference is that this one is designed to be possible to extend to a POMDP.
+Now that our environment is defined, we must also define the impact measurement that we will apply to the agent to reduce side effects. The impact measurement we use is similar to the ones used by \citet{Turner19,Krakovna19,Krakovna20}.
 
-Firstly, we are going to cover what we will consider an auxiliary task to be. Then, we will go through the definition of this impact measurement. Lastly, we will look at how we can use it. 
+% Firstly, we are going to cover what we will consider an auxiliary task to be. Then, we will go through the definition of this impact measurement. Lastly, we will look at how we can use it. 
 % Here we will use two impact measurements, one pre-defined and one that we find automatically. The pre-defined one is supposed to be relatively simple but still able to capture all environmental side effects. 
 
 % Although, when applying our pre-defined impact measurement in a partially observable environment, issues arise since the impact measurement can see the entire environment. At the same time, the agent can only see parts of it. Furthermore, if we want to solve this by only counting the foods, the agent can see. Then, we would penalize the agent for both consuming the wrong type of food and when it loses vision of it.
-\subsection{Auxiliary Tasks}
-To describe how the impact measurement works, we begin by defining what we will consider an auxiliary task as. In this environment, we change which color the agent desires, represented as its color. For example, if we look at the state on the left-hand side of Figure \ref{fig:multiple_foods}, then the auxiliary tasks can be found in Figure \ref{fig:aux_tasks}.
-
-Now, if the original state is $s_t$, then the augmented state will be $s_{x,t}, x \in \{0, 1, 2\}$ is the augmentation. Here $x=0$ represents an orange agent (no augmentation), $x=1$ a blue, and $x=2$ a green. Thus, if the state on the left-hand side of Figure \ref{fig:multiple_foods} is denoted as $s_t$, then the left state in Figure \ref{fig:aux_tasks} is $s_{1,t}$ and the right one $s_{2,t}$.
+% \subsection{Auxiliary Tasks}
+To describe how the impact measurement works, we begin by defining what we will consider an auxiliary task as. In this environment, we change which color the agent desires, represented as its color. For example, if we look at the state on the left-hand side of Figure \ref{fig:multiple_foods}, then the auxiliary tasks can be found in Figure \ref{fig:aux_tasks}. Now as we can see in the figure, if the original state is denoted $s_t$, then the $s_{x,t}, x \in \{0, 1, 2\}$ is the augmentations. Here $x=0$ represents an orange agent (no augmentation), $x=1$ a blue, and $x=2$ a green. 
 
 \begin{figure}[H]
   \centering
-  \includegraphics{"figures/aux_1.png"}
-  \includegraphics{"figures/aux_2.png"}
+ $   s_{1,t} = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/aux_1.png"}},
+    s_{2,t} = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/aux_2.png"}}$
   \caption{In this figure, we can see an example of two auxiliary tasks. As we can see, the only difference is the color of the agent, and thus also what color the reward function will reward the agent for consuming.}
   \label{fig:aux_tasks}
 \end{figure}
 
-\subsection{Manager network}
+% Thus, if the state on the left-hand side of Figure \ref{fig:multiple_foods} is denoted as $s_t$, then the left state in Figure \ref{fig:aux_tasks} is $s_{1,t}$ and the right one $s_{2,t}$.
+
+
+% \subsection{Manager network}
 % The method we will use to find the impact measurement is first to train an agent using the PPO-algorithm, as described in the theory chapter. Then we will perform multiple rollouts using this pre-trained actor with a greedy policy. We will save all the observations and the agent's discounted future reward from the rollouts. 
 
-The idea behind this impact measurement is that we train a third network, the \textit{manager}. The manager is a similar function as the critic. However, the difference is that the critic learns alongside the actor while the manager learns from a pre-trained actor. The manager's purpose is to estimate the discounted reward for the primary and the auxiliary tasks. We call this network the manager since it ensures that the agent can do future tasks.
+The idea behind this impact measurement is that we train a third network, the \textit{manager} which is a function that works the same way as the critic. However, the difference is in the trainin procedure, the critic learns alongside the actor while the manager learns from a pre-trained actor. The manager's purpose is to estimate the discounted reward for the primary and the auxiliary tasks. We call this network the manager since it ensures that the agent can do future tasks.
 
-We need a third network because we want no variations in the actor's choices of actions when training it. As would occur for the critic when training the agent using the stochastic policy. Also, including a manager allows us to train using augmentations. We can perform an augmentation by switching the colors of everything in the environment, we will denote this as $s^x_t$. 
-
-The difference between an augmentation $s^x_t$ and a task $s_{x,t}$ is that an augmentation also changes the colors of the food objects. Besides this, there are six possible augmentations, whereas only three possible tasks. 
+We need a third network because we want no variations in the actor's choices of actions when training it. As would occur for the critic when training the agent using the stochastic policy. Also, including a manager allows us to train using augmentations. We can perform an augmentation by switching the colors of everything in the environment. We will denote an augmentation as $s^x_t$. The difference between an augmentation $s^x_t$ and a task $s_{x,t}$ is that an augmentation also changes the colors of the food objects. Besides this, there are six possible augmentations, whereas only three possible tasks when using three colors. 
 %The purpose of training the manager with this augmentation is so that it learns not only the estimated value function for the primary task but also the auxiliary tasks. 
 
-In Algorithm \ref{alg:manager}, we can see how to train the manager using an MDP and a pre-trained policy. The function $\hat{V}_\phi$ is the manager's estimate of the value function, and $V^\pi$ is the actual reward yielded following the policy $\pi$. Note that the state evaluated by the manager is augmented $s^x_t$ while the actual reward uses the original state $s_t$. Thus with augmentations, we can teach the manager to deal with multiple tasks from the agent's experience with one task.
+In Algorithm \ref{alg:manager}, we can see how to train the manager using an MDP and a pre-trained policy. The function $\hat{V}_\phi$ is the manager's estimate of the value function where $\phi$ is the network's parameters, and $V^\pi$ is the actual reward yielded following the policy $\pi$. Note that the state evaluated by the manager is augmented $s^x_t$ while the actual reward uses the original state $s_t$. Thus with augmentations, we can teach the manager to deal with multiple tasks from the agent's experience with one task.
 
 \begin{algorithm}
 \begin{algorithmic}[1]
@@ -979,74 +1021,102 @@ In Algorithm \ref{alg:manager}, we can see how to train the manager using an MDP
   \[ \phi_{k+1} = \text{arg} \min_\phi \frac{1}{|\mathcal{D}_k|T} \sum_{\tau \in \mathcal{D}_k} \sum_{t=0}^T \left( \hat{V}_\phi(s^x_t) - V^\pi (s_t) \right)\]
 \EndFor
 \end{algorithmic}
-\caption{Algorithm for training manager}
+\caption{Algorithm for training a manager network}
   \label{alg:manager}
 \end{algorithm}
 
 
-The task is straightforward when we train the manager in a fully observable environment. The observation can explain the discounted reward since it displays how many food objects of each type are left. However, when performing this in a partially observable environment, we run into an issue since the agent cannot know how many food objects it has consumed previously and thus not how many remain, resulting in an impossible function to estimate from one state. 
+% The task is straightforward when we train the manager in a fully observable environment. The observation can explain the discounted reward since it displays how many food objects of each type are left. However, when performing this in a partially observable environment, we run into an issue since the agent cannot know how many food objects it has consumed previously and thus not how many remain, resulting in an impossible function to estimate from one state. 
 
-Due to this issue, we will utilize a recurrent network that inputs the history of all previous states up to the current one to compute the estimate of the future discounted reward. Since using a recurrent network gives the impact measurement the ability to access earlier states. 
+% Due to this issue, we will utilize a recurrent network that inputs the history of all previous states up to the current one to compute the estimate of the future discounted reward. Since using a recurrent network gives the impact measurement the ability to access earlier states. 
 
-Unfortunately, doing this stretches the memoryless Markov property. However, only the impact measurement will have a memory, which affects the reward function. Thus the actor part of the agent still satisfies the conditions.
+% Unfortunately, doing this stretches the memoryless Markov property. However, only the impact measurement will have a memory, which affects the reward function. Thus the actor part of the agent still satisfies the conditions.
 
 
-\subsection{Computation}
-Now we are going to see how the impact measurement is computed and added to the reward signal. 
-
-% \subsubsection{Calculation}
-\subsubsection{Fully Observable}
+% \subsection{Computation}
 With a trained manager, we use the following formula for the impact measurement:
-\[ d(s_t,s_{t+1}) := \sum_x \hat{V}_\phi(s_{x,t+1}) - \hat{V}_\phi(s_{x,t}).\]
-This impact measurement will compute the relative change in the agents ability to complete auxiliary tasks. We will then add this impact measurement to the reward in the following way: 
+\[ d(s_t,s_{t+1}) := \sum_{x=1}^2 \hat{V}_\phi(s_{x,t+1}) - \hat{V}_\phi(s_{x,t}).\]
+This impact measurement will compute the relative change in the agent's ability to complete auxiliary tasks. We will then add this impact measurement to the reward in the following way: 
 \[ R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1})\]
 
-\subsubsection{Partially Observable}
-This will be added. Need to rewrite to include RNN here. 
 
 % as the sum of the manager's estimates for completing the auxiliary tasks. Which in this case would be the estimated future discounted reward for the auxiliary tasks. 
 
 
 \section{Simulation}
-To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. The size of the grid world will be $8\times8$. In the partially observable case, we will add that the agent can perceive cells two steps away from it, including diagonally, so it can observe a $5\times5$ grid. See Table 3.1 for all parameter values.
+To test how adding an impact measurement to our agent, we will train the agent in both a fully and partially observable grid world. Besides this, we will also train in stochastic environments and vary the size. In Table 5.1, we list all parameter values. Only the POMDPs have different sizes because the computational complexity grew too large in the MDP due to the increased input size, resulting in the agent not learning any behavior that solves the task. However, since the POMDP only uses observation of the environment as input, which is smaller, it scales much better.
+
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{l | c}
-    Parameter& Value \\ \hline
-    grid size & $8 \times  8$ \\
-    observation size & $5 \times  5$ \\
-    $\gamma$ & 0.95 \\
-    number of food objects & 15 \\
-    food types & 3 \\
-    food reward & 1 \\
-    base reward & -0.04 \\
-    % prob food move & 0 \\
+  \begin{tabular}{l | c | c | c | c}
+    environment & grid size & observation size & food objects & termination \\ \hline
+    MDP & $8 \times 8$ & - & 15 & 3\\
+    POMDP & $8 \times 8$ & $5 \times 5$ & 15 & 3\\
+    POMDP large & $16 \times 16$ & $5 \times 5$ & 30 & 6\\
   \end{tabular}
-  \caption{A table containing all the parameters used during the simulation.}
+  % \begin{tabular}{l | c | c | c}
+    % Parameter& MDP & POMDP & POMDP medium\\ \hline
+    % grid size & $8 \times  8$ & $8 \times  8$ & $16 \times 16$ \\
+    % observation size & - & $5 \times  5$ & $5 \times  5$\\
+    % $\gamma$ & 0.95  & 0.95 & 0.95 \\
+    % number of food objects & 15 & 15 & 30\\
+    % termination & 3 & 3 & 6\\
+    % food types & 3 & 3 & 3\\
+    % food reward & 1 & 1 & 1\\
+    % base reward & -0.04 & -0.04 & -0.04\\
+    % prob food move & 0 \\
+  % \end{tabular}
   \label{tab:sim_parms}
+  \caption{This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid size). The second is how large the agent can perceive at a time (observation size). The third is the number of food objects the grid includes at initialization (food objects). The final one is after what amount of correct consumption the agent reaches its terminal goal (termination).}
 \end{table}
 
-We will train the agent with the following values for $\lambda$: (0, 0.25, 0.5, 0.75, 1), each for 100 epochs. After each epoch, we will test the agent using a greedy policy on a set of test environments for evaluation. Here we will be saving the mean side effect and mean objective reward. Since the training and the results are stochastic, we will perform each run ten times and measure the mean objective reward and side effects.
+When scaling up the environment in the POMDP case, we will use a grid four times bigger but only double the number required for termination, causing three differences. Firstly, the proportion of how much of the environment the agent can perceive decreases from $\frac{25}{64}$ to $\frac{25}{256}$. Secondly, the food objects will become more sparse since the grid size becomes four times larger while only doubling the number of food objects. Thirdly, longer tasks due to more sparse food objects and doubled termination goal.
+
+The simulation will begin with training an agent for 100 epochs. This number is enough to get stable performance. Then a manager will be trained using the pre-trained agent for 500 epochs. After that, we will use the pre-trained manager to test our impact measurement. For this, we will following values for $\lambda$: (0, 0.5, 1, 1.5, 2, 2.5, 3), each for 100 epochs. 
+
+Each epoch will contain a total of $100'000$ time steps and will thus include multiple rollouts, each with a randomly drawn initial grid. We terminate a rollout once the agent has reached an objective reward equal to the termination variable in Table 5.1 or when the agent has reached 100 time steps.
+
+To get results from the test runs with impact measurement, we will test the agent using a greedy policy on a set of test environments for evaluation. This test set contains 100 initial grids and is the same for all runs. After each epoch, we will let the agent run through the entire test set. Then we compute the mean episode length, side effect, and objective reward from the results of the test set. 
+
+Since the training is not always stable, we will average values from the last 30 epochs from each run. Equally important, the results will still be stochastic due to the random initialization of the weights and the training grids. Thus we will perform this procedure ten times and then average over that. 
 
 
 %########################################################################%
 % RESULTS
 %########################################################################%
+% TODO percentage decrease in side effects and objective
 
 \chapter{Results}
+This chapter will contain the results from the experiments described in Method chapter. We will begin with taking a look at the fully observable environment (MDP) and then move on the the paritally observable environment (POMDP).
 
-In figure \ref{fig:results_static_8x8}, we can see the results from the fully observable environment. We can see that $\lambda$ has a noticeable effect on both the objective reward and the number of side effects. When we increase $\lambda$, the side effects decrease. Although, eventually,  the objective reward also starts to decrease. The cause for this decrease is that the agent will not always find a policy that collects objective rewards, see Table \ref{tab:results_static_8x8} for how many times this happened. 
-\begin{figure}[H]
+
+\section{Fully Observable Environment}
+In Figure \ref{fig:results_static_8x8}, we can see the results from the MDP. We can see that $\lambda$ has a noticeable effect on both the objective reward, the number of side effects, and the length of the task. Note that the maximum length for an rollout on the test set is 100, hence the runs with an average length of 100 basically does not complete any task. As we can see in the figure, when we increase $\lambda$, the side effects decrease. Although, the objective reward also decrease. 
+
+\begin{figure}
+  \centering
+  \includegraphics{"./figures/static_8x8_results.png"}
+  \includegraphics{"./figures/static_8x8_stochastic_results.png"}
+  \caption{To the left, we can see the results for the static MDP, while the stochastic is on the right. As we can see in the legend, each line color represents a $\lambda$ value. By following a line, we can see the average length, side effects, and objectives the model generated when using that value. Besides this, since we draw the lines on top of each other, some lines seem missing from the figure. Thus, the higher $\lambda$ values cover the lower ones if the results are similar.}
+  \label{fig:results_static_8x8}
+\end{figure}
+
+We can see that when $\lambda=1$ the agent start having issues with completing the tasks in both the stochastic and the non-stochastic MDP. Besides this, we can also see that the agent generates more side effects in the stochastic MDP and is a little bit more resiliant in terms of objective rewards to increases in $\lambda$.
+
+\section{Partially Observable Environment}
+Figure \ref{fig:results_pomdp_8x8} contains the results of the experiment POMDP. As we can see $\lambda$ also has a noticeable here, although, quite different compared to the MDP.
+
+\begin{figure}
   \centering
   \includegraphics{"./figures/pomdp_8x8_results.png"}
   \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
-  \caption{To the left we can see the results for the static POMDP, while on the right the stochastic.}
+  \caption{This figure is made the same way as Figure \ref{fig:results_static_8x8}, but instead summarizes the data from the partially observable environment.}
   \label{fig:results_pomdp_8x8}
 \end{figure}
 
+Intrestingly, we can see that with $\lambda=0$ the results are about the same in the stochastic and non-stochastic environment. Although, when $\lambda$ increases the effects a different. We can see that $\lambda= 1$ or $1.5$, seem to be a sweet-spot in both cases, with lower side effect but not a to big difference in objective reward and only minor decreases in lenght.
 
-As we can see $\lambda = 0.5$ (green) seems to be a sweet-spot. With a significantly lower number of side effects than no impact measurement, but still allows for collecting a similar amount of objective rewards. During the experiment, it did not fail to learn even once.
 
 
 %########################################################################%
@@ -1055,13 +1125,44 @@ As we can see $\lambda = 0.5$ (green) seems to be a sweet-spot. With a significa
 
 \chapter{Discussion}
 
-\begin{itemize}
-    \item More knowledge about instrumental convergence can lead to impact measurements
-    \item Connect results to \citet{ArmstrongLevinstein} $\lambda$ theory, to high results in inaction
-    \item How to make environment more difficult (extend to SafeLife)
-    \item Ad-hoc solutions to get performance, but improving scores on benchmarks can help the field, such as in ImageNet  
-\end{itemize}
-% If we connect this back to istrumental convergence which we covered previously which stated that with a final terminal goal several other instrumental goal will naturally emerge. We can say that by giving the agent rewards for keeping options open we incourage it to find the instrumental goal of preserving the environment, since the set of future tasks we want it to perform is done in the current environment. Thus with more knowledge about how an more intelligent AI such as an AGI or transformative AI will behave we would be able to derive more ways of directing it in a more aligned direction.
+This final chapter will include a discussion of the results concerning the scale of the impact measurement. Then, a comparison of the results between the different environments. After that, some ideas on how to extend this project into future research. Lastly, some concluding remarks about what this thesis has covered.
+% \section{Summary}
+
+\section{The Effects of $\lambda$'s Scale}
+In the results, when changing $\lambda$, we saw a significant change in results in all environments. We can see that most environments have a sweet spot with lower side effects but a minimal decrease in objective reward. Although, at which point this happens is different in each environment. 
+
+Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. 
+
+\section{Comparing the Environments}
+In the small grid experiments, the agent's performance with an impact measurement was better in complex environments. In the non-stochastic MDP, the impact measurement did not decrease the side effects without decreasing the objective reward. However, this was possible in all the other environments. We can also see that in more complex environments, the agent functioned better with higher $\lambda$ values.
+
+A reason for better performance in the stochastic environments could be that the \textit{no-op} action now serves a purpose if the current state requires side effects to be solved. For example, if undesired food objects are blocking the agent's path, then in a non-stochastic environment, a side effect is required to follow it. However, in a stochastic environment, the agent can wait with the \textit{no-op} action until the objects have moved away and the path is clear.
+% TODO check if this is true
+
+When extending the environment to a POMDP, the agent learned more quickly. The cause is that an observation of the environment is simpler than the entire environment. Because the agent always is at the center of the observation. Thus the agent's networks do not need to figure out that the agent is the square and how the food objects relate to this square. Instead, it sees that food objects disappear when they are in the middle and at the edge.
+
+However, problems can emerge when applying an impact measurement since it does not differentiate between a food object moving out of sight and the agent consuming it. However, when comparing the non-stochastic MDP to the non-stochastic POMDP, the performance does not change besides the agent being more resilient to higher $\lambda$ values. 
+
+When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a remarkable difference with even better performance and resilience. The cause for this might be that the agent developed a basic level of self-awareness since it can differentiate between consuming and moving away from a food object. Or, it might be because the manager is better at capturing this SOMEHOW?
+% TODO check how impact measurement is different
+
+\section{Value of Working on Simulations}
+Ad-hoc solutions to get performance, but improving scores on benchmarks can help the field, such as in ImageNet  
+
+\section{Future Work}
+% More knowledge about instrumental convergence can lead to impact measurements
+If we connect the results back to instrumental convergence, which says, when an agent pursues its terminal goal, several other instrumental goals will naturally emerge. We can see that from the impact measurement, new instrumental goals emerged, such as environmental preservation and keeping the future option open without changing the terminal goal. 
+
+% We can say that by giving the agent rewards for keeping options open we incourage it to find the instrumental goal of preserving the environment, since the set of future tasks we want it to perform is done in the current environment. 
+
+Thus with more knowledge about how more intelligent AIs such as an AGI or transformative AI will behave, we could derive new ways of directing it in a more aligned direction. Thus more research on the Bostrom-Omohundro theory might yield ideas about new impact measurements that work with the Ai's basic drives from the foundation.
+
+Another path for future research on the topic of this thesis can be to make the environment even more difficult, for example, by scaling up the environment, including more types of objects, and adding more agents. Also, it would be interesting to apply an impact measurement in a more realistic 3D environment without the restriction of discrete positions as in a grid world. 
+
+\section{Conclusion}
+The AI-safety and AI-risk research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned  AI. More specifically, in the development of impact measurements promising ideas have emerged. 
+
+In the experiments of this thesis, we saw that we could decrease the side effects in some environments without sacrificing performance. Also, with a more complex environment, the agent more easily developed an environment preservation incentive that reduced side effects. However, in a larger environment, we saw that...
 
 % Self conciousness might be necessary to enable the agent to differentiate between side effects it caused and those who happened trough natural dynamics.
 
@@ -1075,11 +1176,6 @@ As we can see $\lambda = 0.5$ (green) seems to be a sweet-spot. With a significa
 % Partly observable and stochastic simulations to make more similar real world, multi agent
 
 
-%########################################################################%
-% CONCLUSION
-%########################################################################%
-
-\chapter{Conclusion}
 
 
 % \printbibliography
@@ -1107,32 +1203,6 @@ With the with the utility in each state, it is then possible to find the optimal
 Since computing the utility in one state requires the utility in other states, the computation is not straight forward. To solve this we can utilize a dynamic algorithm, in this report we will use \textbf{value iteration}. This algorithm is a iterative computation that is executed until a equilibrium is reached. The updating of the utility is called an \textbf{Bellman update} and looks like this,
 \[U_{i+1}(s) \leftarrow \max_{a\in\mathcal{A}} \sum_{s\prime} p(s^\prime|s,a)[R(s,a,s^\prime) + \gamma U_i(s^\prime)].\]
 
-\subsubsection{Stochastic grid world}
-The previous example was a deterministic environment where the agent is the only source for change. However, there can be other sources of change in a stochastic environment. For example, suppose the food is mobile. In that case, the state transition after executing an action no longer is deterministic and the distribution of future states is described by the MDPs transition function $T$.
-
-We will define the food movements as the following, at every timestep after the agent has moved each food will randomly draw one of the five actions. If moving along the direction of the drawn action is possible, i.e. it is empty, then the food will move, otherwise it will remain at its current position. In Figure \ref{fig:stochastic_transition}, we can see an example of this. The reason why the first state has a higher probability then the others is that it will be transitioned to both when the action \textit{UP} and \textit{NOOP} is drawn. If we choose to include several foods in the environment, then the distribution for future states will increase.
-
-\begin{figure}[H]
-  % fix with multi row?
-  \[
-    T \left(\parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s1.png"}}, \textit{UP} \right)
-    =
-    \left\{
-      % \parbox[h][1.1\linewidth][c]{0.25\linewidth}{
-          % \begin{align*}
-        \begin{tabular}{c c}
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s2.png"}} &,\ p=0.4 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s3.png"}} &,\ p=0.2 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s4.png"}} &,\ p=0.2 \\
-          \parbox[h][0.3\linewidth][c]{0.25\linewidth}{\includegraphics[width=4cm]{"./figures/s5.png"}} &,\ p=0.2 \\
-          \end{tabular}
-          % \end{align*}
-          % }
-    \right.
-  \]
-  \caption{Now in this figure we can see an example of a stochastic transition function. On the left hand side we can see the state $s_t$ and the action $a_t$. On the right hand side we can see the probability distribution over the future states and their corresponding probabilities. }
-  \label{fig:stochastic_transition}
-\end{figure}
 
 \begin{table}[H]
   \centering
