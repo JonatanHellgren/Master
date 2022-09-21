@@ -129,6 +129,7 @@ def load_env_params(DIR):
             (data['size'], data['size']), # always square grid
              data['n_foods'],
              data['n_food_types'],
+             data['objective'],
              data['n_test'],
              data['is_stochastic'],
              data['is_pomdp'])

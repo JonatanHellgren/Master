@@ -118,7 +118,7 @@ class MDP:
             self.move_foods()
 
         obs = self.observe()
-        done = self.objectives > 2
+        done = self.objectives > self.env_params.objective - 1
         info = None
 
         return obs, reward, done, info 
