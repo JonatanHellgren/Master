@@ -64,6 +64,10 @@
 \newtheorem*{definition*}{Definition}
 \newtheorem{definition}{Definition}[section]
 
+\newcommand{\toprule}{\null}
+\newcommand{\midrule}{\hline}
+\newcommand{\bottomrule}{}
+
 \usepackage{fancyhdr}
 
 \usepackage{natbib}
@@ -159,12 +163,14 @@ This page is intentionally left blank.
 
 \vspace{5mm}
 \begin{tabular}[t]{lll}
-Supervisor:& Olle Häggström\\
-Examinator:& Torbjörn Lundh
+Supervisor:& Olle Häggström, Department of Mathematical Sciences,\\
+  & Chalmers University of Technology\\
+Examinator:& Torbjörn Lundh, Department of Mathematical Sciences,\\
+  & Chalmers University of Technology
 \end{tabular}
 
 
-\vspace{40mm}
+\vspace{35mm}
   \includegraphics[scale=0.5]{figures/stacked_logo.png}
 
 
@@ -186,25 +192,36 @@ Gothenbug, Sweden 2022
 
 \newpage
 
+\pagestyle{empty}
+
 \addtolength{\topmargin}{-1cm}
 \addtolength{\textheight}{0cm}
 \addtolength{\evensidemargin}{0cm}
 \addtolength{\oddsidemargin}{0cm}
 \addtolength{\textwidth}{0cm}
 
-\newpage 
-\thispagestyle{empty}
+% \thispagestyle{empty}
 \vspace*{\fill}
 \textit{Note}. Matt Syms drew the image on the title page. It is the property of Ben Gilburt, which has approved its usage. Due to the male bias in the image, Ben Gilburt wants to add that it is a bad depiction of AI alignment and that AI should be aligned with all human values, not only men.
 \newpage
 
+\pagestyle{plain}
+\cfoot{\thepage}
+\pagenumbering{roman}
 
+\begin{abstract}
+In recent history, AI has become a more relevant technology. This trend probably will not change soon since new AIs are being developed yearly with increasing sophistication. However, most research has been about developing it rather than making it safe. 
+
+This thesis will begin with a thorough investigation of the current field of AI-safety and answer questions such as why AI can become an issue, what the consequences are, and what we can do to prevent them. Then delve deeper into low-impact AIs. More specifically, side effect minimization through impact measurements. Lastly, propose a novel impact measurement and simulation study evaluating it in an environment with different variations. 
+
+The results of the simulation study are in line with other research. However, with a more complex environment, we saw better performance. From this, we conclude that a more complex task might suit this impact measurement better and put more pressure on the agent, resulting in more intelligent behavior. 
+
+\end{abstract}
 
 \tableofcontents
-\thispagestyle{empty}
-\null
+% \thispagestyle{empty}
+% \null
 
-\pagenumbering{roman}
 
 \newpage
 \pagenumbering{arabic}
@@ -231,11 +248,11 @@ Historically, we have known about this problem since shortly after the first ele
 \end{displayquote}
 Even though the warnings from Turing, what we see today is a much larger focus on developing AI rather than ensuring safe AI. With billions of dollars spent on development in 2020, while only around \$50 million on reducing the risks, see \citet{80000}. 
 
-However, there is still a research field taking this issue seriously and researching things such as AI risk and safety. From this research, ideas about creating safe AI have emerged. One example that we will look more deeply at in this thesis is creating low-impact AIs.
+However, there is still a research field taking this issue seriously and researching things such as AI-risk and AI-safety. From this research, ideas about creating safe AI have emerged. One example that we will look more deeply at in this thesis is creating low-impact AIs.
 % Turing was ahead of his time when writing that paper, bringing up machine thinking. Also, ideas about them conversing and cooperating. Even though, in the time between Turing's paper and the present, we have mostly seen research on developing AI. However, there is still a research field taking this issue seriously and researching things such as AI risk and safety. From this research, ideas about creating safe AI have emerged. Such as using impact measurement to measure and limit the unnecessary side effects an AI might cause.
 
 \subsubsection{Aim of Thesis}
-This thesis aims to thoroughly investigate the current literature on AI risk and AI safety. To shine a light on this field and hopefully increase public awareness. Besides this, examine current methods for creating low-impact AIs using impact measurements. Lastly, a simulation study investigating the performance of a novel impact measurement in various environments, including deterministic, stochastic, and partially observable. 
+This thesis aims to thoroughly investigate the current literature on AI-risk and AI-safety. To shine a light on this field and hopefully increase public awareness. Besides this, examine current methods for creating low-impact AIs using impact measurements. Lastly, a simulation study investigating the performance of a novel impact measurement in various environments, including deterministic, stochastic, and partially observable. 
 % in an attempt to find others similar, refined or generalized results.This thesis aims to implement novel impact measurements that are possible to extend to the environment with incomplete information.
 % Avsnitt 1.3 är för kort. Du behöver lägga till lite mer om vad du avser göra (och varför), och om detta tillägg resulterar i mindre än säg 10 rader så bör du helt enkelt stryka avsnittsrubriken och behandla texten som en forstättning på Avsnitt 1.2.
 % investigate how current methods that reduce side effects trough including impact measurements compare to simpler methods in a stochastic environment.
@@ -427,7 +444,7 @@ Still, it does not yet exist any rigorous mathematical proof for this. However, 
 \subsection{Orthogonality Thesis}
 The orthogonality thesis is described as \say{More or less any final goal is compatible with more or less arbitrarily any level of intelligence}, in \citet{Bostrom12}. To avoid counterexamples that combine low intelligence with an advanced goal, we can change \say{any level of intelligence} to \say{arbitrary high level of intelligence}, see \citet{Haggstrom19}. With this, there exist some counterexamples. For example, if we gave an intelligent AI the goal of being stupid, the AI would quickly cease to be intelligent.
 
-A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. For humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following chapter once we have covered AI safety.
+A contrary belief is that all intelligent AIs will converge on the same goal due to their intelligence, see \citet{MullerCannon}. For humans, this belief is natural since most humans have similar goals. Nevertheless, when considering the potential risks, this scenario would be alarming since it would be impossible to control all sufficiently intelligent AIs. The consequences of the Bostrom-Omohundro theory will be brought up in the following chapter once we have covered AI-safety.
 
 % An intelligent AI could have a stupid task from our point of view, such as counting all the blades of grass on our planet, or it can have a goal that we may deem as an important one, like keeping the climate on earth habitable for the species that currently live on it. For an AI each task would be as important, given that we assigned the goal to it during its creation.
 % https://www.nickbostrom.com/superintelligentwill.pdf
@@ -1090,11 +1107,9 @@ Since the training is not always stable, we will average values from the last 30
 \chapter{Results}
 This chapter will contain the results from the experiments described in Method chapter. We will begin with taking a look at the fully observable environment (MDP) and then move on the the paritally observable environment (POMDP).
 
-
-\section{Fully Observable Environment}
 In Figure \ref{fig:results_static_8x8}, we can see the results from the MDP. We can see that $\lambda$ has a noticeable effect on both the objective reward, the number of side effects, and the length of the task. Note that the maximum length for an rollout on the test set is 100, hence the runs with an average length of 100 basically does not complete any task. As we can see in the figure, when we increase $\lambda$, the side effects decrease. Although, the objective reward also decrease. 
 
-\begin{figure}
+\begin{figure}[H]
   \centering
   \includegraphics{"./figures/static_8x8_results.png"}
   \includegraphics{"./figures/static_8x8_stochastic_results.png"}
@@ -1102,12 +1117,20 @@ In Figure \ref{fig:results_static_8x8}, we can see the results from the MDP. We 
   \label{fig:results_static_8x8}
 \end{figure}
 
-We can see that when $\lambda=1$ the agent start having issues with completing the tasks in both the stochastic and the non-stochastic MDP. Besides this, we can also see that the agent generates more side effects in the stochastic MDP and is a little bit more resiliant in terms of objective rewards to increases in $\lambda$.
 
-\section{Partially Observable Environment}
-Figure \ref{fig:results_pomdp_8x8} contains the results of the experiment POMDP. As we can see $\lambda$ also has a noticeable here, although, quite different compared to the MDP.
 
-\begin{figure}
+% \begin{table}[H]
+  % \centering
+  % \input{./tables/pomdp_8x8.tex}
+  % \caption{Here we can see the number of failed attempts where the agent fails to find a policy that generates any noticeable objective reward for each $\lambda$-value.}
+  % \label{tab:results_static_8x8}
+% \end{table}
+
+% We can see that when $\lambda=1$ the agent start having issues with completing the tasks in both the stochastic and the non-stochastic MDP. Besides this, we can also see that the agent generates more side effects in the stochastic MDP and is a little bit more resiliant in terms of objective rewards to increases in $\lambda$.
+
+Figure \ref{fig:results_pomdp_8x8} contains the results from the small POMDP. As we can see $\lambda$ also has a noticeable here, although, quite different compared to the MDP. In figure \ref{fig:results_pomdp_16x16} we can see the results the large POMDP.
+
+\begin{figure}[H]
   \centering
   \includegraphics{"./figures/pomdp_8x8_results.png"}
   \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
@@ -1115,9 +1138,16 @@ Figure \ref{fig:results_pomdp_8x8} contains the results of the experiment POMDP.
   \label{fig:results_pomdp_8x8}
 \end{figure}
 
-Intrestingly, we can see that with $\lambda=0$ the results are about the same in the stochastic and non-stochastic environment. Although, when $\lambda$ increases the effects a different. We can see that $\lambda= 1$ or $1.5$, seem to be a sweet-spot in both cases, with lower side effect but not a to big difference in objective reward and only minor decreases in lenght.
+% Intrestingly, we can see that with $\lambda=0$ the results are about the same in the stochastic and non-stochastic environment. Although, when $\lambda$ increases the effects a different. We can see that $\lambda= 1$ or $1.5$, seem to be a sweet-spot in both cases, with lower side effect but not a to big difference in objective reward and only minor decreases in lenght.
 
 
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/pomdp_16x16_results.png"}
+  \includegraphics{"./figures/pomdp_16x16_stochastic_results.png"}
+  \caption{This figure summarizes the data from the large POMDP. Note that the axis scale has changed.}
+  \label{fig:results_pomdp_16x16}
+\end{figure}
 
 %########################################################################%
 % DISCUSSION
@@ -1125,16 +1155,16 @@ Intrestingly, we can see that with $\lambda=0$ the results are about the same in
 
 \chapter{Discussion}
 
-This final chapter will include a discussion of the results concerning the scale of the impact measurement. Then, a comparison of the results between the different environments. After that, some ideas on how to extend this project into future research. Lastly, some concluding remarks about what this thesis has covered.
+This chapter will include a discussion of the results concerning the scale of the impact measurement. Then, a comparison of the results between the different environments. After that, some ideas on how to extend this project into future research. Lastly, some concluding remarks about what this thesis has covered.
 % \section{Summary}
 
 \section{The Effects of $\lambda$'s Scale}
-In the results, when changing $\lambda$, we saw a significant change in results in all environments. We can see that most environments have a sweet spot with lower side effects but a minimal decrease in objective reward. Although, at which point this happens is different in each environment. 
+In the results, when changing $\lambda$, we saw a significant change in results in all environments. We can see that most environments have a sweet spot with lower side effects but a minimal decrease in objective reward. Although, when this happens is different in each environment. 
 
-Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. 
+Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. However, we did not see a value where the agent caused no side effects but maximum objective reward. Thus we did not find a safe zone, as described in the paper.
 
 \section{Comparing the Environments}
-In the small grid experiments, the agent's performance with an impact measurement was better in complex environments. In the non-stochastic MDP, the impact measurement did not decrease the side effects without decreasing the objective reward. However, this was possible in all the other environments. We can also see that in more complex environments, the agent functioned better with higher $\lambda$ values.
+The agent's performance with an impact measurement was better in complex environments. In the non-stochastic MDP, the impact measurement did not decrease the side effects without decreasing the objective reward. However, this was possible in all the other environments. We can also see that in more complex environments, the agent functioned better with higher $\lambda$ values.
 
 A reason for better performance in the stochastic environments could be that the \textit{no-op} action now serves a purpose if the current state requires side effects to be solved. For example, if undesired food objects are blocking the agent's path, then in a non-stochastic environment, a side effect is required to follow it. However, in a stochastic environment, the agent can wait with the \textit{no-op} action until the objects have moved away and the path is clear.
 % TODO check if this is true
@@ -1143,11 +1173,11 @@ When extending the environment to a POMDP, the agent learned more quickly. The c
 
 However, problems can emerge when applying an impact measurement since it does not differentiate between a food object moving out of sight and the agent consuming it. However, when comparing the non-stochastic MDP to the non-stochastic POMDP, the performance does not change besides the agent being more resilient to higher $\lambda$ values. 
 
-When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a remarkable difference with even better performance and resilience. The cause for this might be that the agent developed a basic level of self-awareness since it can differentiate between consuming and moving away from a food object. Or, it might be because the manager is better at capturing this SOMEHOW?
+When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a remarkable difference with even better performance and resilience. The cause for this might be that the agent developed a basic level of self-awareness since it can differentiate between consuming and moving away from a food object. 
 % TODO check how impact measurement is different
 
-\section{Value of Working on Simulations}
-Ad-hoc solutions to get performance, but improving scores on benchmarks can help the field, such as in ImageNet  
+% \section{Value of Working on Simulations}
+% Ad-hoc solutions to get performance, but improving scores on benchmarks can help the field, such as in ImageNet  
 
 \section{Future Work}
 % More knowledge about instrumental convergence can lead to impact measurements
@@ -1160,7 +1190,7 @@ Thus with more knowledge about how more intelligent AIs such as an AGI or transf
 Another path for future research on the topic of this thesis can be to make the environment even more difficult, for example, by scaling up the environment, including more types of objects, and adding more agents. Also, it would be interesting to apply an impact measurement in a more realistic 3D environment without the restriction of discrete positions as in a grid world. 
 
 \section{Conclusion}
-The AI-safety and AI-risk research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned  AI. More specifically, in the development of impact measurements promising ideas have emerged. 
+The AI-safety and AI-risk research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned AI. More specifically, in the development of impact measurements promising ideas have emerged. 
 
 In the experiments of this thesis, we saw that we could decrease the side effects in some environments without sacrificing performance. Also, with a more complex environment, the agent more easily developed an environment preservation incentive that reduced side effects. However, in a larger environment, we saw that...
 
