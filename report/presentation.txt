@@ -1,0 +1,35 @@
+Start with image of front page
+
+- The title says it all
+
+5-10 min
+- AI Safety
+  * Explain AI, AGI, TAI -> RL
+  * AI alignment
+  * Unaligned AI
+  * Mehtods for safe AI
+
+5 min
+- Impact Measurements
+  * Breif theory
+
+5 min
+- Manager Approach
+  * exlain with lots of grid figures
+
+5 min
+- Results
+  * show interesting results
+  * colorful tables for faster understanding?
+  * Live run would be interesting
+
+5 min
+- Discussion
+  * Interpretation of results
+  * What I provided
+  * Future work
+
+short
+- Conclusion
+
+

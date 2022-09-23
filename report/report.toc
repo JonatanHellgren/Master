@@ -34,8 +34,9 @@
 \contentsline {section}{\numberline {5.3}Simulation}{31}%
 \contentsline {section}{\numberline {5.4}Networks}{33}%
 \contentsline {chapter}{\numberline {6}Results}{34}%
-\contentsline {chapter}{\numberline {7}Discussion}{36}%
-\contentsline {section}{\numberline {7.1}The Effects of $\lambda $'s Scale}{36}%
-\contentsline {section}{\numberline {7.2}Comparing the Environments}{36}%
-\contentsline {section}{\numberline {7.3}Future Work}{37}%
-\contentsline {section}{\numberline {7.4}Conclusion}{38}%
+\contentsline {section}{\numberline {6.1}Fully observable}{34}%
+\contentsline {section}{\numberline {6.2}Partly obeservable}{35}%
+\contentsline {section}{\numberline {6.3}Interpretation of Results}{36}%
+\contentsline {subsection}{\numberline {6.3.1}The Effects of $\lambda $'s Scale}{36}%
+\contentsline {subsection}{\numberline {6.3.2}Comparing the Environments}{36}%
+\contentsline {chapter}{\numberline {7}Conclusion}{38}%
