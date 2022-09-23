@@ -3,16 +3,15 @@ from collections import defaultdict
 import numpy as np
 import torch
 
-    # Move out, rollout
-    # Make usable for manager
-    # Add aux rewards in here
-
 def rollout_test_set(agent, train_parameters, mdp):
+    """
+    Lets the agent go through the entire test distribution with the greedy policy.
+    Return stats for logging.
+    """
     # Batch data
     data = defaultdict(list)
 
     dones = 0
-
     for test in mdp.test_set:
         # rewards from episode
         obs = mdp.set_initial_state(np.copy(test))
@@ -27,6 +26,7 @@ def rollout_test_set(agent, train_parameters, mdp):
         data["objectives"].append(mdp.objectives)
         data["side_effects"].append(mdp.side_effects)
 
+    # computing avareges and rounding to two decimals
     avg_len = round(np.mean(data["batch_lens"]), 2)
     avg_obj = round(np.mean(data["objectives"]), 2)
     avg_side_effects = round(np.mean(data["side_effects"]), 2)
@@ -37,11 +37,13 @@ def rollout_test_set(agent, train_parameters, mdp):
     return batch_obs, batch_rtgs, avg_len, avg_obj, avg_side_effects, dones, data["batch_lens"]
 
 def rollout(agent, train_parameters, mdp, lmbda):
-    # Batch data
+    """
+    Function to fill a batch with rollouts.
+    Returns all information from the rollout.
+    """
     data = defaultdict(list)
 
     time_step = 1
-
     while time_step < train_parameters.timesteps_per_batch:
         # rewards from episode
         obs = mdp.reset()
@@ -57,11 +59,13 @@ def rollout(agent, train_parameters, mdp, lmbda):
     batch_acts = torch.tensor(data["batch_acts"], dtype=torch.long)
     batch_log_probs = torch.tensor(data["batch_log_probs"], dtype=torch.float)
 
-    if lmbda != None:
+    # if lambda exsits, then compute the auxilary reward using it
+    if lmbda is not None:
         data["batch_rews"] = \
                 _add_auxiliary_reward(batch_obs, data["batch_rews"], mdp.pomdp,
                                       agent.manager, lmbda)
 
+    # compute rtgs
     batch_rtgs = _compute_rtgs(data["batch_rews"], train_parameters)
 
     return batch_obs, batch_acts, batch_log_probs, batch_rtgs, data["batch_lens"]
@@ -70,29 +74,35 @@ def _add_auxiliary_reward(batch_obs, batch_rews, pomdp, manager, lmbda):
     idx = 0
     for i, ep_rews in enumerate(batch_rews):
         batch_len = len(ep_rews)
-        # ep_aux_tasks = _get_auxiliary_tasks(batch_obs[idx:(idx+batch_len)])
+
+        # get auxiliary tasks from batch
         auxiliary_tasks_1, auxiliary_tasks_2 = _get_auxiliary_tasks(
                 batch_obs[idx:(idx+batch_len)], pomdp)
-        # aux_rews = manager(ep_aux_tasks).detach()
-        # if pomdp:
-            # aux_rews_1 = manager(auxiliary_tasks_1, [batch_len]).detach()
-            # aux_rews_2 = manager(auxiliary_tasks_2, [batch_len]).detach()
-        # else:
+
+        # compute managers estimate for future rewards in the auxiliary tasks
         aux_rews_1 = manager(auxiliary_tasks_1).detach()
         aux_rews_2 = manager(auxiliary_tasks_2).detach()
-        # aux_rews = torch.reshape(aux_rews, (batch_len, 2))
-        # aux_rews = torch.reshape(torch.cat([aux_rews_1, aux_rews_2]), (batch_len, 2))
+
+        # summarize the reward
         aux_rews = torch.cat([aux_rews_1, aux_rews_2], 1)
         sum_aux_rews = torch.sum(aux_rews, dim=1)
-        relative_aux_reward = sum_aux_rews[1:] - sum_aux_rews[0:-1] 
+
+        # and compute the relative change in each state
+        relative_aux_reward = sum_aux_rews[1:] - sum_aux_rews[0:-1]
+
+        # adding the auxiliary reward to the batch reward
         ep_rews_tensor = torch.tensor(ep_rews, dtype=torch.float).to(manager.device)
         ep_rews_tensor[0:-1] += lmbda * relative_aux_reward
-        idx += batch_len
         batch_rews[i] = [float(r) for r in ep_rews_tensor]
+
+        idx += batch_len
     return batch_rews
 
 
 def _ep_rollout(mdp, obs, train_parameters, data, agent, greedy=False):
+    """
+    Rollouts a single episode
+    """
     ep_rews = []
     done = False
     for ep_time_step in range(train_parameters.timesteps_per_batch):
@@ -114,6 +124,9 @@ def _ep_rollout(mdp, obs, train_parameters, data, agent, greedy=False):
     return ep_time_step, ep_rews, done
 
 def _compute_rtgs(batch_rews, train_parameters):
+    """
+    computes the reward-to-go
+    """
     batch_rtgs = []
     # print(batch_rews)
 
@@ -129,22 +142,24 @@ def _compute_rtgs(batch_rews, train_parameters):
     return batch_rtgs
 
 def _get_auxiliary_tasks(batch_obs, pomdp):
-    b, f, x, y = batch_obs.size()
-    auxiliary_tasks_1 = torch.zeros(b, f, x, y)
-    auxiliary_tasks_2 = torch.zeros(b, f, x, y)
+    """
+    finds all the auxiliary tasks in batch_obs
+    """
+    batch_size, n_foods, x_max, y_max = batch_obs.size()
+    auxiliary_tasks_1 = torch.zeros(batch_size, n_foods, x_max, y_max)
+    auxiliary_tasks_2 = torch.zeros(batch_size, n_foods, x_max, y_max)
 
-    for ind in range(b):
+    for ind in range(batch_size):
         task_1, task_2 = _augment_agent_color(batch_obs[ind,:,:,:], pomdp)
         auxiliary_tasks_1[ind, :, :, :] = task_1
         auxiliary_tasks_2[ind, :, :, :] = task_2
 
-        # auxiliary_tasks = _augment_agent_color(batch_obs[ind,:,:,:])
-        # batch_auxiliary_tasks[ind*2:ind*2+2, :, :, :] = auxiliary_tasks
-    # return batch_auxiliary_tasks
-
     return auxiliary_tasks_1, auxiliary_tasks_2
 
 def _augment_agent_color(grid, pomdp):
+    """
+    changes the color of the agent and thus also its desire
+    """
     grid = torch.unsqueeze(grid, 0)
     if pomdp:
         agent_x = 2
@@ -153,7 +168,7 @@ def _augment_agent_color(grid, pomdp):
         agent_cord = torch.where(grid[0, 0, :, :] == 1)
         agent_x = int(agent_cord[0][0])
         agent_y = int(agent_cord[1][0])
-    
+
     grid_1 = grid.clone()
     grid_2 = grid.clone()
 
@@ -161,6 +176,3 @@ def _augment_agent_color(grid, pomdp):
     grid_2[0, :, agent_x, agent_y] = torch.tensor([1, 0, 0, 1])
 
     return grid_1, grid_2
-    # return torch.cat((grid_1, grid_2), dim=0)
-
-

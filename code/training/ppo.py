@@ -69,8 +69,10 @@ class PPO:
         save(self.agent.critic.state_dict(), f'./{directory}/best_critic.model')
 
     def run_test(self):
-
-        batch_obs, batch_rtgs, avg_len, avg_obj, avg_side_effects, dones, batch_lens = \
+        """
+        runs all the tests to evaluate current agent and critic performance
+        """
+        batch_obs, batch_rtgs, avg_len, avg_obj, avg_side_effects, dones, _ = \
                 rollout_test_set(self.agent, self.train_parameters, self.mdp)
         # batch_rtgs = batch_rtgs.to(self.device)
         with torch.no_grad():
@@ -79,7 +81,7 @@ class PPO:
             value_estimate = value_estimate.to('cpu')
             critic_loss = nn.MSELoss()(value_estimate, batch_rtgs)
 
-
+        # stores all stats in the logging disctionary
         self.logging['critic_loss'].append(critic_loss)
         self.logging['avg_len'].append(avg_len)
         self.logging['avg_obj'].append(avg_obj)

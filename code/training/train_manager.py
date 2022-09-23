@@ -8,7 +8,9 @@ from numpy import random
 from .training_utils import rollout, rollout_test_set
 
 class ManagerTrainer:
-
+    """
+    Class used for training the manager
+    """
     def __init__(self, mdp, agent, device, train_parameters):
         self.mdp = mdp
         self.agent = agent
@@ -17,14 +19,17 @@ class ManagerTrainer:
 
         self.logging = defaultdict(list)
 
-        self.x_test, self.y_test, self.batch_lens = self.get_test_set()
+        self.x_test, self.y_test = self.get_test_set()
         self.y_test = self.y_test.to(device)
 
         # Make sure that manager is incuded in agent
         assert agent.manager is not None
 
     def train(self, n_epochs, total_timesteps, directory):
-
+        """
+        This function train the manager for n_epochs, each with total_timesteps timesteps.
+        The best model is saved in the passed directory
+        """
         lowest_loss = 10
         for epoch in range(n_epochs):
             print(f'\nEpoch {epoch+1}:')
@@ -60,22 +65,24 @@ class ManagerTrainer:
                 save(self.agent.manager.state_dict(), f'./{directory}/best_manager.model')
 
     def get_test_set(self):
-        batch_obs, batch_rtgs, _, _, _, _, batch_lens = \
+        """
+        Perfore a rollout on the test distribution with the pre-trained agent to store as
+        a test set.
+        """
+        batch_obs, batch_rtgs, _, _, _, _, _ = \
                 rollout_test_set(self.agent, self.train_parameters, self.mdp)
 
-        return batch_obs, batch_rtgs, batch_lens
+        return batch_obs, batch_rtgs
 
     def run_test(self):
+        """
+        Evaluates the managers performance on the testset.
+        """
         with no_grad():
-            # if self.mdp.pomdp:
-                # rtgs_pred = squeeze(self.agent.manager(self.x_test, self.batch_lens))
-            # else:
             rtgs_pred = squeeze(self.agent.manager(self.x_test))
-            # manager_rtgs = squeeze(self.agent.manager(self.x_test))
             manager_loss = nn.MSELoss()(rtgs_pred, self.y_test)
             print(manager_loss)
             return manager_loss
-
 
 def _augment_batch(batch_obs):
     for ind in range(batch_obs.size()[0]):

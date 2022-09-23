@@ -1,6 +1,9 @@
 from typing import NamedTuple
 
 class TrainParameters(NamedTuple):
+    """
+    Object for storing training parameters
+    """
     # Parameter                 Type  # Example
     timesteps_per_batch       : int   # 500
     max_timesteps_per_episode : int   # 500
