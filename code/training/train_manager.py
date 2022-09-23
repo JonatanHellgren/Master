@@ -50,7 +50,7 @@ class ManagerTrainer:
                 # We only need batch_lens to count the total amount of steps
                 t_so_far += np.sum(batch_lens)
 
-                self.agent.train_manager(batch_obs, batch_rtgs, batch_lens)
+                self.agent.train_manager(batch_obs, batch_rtgs)
 
             manager_loss = self.run_test()
             self.logging["loss"].append(manager_loss)

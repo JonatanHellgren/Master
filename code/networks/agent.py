@@ -20,18 +20,18 @@ class Agent:
         if manager is not None:
             self.manager_optim = Adam(self.manager.parameters(), lr=self.train_parameters.manager_lr)
 
-    def train(self, batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens):
+    def train(self, batch_obs, batch_acts, batch_log_probs, batch_rtgs):
         """
         Trains the agents networks
         """
         # Critics evalutations
-        value_estimate, _ = self.evaluate(batch_obs, batch_acts, batch_lens)
+        value_estimate, _ = self.evaluate(batch_obs, batch_acts)
 
         advantage = _compute_advantage(batch_rtgs, value_estimate)
 
         for _ in range(self.train_parameters.n_updates_per_iteration):
             # Here we update the networks a few times with the current rollout
-            value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts, batch_lens)
+            value_estimate, curr_log_probs = self.evaluate(batch_obs, batch_acts)
 
             actor_loss = _compute_actor_loss(curr_log_probs, batch_log_probs,\
                                                 advantage, self.train_parameters.clip)
@@ -46,12 +46,10 @@ class Agent:
             critic_loss.backward()
             self.critic_optim.step()
 
-    def train_manager(self, batch_obs, batch_rtgs, batch_lens):
-
+    def train_manager(self, batch_obs, batch_rtgs):
         """
-        if self.pomdp:
-            rtgs_pred = squeeze(self.manager(batch_obs, batch_lens))
-        else:
+        Function for training the manager. Given observations and rtgs we will
+        update the weights with the managers optimizer.
         """
         rtgs_pred = squeeze(self.manager(batch_obs))
         manager_loss = nn.MSELoss()(rtgs_pred, batch_rtgs)
@@ -79,7 +77,7 @@ class Agent:
 
         return action, log_prob.detach()
 
-    def evaluate(self, batch_obs, batch_acts, batch_lens):
+    def evaluate(self, batch_obs, batch_acts):
         """
         Split this function!
 
@@ -88,16 +86,10 @@ class Agent:
         and the log probs for the actions with the current actor.
         """
         # No RNN critic
-        if type(self.critic) == type(self.actor):
-            value_estimate = self.critic(batch_obs).squeeze()
-        else: # If RNN
-            # !! WARNING !! 
-            # This will cause issues if more types of networks will be used
-            # for the critic
-            value_estimate = self.critic(batch_obs, batch_lens).squeeze()
+        value_estimate = self.critic(batch_obs).squeeze()
 
         all_probs = self.actor(batch_obs)
-        if batch_acts != None:
+        if batch_acts is not None:
             log_probs = log(all_probs[range(len(batch_acts)), batch_acts])
         else:
             log_probs = None

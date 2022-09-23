@@ -51,7 +51,7 @@ class PPO:
                 # We only need batch_lens to count the total amount of steps
                 t_so_far += np.sum(batch_lens)
 
-                self.agent.train(batch_obs, batch_acts, batch_log_probs, batch_rtgs, batch_lens)
+                self.agent.train(batch_obs, batch_acts, batch_log_probs, batch_rtgs)
 
             print('\n')
             avg_len = self.run_test()
@@ -75,7 +75,7 @@ class PPO:
         # batch_rtgs = batch_rtgs.to(self.device)
         with torch.no_grad():
             # value_estimate = torch.squeeze(self.agent.critic(batch_obs), 1).to('cpu')
-            value_estimate, _ = self.agent.evaluate(batch_obs, None, batch_lens)
+            value_estimate, _ = self.agent.evaluate(batch_obs, None)
             value_estimate = value_estimate.to('cpu')
             critic_loss = nn.MSELoss()(value_estimate, batch_rtgs)
 
