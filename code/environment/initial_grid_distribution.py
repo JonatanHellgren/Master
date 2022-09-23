@@ -29,15 +29,8 @@ class InitialGridDistribution:
         grid[1, agent_cord[0], agent_cord[1]] = self.agent_desire
 
         for ind, cord in enumerate(cords):
-            # First three will be of type one
-            food_type = ind%3 + 1
-            """
-            if ind < 3:
-                food_type = self.agent_desire
-            # Then we sample randomly from a food greater then one
-            else:
-                food_type = random.choice(range(1, self.env_params.n_food_types)) + 1
-            """
+            # food types cycles
+            food_type = ind % 3 + 1
             # Place food
             grid[food_type, cord[0], cord[1]] = 1
 
@@ -54,4 +47,4 @@ class InitialGridDistribution:
             grid = self.generate_grid()
             grids.append(grid)
 
-        return grids 
+        return grids
