@@ -1,4 +1,5 @@
-from torch import argmax, log, exp, clamp, min, nn, squeeze
+import torch
+from torch import nn
 from torch.distributions import Categorical
 from torch.optim import Adam
 
@@ -51,7 +52,7 @@ class Agent:
         Function for training the manager. Given observations and rtgs we will
         update the weights with the managers optimizer.
         """
-        rtgs_pred = squeeze(self.manager(batch_obs))
+        rtgs_pred = torch.squeeze(self.manager(batch_obs))
         manager_loss = nn.MSELoss()(rtgs_pred, batch_rtgs)
 
         self.manager_optim.zero_grad()
@@ -67,13 +68,13 @@ class Agent:
 
         if greedy:
             # Select action with highest probability
-            action = argmax(probs, dim=1)
+            action = torch.argmax(probs, dim=1)
         else:
             # Sample action
             distr = Categorical(probs)
             action = distr.sample()
 
-        log_prob = log(probs[0, action])
+        log_prob = torch.log(probs[0, action])
 
         return action, log_prob.detach()
 
@@ -90,7 +91,7 @@ class Agent:
 
         all_probs = self.actor(batch_obs)
         if batch_acts is not None:
-            log_probs = log(all_probs[range(len(batch_acts)), batch_acts])
+            log_probs = torch.log(all_probs[range(len(batch_acts)), batch_acts])
         else:
             log_probs = None
 
@@ -99,11 +100,11 @@ class Agent:
 
 def _compute_actor_loss(curr_log_probs, batch_log_probs, advantage, clip):
     # Since, exp(log(a) - log(b)) = (a / b), we can perform this computation
-    ratios = exp(curr_log_probs - batch_log_probs)
+    ratios = torch.exp(curr_log_probs - batch_log_probs)
     surr1 = ratios * advantage
-    surr2 = clamp(ratios, 1 - clip, 1 + clip) * advantage
+    surr2 = torch.clamp(ratios, 1 - clip, 1 + clip) * advantage
 
-    actor_loss = (-min(surr1, surr2)).mean()
+    actor_loss = (-torch.min(surr1, surr2)).mean()
 
     return actor_loss
 

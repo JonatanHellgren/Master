@@ -1,12 +1,8 @@
 """
 All feed forward networks
 """
-import pdb
-
 import torch
-from torch import nn, tensor, float, unsqueeze, flatten
-from torch.nn import GRU
-from torch.nn.utils.rnn import pad_sequence, pack_padded_sequence, pad_packed_sequence
+from torch import nn
 import torch.nn.functional as F
 import numpy as np
 
@@ -17,7 +13,8 @@ class FeedForwardNN(nn.Module):
     X should be on the shape: (batch, food_type, x_cord, y_cord)
     """
 
-    def __init__(self, in_dim, n_conv, hidden_dim, out_dim, device, softmax=False, kernel_size=(3,3)):
+    def __init__(self, in_dim, n_conv, hidden_dim, out_dim, device,
+                 softmax=False, kernel_size=(3,3)):
         super(FeedForwardNN, self).__init__()
         self.softmax = softmax
         self.device = device
@@ -40,9 +37,9 @@ class FeedForwardNN(nn.Module):
         A forward pass for the network
         """
         if isinstance(obs, np.ndarray):
-            obs = tensor(obs, dtype=float)
+            obs = torch.tensor(obs, dtype=torch.float)
             if len(obs.size()) == 3:
-                obs = unsqueeze(obs, dim=0)
+                obs = torch.unsqueeze(obs, dim=0)
 
         obs = obs.to(self.device)
         # print(obs.size())
@@ -50,7 +47,7 @@ class FeedForwardNN(nn.Module):
         feature_map1 = F.relu(self.conv1(obs))
         feature_map2 = F.relu(self.conv2(feature_map1))
 
-        flat = flatten(feature_map2, start_dim=1) # (batch, feature)
+        flat = torch.flatten(feature_map2, start_dim=1) # (batch, feature)
 
         activation1 = F.relu(self.layer1(flat))
         activation2 = F.relu(self.layer2(activation1))
