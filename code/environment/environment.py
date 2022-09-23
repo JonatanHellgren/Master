@@ -15,17 +15,16 @@ class MDP:
     """
     Class for the environment
     Named MDP, but extending it to a POMDP is possible by setting pomdp=True. If this is
-    the case, then it is also possible to select observation length, this length is how far 
-    the agent will be able to see in all directions including diagonal. Thus it defines a 
+    the case, then it is also possible to select observation length, this length is how far
+    the agent will be able to see in all directions including diagonal. Thus it defines a
     square with the side equal to the length of obs_len*2+1 cells with the agent in the center.
     """
     def __init__(self, env_params, obs_len=2):
-
         self.env_params = env_params
         self.n_actions = 5
         self.pomdp = env_params.is_pomdp
-        self.agent_desire = 1
-        self.initial_grid_distribution = InitialGridDistribution(env_params, self.agent_desire)
+        agent_desire = 1
+        self.initial_grid_distribution = InitialGridDistribution(env_params, agent_desire)
 
         self.test_set = self.initial_grid_distribution.generate_grids(env_params.n_test, 1)
 
@@ -76,7 +75,7 @@ class MDP:
 
     def get_observation(self):
         """
-        If POMDP, then we need to collect all the cells visible for the agent. 
+        If POMDP, then we need to collect all the cells visible for the agent.
         If the agent is close to the edge of the grid, then all cells 'visible' outside
         the edge will be equal to 1 in the 0th dimention.
         """
@@ -104,7 +103,7 @@ class MDP:
 
     def step(self, action):
         """
-        This function executes a timestep in the environment. It moves the agent and 
+        This function executes a timestep in the environment. It moves the agent and
         checks if any food has been consumed.
         """
         agent_cord_new, agent_moved = self.get_new_cord(self.agent_cord, action)
@@ -121,15 +120,17 @@ class MDP:
         done = self.objectives > self.env_params.objective - 1
         info = None
 
-        return obs, reward, done, info 
+        return obs, reward, done, info
 
     def move_agent(self, agent_cord_new):
-
+        """
+        Function to move the agent, it checks if the agent consumed any food object.
+        If that is the case, then we will check if this was a side effect or a objective.
+        """
         new_cell = self.grid[:, agent_cord_new[1], agent_cord_new[2]]
-        agent_cell = np.copy(self.grid[:, self.agent_cord[1], self.agent_cord[2]])
         if any(new_cell == 1):
             food_type = np.where(new_cell==1)[0][0]
-            if food_type == self.agent_desire:
+            if food_type == 1: # 1 = agent_desire
                 self.objectives += 1
                 reward = 1
             else:
@@ -139,29 +140,46 @@ class MDP:
             reward = -0.04
 
         self.move(self.agent_cord, agent_cord_new)
-        # self.grid[:, self.agent_cord[0], self.agent_cord[1]] = np.zeros(self.env_params.n_food_types+1)
-        # self.grid[:, agent_cord_new[0], agent_cord_new[1]] = agent_cell
         self.agent_cord = agent_cord_new
         return reward
-    
+
     def move_foods(self):
+        """
+        Function to move all foods, used in stochastic environment.
+        """
         food_cords = self.get_food_cords()
 
         for food_cord in food_cords:
             self.move_food(food_cord)
 
     def move_food(self, food_cord):
+        """
+        Function to move one food object.
+        """
+        # randomly draw an action
         action = np.random.choice(5)
+
+        # get new cord
         new_cord, new = self.get_new_cord(food_cord, action)
+
+        # move if possible
         if new and all(self.grid[:, new_cord[1], new_cord[2]] != 1):
             self.move(food_cord, new_cord)
 
 
     def get_food_cords(self):
-        ones = np.where(self.grid[1:]==1) # all locations where the grid equals 1
-        n_foods = len(ones[0]) # since agent is included
+        """
+        Function that gathers all food objects coordinates and returns them.
+        """
+        # all locations where the grid equals 1
+        ones = np.where(self.grid[1:]==1)
+
+        # store as tuples
+        n_foods = len(ones[0])
         food_cords = [(ones[0][it]+1, ones[1][it], ones[2][it]) for it in range(n_foods)]
-        food_cords = [food_cord for food_cord in food_cords if 
+
+        # remove agent't coordinate
+        food_cords = [food_cord for food_cord in food_cords if
                         (food_cord[1], food_cord[2]) != (self.agent_cord[1], self.agent_cord[2])]
 
         return food_cords
@@ -169,18 +187,23 @@ class MDP:
     def get_new_cord(self, cord, action):
         """
         Inputs a cord and a direction
-        Returns the new cord and boolean representing if the cord changed
+        Returns the cord and boolean representing if the cord changed
         """
         direction = MOVEMENTS[action]
         cord_new = (cord[0], cord[1] + direction[0], cord[2] + direction[1])
+
+        # if new_cord in bounds and the object did move
         if self.inbounds(cord_new) and action != 0:
             return cord_new, True
-        else:
-            return cord, False
+
+        # if object did not move
+        return cord, False
 
     def move(self, cord, new_cord):
-        f = np.shape(self.grid)[0]
+        """
+        Moves and object in the grid from cord to new_cord
+        """
+        n_foods = np.shape(self.grid)[0]
         old_cell = np.copy(self.grid[:, cord[1], cord[2]])
-        self.grid[:, cord[1], cord[2]] = np.zeros(f)
+        self.grid[:, cord[1], cord[2]] = np.zeros(n_foods)
         self.grid[:, new_cord[1], new_cord[2]] = old_cell
-
