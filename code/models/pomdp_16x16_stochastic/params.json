@@ -9,7 +9,7 @@
       "is_pomdp": true 
     },
   "train_params":{
-      "timesteps_per_batch": 100, 
+      "timesteps_per_batch": 200, 
       "max_timesteps_per_episode": 500, 
       "gamma": 0.95, 
       "n_updates_per_iteration": 3,
@@ -21,7 +21,7 @@
       "hidden_dim": 1024
     },
   "aux_params":{
-    "n_runs": 10,
+    "n_runs": 2,
     "n_epochs": 100,
     "lambda_range": [0, 0.5, 1, 1.5, 2, 2.5, 3],
     "out_file_name": "df.csv"
