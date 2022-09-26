@@ -10,39 +10,50 @@ import seaborn as sns
 rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
 plt.rcParams['text.usetex'] = True
 
+"""
+"""
+legend = False
+big = False 
+model_name = 'POMDP 8x8'
+model = 'pomdp_8x8'
+
+"""
+legend = True
+big = False 
+model_name = 'POMDP 8x8 stochastic'
+model = 'pomdp_8x8_stochastic'
+
+legend = False
+big = False 
+model_name = 'MDP 8x8'
+model = 'static_8x8'
+
+legend = True
+big = False 
+model_name = 'MDP 8x8 stochastic'
+model = 'static_8x8_stochastic'
+
+legend = False
+big = True
+model_name = "POMDP 16x16"
+model = "pomdp_16x16"
+
+legend = True
+big = True
+model_name = "POMDP 16x16"
+model = "pomdp_16x16_stochastic"
+"""
+
 width = 7
 height = 6
 dpi = 400 
 xmin, xmax = (-0.3,2.1)
-ymin, ymax = (0,3.1)
 
-"""
-legend = False
-model_name = 'POMDP 8x8'
-model = 'pomdp_8x8'
+if big:
+    ymin, ymax = (0,6)
+else:
+    ymin, ymax = (0,3)
 
-legend = True
-model_name = 'POMDP 8x8 stochastic'
-model = 'pomdp_8x8_stochastic'
-
-"""
-legend = False
-model_name = 'MDP 8x8'
-model = 'static_8x8'
-"""
-
-legend = True
-model_name = 'MDP 8x8 stochastic'
-model = 'static_8x8_stochastic'
-
-legend = True
-model_name = "POMDP 16x16"
-model = "pomdp_16x16"
-
-legend = True
-model_name = "POMDP 16x16"
-model = "pomdp_16x16"
-"""
 
 DIR = f'../models/{model}'
 
@@ -65,7 +76,7 @@ def summarize_data(DIR, top=30):
     for lmbda in lambda_range:
         df_top_lmbda = df_top[df_top['lambda'] == lmbda]
 
-        mean_len = df_top_lmbda['avg_len'].mean() / 33
+        mean_len = df_top_lmbda['avg_len'].mean() / (100 / ymax)
         mean_side_effect = df_top_lmbda['avg_side_effects'].mean()
         mean_obj = df_top_lmbda['avg_obj'].mean()
 
@@ -116,20 +127,39 @@ def plot_df_row(df_row):
     plot_curve(cord_2, cord_3, color)
 
 def draw_axis(labels, xcord, ycords, ann_shift=0):
-    plt.vlines(xcord, 0, 3, colors='black', alpha=0.5)
+    plt.vlines(xcord, 0, ymax, colors='black', alpha=0.5)
     for label, ycord in zip(labels, ycords):
         plt.annotate(label, (xcord-ann_shift, ycord))
 
 
 def annotate_fig():
     labels_len = ['0 -', '20 -', '40 -', ' 60 -', '80 -', '100-']
-    ycords = np.array([0, 0.6, 1.2, 1.8, 2.4, 3]) - 0.06
+    ycords = np.array([0, 0.6, 1.2, 1.8, 2.4, 3]) 
+    if big:
+        ycords *= 2
+    ycords -= 0.06
+        
     draw_axis(labels_len, 0, ycords, 0.25)
 
+    # labels = ['- 0', '- 1', '- 2', '- 3']
+    # ycords = np.array([0, 1, 2, 3]) - 0.06
+
     labels = ['- 0', '- 1', '- 2', '- 3']
-    ycords = np.array([0, 1, 2, 3]) - 0.06
+    ycords = np.array([0, 1., 2., 3.]) 
+    if big:
+        labels = ['- 0', '- 2', '- 4', '- 6']
+        ycords *= 2
+    ycords -= 0.06
+
     draw_axis(labels, 1, ycords)
     draw_axis(labels, 2, ycords)
+
+def save_table(df):
+    df.columns = ['$\lambda$', 'Length', 'Side effects', 'Objective']
+    df['Length'] *= (100/ymax)
+    df.round(2).to_latex(buf=f'../../report/tables/{model}.tex',
+                         index=False, escape=False,
+                         column_format='c|c|c|c')
 
 ax = get_ax(height, width)
 annotate_fig()
@@ -141,4 +171,6 @@ if legend:
     plt.legend(title=r'$\lambda$', bbox_to_anchor=(1.05, 1.05), loc='upper left', prop={'size': 8})
 
 plt.savefig(f'../../report/figures/{model}_results', bbox_inches='tight')
+
+save_table(df)
 
