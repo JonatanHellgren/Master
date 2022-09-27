@@ -105,7 +105,7 @@ def _ep_rollout(mdp, obs, train_parameters, data, agent, greedy=False):
     """
     ep_rews = []
     done = False
-    for ep_time_step in range(train_parameters.timesteps_per_batch):
+    for ep_time_step in range(train_parameters.max_timesteps_per_episode):
 
         # Collect observation
         data["batch_obs"].append(np.copy(obs))
