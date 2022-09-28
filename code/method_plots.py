@@ -64,6 +64,8 @@ def fig_3_2():
             (8,8), # size
             15,      # n_foods
             3,       # n_food_types
+            False,
+            False,
             100)     # n_test
 
     mdp = MDP(env_params)
@@ -85,6 +87,8 @@ def aux_example():
             (8,8), # size
             15,      # n_foods
             3,       # n_food_types
+            False,
+            False,
             100)     # n_test
 
     mdp = MDP(env_params)

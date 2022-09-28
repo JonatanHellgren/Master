@@ -10,14 +10,6 @@ import seaborn as sns
 import numpy as np
 
 
-palette = sns.color_palette("colorblind")
-red = palette[1]
-green = palette[2]
-blue = palette[0]
-
-rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
-rc('text', usetex=True)
-
 def plot_grid_lines(axis, max_x, max_y):
     """
     Creates a empty grid on the given axis of the specified size (max_x, max_y).
@@ -57,20 +49,20 @@ def plot_object(cell, x_cord, y_cord, axis):
         # Agent
         if cell[0] == 1:
             if cell[1] == 1:
-                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=red)
+                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=RED)
             if cell[2] == 1:
-                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=blue)
+                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=BLUE)
             if cell[3] == 1:
-                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=green)
+                obj = plt.Rectangle((x_cord+0.15, y_cord+0.15), 0.7, 0.7, color=GREEN)
 
         elif cell[1] == 1:
-            obj = plt.Circle(cord, 0.2, color=red)
+            obj = plt.Circle(cord, 0.2, color=RED)
 
         elif cell[2] == 1:
-            obj = plt.Circle(cord, 0.2, color=blue)
+            obj = plt.Circle(cord, 0.2, color=BLUE)
 
         elif cell[3] == 1:
-            obj = plt.Circle(cord, 0.2, color=green)
+            obj = plt.Circle(cord, 0.2, color=GREEN)
 
         axis.add_patch(obj)
 
@@ -169,7 +161,7 @@ def run_environment():
 def plot_grid(grid, file_name):
     _, max_x, max_y = grid.shape
     cm = 1/2.54  # centimeters in inches
-    fig, axis = plt.subplots(figsize=(4*cm,4.5*cm), dpi=300)
+    fig, axis = plt.subplots(figsize=(4*cm,4.5*cm), dpi=400)
     plot_grid_lines(axis, max_x, max_y)
     plot_objects(grid, axis, max_x, max_y)
     plt.savefig(f'../report/figures/{file_name}')
