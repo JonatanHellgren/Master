@@ -8,8 +8,8 @@
       "is_pomdp": true 
     },
   "train_params":{
-      "timesteps_per_batch": 100, 
-      "max_timesteps_per_episode": 500, 
+      "timesteps_per_batch": 500, 
+      "max_timesteps_per_episode": 100, 
       "gamma": 0.95, 
       "n_updates_per_iteration": 3,
       "clip": 0.1, 
