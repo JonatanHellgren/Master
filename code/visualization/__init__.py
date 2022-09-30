@@ -12,6 +12,6 @@ rc('text', usetex=True)
 plt.rcParams['text.usetex'] = True
 
 from .visualization import plot_grid, print_grid
-from .tables import save_table
+from .tables import save_table, save_table_extra
 from .training_history import plot_training_history
 

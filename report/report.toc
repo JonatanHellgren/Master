@@ -36,7 +36,12 @@
 \contentsline {chapter}{\numberline {6}Results}{34}%
 \contentsline {section}{\numberline {6.1}Fully observable}{34}%
 \contentsline {section}{\numberline {6.2}Partly obeservable}{35}%
-\contentsline {section}{\numberline {6.3}Interpretation of Results}{36}%
-\contentsline {subsection}{\numberline {6.3.1}The Effects of $\lambda $'s Scale}{36}%
-\contentsline {subsection}{\numberline {6.3.2}Comparing the Environments}{36}%
-\contentsline {chapter}{\numberline {7}Conclusion}{38}%
+\contentsline {subsubsection}{POMDP large}{36}%
+\contentsline {section}{\numberline {6.3}Interpretation of Results}{37}%
+\contentsline {chapter}{\numberline {7}Discussion}{39}%
+\contentsline {chapter}{\numberline {8}Conclusion}{41}%
+\contentsline {chapter}{Appendices}{46}%
+\contentsline {chapter}{\numberline {A}Training History}{47}%
+\contentsline {section}{\numberline {A.1}MDP}{47}%
+\contentsline {section}{\numberline {A.2}POMDP }{48}%
+\contentsline {section}{\numberline {A.3}POMDP Large}{49}%

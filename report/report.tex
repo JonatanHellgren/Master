@@ -35,6 +35,8 @@
 \usepackage{latexsym}
 \usepackage[Algoritm]{algorithm}
 \usepackage{algpseudocode}
+\usepackage{caption}
+\usepackage[toc,page]{appendix}
 
 % for quotes 
 \usepackage{dirtytalk} % \say{inline quote}
@@ -64,7 +66,9 @@
 \newtheorem*{definition*}{Definition}
 \newtheorem{definition}{Definition}[section]
 
-\newcommand{\toprule}{\null}
+\newcommand{\toprule}{
+    \multicolumn{1}{c}{} & \multicolumn{3}{c}{Side effect} & 
+    \multicolumn{3}{c}{Objective}\\}
 \newcommand{\midrule}{\hline}
 \newcommand{\bottomrule}{}
 
@@ -1074,11 +1078,12 @@ Only the POMDP has different grid sizes because the computational complexity gre
 
 \begin{table}[H]
   \centering
-  \begin{tabular}{l | c | c | c | c}
-    environment & grid size & observation size & food objects & termination \\ \hline
-    MDP & $8 \times 8$ & - & 15 & 3\\
-    POMDP & $8 \times 8$ & $5 \times 5$ & 15 & 3\\
-    POMDP large & $16 \times 16$ & $5 \times 5$ & 30 & 6\\
+  \caption{This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid). The second is how large the agent can perceive at a time (observation). The third is the number of food objects the grid includes at initialization (food objects). The fourth one is after what amount of correct consumption the agent reaches its terminal goal (termination). The final one is the maximum number of time steps the agent is allowed before termination (max length).}
+  \begin{tabular}{l | c | c | c | c | c}
+    environment & grid & observation & food objects & termination & max length\\ \hline
+    MDP & $8 \times 8$ & - & 15 & 3 & 100\\
+    POMDP & $8 \times 8$ & $5 \times 5$ & 15 & 3 & 100\\
+    POMDP large & $16 \times 16$ & $5 \times 5$ & 30 & 6 & 200\\
   \end{tabular}
   % \begin{tabular}{l | c | c | c}
     % Parameter& MDP & POMDP & POMDP medium\\ \hline
@@ -1093,10 +1098,9 @@ Only the POMDP has different grid sizes because the computational complexity gre
     % prob food move & 0 \\
   % \end{tabular}
   \label{tab:sim_parms}
-  \caption{This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid size). The second is how large the agent can perceive at a time (observation size). The third is the number of food objects the grid includes at initialization (food objects). The final one is after what amount of correct consumption the agent reaches its terminal goal (termination).}
 \end{table}
 
-When scaling up the environment in the POMDP case, we will use a grid four times bigger but only double the number required for termination, causing three differences. Firstly, the proportion of how much of the environment the agent can perceive decreases from $\frac{25}{64}$ to $\frac{25}{256}$. Secondly, the food objects will become more sparse since the grid size becomes four times larger while only doubling the number of food objects. Thirdly, longer tasks due to more sparse food objects and doubled termination goal.
+When scaling up the environment in the POMDP case, we will use a grid four times bigger but only double the number required for termination, causing three differences. Firstly, the proportion of how much of the environment the agent can perceive decreases from $\frac{25}{64}$ to $\frac{25}{256}$. Secondly, the food objects will become more sparse since the grid size becomes four times larger while only doubling the number of food objects. Thirdly, longer tasks due to more sparse food objects and doubled termination goal, hence a doubled max length.
 
 The simulation will begin with training an agent for 100 epochs. This number is enough to get stable performance. Then a manager will be trained using the pre-trained agent for 500 epochs. After that, we will use the pre-trained manager to test our impact measurement. For this, we will following values for $\lambda$: (0, 0.5, 1, 1.5, 2, 2.5, 3), each for 100 epochs. 
 
@@ -1113,9 +1117,9 @@ The networks start with two convolutional layers, the first with 64 convolutions
 
 \begin{table}[H]
   \centering
+  \caption{This table contains all parameters used to define the networks.}
   \begin{tabular}{l|l}
     Parameter & Value \\ \hline
-    max episode length & 100\\
     batch Size & 500 \\
     updates per iteration & 3 \\
     $\gamma$ (discount rate) & 0.95 \\
@@ -1128,7 +1132,6 @@ The networks start with two convolutional layers, the first with 64 convolutions
     hidden dimention & 1024 \\
   \end{tabular}
   \label{tab:train_parms}
-  \caption{This table contains all parameters used to define the networks.}
 \end{table}
 
 %########################################################################%
@@ -1141,72 +1144,117 @@ The networks start with two convolutional layers, the first with 64 convolutions
 % Work on representation of results
 
 \chapter{Results}
-This chapter will contain the results from the experiments described in the Method chapter. We will begin looking at the fully observable environment (MDP) and then move on to the partially observable environment (POMDP). When we evaluate an environment, we will test the stochastic environment where food objects are mobile and the non-stochastic environment where they are not.
+This chapter will contain the results from the experiments described in the method chapter. We will begin looking at the fully observable environment (MDP) and then move on to the partially observable environment (POMDP). When we evaluate an environment, we will use a stochastic environment where food objects are mobile and a non-stochastic environment where they are not. This chapter will end with an interpretation of the results.
 
 \section{Fully observable}
-In Figure \ref{fig:results_static_8x8}, we can see the results from the MDP. We can see that $\lambda$ has a noticeable effect on both the objective reward, the number of side effects, and the task length. Note that the maximum length for a rollout is 100. Hence the $\lambda$-values with an average length of 100 do not complete any task. The ones with values close to 100 fail to complete many tasks. In the table, we can see that when we increase $\lambda$, the average side effect decreases. Although eventually, if we keep increasing $\lambda$, the objective reward also decreases. 
+In Table \ref{tab:results_static_8x8}, we can see the results from the non-stochastic MDP. As we can see, the columns display the mean and standard deviation. We calculate these values using the last 30 epochs from each run. Since we perform ten runs, there are 300 values. 
 
-\begin{figure}[H]
+\begin{table}[H]
   \centering
-  \includegraphics{"./figures/static_8x8_results.png"}
-  \includegraphics{"./figures/static_8x8_stochastic_results.png"}
-  \caption{To the left, we can see the results for the static MDP, while the stochastic is on the right. As we can see in the legend, each line color represents a $\lambda$ value. By following a line, we can see the average length, side effects, and objectives the model generated when using that value. Besides this, since we draw the lines on top of each other, some lines seem missing from the figure. Thus, the higher $\lambda$ values cover the lower ones if the results are similar.}
-  \label{fig:results_static_8x8}
-\end{figure}
+  \caption{Results MDP 8$\times$8}
+  \input{./tables/static_8x8.tex}
+  \label{tab:results_static_8x8}
+\end{table}
+
+We can see that $\lambda$ has a noticeable effect on both the objective reward, the number of side effects, and the task length. Note that the maximum length for a rollout is 100. Hence the $\lambda$-values with an average length of 100 do not complete any task. The ones with values close to 100 fail to complete many tasks. We can see that when we increase $\lambda$, the average side effect decreases. Although, the objective reward also decreases. 
+
+In Table \ref{tab:results_static_8x8_stochastic}, we can see the results from the stochastic MDP. These results are similar to the non-stochastic environment. A noticeable difference is that the mean side effects and objective rewards are higher in the stochastic MDP for the lowest three $\lambda$ values. Besides this, we can see that in the stochastic MDP, for all $\lambda$ values, the mean length is never equal to 100, likely a cause of randomness since the agent can complete a task by sheer luck.
+
+% As we can see these results differ from the non-stochastic environment quite a lot. Firstly, the mean side effects in the stochastic environment are higher with $\lambda=0$, going from 0.95 to 1.4. However,  
 
 
+\begin{table}[H]
+  \centering
+  \caption{Results MDP 8$\times$8 stochastic}
+  \input{./tables/static_8x8_stochastic.tex}
+  \label{tab:results_static_8x8_stochastic}
+\end{table}
 
-% \begin{table}[H]
-  % \centering
-  % \input{./tables/pomdp_8x8.tex}
-  % \caption{Here we can see the number of failed attempts where the agent fails to find a policy that generates any noticeable objective reward for each $\lambda$-value.}
-  % \label{tab:results_static_8x8}
-% \end{table}
 
 % We can see that when $\lambda=1$ the agent start having issues with completing the tasks in both the stochastic and the non-stochastic MDP. Besides this, we can also see that the agent generates more side effects in the stochastic MDP and is a little bit more resiliant in terms of objective rewards to increases in $\lambda$.
 
 \section{Partly obeservable}
-Figure \ref{fig:results_pomdp_8x8} contains the results from the small POMDP. As we can see $\lambda$ also has a noticeable here, although, quite different compared to the MDP. In figure \ref{fig:results_pomdp_16x16} we can see the results the large POMDP.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics{"./figures/pomdp_8x8_results.png"}
-  \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
-  \caption{This figure is made the same way as Figure \ref{fig:results_static_8x8}, but instead summarizes the data from the partially observable environment.}
-  \label{fig:results_pomdp_8x8}
-\end{figure}
+Table \ref{tab:results_pomdp_8x8} contains the results from the small non-stochastic POMDP. As we can see, $\lambda$ also has a noticeable impact. Although quite different, with the added complexity of a partially observable environment, the agent has become more resilient to the impact measurement. We can conclude this since the agent receives a higher objective reward with higher $\lambda$ values but still achieves a low average side effect. However, the relative amount of decreased side effects remains the same as the non-stochastic MDP, at about 50$\%$.
+% \begin{figure}[H]
+  % \centering
+  % \includegraphics{"./figures/pomdp_8x8_results.png"}
+  % \includegraphics{"./figures/pomdp_8x8_stochastic_results.png"}
+  % \caption{This figure is made the same way as Figure \ref{fig:results_static_8x8}, but instead summarizes the data from the partially observable environment.}
+  % \label{fig:results_pomdp_8x8}
+% \end{figure}
 
 % Intrestingly, we can see that with $\lambda=0$ the results are about the same in the stochastic and non-stochastic environment. Although, when $\lambda$ increases the effects a different. We can see that $\lambda= 1$ or $1.5$, seem to be a sweet-spot in both cases, with lower side effect but not a to big difference in objective reward and only minor decreases in lenght.
 
 
-\begin{figure}[H]
+% \begin{figure}[H]
+  % \centering
+  % \includegraphics{"./figures/pomdp_16x16_results.png"}
+  % \includegraphics{"./figures/pomdp_16x16_stochastic_results.png"}
+  % \caption{This figure summarizes the data from the large POMDP. Note that the axis scale has changed.}
+  % \label{fig:results_pomdp_16x16}
+% \end{figure}
+
+\begin{table}[H]
   \centering
-  \includegraphics{"./figures/pomdp_16x16_results.png"}
-  \includegraphics{"./figures/pomdp_16x16_stochastic_results.png"}
-  \caption{This figure summarizes the data from the large POMDP. Note that the axis scale has changed.}
-  \label{fig:results_pomdp_16x16}
-\end{figure}
+  \caption{Results POMDP 8$\times$8}
+  \input{./tables/pomdp_8x8.tex}
+  \label{tab:results_pomdp_8x8}
+\end{table}
+
+In Table \ref{tab:results_pomdp_8x8_stochastic}, we can see the results from the stochastic POMDP. These results are quite different from all the previous ones. As we can see, the agent is now more resilient to increases in $\lambda$, where it can complete most tasks even with $\lambda=3$, which we have not seen before. Also, we can see that the side effects when using $\lambda = 1$ are about 3.5 times lower than $\lambda=0$ while achieving the same average objective reward and a small increase in average length. 
+
+\begin{table}[H]
+  \centering
+  \caption{Results POMDP 8$\times$8 stochastic}
+  \input{./tables/pomdp_8x8_stochastic.tex}
+  \label{tab:results_pomdp_8x8_stochastic}
+\end{table}
+
+
+\subsubsection{POMDP large}
+Now we will take alook at the results from the larger $16\times16$ environment, rememeber that here the maximum length and objective is doubled. In Table \ref{tab:results_pomdp_16x16} we can see the results from the non-stochastic environment. Compared to the smaller version of this environment, we can see the average length is about 4-5 times larger for the lowest three $\lambda$ values. Besides this, we can see that the performance tapers off quicker here.
+
+\begin{table}[H]
+  \centering
+  \caption{Results POMDP 16$\times$16}
+  \input{./tables/pomdp_16x16.tex}
+  \label{tab:results_pomdp_16x16}
+\end{table}
+
+In Table \ref{tab:results_pomdp_16x16_stochastic}, we can see the results from the large stochastic POMDP. 
+
+\begin{table}[H]
+  \centering
+  \caption{Results POMDP 16$\times$16 stochastic}
+  \input{./tables/pomdp_16x16_stochastic.tex}
+  \label{tab:results_pomdp_16x16_stochastic}
+\end{table}
+
 
 \section{Interpretation of Results}
+In the results, when changing $\lambda$, we saw a significant change in results in all environments. We can see that most environments have a sweet spot with lower side effects but a minimal decrease in objective reward. Although, for what value this happens is different in each environment. We can see an increase in the agent's performance when going to a stochastic environment, especially in the POMDP. Also a decrease in performance when increasing the size of the environment.
 
-\subsection{The Effects of $\lambda$'s Scale}
-In the results, when changing $\lambda$, we saw a significant change in results in all environments. We can see that most environments have a sweet spot with lower side effects but a minimal decrease in objective reward. Although, when this happens is different in each environment. 
-
-Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. 
-
-However, we did not see a value where the agent caused no side effects but maximum objective reward. Thus we did not find a safe zone as described in the paper. Perhaps a more fine-tuned model and a narrower search for $\lambda$ could find this safe zone.
-
-\subsection{Comparing the Environments}
-The agent's performance with an impact measurement was better in complex environments. In the non-stochastic MDP, the impact measurement did not decrease the side effects without decreasing the objective reward. However, this was possible in all the other environments. We can also see that in more complex environments, the agent functioned better with higher $\lambda$ values.
+Interestingly, we find a pattern from all results where a too large value for $\lambda$ makes the agent unable to complete its task with good performance and sometimes at all. The cause for this pattern could be that the agent is too discouraged to move away from food objects due to the impact measurement. Thus the agent is discouraged from any impact on the environment, including changing its position and pursuing its goal. 
 
 A reason for better performance in the stochastic environments could be that the \textit{no-op} action now serves a purpose if the current state requires side effects to be solved. For example, if undesired food objects are blocking the agent's path, then in a non-stochastic environment, a side effect is required to follow it. However, in a stochastic environment, the agent can wait with the \textit{no-op} action until the objects have moved away and the path is clear.
+
+Even though we didn't see a significant change between the non-stochastic MDP and POMDPs, the interaction between a partially observable and stochastic environment resulted in an additional increase in performance. The reason for this could be due to the way the agent observes the environment. In a POMDP, the agent is always in the same position since the observation is centered around the agent. While in an MDP, the agent has to locate itself in the environment to evaluate the state, which leads to a less straightforward task. 
+
+However, this change is not enough, as we can see in the non-stochastic POMDPs, probably because another issue emerges. Namely, it can be difficult for the agent to understand why a food object disappeared since it can either have been consumed or moved out of vision. Thus when adding stochasticity to the environment, the agent is not the only source of change, leading to the necessity to develop a basic level of self-awareness to differentiate between side effects caused naturally in the environment and the ones it caused.
+
+% \subsection{The Effects of $\lambda$'s Scale}
+
+
+% \subsection{Comparing the Environments}
+% The agent's performance with an impact measurement was better in complex environments. In the non-stochastic MDP, the impact measurement did not decrease the side effects without decreasing the objective reward. However, this was possible in all the other environments. We can also see that in more complex environments, the agent functioned better with higher $\lambda$ values.
+
 % TODO check if this is true
 
-When extending the environment to a POMDP, the agent learned more quickly. The cause is that an observation of the environment is simpler than the entire environment. Because the agent always is at the center of the observation. Thus the agent's networks do not need to figure out that the agent is the square and how the food objects relate to this square. Instead, it sees that food objects disappear when they are in the middle and at the edge.
+% When extending the environment to a POMDP, the agent learned more quickly. The cause is that an observation of the environment is simpler than the entire environment. Because the agent always is at the center of the observation. Thus the agent's networks do not need to figure out that the agent is the square and how the food objects relate to this square. Instead, it sees that food objects disappear when they are in the middle and at the edge.
 
-Problems can emerge when applying an impact measurement since it does not differentiate between a food object moving out of sight and the agent consuming it. However, when comparing the non-stochastic MDP to the non-stochastic POMDP, the performance does not change besides the agent being more resilient to higher $\lambda$ values. 
+% Problems can emerge when applying an impact measurement since it does not differentiate between a food object moving out of sight and the agent consuming it. However, when comparing the non-stochastic MDP to the non-stochastic POMDP, the performance does not change besides the agent being more resilient to higher $\lambda$ values. 
 
-When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a remarkable difference with even better performance and resilience. The cause for this might be that the agent developed a basic level of self-awareness since it can differentiate between consuming and moving away from a food object. 
+% When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a remarkable difference with even better performance and resilience. The cause for this might be that the agent developed a basic level of self-awareness since it can differentiate between consuming and moving away from a food object. 
 % TODO check how impact measurement is different
 
 % \section{Value of Working on Simulations}
@@ -1216,21 +1264,61 @@ When comparing the non-stochastic POMDP and the stochastic POMDP,  we can see a 
 % DISCUSSION
 %########################################################################%
 
+\chapter{Discussion}
+% Restate Results:
+% “The current study found that …”
+% “The results of this study show/indicate that …”
+% “The results of this study did not show that …/did not show any significant increase in …”
+The results of this study show that it is possible to decrease side effects in the described environment using the proposed impact measurement. Besides this, they also showed increased performance in a more complex environment. However, they did not show any safe zones where the agent avoids all side effects without a massive decrease in the objective reward. Perhaps a more fine-tuned model and a narrower search for $\lambda$ could find this safe zone.
+
+These possibilities to decrease side effects match the results of earlier studies such as \citet{Turner19,Krakovna19,Krakovna20}. Also, they are in line with ideas presented by \citet{ArmstrongLevinstein}, where a correctly tuned scaling parameter for the impact measurement can reduce side effects. However, a too large scaling parameter renders the agent unable to act. 
+
+% This pattern is in line with the ideas presented \citet{ArmstrongLevinstein} about the impact measurements scale, where a too large value would render the agent unable to do anything since the potential negative rewards for side effects are too large. 
+% Comment on the results:
+% “These results further support the idea of …
+% “These results confirm the association between …
+% “These findings are consistent with  …”
+% “These match/don’t match those observed in earlier studies…”
+% “These results are in line with those of previous studies…”
+% “These findings are in agreement with those obtained by …”
+
+The reason for increased performance in a more complex environment is not straightforward. It may be explained by the agent developing self-awareness due to the complexity of the task since it is required to make sense of it. However, it can also be that this impact measurement suits the more complex environments in some other way. 
+
+% Evaluate the Results:
+% “There are several possible explanations for this result…”
+% “It seems possible that these results are due to …”
+% “The reason for this is not clear but it may have something to do with…”
+% “These data must be interpreted with caution because …”
+% “The present results are significant in at least two major respects.”
+
+% Suggestions
+% “There are still many unanswered questions about …”
+% “There is abundant room for further progress in determining.”
+% “Despite these promising results, questions remain.”
+There is much room for further progress in determining if using an impact measurement can solve a part of AI alignment. A path for the future can be to make the environment even more difficult, for example, by scaling up the environment, including more types of objects, and adding more agents. Also, it would be interesting to apply an impact measurement in a more realistic 3D environment without the restriction of discrete positions as in a grid world. Although, this research is not obvious to apply to a more realistic problem due to the simplicity of the environment used. In a more realistic environment, it can be difficult to state all the auxiliary tasks and to find a method for augmenting the current state to become one where the auxiliary task is terminal. Besides this, the agent used is far from a TAI or AGI regarding intelligence.
+%Although, this would require more fine-tuning of the model. 
+
+If we connect the results back to instrumental convergence, which says, when an agent pursues its terminal goal, several other instrumental goals will naturally emerge. We can see that from the impact measurement, new instrumental goals emerged, such as environmental preservation and keeping future options open without changing the terminal goal. Thus with more knowledge about how more intelligent AIs such as an AGI or transformative AI will behave, we could derive new ways of directing it in a more aligned direction. Thus more research on the Bostrom-Omohundro theory might yield ideas about new impact measurements that work with the AI's basic drives.
+
+
+
 \chapter{Conclusion}
 
 % This chapter will include a discussion of the results concerning the scale of the impact measurement. Then, a comparison of the results between the different environments. After that, some ideas on how to extend this project into future research. Lastly, some concluding remarks about what this thesis has covered.
 % \section{Summary}
 
 
-In the results of this thesis, we saw that impact measurement could decrease the side effects in some environments without sacrificing performance. Also, when increasing the complexity of the environment but not the size, the impact measurement reduced more side effects. However, in a larger environment, we saw that the agent struggled to achieve performance at the same level as the smaller version and the impact measurement affected the objective reward more. Obviously, there is plenty of scope for improvements and further work.
+% Clearly state the answer(s) to the main research question(s)
+% Summarise and reflect on the research you have undertaken 
+% Acknowledge the limitations of your research
+% Acknowledge the limitations of your research
+% Showcase the original knowledge you have contributed to the field 
+% End note
 
-A path for future research on the topic of this thesis can be to make the environment even more difficult, for example, by scaling up the environment, including more types of objects, and adding more agents. Also, it would be interesting to apply an impact measurement in a more realistic 3D environment without the restriction of discrete positions as in a grid world. Although, this would require more fine-tuning of the model. 
 
-If we connect the results back to instrumental convergence, which says, when an agent pursues its terminal goal, several other instrumental goals will naturally emerge. We can see that from the impact measurement, new instrumental goals emerged, such as environmental preservation and keeping future option open without changing the terminal goal. 
+In the results of this thesis, we saw that the proposed impact measurement could decrease the side effects in some environments without sacrificing performance. Also, when increasing the complexity of the environment but not the size, the impact measurement reduced more side effects. However, in a larger environment, we saw that the agent struggled to achieve performance at the same level as the smaller version and the impact measurement affected the objective reward more. 
 
-% We can say that by giving the agent rewards for keeping options open we incourage it to find the instrumental goal of preserving the environment, since the set of future tasks we want it to perform is done in the current environment. 
-
-Thus with more knowledge about how more intelligent AIs such as an AGI or transformative AI will behave, we could derive new ways of directing it in a more aligned direction. Thus more research on the Bostrom-Omohundro theory might yield ideas about new impact measurements that work with the AI's basic drives.
+With this research, there exist some limitations. The impact measurement's purpose is to be used on an AGI or TAI when applied to the real world to remove the outer alignment problem. This research utilized two simplifications, namely, modern RL and grid worlds. However, to get somewhere each step helps, and this thesis does show that it is possible to create novel impact measurements based on the ideas presented in the current literature.
 
 % \section{Conclusion}
 The AI safety research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned AI. More specifically, in the development of impact measurements promising ideas have emerged. Although it is hard to say if this research is enough, and judging from what is at stake, why take the risk?
@@ -1247,12 +1335,66 @@ The AI safety research has attracted some very bright minds that are taking this
 % Partly observable and stochastic simulations to make more similar real world, multi agent
 
 
-
-
 % \printbibliography
 \bibliography{ref}
 \bibliographystyle{apalike}
 % \printbibliography
+
+\begin{appendices}
+\chapter{Training History}
+
+\section{MDP}
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/static_8x8_side_effects.png"}
+  \includegraphics{"./figures/static_8x8_objective_reward.png"}
+  \caption{In this figure we can see the training history for different $\lambda$ values for the non-stochastic MDP. The thick line is the mean value and the transparent area around it is a 95\% confidence interval.}
+  \label{fig:results_static_8x8}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/static_8x8_stochastic_side_effects.png"}
+  \includegraphics{"./figures/static_8x8_stochastic_objective_reward.png"}
+  \caption{Training history stochastic MDP.}
+  \label{fig:results_static_8x8_stochastic}
+\end{figure}
+
+\section{POMDP }
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/pomdp_8x8_side_effects.png"}
+  \includegraphics{"./figures/pomdp_8x8_objective_reward.png"}
+  \caption{Training history small non-stochastic POMDP.}
+  \label{fig:results_static_8x8_stochastic}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/pomdp_8x8_stochastic_side_effects.png"}
+  \includegraphics{"./figures/pomdp_8x8_stochastic_objective_reward.png"}
+  \caption{Training history small stochastic POMDP.}
+  \label{fig:results_static_8x8_stochastic}
+\end{figure}
+
+  \section{POMDP Large}
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/pomdp_16x16_side_effects.png"}
+  \includegraphics{"./figures/pomdp_16x16_objective_reward.png"}
+  \caption{Training history large non-stochastic POMDP.}
+  \label{fig:results_static_16x16_stochastic}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{"./figures/pomdp_16x16_stochastic_side_effects.png"}
+  \includegraphics{"./figures/pomdp_16x16_stochastic_objective_reward.png"}
+  \caption{Training history large stochastic POMDP.}
+  \label{fig:results_static_16x16_stochastic}
+\end{figure}
+
+\end{appendices}
 
 \end{document}
 
