@@ -13,35 +13,35 @@
 \contentsline {section}{\numberline {3.1}AI Alignment}{10}%
 \contentsline {subsection}{\numberline {3.1.1}Unaligned AI}{12}%
 \contentsline {subsection}{\numberline {3.1.2}Consequences of Unaligned AI}{13}%
-\contentsline {section}{\numberline {3.2}Approaches for creating safe AI}{14}%
+\contentsline {section}{\numberline {3.2}Approaches for Creating Safe AI}{14}%
 \contentsline {subsection}{\numberline {3.2.1}Corrigibility and Interruptibility }{15}%
 \contentsline {subsection}{\numberline {3.2.2}Inverse Reinforcement Learning}{15}%
 \contentsline {subsection}{\numberline {3.2.3}Impact Measurements}{16}%
 \contentsline {chapter}{\numberline {4}Theoretical Background}{17}%
 \contentsline {section}{\numberline {4.1}Reinforcement Learning}{17}%
-\contentsline {subsection}{\numberline {4.1.1}Defining an environment}{18}%
+\contentsline {subsection}{\numberline {4.1.1}Defining an Environment}{18}%
 \contentsline {subsubsection}{Partially Observable Environments}{19}%
 \contentsline {subsection}{\numberline {4.1.2}Training an Agent}{19}%
 \contentsline {subsubsection}{Value Functions}{20}%
 \contentsline {subsubsection}{Actor-Critic Methods}{21}%
-\contentsline {subsubsection}{Clipped loss function}{22}%
+\contentsline {subsubsection}{Clipped Loss Function}{22}%
 \contentsline {section}{\numberline {4.2}Impact Measurements for Avoiding Side Effects}{22}%
 \contentsline {subsection}{\numberline {4.2.1}Baselines}{23}%
 \contentsline {subsection}{\numberline {4.2.2}Deviation Measures}{24}%
-\contentsline {chapter}{\numberline {5}Methods}{26}%
-\contentsline {section}{\numberline {5.1}Environment}{26}%
-\contentsline {section}{\numberline {5.2}Impact measurement}{30}%
-\contentsline {section}{\numberline {5.3}Simulation}{31}%
-\contentsline {section}{\numberline {5.4}Networks}{33}%
-\contentsline {chapter}{\numberline {6}Results}{34}%
-\contentsline {section}{\numberline {6.1}Fully observable}{34}%
-\contentsline {section}{\numberline {6.2}Partly obeservable}{35}%
-\contentsline {subsubsection}{POMDP large}{36}%
-\contentsline {section}{\numberline {6.3}Interpretation of Results}{37}%
-\contentsline {chapter}{\numberline {7}Discussion}{39}%
-\contentsline {chapter}{\numberline {8}Conclusion}{41}%
-\contentsline {chapter}{Appendices}{46}%
-\contentsline {chapter}{\numberline {A}Training History}{47}%
-\contentsline {section}{\numberline {A.1}MDP}{47}%
-\contentsline {section}{\numberline {A.2}POMDP }{48}%
-\contentsline {section}{\numberline {A.3}POMDP Large}{49}%
+\contentsline {chapter}{\numberline {5}Methods}{25}%
+\contentsline {section}{\numberline {5.1}Environment}{25}%
+\contentsline {section}{\numberline {5.2}Impact Measurement}{29}%
+\contentsline {section}{\numberline {5.3}Simulation}{30}%
+\contentsline {section}{\numberline {5.4}Networks}{32}%
+\contentsline {chapter}{\numberline {6}Results}{33}%
+\contentsline {section}{\numberline {6.1}Fully observable}{33}%
+\contentsline {section}{\numberline {6.2}Partly obeservable}{34}%
+\contentsline {subsubsection}{POMDP large}{35}%
+\contentsline {section}{\numberline {6.3}Interpretation of Results}{36}%
+\contentsline {chapter}{\numberline {7}Discussion}{38}%
+\contentsline {chapter}{\numberline {8}Conclusion}{40}%
+\contentsline {chapter}{Appendices}{45}%
+\contentsline {chapter}{\numberline {A}Training History}{46}%
+\contentsline {section}{\numberline {A.1}MDP}{46}%
+\contentsline {section}{\numberline {A.2}POMDP}{47}%
+\contentsline {section}{\numberline {A.3}POMDP Large}{48}%

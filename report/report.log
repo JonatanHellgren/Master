@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  29 SEP 2022 17:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  10 OCT 2022 12:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,17 +605,7 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 LaTeX Warning: Unused global option(s):
     [A4].
 
-(./report.aux
-
-LaTeX Warning: Label `fig:results_static_8x8_stochastic' multiply defined.
-
-
-LaTeX Warning: Label `fig:results_static_8x8_stochastic' multiply defined.
-
-
-LaTeX Warning: Label `fig:results_static_16x16_stochastic' multiply defined.
-
-)
+(./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 191.
@@ -632,7 +622,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 191.
 LaTeX Font Info:    ... okay on input line 191.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 191.
 LaTeX Font Info:    ... okay on input line 191.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count309
 \scratchdimen=\dimen272
@@ -707,22 +698,30 @@ LaTeX Font Info:    Trying to load font information for U+lasy on input line 19
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (0.35088pt too wide) in paragraph at lines 194--194
- [][] 
- []
-
 <figures/stacked_logo.png, id=17, 259.97125pt x 333.245pt>
 File: figures/stacked_logo.png Graphic file (type png)
 <use figures/stacked_logo.png>
 Package pdftex.def Info: figures/stacked_logo.png  used on input line 194.
 (pdftex.def)             Requested size: 129.9853pt x 166.62209pt.
-[3 <./figures/stacked_logo.png>] [4] [1] (./report.toc [1
+ [3 <./figures/stacked_logo.png>] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 222--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--224
+
+ []
+
+[1
+
+] [2] (./report.toc [3
 
 ])
 \tf@toc=\write5
 \openout5 = `report.toc'.
 
- [2]
+ [4]
  1.
 [1
 
@@ -738,287 +737,300 @@ Package pdftex.def Info: figures/stacked_logo.png  used on input line 194.
  4.
 (./figures/RL/RL.tex) [17
 
-] [18] [19] [20] [21] [22] [23]
-Overfull \hbox (2.66513pt too wide) in paragraph at lines 835--836
-[]\OT1/cmr/m/n/12 To avoid in-ter-fer-ence be-hav-ior, us-ing an \OT1/cmr/m/it/
-12 in-ac-tion base-line \OT1/cmr/m/n/12 has been pro-posed by Krakovna
- []
-
-[24] [25]
+] [18] [19] [20] [21] [22] [23] [24]
  5.
 <figures/s1.png, id=128, 113.64458pt x 127.9179pt>
 File: figures/s1.png Graphic file (type png)
 <use figures/s1.png>
-Package pdftex.def Info: figures/s1.png  used on input line 930.
+Package pdftex.def Info: figures/s1.png  used on input line 923.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (6.38452pt too wide) in paragraph at lines 930--930
+Overfull \hbox (6.38452pt too wide) in paragraph at lines 923--923
 [][] 
  []
 
 <./figures/s2.png, id=129, 113.64458pt x 127.9179pt>
 File: ./figures/s2.png Graphic file (type png)
 <use ./figures/s2.png>
-Package pdftex.def Info: ./figures/s2.png  used on input line 932.
+Package pdftex.def Info: ./figures/s2.png  used on input line 925.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (1.91792pt too wide) in paragraph at lines 932--932
+Overfull \hbox (1.91792pt too wide) in paragraph at lines 925--925
 [][] 
  []
 
-[26
+[25
 
 ]
 <./figures/stoch.png, id=133, 113.64458pt x 127.9179pt>
 File: ./figures/stoch.png Graphic file (type png)
 <use ./figures/stoch.png>
-Package pdftex.def Info: ./figures/stoch.png  used on input line 956.
+Package pdftex.def Info: ./figures/stoch.png  used on input line 949.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (6.38452pt too wide) in paragraph at lines 956--956
+Overfull \hbox (6.38452pt too wide) in paragraph at lines 949--949
 [][] 
  []
 
 <./figures/noop.png, id=134, 113.64458pt x 127.9179pt>
 File: ./figures/noop.png Graphic file (type png)
 <use ./figures/noop.png>
-Package pdftex.def Info: ./figures/noop.png  used on input line 962.
+Package pdftex.def Info: ./figures/noop.png  used on input line 955.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (19.79114pt too wide) in paragraph at lines 962--962
+Overfull \hbox (19.79114pt too wide) in paragraph at lines 955--955
 [][] 
  []
 
 <./figures/down.png, id=135, 113.64458pt x 127.9179pt>
 File: ./figures/down.png Graphic file (type png)
 <use ./figures/down.png>
-Package pdftex.def Info: ./figures/down.png  used on input line 963.
+Package pdftex.def Info: ./figures/down.png  used on input line 956.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (19.79114pt too wide) in paragraph at lines 963--963
+Overfull \hbox (19.79114pt too wide) in paragraph at lines 956--956
 [][] 
  []
 
 <./figures/left.png, id=136, 113.64458pt x 127.9179pt>
 File: ./figures/left.png Graphic file (type png)
 <use ./figures/left.png>
-Package pdftex.def Info: ./figures/left.png  used on input line 964.
+Package pdftex.def Info: ./figures/left.png  used on input line 957.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (19.79114pt too wide) in paragraph at lines 964--964
+Overfull \hbox (19.79114pt too wide) in paragraph at lines 957--957
 [][] 
  []
 
 <./figures/up.png, id=137, 113.64458pt x 127.9179pt>
 File: ./figures/up.png Graphic file (type png)
 <use ./figures/up.png>
-Package pdftex.def Info: ./figures/up.png  used on input line 965.
+Package pdftex.def Info: ./figures/up.png  used on input line 958.
 (pdftex.def)             Requested size: 113.64429pt x 127.91757pt.
 
-Overfull \hbox (19.79114pt too wide) in paragraph at lines 965--965
+Overfull \hbox (19.79114pt too wide) in paragraph at lines 958--958
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 23.88654pt on input line 973.
+LaTeX Warning: Float too large for page by 9.38654pt on input line 966.
 
 <figures/5x5.png, id=138, 113.7048pt x 127.9179pt>
 File: figures/5x5.png Graphic file (type png)
 <use figures/5x5.png>
-Package pdftex.def Info: figures/5x5.png  used on input line 982.
+Package pdftex.def Info: figures/5x5.png  used on input line 975.
 (pdftex.def)             Requested size: 113.70451pt x 127.91757pt.
 
-Overfull \hbox (6.44475pt too wide) in paragraph at lines 982--982
+Overfull \hbox (6.44475pt too wide) in paragraph at lines 975--975
 [][] 
  []
 
 <./figures/5x5_2.png, id=139, 113.7048pt x 127.9179pt>
 File: ./figures/5x5_2.png Graphic file (type png)
 <use ./figures/5x5_2.png>
-Package pdftex.def Info: ./figures/5x5_2.png  used on input line 984.
+Package pdftex.def Info: ./figures/5x5_2.png  used on input line 977.
 (pdftex.def)             Requested size: 113.70451pt x 127.91757pt.
 
-Overfull \hbox (1.97815pt too wide) in paragraph at lines 984--984
+Overfull \hbox (1.97815pt too wide) in paragraph at lines 977--977
 [][] 
  []
 
-[27 <./figures/s1.png> <./figures/s2.png>] [28 <./figures/stoch.png> <./figures
+[26 <./figures/s1.png> <./figures/s2.png>] [27 <./figures/stoch.png> <./figures
 /noop.png> <./figures/down.png> <./figures/left.png> <./figures/up.png>]
 <./figures/redline.png, id=153, 113.7048pt x 127.9179pt>
 File: ./figures/redline.png Graphic file (type png)
 <use ./figures/redline.png>
-Package pdftex.def Info: ./figures/redline.png  used on input line 1001.
+Package pdftex.def Info: ./figures/redline.png  used on input line 994.
 (pdftex.def)             Requested size: 113.81102pt x 128.03857pt.
 
-[29 <./figures/5x5.png> <./figures/5x5_2.png> <./figures/redline.png>]
+[28 <./figures/5x5.png> <./figures/5x5_2.png> <./figures/redline.png>]
 <./figures/aux_1.png, id=160, 113.7048pt x 127.9179pt>
 File: ./figures/aux_1.png Graphic file (type png)
 <use ./figures/aux_1.png>
-Package pdftex.def Info: ./figures/aux_1.png  used on input line 1020.
+Package pdftex.def Info: ./figures/aux_1.png  used on input line 1013.
 (pdftex.def)             Requested size: 113.70451pt x 127.91757pt.
 
-Overfull \hbox (1.97815pt too wide) in paragraph at lines 1020--1020
+Overfull \hbox (1.97815pt too wide) in paragraph at lines 1013--1013
 [][] 
  []
 
 <./figures/aux_2.png, id=161, 113.7048pt x 127.9179pt>
 File: ./figures/aux_2.png Graphic file (type png)
 <use ./figures/aux_2.png>
-Package pdftex.def Info: ./figures/aux_2.png  used on input line 1021.
+Package pdftex.def Info: ./figures/aux_2.png  used on input line 1014.
 (pdftex.def)             Requested size: 113.70451pt x 127.91757pt.
 
-Overfull \hbox (1.97815pt too wide) in paragraph at lines 1021--1021
+Overfull \hbox (1.97815pt too wide) in paragraph at lines 1014--1014
 [][] 
  []
 
-[30 <./figures/aux_1.png> <./figures/aux_2.png>] [31] [32] [33]
+[29 <./figures/aux_1.png> <./figures/aux_2.png>] [30] [31] [32]
  6.
-(./tables/static_8x8.tex) [34
+(./tables/static_8x8.tex) (./tables/static_8x8_stochastic.tex) [33
 
-] (./tables/static_8x8_stochastic.tex)
-(./tables/pomdp_8x8.tex) [35] (./tables/pomdp_8x8_stochastic.tex)
-(./tables/pomdp_16x16.tex) (./tables/pomdp_16x16_stochastic.tex) [36] [37]
-[38]
+]
+<./figures/static_8x8_result_plot.png, id=180, 374.53928pt x 166.9437pt>
+File: ./figures/static_8x8_result_plot.png Graphic file (type png)
+<use ./figures/static_8x8_result_plot.png>
+Package pdftex.def Info: ./figures/static_8x8_result_plot.png  used on input li
+ne 1166.
+(pdftex.def)             Requested size: 374.53835pt x 166.94327pt.
+
+(./tables/pomdp_8x8.tex) (./tables/pomdp_8x8_stochastic.tex) [34 <./figures/sta
+tic_8x8_result_plot.png>]
+<./figures/pomdp_8x8_result_plot.png, id=185, 374.53928pt x 166.9437pt>
+File: ./figures/pomdp_8x8_result_plot.png Graphic file (type png)
+<use ./figures/pomdp_8x8_result_plot.png>
+Package pdftex.def Info: ./figures/pomdp_8x8_result_plot.png  used on input lin
+e 1203.
+(pdftex.def)             Requested size: 374.53835pt x 166.94327pt.
+ (./tables/pomdp_16x16.tex)
+(./tables/pomdp_16x16_stochastic.tex) [35 <./figures/pomdp_8x8_result_plot.png>
+]
+<./figures/pomdp_16x16_result_plot.png, id=191, 374.53928pt x 166.9437pt>
+File: ./figures/pomdp_16x16_result_plot.png Graphic file (type png)
+<use ./figures/pomdp_16x16_result_plot.png>
+Package pdftex.def Info: ./figures/pomdp_16x16_result_plot.png  used on input l
+ine 1226.
+(pdftex.def)             Requested size: 374.53835pt x 166.94327pt.
+ [36 <./figures/pomdp_16x16_result_plot.png>] [37]
  7.
-[39
+[38
 
-] [40]
+] [39]
  8.
-(./report.bbl [41
+(./report.bbl [40
 
-] [42
+] [41
 
-] [43] [44]) [45] [46
+] [42] [43]) [44] [45
 
 
 ]
 Appendix A.
-<./figures/static_8x8_side_effects.png, id=219, 180.85568pt x 142.19122pt>
+<./figures/static_8x8_side_effects.png, id=225, 180.85568pt x 142.19122pt>
 File: ./figures/static_8x8_side_effects.png Graphic file (type png)
 <use ./figures/static_8x8_side_effects.png>
 Package pdftex.def Info: ./figures/static_8x8_side_effects.png  used on input l
-ine 1349.
+ine 1353.
 (pdftex.def)             Requested size: 180.85522pt x 142.19087pt.
-<./figures/static_8x8_objective_reward.png, id=220, 232.16737pt x 145.62405pt>
+<./figures/static_8x8_objective_reward.png, id=226, 232.16737pt x 145.62405pt>
 File: ./figures/static_8x8_objective_reward.png Graphic file (type png)
 <use ./figures/static_8x8_objective_reward.png>
 Package pdftex.def Info: ./figures/static_8x8_objective_reward.png  used on inp
-ut line 1350.
+ut line 1354.
 (pdftex.def)             Requested size: 232.1668pt x 145.62369pt.
-<./figures/static_8x8_stochastic_side_effects.png, id=221, 173.08665pt x 142.19
+<./figures/static_8x8_stochastic_side_effects.png, id=227, 173.08665pt x 142.19
 122pt>
 File: ./figures/static_8x8_stochastic_side_effects.png Graphic file (type png)
 <use ./figures/static_8x8_stochastic_side_effects.png>
 Package pdftex.def Info: ./figures/static_8x8_stochastic_side_effects.png  used
- on input line 1357.
+ on input line 1361.
 (pdftex.def)             Requested size: 173.08621pt x 142.19087pt.
-<./figures/static_8x8_stochastic_objective_reward.png, id=222, 232.16737pt x 14
+<./figures/static_8x8_stochastic_objective_reward.png, id=228, 232.16737pt x 14
 5.62405pt>
 File: ./figures/static_8x8_stochastic_objective_reward.png Graphic file (type p
 ng)
 <use ./figures/static_8x8_stochastic_objective_reward.png>
 Package pdftex.def Info: ./figures/static_8x8_stochastic_objective_reward.png  
-used on input line 1358.
+used on input line 1362.
 (pdftex.def)             Requested size: 232.1668pt x 145.62369pt.
-<./figures/pomdp_8x8_side_effects.png, id=223, 180.85568pt x 142.19122pt>
+[46
+
+ <./figures/static_8x8_side_effects.png> <./figures/static_8x8_objective_reward
+.png>]
+<./figures/pomdp_8x8_side_effects.png, id=234, 180.85568pt x 142.19122pt>
 File: ./figures/pomdp_8x8_side_effects.png Graphic file (type png)
 <use ./figures/pomdp_8x8_side_effects.png>
 Package pdftex.def Info: ./figures/pomdp_8x8_side_effects.png  used on input li
-ne 1366.
+ne 1371.
 (pdftex.def)             Requested size: 180.85522pt x 142.19087pt.
-<./figures/pomdp_8x8_objective_reward.png, id=224, 232.16737pt x 145.62405pt>
+<./figures/pomdp_8x8_objective_reward.png, id=235, 232.16737pt x 145.62405pt>
 File: ./figures/pomdp_8x8_objective_reward.png Graphic file (type png)
 <use ./figures/pomdp_8x8_objective_reward.png>
 Package pdftex.def Info: ./figures/pomdp_8x8_objective_reward.png  used on inpu
-t line 1367.
+t line 1372.
 (pdftex.def)             Requested size: 232.1668pt x 145.62369pt.
-[47
-
- <./figures/static_8x8_side_effects.png> <./figures/static_8x8_objective_reward
-.png> <./figures/static_8x8_stochastic_side_effects.png> <./figures/static_8x8_
-stochastic_objective_reward.png>]
-<./figures/pomdp_8x8_stochastic_side_effects.png, id=232, 173.08665pt x 142.191
+<./figures/pomdp_8x8_stochastic_side_effects.png, id=236, 173.08665pt x 142.191
 22pt>
 File: ./figures/pomdp_8x8_stochastic_side_effects.png Graphic file (type png)
 <use ./figures/pomdp_8x8_stochastic_side_effects.png>
 Package pdftex.def Info: ./figures/pomdp_8x8_stochastic_side_effects.png  used 
-on input line 1374.
+on input line 1379.
 (pdftex.def)             Requested size: 173.08621pt x 142.19087pt.
-<./figures/pomdp_8x8_stochastic_objective_reward.png, id=233, 232.16737pt x 145
+<./figures/pomdp_8x8_stochastic_objective_reward.png, id=237, 232.16737pt x 145
 .62405pt>
 File: ./figures/pomdp_8x8_stochastic_objective_reward.png Graphic file (type pn
 g)
 <use ./figures/pomdp_8x8_stochastic_objective_reward.png>
 Package pdftex.def Info: ./figures/pomdp_8x8_stochastic_objective_reward.png  u
-sed on input line 1375.
+sed on input line 1380.
 (pdftex.def)             Requested size: 232.1668pt x 145.62369pt.
-<./figures/pomdp_16x16_side_effects.png, id=234, 173.08665pt x 142.19122pt>
+ [47 <./figures/static_8x8_stochastic_side_effects.png> <./figures/static_8x8_s
+tochastic_objective_reward.png> <./figures/pomdp_8x8_side_effects.png> <./figur
+es/pomdp_8x8_objective_reward.png>]
+<./figures/pomdp_16x16_side_effects.png, id=246, 173.08665pt x 142.19122pt>
 File: ./figures/pomdp_16x16_side_effects.png Graphic file (type png)
 <use ./figures/pomdp_16x16_side_effects.png>
 Package pdftex.def Info: ./figures/pomdp_16x16_side_effects.png  used on input 
-line 1383.
+line 1389.
 (pdftex.def)             Requested size: 173.08621pt x 142.19087pt.
-<./figures/pomdp_16x16_objective_reward.png, id=235, 232.16737pt x 145.62405pt>
+<./figures/pomdp_16x16_objective_reward.png, id=247, 232.16737pt x 145.62405pt>
 
 File: ./figures/pomdp_16x16_objective_reward.png Graphic file (type png)
 <use ./figures/pomdp_16x16_objective_reward.png>
 Package pdftex.def Info: ./figures/pomdp_16x16_objective_reward.png  used on in
-put line 1384.
+put line 1390.
 (pdftex.def)             Requested size: 232.1668pt x 145.62369pt.
- [48 <./figures/pomdp_8x8_side_effects.png> <./figures/pomdp_8x8_objective_rewa
-rd.png> <./figures/pomdp_8x8_stochastic_side_effects.png> <./figures/pomdp_8x8_
-stochastic_objective_reward.png>]
-<./figures/pomdp_16x16_stochastic_side_effects.png, id=244, 173.08665pt x 142.1
+<./figures/pomdp_16x16_stochastic_side_effects.png, id=248, 173.08665pt x 142.1
 9122pt>
 File: ./figures/pomdp_16x16_stochastic_side_effects.png Graphic file (type png)
 
 <use ./figures/pomdp_16x16_stochastic_side_effects.png>
 Package pdftex.def Info: ./figures/pomdp_16x16_stochastic_side_effects.png  use
-d on input line 1391.
+d on input line 1397.
 (pdftex.def)             Requested size: 173.08621pt x 142.19087pt.
-<./figures/pomdp_16x16_stochastic_objective_reward.png, id=245, 232.16737pt x 1
+<./figures/pomdp_16x16_stochastic_objective_reward.png, id=249, 232.16737pt x 1
 45.62405pt>
 File: ./figures/pomdp_16x16_stochastic_objective_reward.png Graphic file (type 
 png)
 <use ./figures/pomdp_16x16_stochastic_objective_reward.png>
 Package pdftex.def Info: ./figures/pomdp_16x16_stochastic_objective_reward.png 
- used on input line 1392.
+ used on input line 1398.
 (pdftex.def)             Requested size: 232.1668pt x 145.62369pt.
- [49 <./figures/pomdp_16x16_side_effects.png> <./figures/pomdp_16x16_objective_
-reward.png> <./figures/pomdp_16x16_stochastic_side_effects.png> <./figures/pomd
-p_16x16_stochastic_objective_reward.png>] (./report.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+ [48 <./figures/pomdp_8x8_stochastic_side_effects.png> <./figures/pomdp_8x8_sto
+chastic_objective_reward.png> <./figures/pomdp_16x16_side_effects.png> <./figur
+es/pomdp_16x16_objective_reward.png>] [49 <./figures/pomdp_16x16_stochastic_sid
+e_effects.png> <./figures/pomdp_16x16_stochastic_objective_reward.png>] (./repo
+rt.aux) ) 
 Here is how much of TeX's memory you used:
- 17370 strings out of 481239
- 325876 string characters out of 5920377
- 564378 words of memory out of 5000000
- 32257 multiletter control sequences out of 15000+600000
+ 17397 strings out of 481239
+ 326844 string characters out of 5920377
+ 564405 words of memory out of 5000000
+ 32281 multiletter control sequences out of 15000+600000
  545789 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,15n,62p,1195b,810s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1
-/public/cm-super/sfrm1200.pfb>
-Output written on report.pdf (56 pages, 2235069 bytes).
+ 60i,15n,62p,1195b,814s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfrm1200.pfb>
+Output written on report.pdf (57 pages, 2452776 bytes).
 PDF statistics:
- 307 PDF objects out of 1000 (max. 8388607)
- 179 compressed objects within 2 object streams
+ 316 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 148 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 163 words of extra memory for PDF output out of 10000 (max. 10000000)
 

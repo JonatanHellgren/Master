@@ -58,8 +58,8 @@
     %Start drawing the thing...    
 
   % Draw the cell: 
-  \node [cell, minimum height =3cm, minimum width=3cm] at (0,0){} ;
-  \node [cell, minimum height =3cm, minimum width=3cm] at (4.5,0){} ;
+  \node [cell, minimum height =3.1cm, minimum width=3.1cm] at (0,0){} ;
+  \node [cell, minimum height =3.1cm, minimum width=3.1cm] at (4.5,0){} ;
 
   \node [empty, label={\small base optimizer}] (name1) at (0, 0.5) {};
   \node [empty, label={\small mesa optimizer}] (name2) at (4.5, 0.5) {};
@@ -77,8 +77,8 @@
   \draw [dashed,->,style={rounded corners=.25cm}] (human) |- (optim1);
   \draw [dashed,->] (optim1) [-stealth] -- (optim2);
 
-  \draw [->, thick] (human) -- (-1.55,0);
-  \draw [->, thick] (1.5, 0) -- (2.95,0);
-  \draw [->, thick] (6, 0) -- (acts);
+  \draw [->, thick] (human) -- (-1.6,0);
+  \draw [->, thick] (1.55, 0) -- (2.9,0);
+  \draw [->, thick] (6.05, 0) -- (6.625, 0);
 
 \end{tikzpicture}

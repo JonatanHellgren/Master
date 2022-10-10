@@ -1,6 +1,6 @@
 \relax 
-\citation{wiki:ENIAC}
 \citation{Turing51}
+\citation{wiki:ENIAC}
 \citation{80000}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -66,8 +66,8 @@
 \citation{Saisubramanian}
 \citation{Amodei}
 \citation{Mc69}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Unaligned AI}{12}\protected@file@percent }
 \citation{Smingleigh}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Unaligned AI}{12}\protected@file@percent }
 \citation{wikiGoodhart}
 \citation{Bostrom14}
 \citation{IJGood}
@@ -75,21 +75,17 @@
 \citation{CritchKruger}
 \citation{Precipice}
 \citation{RationallySpeaking}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Approaches for creating safe AI}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Approaches for Creating Safe AI}{14}\protected@file@percent }
 \citation{Corrigibility}
 \citation{Interruptible}
-\citation{Hadfield-Menell}
-\citation{Carey}
+\citation{Hadfield-Menell,Carey}
 \citation{co-founding}
 \citation{Hadfield-Menell2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Corrigibility and Interruptibility }{15}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Inverse Reinforcement Learning}{15}\protected@file@percent }
 \citation{Christiano}
 \citation{ArmstrongLevinstein}
-\citation{Eysenbach}
-\citation{Krakovna19}
-\citation{Turner19}
-\citation{Krakovna20}
+\citation{Eysenbach,Krakovna19,Turner19,Krakovna20}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Impact Measurements}{16}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Theoretical Background}{17}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
@@ -97,21 +93,22 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Reinforcement Learning}{17}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A visual representation of how to agent interacts with an environment. For example, at time step t, the agent observes the environment $s_t$ and receives the reward $r_t$. The agent then responds with an action $a_t$, which will transition the agent to the next state $s_{t+1}$ and receive the reward $r_{t+1}$. From this new state the agent again responds with an action, this time $a_{t+1}$, and so the process continues. \relax }}{17}\protected@file@percent }
 \newlabel{fig:RL}{{4.1}{17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Defining an environment}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Defining an Environment}{18}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Partially Observable Environments}{19}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Training an Agent}{19}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Value Functions}{20}\protected@file@percent }
 \citation{OpenAI}
+\@writefile{toc}{\contentsline {subsubsection}{Value Functions}{20}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Actor-Critic Methods}{21}\protected@file@percent }
 \citation{OpenAI}
-\@writefile{toc}{\contentsline {subsubsection}{Clipped loss function}{22}\protected@file@percent }
+\citation{schulman2017proximal}
+\@writefile{toc}{\contentsline {subsubsection}{Clipped Loss Function}{22}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Impact Measurements for Avoiding Side Effects}{22}\protected@file@percent }
 \citation{ArmstrongLevinstein}
 \citation{Eysenbach}
 \citation{Krakovna19}
+\citation{Krakovna19}
+\citation{Krakovna19}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Baselines}{23}\protected@file@percent }
-\citation{Krakovna19}
-\citation{Krakovna19}
 \citation{Krakovna19}
 \citation{Turner20}
 \citation{Krakovna20}
@@ -119,56 +116,56 @@
 \citation{Turner19}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Deviation Measures}{24}\protected@file@percent }
 \citation{Turner20,Krakovna19,Krakovna20}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Methods}{26}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Methods}{25}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Environment}{26}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces In this figure, $T$ is the transition function defined earlier, and 'right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.\relax }}{27}\protected@file@percent }
-\newlabel{fig:simple_transition}{{5.1}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces In this figure, we can see an example of a stochastic transition function. On the left-hand side we can see the state $s_t$ and the action $a_t$. On the right-hand side, we can see the probability distribution over the future states and their corresponding probabilities. \relax }}{28}\protected@file@percent }
-\newlabel{fig:stochastic_transition}{{5.2}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Environment}{25}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces In this figure, $T$ is the transition function defined earlier, and 'right' is the action $a_t$ at this timestep. The current state $s_t$ is the left grid, in it, the orange square at (1,1) is the agent, and the orange circle at (2,2) is a food object. On the right-hand side we can see the state $s_{t+1}$.\relax }}{26}\protected@file@percent }
+\newlabel{fig:simple_transition}{{5.1}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces In this figure, we can see an example of a stochastic transition function. On the left-hand side we can see the state $s_t$ and the action $a_t$. On the right-hand side is a probability distribution of future states and their corresponding probabilities. \relax }}{27}\protected@file@percent }
+\newlabel{fig:stochastic_transition}{{5.2}{27}}
 \citation{Turner19,Krakovna19,Krakovna20}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Above we find a more complex grid compared to Figure 5.1\hbox {} which is inputted to its transitional function $T$ with the \textit  {up} action. On the right hand-side we can see a new state outputted from $T$.\relax }}{29}\protected@file@percent }
-\newlabel{fig:multiple_foods}{{5.3}{29}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Here we can see an example of a POMDP state. Again the orange square is the agent, it can now only perceive the part of the environment inside the red square.\relax }}{29}\protected@file@percent }
-\newlabel{fig:redline}{{5.4}{29}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Impact measurement}{30}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces In this figure, we can see an example of two auxiliary tasks. As we can see, the only difference is the color of the agent, and thus also what color the reward function will reward the agent for consuming.\relax }}{30}\protected@file@percent }
-\newlabel{fig:aux_tasks}{{5.5}{30}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Algorithm for training a manager network\relax }}{31}\protected@file@percent }
-\newlabel{alg:manager}{{1}{31}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Simulation}{31}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid). The second is how large the agent can perceive at a time (observation). The third is the number of food objects the grid includes at initialization (food objects). The fourth one is after what amount of correct consumption the agent reaches its terminal goal (termination). The final one is the maximum number of time steps the agent is allowed before termination (max length).\relax }}{32}\protected@file@percent }
-\newlabel{tab:sim_parms}{{5.1}{32}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Networks}{33}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces This table contains all parameters used to define the networks.\relax }}{33}\protected@file@percent }
-\newlabel{tab:train_parms}{{5.2}{33}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{34}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Above we find a more complex grid compared to Figure 5.1\hbox {} which is inputted to its transitional function $T$ with the \textit  {up} action. On the right-hand side is the new state.\relax }}{28}\protected@file@percent }
+\newlabel{fig:multiple_foods}{{5.3}{28}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Here we can see an example of a POMDP state. Again the orange square is the agent, it can now only perceive the part of the environment inside the red square.\relax }}{28}\protected@file@percent }
+\newlabel{fig:redline}{{5.4}{28}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Impact Measurement}{29}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces In this figure, we can see an example of two auxiliary tasks. As we can see, the only difference is the color of the agent, and thus also what color the reward function will reward the agent for consuming.\relax }}{29}\protected@file@percent }
+\newlabel{fig:aux_tasks}{{5.5}{29}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Algorithm for training a manager network\relax }}{30}\protected@file@percent }
+\newlabel{alg:manager}{{1}{30}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Simulation}{30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces This table contains the value of the parameters used to describe an environment. The first describes the size of the grid (grid). The second is how large the agent can perceive at a time (observation). The third is the number of food objects the grid includes at initialization (food objects). The fourth one is after what amount of correct consumption the agent reaches its terminal goal (termination). The final one is the maximum number of time steps the agent is allowed before termination (max length).\relax }}{31}\protected@file@percent }
+\newlabel{tab:sim_parms}{{5.1}{31}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Networks}{32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces This table contains all parameters used to define the networks.\relax }}{32}\protected@file@percent }
+\newlabel{tab:train_parms}{{5.2}{32}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Results}{33}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Fully observable}{34}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Results MDP 8$\times $8\relax }}{34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Fully observable}{33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Results MDP 8$\times $8  Non-Stochastic \hspace  {130pt} Stochastic\relax }}{34}\protected@file@percent }
 \newlabel{tab:results_static_8x8}{{6.1}{34}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Results MDP 8$\times $8 stochastic\relax }}{35}\protected@file@percent }
-\newlabel{tab:results_static_8x8_stochastic}{{6.2}{35}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Partly obeservable}{35}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Results POMDP 8$\times $8\relax }}{35}\protected@file@percent }
-\newlabel{tab:results_pomdp_8x8}{{6.3}{35}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.4}{\ignorespaces Results POMDP 8$\times $8 stochastic\relax }}{36}\protected@file@percent }
-\newlabel{tab:results_pomdp_8x8_stochastic}{{6.4}{36}}
-\@writefile{toc}{\contentsline {subsubsection}{POMDP large}{36}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {6.5}{\ignorespaces Results POMDP 16$\times $16\relax }}{36}\protected@file@percent }
-\newlabel{tab:results_pomdp_16x16}{{6.5}{36}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.6}{\ignorespaces Results POMDP 16$\times $16 stochastic\relax }}{37}\protected@file@percent }
-\newlabel{tab:results_pomdp_16x16_stochastic}{{6.6}{37}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Interpretation of Results}{37}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces Results MDP 8$\times $8 \relax }}{34}\protected@file@percent }
+\newlabel{fig:results_static_8x8}{{6.1}{34}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Partly obeservable}{34}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Results POMDP 8$\times $8  Non-Stochastic \hspace  {130pt} Stochastic\relax }}{35}\protected@file@percent }
+\newlabel{tab:results_pomdp_8x8}{{6.2}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces Results POMDP 8$\times $8 \relax }}{35}\protected@file@percent }
+\newlabel{fig:results_pomdp_8x8}{{6.2}{35}}
+\@writefile{toc}{\contentsline {subsubsection}{POMDP large}{35}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Results MDP 16$\times $16  Non-Stochastic \hspace  {130pt} Stochastic\relax }}{36}\protected@file@percent }
+\newlabel{tab:results_pomdp_16x16}{{6.3}{36}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Results POMDP 16$\times $16 \relax }}{36}\protected@file@percent }
+\newlabel{fig:results_pomdp_16x16}{{6.3}{36}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Interpretation of Results}{36}\protected@file@percent }
 \citation{Turner19,Krakovna19,Krakovna20}
 \citation{ArmstrongLevinstein}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Discussion}{39}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Discussion}{38}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{ref}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{41}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Conclusion}{40}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{Amodei}{{1}{2016}{{Amodei et~al.}}{{}}}
@@ -211,37 +208,38 @@
 \bibcite{HumanCompatible}{{38}{2019}{{Russell}}{{}}}
 \bibcite{RussellNorvig}{{39}{2021}{{Russell and Norvig}}{{}}}
 \bibcite{Saisubramanian}{{40}{2020}{{Saisubramanian et~al.}}{{}}}
-\bibcite{an121}{{41}{2020}{{Shah}}{{}}}
-\bibcite{DeepMind}{{42}{2017}{{Silver and Hassabis}}{{}}}
-\bibcite{Silver}{{43}{2016}{{Silver et~al.}}{{}}}
-\bibcite{Silver21}{{44}{2021}{{Silver et~al.}}{{}}}
-\bibcite{Corrigibility}{{45}{2016}{{Soares et~al.}}{{}}}
-\bibcite{Turing51}{{46}{1951}{{Turing}}{{}}}
-\bibcite{Turner19a}{{47}{2019}{{Turner}}{{}}}
-\bibcite{Turner19}{{48}{2019}{{Turner et~al.}}{{}}}
-\bibcite{Turner20}{{49}{2020}{{Turner et~al.}}{{}}}
-\bibcite{Wiki}{{50}{2022}{{Wikipedia}}{{}}}
-\bibcite{wiki:ENIAC}{{51}{2022a}{{Wikipedia}}{{}}}
-\bibcite{wikiGoodhart}{{52}{2022b}{{Wikipedia}}{{}}}
-\bibcite{Yudkowsky13}{{53}{2013}{{Yudkowsky}}{{}}}
-\bibcite{Yudkowsky16}{{54}{2016}{{Yudkowsky}}{{}}}
+\bibcite{schulman2017proximal}{{41}{2017}{{Schulman et~al.}}{{}}}
+\bibcite{an121}{{42}{2020}{{Shah}}{{}}}
+\bibcite{DeepMind}{{43}{2017}{{Silver and Hassabis}}{{}}}
+\bibcite{Silver}{{44}{2016}{{Silver et~al.}}{{}}}
+\bibcite{Silver21}{{45}{2021}{{Silver et~al.}}{{}}}
+\bibcite{Corrigibility}{{46}{2016}{{Soares et~al.}}{{}}}
+\bibcite{Turing51}{{47}{1951}{{Turing}}{{}}}
+\bibcite{Turner19a}{{48}{2019}{{Turner}}{{}}}
+\bibcite{Turner19}{{49}{2019}{{Turner et~al.}}{{}}}
+\bibcite{Turner20}{{50}{2020}{{Turner et~al.}}{{}}}
+\bibcite{Wiki}{{51}{2022}{{Wikipedia}}{{}}}
+\bibcite{wiki:ENIAC}{{52}{2022a}{{Wikipedia}}{{}}}
+\bibcite{wikiGoodhart}{{53}{2022b}{{Wikipedia}}{{}}}
+\bibcite{Yudkowsky13}{{54}{2013}{{Yudkowsky}}{{}}}
+\bibcite{Yudkowsky16}{{55}{2016}{{Yudkowsky}}{{}}}
 \bibstyle{apalike}
-\@writefile{toc}{\contentsline {chapter}{Appendices}{46}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Training History}{47}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Appendices}{45}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Training History}{46}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}MDP}{47}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces In this figure we can see the training history for different $\lambda $ values for the non-stochastic MDP. The thick line is the mean value and the transparent area around it is a 95\% confidence interval.\relax }}{47}\protected@file@percent }
-\newlabel{fig:results_static_8x8}{{A.1}{47}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}MDP}{46}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.1}{\ignorespaces The training history for different $\lambda $ values for the non-stochastic MDP. The thick line is the mean value and the transparent area around it is a 95\% confidence interval.\relax }}{46}\protected@file@percent }
+\newlabel{fig:apendix_results_static_8x8}{{A.1}{46}}
 \@writefile{lof}{\contentsline {figure}{\numberline {A.2}{\ignorespaces Training history stochastic MDP.\relax }}{47}\protected@file@percent }
-\newlabel{fig:results_static_8x8_stochastic}{{A.2}{47}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}POMDP }{48}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.3}{\ignorespaces Training history small non-stochastic POMDP.\relax }}{48}\protected@file@percent }
-\newlabel{fig:results_static_8x8_stochastic}{{A.3}{48}}
+\newlabel{fig:apendix_results_static_8x8_stochastic}{{A.2}{47}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}POMDP}{47}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.3}{\ignorespaces Training history small non-stochastic POMDP.\relax }}{47}\protected@file@percent }
+\newlabel{fig:apendix_results_pomdp_8x8}{{A.3}{47}}
 \@writefile{lof}{\contentsline {figure}{\numberline {A.4}{\ignorespaces Training history small stochastic POMDP.\relax }}{48}\protected@file@percent }
-\newlabel{fig:results_static_8x8_stochastic}{{A.4}{48}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.3}POMDP Large}{49}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {A.5}{\ignorespaces Training history large non-stochastic POMDP.\relax }}{49}\protected@file@percent }
-\newlabel{fig:results_static_16x16_stochastic}{{A.5}{49}}
+\newlabel{fig:apendix_results_pomdp_8x8_stochastic}{{A.4}{48}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.3}POMDP Large}{48}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {A.5}{\ignorespaces Training history large non-stochastic POMDP.\relax }}{48}\protected@file@percent }
+\newlabel{fig:apendix_results_pomdp_16x16}{{A.5}{48}}
 \@writefile{lof}{\contentsline {figure}{\numberline {A.6}{\ignorespaces Training history large stochastic POMDP.\relax }}{49}\protected@file@percent }
-\newlabel{fig:results_static_16x16_stochastic}{{A.6}{49}}
+\newlabel{fig:apendix_results_pomdp_16x16_stochastic}{{A.6}{49}}

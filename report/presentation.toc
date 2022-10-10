@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{AI Safety}{13}{0}{2}
+\beamer@sectionintoc {3}{Approaches for creating safe AI}{34}{0}{3}
+\beamer@sectionintoc {4}{Manager Approach}{47}{0}{4}
+\beamer@sectionintoc {5}{Results}{60}{0}{5}
+\beamer@sectionintoc {6}{Conclusion}{64}{0}{6}

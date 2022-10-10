@@ -214,6 +214,10 @@ Saisubramanian, S., Zilberstein, S., and Kamar, E. (2020).
   systems.
 \newblock {\em CoRR}, abs/2008.12146.
 
+\bibitem[Schulman et~al., 2017]{schulman2017proximal}
+Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O. (2017).
+\newblock Proximal policy optimization algorithms.
+
 \bibitem[Shah, 2020]{an121}
 Shah, R. (2020).
 \newblock Forecasting transformative ai timelines using biological anchors.
