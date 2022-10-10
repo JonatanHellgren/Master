@@ -8,10 +8,10 @@ import pandas as pd
 def save_table_extra(dir):
     model = dir.split('/')[-1]
     df = summarize_data_mean_std_and_rel_decrease(dir)
-    df.columns = ['$\lambda$', 'mean', 'std', 'decrease', 'mean', 'std', 'decrease']
+    df.columns = ['$\lambda$', 'mean', 'decrease', 'mean', 'decrease']
     df.to_latex(buf=f'../report/tables/{model}.tex',
                          index=False, escape=False,
-                         column_format='c||c|c|c||c|c|c')
+                         column_format='c||c|c||c|c')
 def save_table(dir):
     model = dir.split('/')[-1]
     df = summarize_data_rel_decrease(dir)
@@ -39,9 +39,9 @@ def summarize_data_mean_std_and_rel_decrease(dir, top=30):
         # mean_len = df_top_lmbda['avg_len'].mean().round(2)
         # std_len = df_top_lmbda['avg_len'].std().round(2)
         mean_side_effect = df_top_lmbda['avg_side_effects'].mean().round(2)
-        std_side_effect = df_top_lmbda['avg_side_effects'].std().round(2)
+        # std_side_effect = df_top_lmbda['avg_side_effects'].std().round(2)
         mean_obj = df_top_lmbda['avg_obj'].mean().round(2)
-        std_obj = df_top_lmbda['avg_obj'].std().round(2)
+        # std_obj = df_top_lmbda['avg_obj'].std().round(2)
 
         if lmbda == lambda_range[0]:
             # base_len = mean_len
@@ -54,11 +54,11 @@ def summarize_data_mean_std_and_rel_decrease(dir, top=30):
 
         # data['Length'].append(f'{mean_len} $\pm$ ({std_len})')
         data['mean_side_effect'].append(mean_side_effect)
-        data['std_side_effect'].append(std_side_effect)
+        # data['std_side_effect'].append(std_side_effect)
         data['rel_decrease_side_effect'].append(f'{abs(rel_increase_side_effect)}\%')
 
         data['mean_obj'].append(mean_obj)
-        data['std_obj'].append(std_obj)
+        # data['std_obj'].append(std_obj)
         data['rel_decrease_obj'].append(f'{abs(rel_increase_obj)}\%')
 
     return pd.DataFrame(data)
