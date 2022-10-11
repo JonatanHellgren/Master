@@ -63,8 +63,11 @@ University of Gothenburg}
 
       \large
       \begin{itemize}[<+- | alert@+>]
-        \item Provide an in-depth investigation on current litterature on AI safety.
-        \item Specifically, low-impact AIs using impact measurements.
+        \item AI safety
+        \item Low impact agents
+        \item Imapact measurements
+        % \item Provide an in-depth investigation on current litterature on AI safety.
+        % \item Specifically, low-impact AIs using impact measurements.
       \end{itemize}
 
     \column{0.5\textwidth}
@@ -72,9 +75,11 @@ University of Gothenburg}
 
       \large
       \begin{itemize}[<+- | alert@+>]
-        \item Propose a novel impact measurement.
-        \item Evaluate it in different environmets.
-        \item Compare the results with the current litterature.
+        \item Novel impact measurement
+        \item Evaluate it
+        % \item Propose a novel impact measurement.
+        % \item Evaluate it in different environmets.
+        % \item Compare the results with the current litterature.
       \end{itemize}
 
   \end{columns}
@@ -105,23 +110,42 @@ University of Gothenburg}
 \begin{frame}{Why should we worry?}
   \begin{itemize}[<+- | alert@+>]
     \item What is Artificial Intelligence (AI)?
-    \item AI will likely become more intelligent then us.
-    \item The strength of Homo Sapiens - intelligence.
+% Artificial Intelligence (AI) is intelligence demonstrated by machines, as opposed to the natural intelligence displayed by animals including humans.
+    \item AI will likely become more intelligent then us. 
+    \item This can cause existential risks.
     % \item 
   \end{itemize}
    
 \end{frame}
 
-\begin{frame}{Risk of existential catastrophe}
+\begin{frame}{Existential risk}
+
   \begin{columns}[T,onlytextwidth]
 
     \column{0.5\textwidth}
-    Toby Ord in his book \textit{The Precipice} loosely estimates the chance of a existential catastrophe in the upcoming century to be: \visible<2->{1 in 6, out of which 1 in 10 is due to unaligned AI, see \citet{Precipice}} \\
-    \column{0.5\textwidth}
-    \centering
-  \includegraphics[scale=0.4]{images/precipice.jpg}
+    On futureoflife.org we find the following description, see \citet{FLI}:\\
+
+    \visible<2->{
+      An existential risk is any risk that has the potential to eliminate all of humanity or, at the very least, kill large swaths of the global population, leaving the survivors without sufficient means to rebuild society to current standards of living.}
+    \column{0.4\textwidth}
+  \includegraphics[scale=0.1]{images/FLI.png}
+    % \begin{itemize}
+      % \item Future of Life (FLI) is an independent non-profit,
+      % \item reduce extreme risks from transformative technologies,
+      % \item steer the development and use of these technologies to benefit life.
+    % \end{itemize}
   \end{columns}
 \end{frame}
+% \begin{frame}{Risk of existential catastrophe}
+  % \begin{columns}[T,onlytextwidth]
+
+    % \column{0.5\textwidth}
+    % Toby Ord in his book \textit{The Precipice} loosely estimates the chance of a existential catastrophe in the upcoming century to be: \visible<2->{1 in 6, out of which 1 in 10 is due to unaligned AI, see \citet{Precipice}} \\
+    % \column{0.5\textwidth}
+    % \centering
+  % \includegraphics[scale=0.4]{images/precipice.jpg}
+  % \end{columns}
+% \end{frame}
 
 \begin{frame}{Future progress}
   To differentiate current AI from future versions, several terms are used:
@@ -144,24 +168,17 @@ University of Gothenburg}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Existential risk}
+\begin{frame}{Timeline for TAI Breakthrough}
+  \begin{itemize}[<+- | alert@+>]
+  \item Many predictions for this has been made. 
+  % \item However, the most extensive work I have seen is made by \citet{Ajeya}, Senior Research Analyst at Open Philanthropy, with her work on forecasting TAI with biological anchors. (over 150 pages) 
+  \item In \citet{Ajeya}, the author presents a predicting model.
+  % \item Median 2050 for development of TAI.
+  \item \includegraphics[scale=0.2]{images/prediction.png}
+  \end{itemize}
 
-  \begin{columns}[T,onlytextwidth]
-
-    \column{0.5\textwidth}
-    On futureoflife.org we find the following description, see \citet{FLI}:\\
-
-    \visible<2->{
-      An existential risk is any risk that has the potential to eliminate all of humanity or, at the very least, kill large swaths of the global population, leaving the survivors without sufficient means to rebuild society to current standards of living.}
-    \column{0.4\textwidth}
-  \includegraphics[scale=0.1]{images/FLI.png}
-    % \begin{itemize}
-      % \item Future of Life (FLI) is an independent non-profit,
-      % \item reduce extreme risks from transformative technologies,
-      % \item steer the development and use of these technologies to benefit life.
-    % \end{itemize}
-  \end{columns}
 \end{frame}
+
 
 \begin{frame}{The human fragility argument}
   % A quick description of artificial intelligence, to make sure we are on the same page.
@@ -183,15 +200,6 @@ University of Gothenburg}
 \end{frame}
 
 
-\begin{frame}{Timeline for TAI Breakthrough}
-  \begin{itemize}[<+- | alert@+>]
-  \item Many predictions for this has been made. 
-  \item However, the most extensive work I have seen is made by \citet{Ajeya}, Senior Research Analyst at Open Philanthropy, with her work on forecasting TAI with biological anchors. (over 150 pages) 
-  % \item Median 2050 for development of TAI.
-  \item \includegraphics[scale=0.2]{images/prediction.png}
-  \end{itemize}
-
-\end{frame}
 
 \begin{frame}{AI Alignment}
 
@@ -213,14 +221,15 @@ University of Gothenburg}
 \end{frame}
 
 
-\section{Approaches for creating safe AI}
+\section{Impact measurements}
 
-\begin{frame}{Approaches for creating safe AI}
+\begin{frame}{Impact measurement}
   \begin{itemize}[<+- | alert@+>]
-      \item There exists several approaches.
-      \item For example, corrigibility and interruptibility.
-      \item And, inverse reinforcement learning.
-      \item But I have focused on side effect minimization.
+    \item It is an approach for solving the alignment problem.
+    % It is worth mentioning
+    \item \alert<3-4>{There exists several other approaches. For example: \only<3->{corrigibility and interruptibility.}}
+      % \item But I have focused on side effect minimization.
+    \visible<5>{\item \alert{Impact measurements is trying to reduce unnecessary side effects through penalizing impact.}}
   \end{itemize}
 \end{frame}
 
@@ -254,70 +263,46 @@ University of Gothenburg}
   
 \end{frame}
 
-\begin{frame}{Impact measurements}
+\begin{frame}{Later work}
   \begin{itemize}[<+- | alert@+>]
-    \item Impact measurements is the low impact AI ideas applied to AI agents. 
-    \item An AI agent is an AI that is located and acts in a environment.\\
-  \input{figures/RL/RL.tex}
-    \item The impact measurement is added to the reward function.
-    \[ R^\prime(s_{t}) := R(s_{t}) - \lambda d(s_{t}, s_{t}^\prime). \]
+    \item Later in \citet{Turner20, Krakovna19}, the authors presented ideas of applying low impact agents using Reinforcement Learning (RL).
+    \item \textbf{RL:}\\\input{figures/RL/RL.tex}
   \end{itemize}
-
 \end{frame}
 
 
 \section{Manager Approach}
-
-\begin{frame}{Reinforcement learning}
-  Reinforcement Learning (RL)
-  \input{figures/RL/RL.tex}
-\end{frame}
-
-\begin{frame}{Reinforcement learning}
-  \begin{itemize}[<+- | alert@+>]
-    \item I will use a variation of Proximal Policy Optimization (PPO), as described in \citet{schulman2017proximal}.
-    \item It is a actor-critic method. 
-    \item The actor and the critic are both neural networks.
-  \end{itemize}
-  
-  \visible<4->{\[L^{CLIP}(\theta) = \mathbb{E}_t \left [ \min(\delta_t(\theta) \ \hat{A}_t,\ 
-\text{clip}(\delta_t(\theta), 1 - \epsilon, 1 + \epsilon) \ \hat{A}_t) \right ] \]
-  \[ \delta_t(\theta) = \frac{\pi_\theta(a_t| s_t)}{\pi_{\theta_{old}}(a_t|s_t)} \]}
-\end{frame}
 
 \begin{frame}{Grid worlds}
   \centering
   \Huge{Live demo!}
 \end{frame}
 
+\begin{frame}{The actor and the critic}
+  \begin{itemize}[<+- | alert@+>]
+    \item Then I will use a variation of the PPO algorithm from \citet{schulman2017proximal}. 
+    \item It is a actor-critic method\\
+      \vspace{20pt}
+      \centering
+      \includegraphics[scale=0.3]{images/actor-critc.png}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Auxiliary tasks}
- $   s_{1,t} = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/aux_1.png"}},
-    s_{2,t} = \parbox[h][0.30\linewidth][c]{0.25\linewidth}{\includegraphics{"./figures/aux_2.png"}}$
+  \centering
+  \includegraphics[scale=0.8]{"figures/5x5.png"} \\
+  \includegraphics[scale=0.8]{"./figures/aux_1.png"} 
+  \includegraphics[scale=0.8]{"./figures/aux_2.png"}
 \end{frame}
 
 \begin{frame}{The manager approach}
   % \begin{algorithm}
-With a trained manager, we use the following formula for the impact measurement:
-\[ d(s_t,s_{t+1}) := \sum_{x=1}^2 \hat{V}_\phi(s_{x,t+1}) - \hat{V}_\phi(s_{x,t}).\]
-  
-\[ R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1}).\]
-\end{frame}
-
-\begin{frame}{Training the manager}
-  % \begin{algorithm}
-  \begin{algorithmic}[1]
-  \Require An MDP, a pre-trained policy $\pi$, and initial manager parameters $\phi_0$
-  % \Ensure $y = x^n$
-  \For{k = 0, 1, 2, \dots}
-    \State Collect set of trajectories $\mathcal{D}_k = \{\tau_i\}$
-    \State Randomly select augmentation $x$
-    \State Fit manager estimate by regression using the mean-squared error:
-    \[ \phi_{k+1} = \text{arg} \min_\phi \frac{1}{|\mathcal{D}_k|T} \sum_{\tau \in \mathcal{D}_k} \sum_{t=0}^T \left( \hat{V}_\phi(s^x_t) - V^\pi (s_t) \right)\]
-  \EndFor
-  \end{algorithmic}
-  % \caption{Algorithm for training a manager network}
-    % \label{alg:manager}
-  % \end{algorithm}
+\begin{itemize}[<+- | alert@+>]
+    \item The manager is similar to the critic. However, the manager can also estimate the expected reward for auxiliary tasks.
+    \item It measures the relative change in agents ability to complete auxiliary tasks.
+    % \item $d(s_t,s_{t+1}) := \sum_{x=1}^2 \hat{V}_\phi(s_{x,t+1}) - \hat{V}_\phi(s_{x,t}).$
+    % \item $R^{\prime}(s_{t+1}) = R(s_{t+1}) + \lambda d(s_t,s_{t+1}).$
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Experiments}
@@ -333,7 +318,7 @@ With a trained manager, we use the following formula for the impact measurement:
     \end{tabular}
   \end{table}
   \begin{itemize}
-    \visible<2->{\item Each with a stochastic and non-stochastic environment.}
+    \visible<2->{\item Each with a stochastic and non-stochastic version.}
     \visible<3->{\item Then evaluated using $\lambda \in \{0, 0.5, 1, 1.5, 2, 2.5, 3\}$}
   \end{itemize}
 \end{frame}
@@ -346,7 +331,7 @@ With a trained manager, we use the following formula for the impact measurement:
   \includegraphics[scale=0.8]{"./figures/static_8x8_result_plot.png"}
 \end{frame}
 
-\begin{frame}{POMPD}
+\begin{frame}{POMDP}
   \centering
   \includegraphics[scale=0.8]{"./figures/pomdp_8x8_result_plot.png"}
 \end{frame}
@@ -360,11 +345,15 @@ With a trained manager, we use the following formula for the impact measurement:
 \section{Conclusion}
 
 \begin{frame}{Summary}
-  \null
+  \begin{itemize}[<+- | alert@+>]
+      \item You can probably now understand the title.
+      \item Results are in line with \citet{ArmstrongLevinstein}.
+      \item The agent performed better in more complex environments.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{End note}
-  \null
+The AI safety research has attracted some very bright minds that are taking this issue seriously and working on creating a future with aligned AI. More specifically, in the development of impact measurements promising ideas have emerged, although it is hard to say if this research is enough. Judging from what is at stake, we ought to attempt every plausible research avenue towards AI alignment, even in cases where success is not certain.
 \end{frame}
 
 {\setbeamercolor{palette primary}{fg=black, bg=yellow}

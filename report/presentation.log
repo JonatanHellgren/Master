@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  10 OCT 2022 12:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.22)  11 OCT 2022 15:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1261,7 +1261,7 @@ thkerncmss.
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-81.
+86.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [4
@@ -1292,206 +1292,158 @@ File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ] [16
 
 ]
+<images/FLI.png, id=134, 1204.5pt x 822.07124pt>
+File: images/FLI.png Graphic file (type png)
+<use images/FLI.png>
+Package pdftex.def Info: images/FLI.png  used on input line 138.
+(pdftex.def)             Requested size: 120.45705pt x 82.21193pt.
+ [17
 
-Package natbib Warning: Citation `Precipice' on page 17 undefined on input line
- 124.
+ <./images/FLI.png>]
+File: images/FLI.png Graphic file (type png)
+<use images/FLI.png>
+Package pdftex.def Info: images/FLI.png  used on input line 138.
+(pdftex.def)             Requested size: 120.45705pt x 82.21193pt.
 
-<images/precipice.jpg, id=121, 240.9pt x 363.759pt>
-File: images/precipice.jpg Graphic file (type jpg)
-<use images/precipice.jpg>
-Package pdftex.def Info: images/precipice.jpg  used on input line 124.
-(pdftex.def)             Requested size: 96.35828pt x 145.50102pt.
-[17
-
- <./images/precipice.jpg>]
-
-Package natbib Warning: Citation `Precipice' on page 18 undefined on input line
- 124.
-
-File: images/precipice.jpg Graphic file (type jpg)
-<use images/precipice.jpg>
-Package pdftex.def Info: images/precipice.jpg  used on input line 124.
-(pdftex.def)             Requested size: 96.35828pt x 145.50102pt.
 [18
 
 ]
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][]  
  []
 
 [19
 
 ]
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][]  
  []
 
 [20
 
 ]
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][]  
  []
 
 [21
 
 ]
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][][][]  
  []
 
 
-Overfull \hbox (20.00003pt too wide) in paragraph at lines 145--145
+Overfull \hbox (20.00003pt too wide) in paragraph at lines 169--169
 [][][][][][][][][]  
  []
 
 [22
 
 ]
+<images/prediction.png, id=173, 706.64pt x 429.605pt>
+File: images/prediction.png Graphic file (type png)
+<use images/prediction.png>
+Package pdftex.def Info: images/prediction.png  used on input line 180.
+(pdftex.def)             Requested size: 141.32549pt x 85.91946pt.
+ [23
 
-Package natbib Warning: Citation `FLI' on page 23 undefined on input line 164.
-
-<images/FLI.png, id=155, 1204.5pt x 822.07124pt>
-File: images/FLI.png Graphic file (type png)
-<use images/FLI.png>
-Package pdftex.def Info: images/FLI.png  used on input line 164.
-(pdftex.def)             Requested size: 120.45705pt x 82.21193pt.
-[23
-
- <./images/FLI.png>]
-
-Package natbib Warning: Citation `FLI' on page 24 undefined on input line 164.
-
-File: images/FLI.png Graphic file (type png)
-<use images/FLI.png>
-Package pdftex.def Info: images/FLI.png  used on input line 164.
-(pdftex.def)             Requested size: 120.45705pt x 82.21193pt.
-[24
+ <./images/prediction.png>]
+File: images/prediction.png Graphic file (type png)
+<use images/prediction.png>
+Package pdftex.def Info: images/prediction.png  used on input line 180.
+(pdftex.def)             Requested size: 141.32549pt x 85.91946pt.
+ [24
 
 ]
+File: images/prediction.png Graphic file (type png)
+<use images/prediction.png>
+Package pdftex.def Info: images/prediction.png  used on input line 180.
+(pdftex.def)             Requested size: 141.32549pt x 85.91946pt.
+ [25
 
-Package natbib Warning: Citation `CritchKruger' on page 25 undefined on input l
-ine 183.
-
-<images/CritchKrueger.png, id=168, 351.3125pt x 250.9375pt>
+]
+<images/CritchKrueger.png, id=194, 351.3125pt x 250.9375pt>
 File: images/CritchKrueger.png Graphic file (type png)
 <use images/CritchKrueger.png>
-Package pdftex.def Info: images/CritchKrueger.png  used on input line 183.
+Package pdftex.def Info: images/CritchKrueger.png  used on input line 200.
 (pdftex.def)             Requested size: 140.5225pt x 100.37321pt.
-[25
+ [26
 
  <./images/CritchKrueger.png>]
-
-Package natbib Warning: Citation `CritchKruger' on page 26 undefined on input l
-ine 183.
-
 File: images/CritchKrueger.png Graphic file (type png)
 <use images/CritchKrueger.png>
-Package pdftex.def Info: images/CritchKrueger.png  used on input line 183.
-(pdftex.def)             Requested size: 140.5225pt x 100.37321pt.
-[26
-
-]
-
-Package natbib Warning: Citation `CritchKruger' on page 27 undefined on input l
-ine 183.
-
-File: images/CritchKrueger.png Graphic file (type png)
-<use images/CritchKrueger.png>
-Package pdftex.def Info: images/CritchKrueger.png  used on input line 183.
+Package pdftex.def Info: images/CritchKrueger.png  used on input line 200.
 (pdftex.def)             Requested size: 140.5225pt x 100.37321pt.
 [27
 
 ]
-
-Package natbib Warning: Citation `Ajeya' on page 28 undefined on input line 194
-.
-
-<images/prediction.png, id=186, 706.64pt x 429.605pt>
-File: images/prediction.png Graphic file (type png)
-<use images/prediction.png>
-Package pdftex.def Info: images/prediction.png  used on input line 194.
-(pdftex.def)             Requested size: 141.32549pt x 85.91946pt.
-[28
-
- <./images/prediction.png>]
-
-Package natbib Warning: Citation `Ajeya' on page 29 undefined on input line 194
-.
-
-File: images/prediction.png Graphic file (type png)
-<use images/prediction.png>
-Package pdftex.def Info: images/prediction.png  used on input line 194.
-(pdftex.def)             Requested size: 141.32549pt x 85.91946pt.
-[29
+File: images/CritchKrueger.png Graphic file (type png)
+<use images/CritchKrueger.png>
+Package pdftex.def Info: images/CritchKrueger.png  used on input line 200.
+(pdftex.def)             Requested size: 140.5225pt x 100.37321pt.
+ [28
 
 ]
-
-Package natbib Warning: Citation `Ajeya' on page 30 undefined on input line 194
-.
-
-File: images/prediction.png Graphic file (type png)
-<use images/prediction.png>
-Package pdftex.def Info: images/prediction.png  used on input line 194.
-(pdftex.def)             Requested size: 141.32549pt x 85.91946pt.
-[30
-
-]
-<figures/agreeing.jpeg, id=202, 708.6475pt x 784.9325pt>
+<figures/agreeing.jpeg, id=214, 708.6475pt x 784.9325pt>
 File: figures/agreeing.jpeg Graphic file (type jpg)
 <use figures/agreeing.jpeg>
-Package pdftex.def Info: figures/agreeing.jpeg  used on input line 213.
+Package pdftex.def Info: figures/agreeing.jpeg  used on input line 221.
 (pdftex.def)             Requested size: 106.29254pt x 117.73479pt.
- [31
+ [29
 
  <./figures/agreeing.jpeg>]
 File: figures/agreeing.jpeg Graphic file (type jpg)
 <use figures/agreeing.jpeg>
-Package pdftex.def Info: figures/agreeing.jpeg  used on input line 213.
+Package pdftex.def Info: figures/agreeing.jpeg  used on input line 221.
 (pdftex.def)             Requested size: 106.29254pt x 117.73479pt.
- [32
+ [30
 
 ]
 File: figures/agreeing.jpeg Graphic file (type jpg)
 <use figures/agreeing.jpeg>
-Package pdftex.def Info: figures/agreeing.jpeg  used on input line 213.
+Package pdftex.def Info: figures/agreeing.jpeg  used on input line 221.
 (pdftex.def)             Requested size: 106.29254pt x 117.73479pt.
- [33
+ [31
+
+] [32
+
+] [33
 
 ] [34
 
@@ -1499,193 +1451,163 @@ Package pdftex.def Info: figures/agreeing.jpeg  used on input line 213.
 
 ] [36
 
-] [37
-
-] [38
+]
+[37
 
 ]
-<images/vase.png, id=247, 749.80125pt x 1284.8pt>
+<images/vase.png, id=264, 749.80125pt x 1284.8pt>
 File: images/vase.png Graphic file (type png)
 <use images/vase.png>
-Package pdftex.def Info: images/vase.png  used on input line 243.
+Package pdftex.def Info: images/vase.png  used on input line 252.
 (pdftex.def)             Requested size: 74.98451pt x 128.48752pt.
- [39
+ [38
 
  <./images/vase.png>]
 File: images/vase.png Graphic file (type png)
 <use images/vase.png>
-Package pdftex.def Info: images/vase.png  used on input line 243.
+Package pdftex.def Info: images/vase.png  used on input line 252.
 (pdftex.def)             Requested size: 74.98451pt x 128.48752pt.
+ [39
+
+]
+<images/dial.png, id=277, 1279.78125pt x 401.5pt>
+File: images/dial.png Graphic file (type png)
+<use images/dial.png>
+Package pdftex.def Info: images/dial.png  used on input line 264.
+(pdftex.def)             Requested size: 255.95172pt x 80.29857pt.
  [40
 
-]
-
-Package natbib Warning: Citation `ArmstrongLevinstein' on page 41 undefined on 
-input line 255.
-
-<images/dial.png, id=259, 1279.78125pt x 401.5pt>
-File: images/dial.png Graphic file (type png)
-<use images/dial.png>
-Package pdftex.def Info: images/dial.png  used on input line 255.
-(pdftex.def)             Requested size: 255.95172pt x 80.29857pt.
-[41
-
  <./images/dial.png>]
-
-Package natbib Warning: Citation `ArmstrongLevinstein' on page 42 undefined on 
-input line 255.
-
 File: images/dial.png Graphic file (type png)
 <use images/dial.png>
-Package pdftex.def Info: images/dial.png  used on input line 255.
+Package pdftex.def Info: images/dial.png  used on input line 264.
 (pdftex.def)             Requested size: 255.95172pt x 80.29857pt.
-[42
+ [41
 
 ]
-
-Package natbib Warning: Citation `ArmstrongLevinstein' on page 43 undefined on 
-input line 255.
-
 File: images/dial.png Graphic file (type png)
 <use images/dial.png>
-Package pdftex.def Info: images/dial.png  used on input line 255.
+Package pdftex.def Info: images/dial.png  used on input line 264.
 (pdftex.def)             Requested size: 255.95172pt x 80.29857pt.
-[43
+ [42
+
+]
+(./figures/RL/RL.tex) [43
 
 ] (./figures/RL/RL.tex) [44
 
-] (./figures/RL/RL.tex) [45
+] [45
 
-] (./figures/RL/RL.tex) [46
-
-] [47
-
-] (./figures/RL/RL.tex) [48
+] [46
 
 ]
+<images/actor-critc.png, id=330, 803.0pt x 367.3725pt>
+File: images/actor-critc.png Graphic file (type png)
+<use images/actor-critc.png>
+Package pdftex.def Info: images/actor-critc.png  used on input line 289.
+(pdftex.def)             Requested size: 240.90186pt x 110.21259pt.
+ [47
 
-Package natbib Warning: Citation `schulman2017proximal' on page 49 undefined on
- input line 286.
-
-[49
-
-]
-
-Package natbib Warning: Citation `schulman2017proximal' on page 50 undefined on
- input line 286.
-
-[50
-
-]
-
-Package natbib Warning: Citation `schulman2017proximal' on page 51 undefined on
- input line 286.
-
-[51
+ <./images/actor-critc.png>]
+File: images/actor-critc.png Graphic file (type png)
+<use images/actor-critc.png>
+Package pdftex.def Info: images/actor-critc.png  used on input line 289.
+(pdftex.def)             Requested size: 240.90186pt x 110.21259pt.
+ [48
 
 ]
-
-Package natbib Warning: Citation `schulman2017proximal' on page 52 undefined on
- input line 286.
-
-[52
-
-] [53
-
-]
-<./figures/aux_1.png, id=340, 113.7048pt x 127.9179pt>
+<figures/5x5.png, id=346, 113.7048pt x 127.9179pt>
+File: figures/5x5.png Graphic file (type png)
+<use figures/5x5.png>
+Package pdftex.def Info: figures/5x5.png  used on input line 296.
+(pdftex.def)             Requested size: 90.96394pt x 102.33444pt.
+<./figures/aux_1.png, id=347, 113.7048pt x 127.9179pt>
 File: ./figures/aux_1.png Graphic file (type png)
 <use ./figures/aux_1.png>
 Package pdftex.def Info: ./figures/aux_1.png  used on input line 296.
-(pdftex.def)             Requested size: 113.70451pt x 127.91757pt.
-
-Overfull \hbox (36.88205pt too wide) in paragraph at lines 296--296
-[][] 
- []
-
-<./figures/aux_2.png, id=341, 113.7048pt x 127.9179pt>
+(pdftex.def)             Requested size: 90.96394pt x 102.33444pt.
+<./figures/aux_2.png, id=348, 113.7048pt x 127.9179pt>
 File: ./figures/aux_2.png Graphic file (type png)
 <use ./figures/aux_2.png>
 Package pdftex.def Info: ./figures/aux_2.png  used on input line 296.
-(pdftex.def)             Requested size: 113.70451pt x 127.91757pt.
+(pdftex.def)             Requested size: 90.96394pt x 102.33444pt.
+ [49
 
-Overfull \hbox (36.88205pt too wide) in paragraph at lines 296--296
-[][] 
+ <./figures/5x5.png> <./figures/aux_1.png> <./figures/aux_2.png>] [50
+
+] [51
+
+]
+Overfull \hbox (6.54968pt too wide) in paragraph at lines 324--324
+ [] 
+ []
+
+[52
+
+]
+Overfull \hbox (6.54968pt too wide) in paragraph at lines 324--324
+ [] 
+ []
+
+[53
+
+]
+Overfull \hbox (6.54968pt too wide) in paragraph at lines 324--324
+ [] 
  []
 
 [54
 
- <./figures/aux_1.png> <./figures/aux_2.png>] [55
-
-] [56
+] [55
 
 ]
-Overfull \hbox (6.54968pt too wide) in paragraph at lines 339--339
- [] 
- []
+<./figures/static_8x8_result_plot.png, id=393, 374.53928pt x 166.9437pt>
+File: ./figures/static_8x8_result_plot.png Graphic file (type png)
+<use ./figures/static_8x8_result_plot.png>
+Package pdftex.def Info: ./figures/static_8x8_result_plot.png  used on input li
+ne 332.
+(pdftex.def)             Requested size: 299.6318pt x 133.55511pt.
+ [56
 
-[57
+ <./figures/static_8x8_result_plot.png>]
+<./figures/pomdp_8x8_result_plot.png, id=400, 374.53928pt x 166.9437pt>
+File: ./figures/pomdp_8x8_result_plot.png Graphic file (type png)
+<use ./figures/pomdp_8x8_result_plot.png>
+Package pdftex.def Info: ./figures/pomdp_8x8_result_plot.png  used on input lin
+e 337.
+(pdftex.def)             Requested size: 299.6318pt x 133.55511pt.
+ [57
 
-]
-Overfull \hbox (6.54968pt too wide) in paragraph at lines 339--339
- [] 
- []
+ <./figures/pomdp_8x8_result_plot.png>]
+<./figures/pomdp_16x16_result_plot.png, id=407, 374.53928pt x 166.9437pt>
+File: ./figures/pomdp_16x16_result_plot.png Graphic file (type png)
+<use ./figures/pomdp_16x16_result_plot.png>
+Package pdftex.def Info: ./figures/pomdp_16x16_result_plot.png  used on input l
+ine 342.
+(pdftex.def)             Requested size: 299.6318pt x 133.55511pt.
+ [58
 
-[58
-
-]
-Overfull \hbox (6.54968pt too wide) in paragraph at lines 339--339
- [] 
- []
-
-[59
+ <./figures/pomdp_16x16_result_plot.png>] [59
 
 ] [60
 
 ]
-<./figures/static_8x8_result_plot.png, id=383, 374.53928pt x 166.9437pt>
-File: ./figures/static_8x8_result_plot.png Graphic file (type png)
-<use ./figures/static_8x8_result_plot.png>
-Package pdftex.def Info: ./figures/static_8x8_result_plot.png  used on input li
-ne 347.
-(pdftex.def)             Requested size: 299.6318pt x 133.55511pt.
- [61
+[61
 
- <./figures/static_8x8_result_plot.png>]
-<./figures/pomdp_8x8_result_plot.png, id=391, 374.53928pt x 166.9437pt>
-File: ./figures/pomdp_8x8_result_plot.png Graphic file (type png)
-<use ./figures/pomdp_8x8_result_plot.png>
-Package pdftex.def Info: ./figures/pomdp_8x8_result_plot.png  used on input lin
-e 352.
-(pdftex.def)             Requested size: 299.6318pt x 133.55511pt.
- [62
+] [62
 
- <./figures/pomdp_8x8_result_plot.png>]
-<./figures/pomdp_16x16_result_plot.png, id=398, 374.53928pt x 166.9437pt>
-File: ./figures/pomdp_16x16_result_plot.png Graphic file (type png)
-<use ./figures/pomdp_16x16_result_plot.png>
-Package pdftex.def Info: ./figures/pomdp_16x16_result_plot.png  used on input l
-ine 357.
-(pdftex.def)             Requested size: 299.6318pt x 133.55511pt.
- [63
+] [63
 
- <./figures/pomdp_16x16_result_plot.png>] [64
-
-] [65
-
-]
-[66
-
-] [67
+] [64
 
 ] (./presentation.bbl
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\translate ' on input line 1.
 
-[68
+[65
 
-]) [69
+]) [66
 
 ]
 \tf@nav=\write6
@@ -1697,60 +1619,41 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 379.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 379.
-(./presentation.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 379.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 379.
-
-
-Package rerunfilecheck Warning: File `presentation.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `presentation.out':
-(rerunfilecheck)             Before: 5C8A134989A9C08CAFB3A5D3B8F03DC8;208
-(rerunfilecheck)             After:  E4D21C59F278532F49D1CA3EA48C8D99;340.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 368.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 368.
+ (./presentation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 368.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 368.
+Package rerunfilecheck Info: File `presentation.out' has not changed.
+(rerunfilecheck)             Checksum: 836F6DF338442274E07F2B62155B30B9;328.
  ) 
 Here is how much of TeX's memory you used:
- 34827 strings out of 481239
- 821767 string characters out of 5920377
+ 34811 strings out of 481239
+ 821528 string characters out of 5920377
  1215170 words of memory out of 5000000
- 49180 multiletter control sequences out of 15000+600000
+ 49171 multiletter control sequences out of 15000+600000
  545462 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,13n,106p,1835b,1006s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,13n,106p,1835b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/p
-ublic/cm-super/sfss0500.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1
-000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb>
-Output written on presentation.pdf (69 pages, 1503398 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/shar
+e/texmf/fonts/type1/public/cm-super/sfss0500.pfb></usr/share/texmf/fonts/type1/
+public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss
+1200.pfb>
+Output written on presentation.pdf (66 pages, 1396748 bytes).
 PDF statistics:
- 545 PDF objects out of 1000 (max. 8388607)
- 423 compressed objects within 5 object streams
- 151 named destinations out of 1000 (max. 500000)
- 135 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 547 PDF objects out of 1000 (max. 8388607)
+ 429 compressed objects within 5 object streams
+ 148 named destinations out of 1000 (max. 500000)
+ 164 words of extra memory for PDF output out of 10000 (max. 10000000)
 

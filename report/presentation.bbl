@@ -1,5 +1,10 @@
 \begin{thebibliography}{}
 
+\bibitem[Armstrong and Levinstein, 2017]{ArmstrongLevinstein}
+Armstrong, S. and Levinstein, B. (2017).
+\newblock Low impact artificial intelligences.
+\newblock {\em CoRR}, abs/1705.10720.
+
 \bibitem[Cotra, 2020]{Ajeya}
 Cotra, A. (2020).
 \newblock Forecasting tai with biological anchors.
@@ -14,10 +19,19 @@ FLI (n.d.).
 \newblock Existential risk.
 \newblock [Online; accessed 31-May-2022].
 
+\bibitem[Krakovna et~al., 2018]{Krakovna19}
+Krakovna, V., Orseau, L., Martic, M., and Legg, S. (2018).
+\newblock Measuring and avoiding side effects using relative reachability.
+\newblock {\em CoRR}, abs/1806.01186.
+
 \bibitem[Ord, 2020]{Precipice}
 Ord, T. (2020).
 \newblock {\em The precipice : existential risk and the future of humanity}.
 \newblock New York Hachette Books.
+
+\bibitem[Schulman et~al., 2017]{schulman2017proximal}
+Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O. (2017).
+\newblock Proximal policy optimization algorithms.
 
 \bibitem[Turner et~al., 2020]{Turner20}
 Turner, A.~M., Ratzlaff, N., and Tadepalli, P. (2020).
